@@ -1,0 +1,9 @@
+[submodule "references/gridlab-d"]
+	path = references/gridlab-d
+	url = https://github.com/gridlab-d/gridlab-d.git
+[submodule "references/HELICS"]
+	path = references/HELICS
+	url = https://github.com/GMLC-TDC/HELICS.git
+[submodule "references/HELICS-Examples"]
+	path = references/HELICS-Examples
+	url = https://github.com/GMLC-TDC/HELICS-Examples.git
