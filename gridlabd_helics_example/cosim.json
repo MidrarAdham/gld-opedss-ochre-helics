@@ -1,0 +1,18 @@
+{
+	"broker": true,
+	"federates":[
+		{
+			"name":"fed_py",
+			"directory": ".",
+			"exec":"python3 powerflow_test.py",
+			"host":"localhost"
+		},
+		{
+			"name":"fed_gld",
+			"directory":".",
+			"exec":"gridlabd powerflow_4node.glm",
+			"host":"localhost"
+		}
+	],
+	"name":"testing_cosimulation"
+}
