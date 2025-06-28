@@ -9,7 +9,7 @@ module connection;
 object helics_msg {
 	name helics;
 	parent inv;
-	configure customized_config.json;
+	configure powerflow_4node_config.json;
 }
 
 
@@ -190,60 +190,21 @@ object inverter {
 	generator_status ONLINE;
 	generator_mode SUPPLY_DRIVEN;
 	phases CS;
-	rated_power 10;
+	rated_power 4000;
 	inverter_efficiency 0.9;
 	power_factor 1;
 	object battery {
 		name inv_batt;
 		battery_type LI_ION;
 		use_internal_battery_model TRUE;
-		battery_capacity 10000;
+		battery_capacity 10 kwh;
 		state_of_charge 1.0;
 	};
 }
 
-// object triplex_load {
-// 	name x;
-// 	phases CS;
-// 	parent mr_meter1;
-// 	constant_power_12 1000;
-// 	nominal_voltage 120;
-// 	helics_subscribe "x" constant_power 12;
-// }
-
-// object house {
-// 	name house1;
-// 	// no need to specify phase used, inherits parent's phase
-// //  panel.power_factor 0.98;
-// 	floor_area random.uniform(2500,100) sf;
-// 	parent mr_meter1;
-
-// }
-
-// object waterheater {
-// 	parent house1; // heater is inside the house
-// 	name my_waterheater;
-// 	// no need to specify phase used
-// 	temperature 120;
-// 	tank_volume 50;  
-// 	thermostat_deadband 2; 
-// 	heating_element_capacity 4.5 kW;
-// 	water_demand demand.value;
-// 	inlet_water_temperature 60;
-// 	tank_UA 3.3;
-// 	object recorder {
-// 		name Nadine;
-// 		interval 60;
-// 		property is_waterheater_on, temperature, height, water_demand;
-// 		file "wh.csv";
-// 	}; // always put a semicolon for the curly bracket of a nested object
-
-// }
-
-// object recorder {
-// 	name mr_recorder;
-// 	parent mr_meter1;
-// 	property measured_power.real, measured_current_1, measured_voltage_1; // current & voltage on split phase 1
-// 	interval 600; // every 10 mins
-// 	file output.csv;
-// }
+object recorder {
+	parent inv;
+	file powerflow_4node_logs.csv;
+	interval 60;
+	propoerty rated_power;
+}

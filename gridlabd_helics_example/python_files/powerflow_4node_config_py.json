@@ -1,7 +1,7 @@
 {
     "coreInit": "--federates=1",
     "coreType": "zmq",
-    "name": "CSVPublisher",
+    "name": "CSVPublisher Federate",
     "offset": 0.0,
     "period": 60,
     "timeDelta": 1.0,

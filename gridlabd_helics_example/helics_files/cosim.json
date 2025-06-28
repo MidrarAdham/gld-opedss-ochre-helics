@@ -2,13 +2,13 @@
 	"broker": true,
 	"federates":[
 		{
-			"name":"fed_py",
+			"name":"federate_python",
 			"directory": ".",
 			"exec":"python3 powerflow_test.py",
 			"host":"localhost"
 		},
 		{
-			"name":"fed_gld",
+			"name":"federate_gld",
 			"directory":".",
 			"exec":"gridlabd powerflow_4node.glm",
 			"host":"localhost"

@@ -1,18 +1,22 @@
 {
     "coreInit": "--federates=1",
     "coreType": "zmq",
-    "name": "CSVPublisher",
+    "name": "distribSimFourNodeFeeder",
     "offset": 0.0,
     "period": 60,
     "timeDelta": 1.0,
     "logfile": "helics_output.log",
     "log_level": "warning",
     "uninterruptible": true,
-    "publications": [
+    "subscriptions": [
         {
             "key": "CSVPublisher/load_power",
-            "type": "complex",
-            "global": true
+            "type": "real",
+            "global": true,
+            "info": {
+                "object": "inv",
+                "property": "rated_power"
+            }
         }
     ]
 }
