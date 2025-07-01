@@ -9,7 +9,7 @@ module connection;
 object helics_msg {
 	name helics;
 	parent inv;
-	configure powerflow_4node_config.json;
+	configure powerflow_4node_gld_config.json;
 }
 
 
@@ -197,7 +197,7 @@ object inverter {
 		name inv_batt;
 		battery_type LI_ION;
 		use_internal_battery_model TRUE;
-		battery_capacity 10 kwh;
+		battery_capacity 10;
 		state_of_charge 1.0;
 	};
 }
@@ -206,5 +206,5 @@ object recorder {
 	parent inv;
 	file powerflow_4node_logs.csv;
 	interval 60;
-	propoerty rated_power;
+	property rated_power;
 }

@@ -1,0 +1,10 @@
+I am here 0
+<helics.HelicsValueFederate(name = "CSVPublisher", state = 0, current_time = -9223372036.854776, n_publications = 1, n_subscriptions = 0, n_endpoints = 0, n_filters = 0, n_pending_messages = 0) at 0x71bc69d11be0>
+I am here 2
+I am here 3
+I am here 4
+fed <helics.HelicsValueFederate(name = "CSVPublisher", state = 2, current_time = 0.0, n_publications = 1, n_subscriptions = 0, n_endpoints = 0, n_filters = 0, n_pending_messages = 0) at 0x71bc69d11be0>
+federate name: none for now
+publications in federate: 1
+subscriptions in federate: 0
+I am here 5

@@ -1,16 +1,17 @@
 {
     "coreInit": "--federates=1",
     "coreType": "zmq",
-    "name": "CSVPublisher Federate",
+    "coreName": "Python Federate",
+    "name": "CSVPublisher",
     "offset": 0.0,
     "period": 60,
     "timeDelta": 1.0,
-    "logfile": "helics_output.log",
+    "logfile": "helics_output_py.log",
     "log_level": "warning",
     "uninterruptible": true,
     "publications": [
         {
-            "key": "CSVPublisher/load_power",
+            "key": "helics/load_power",
             "type": "complex",
             "global": true
         }

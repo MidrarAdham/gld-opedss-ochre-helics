@@ -23,12 +23,24 @@ logger.setLevel(logging.DEBUG)
 
 
 def create_federate (config):
+    """
+    1) Create the federate from the JSON config file
+    """
     fed = h.helicsCreateValueFederateFromConfig(config)
+    return fed
+
+def initialize_execute_federate (fed):
+    """
+    2) Enter the initialization and execution mode
+    """
+    h.helicsFederateEnterInitializingMode(fed) # Initialization
+    status = h.helicsFederateEnterExecutingMode(fed)
     pass
 
-def initialize_execute_federate ():
-    pass
-
+def publications_handling (fed):
+    pubkeys_count = h.helicsFederateGetPublicationCount(fed)    #Get the number of publication in each federate
+    subkeys_count = h.helicsFederateGetInputCount(fed)  # Get the number of subscriptions in a federate.
+    return pubkeys_count, subkeys_count
 
 def time_synchronization_federate ():
     """
@@ -51,10 +63,16 @@ def federate_subscription():
 
 
 if __name__ == "__main__":
-    py_federate_config_file = "./powerflow_4node_config_py.json"
-    gld_federate_config_file = "./powerflow_4node_config_gld.json"
-    fed = create_federate(py_federate_config_file)
-    print("\n\n-------------\n\n")
+    default_path = "/home/deras/gld-opedss-ochre-helics/gridlabd_helics_example"
+    py_federate_config_file = f"{default_path}/python_files/powerflow_4node_config_py.json"
+    gld_federate_config_file = f"{default_path}/gld_files/powerflow_4node_config_gld.json"
+    
+    print("I am here 0")
+    fed = create_federate (py_federate_config_file)
     print(fed)
-    print("\n\n-------------\n\n")
-    # pass
+    initialize_execute_federate (fed)
+    print("I am here 2")
+    pubkeys_count, subkey_count = publications_handling (fed)
+    print("I am here 4")
+    print(f"fed {fed}\nfederate name: none for now\npublications in federate: {pubkeys_count}\nsubscriptions in federate: {subkey_count}")
+    print("I am here 5")

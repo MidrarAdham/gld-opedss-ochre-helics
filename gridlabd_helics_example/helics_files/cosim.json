@@ -2,14 +2,14 @@
 	"broker": true,
 	"federates":[
 		{
-			"name":"federate_python",
-			"directory": ".",
+			"name":"FederatePython",
+			"directory": "/home/deras/gld-opedss-ochre-helics/gridlabd_helics_example/python_files/",
 			"exec":"python3 powerflow_test.py",
 			"host":"localhost"
 		},
 		{
-			"name":"federate_gld",
-			"directory":".",
+			"name":"GLD Federate",
+			"directory":"/home/deras/gld-opedss-ochre-helics/gridlabd_helics_example/gld_files/",
 			"exec":"gridlabd powerflow_4node.glm",
 			"host":"localhost"
 		}

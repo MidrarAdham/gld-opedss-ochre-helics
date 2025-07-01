@@ -1,17 +1,18 @@
 {
     "coreInit": "--federates=1",
     "coreType": "zmq",
-    "name": "distribSimFourNodeFeeder",
+    "coreName": "Distribution Federate",
+    "name": "DistFeeder",
     "offset": 0.0,
     "period": 60,
     "timeDelta": 1.0,
-    "logfile": "helics_output.log",
+    "logfile": "helics_output_gld.log",
     "log_level": "warning",
     "uninterruptible": true,
     "subscriptions": [
         {
-            "key": "CSVPublisher/load_power",
-            "type": "real",
+            "key": "helics/load_power",
+            "type": "double",
             "global": true,
             "info": {
                 "object": "inv",
