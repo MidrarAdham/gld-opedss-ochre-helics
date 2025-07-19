@@ -7,3 +7,6 @@
 [submodule "references/HELICS-Examples"]
 	path = references/HELICS-Examples
 	url = https://github.com/GMLC-TDC/HELICS-Examples.git
+[submodule "references/dss-cosim"]
+	path = references/dss-cosim
+	url = https://github.com/NREL/dss-cosim.git

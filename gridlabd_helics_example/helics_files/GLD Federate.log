@@ -1,31 +1,29 @@
 
-WARNING  [INIT] : v_max was not given -- using default value (battery: 21)
-WARNING  [INIT] : eta_rt was not given -- using default value (battery: 21)
-
+Processing 2025-07-03 12:01:30 UTC...
 Core profiler results
 ======================
 
 Total objects                 23 objects
 Parallelism                    1 thread
-Total time                   2.0 seconds
-  Core time                  1.1 seconds (57.2%)
-    Compiler                 0.0 seconds (0.5%)
+Total time                   5.0 seconds
+  Core time                  4.1 seconds (82.1%)
+    Compiler                 0.0 seconds (0.3%)
     Instances                0.0 seconds (0.0%)
     Random variables         0.0 seconds (0.0%)
     Schedules                0.0 seconds (0.0%)
     Loadshapes               0.0 seconds (0.0%)
     Enduses                  0.0 seconds (0.0%)
     Transforms               0.0 seconds (0.0%)
-  Model time                 0.9 seconds/thread (42.8%)
-Simulation time                1 days
-Simulation speed             276 object.hours/second
-Passes completed            1442 passes
-Time steps completed        1440 timesteps
-Convergence efficiency      1.00 passes/timestep
+  Model time                 0.9 seconds/thread (17.9%)
+Simulation time                0 days
+Simulation speed               1 object.hours/second
+Passes completed              18 passes
+Time steps completed          16 timesteps
+Convergence efficiency      1.12 passes/timestep
 Read lock contention        0.0%
 Write lock contention       0.0%
-Average timestep             60 seconds/timestep
-Simulation rate           43170 x realtime
+Average timestep             56 seconds/timestep
+Simulation rate             180 x realtime
 
 
 Model profiler results
@@ -33,18 +31,19 @@ Model profiler results
 
 Class            Time (s) Time (%) msec/obj
 ---------------- -------- -------- --------
-helics_msg         0.794     92.8%    793.7
-node               0.018      2.1%      4.4
-overhead_line      0.013      1.5%      4.4
-transformer        0.009      1.0%      4.4
-triplex_meter      0.005      0.6%      5.0
-inverter           0.005      0.5%      4.7
-meter              0.004      0.5%      4.5
-battery            0.004      0.5%      4.2
-recorder           0.004      0.5%      3.9
+helics_msg         0.896     99.8%    895.8
+node               0.000      0.0%      0.1
+recorder           0.000      0.0%      0.3
+overhead_line      0.000      0.0%      0.1
+transformer        0.000      0.0%      0.1
+triplex_meter      0.000      0.0%      0.1
+inverter           0.000      0.0%      0.1
+battery            0.000      0.0%      0.1
+meter              0.000      0.0%      0.1
 overhead_line_co   0.000      0.0%      0.0
-triplex_line_con   0.000      0.0%      0.0
 transformer_conf   0.000      0.0%      0.0
+triplex_line_con   0.000      0.0%      0.0
+triplex_line_con   0.000      0.0%      0.0
 ================ ======== ======== ========
-Total              0.856    100.0%     37.2
+Total              0.897    100.0%     39.0
 

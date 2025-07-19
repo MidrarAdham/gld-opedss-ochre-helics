@@ -5,7 +5,10 @@ module powerflow;
 module generators;
 module residential;
 module connection;
-
+module reliability {
+    report_event_log false;
+}
+module reliability;
 object helics_msg {
 	name helics;
 	parent inv;
@@ -20,8 +23,8 @@ class player {
 
 clock {
 	timestamp '2021-12-25 00:00:00';
-	stoptime '2021-12-25 23:59:00';
-	timezone PST8;
+	stoptime '2021-12-25 00:05:59';
+	// timezone PST;
 }
 // IEEE 4 Node Feeder: Balanced step-down delta-delta
 
@@ -186,25 +189,56 @@ object triplex_meter{
 object inverter {
 	name inv;
 	parent mr_meter1;
-	inverter_type FOUR_QUADRANT;
-	generator_status ONLINE;
-	generator_mode SUPPLY_DRIVEN;
 	phases CS;
-	rated_power 4000;
-	inverter_efficiency 0.9;
-	power_factor 1;
+	generator_status ONLINE;
+	generator_mode CONSTANT_PQ;
+	inverter_type FOUR_QUADRANT;
+	inverter_efficiency 0.975;
+	rated_power 5000;
+	power_factor 1.0;
+	V_base 240;
+	P_Out 0;
+	
 	object battery {
 		name inv_batt;
+		nominal_voltage 48;
+		generator_mode CONSTANT_PQ;
+		generator_status ONLINE;
+		round_trip_efficiency 0.86;
+		rated_power 5000;
 		battery_type LI_ION;
 		use_internal_battery_model TRUE;
 		battery_capacity 10;
-		state_of_charge 1.0;
+		state_of_charge 0.5;
 	};
 }
+
+// object triplex_load {
+// 	name helics_controlled_load;
+// 	parent mr_meter1;
+// 	phases CS;
+// 	constant_power_1 0; 
+// 	nominal_voltage 120;
+// }
 
 object recorder {
 	parent inv;
 	file powerflow_4node_logs.csv;
 	interval 60;
-	property rated_power;
+	property P_Out,Q_Out,VA_Out;
 }
+
+object recorder {
+	parent mr_meter1;
+	file meter_logs.csv;
+	interval 60;
+	property measured_real_power;
+}
+
+// Recorder for the HELICS-controlled load
+// object recorder {
+// 	parent helics_controlled_load;
+// 	file load_logs.csv;
+// 	interval 60;
+// 	property constant_power_1;
+// }

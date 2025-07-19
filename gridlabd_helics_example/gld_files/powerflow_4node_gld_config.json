@@ -1,5 +1,5 @@
 {
-    "coreInit": "--federates=1",
+    "coreInit": "--federates=2",
     "coreType": "zmq",
     "coreName": "Distribution Federate",
     "name": "DistFeeder",
@@ -16,7 +16,7 @@
             "global": true,
             "info": {
                 "object": "inv",
-                "property": "rated_power"
+                "property": "P_Out"
             }
         }
     ]

@@ -1,5 +1,7 @@
 {
 	"broker": true,
+	"log_level":"debug",
+	"console":true,
 	"federates":[
 		{
 			"name":"FederatePython",
