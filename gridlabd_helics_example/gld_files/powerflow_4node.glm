@@ -191,7 +191,7 @@ object inverter {
 	parent mr_meter1;
 	phases CS;
 	generator_status ONLINE;
-	generator_mode CONSTANT_PQ;
+	FOUR_QUADRANT_CONTROL_MODE CONSTANT_PQ;
 	inverter_type FOUR_QUADRANT;
 	inverter_efficiency 0.975;
 	rated_power 5000;

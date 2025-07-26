@@ -1,0 +1,18 @@
+{
+  "broker": true,
+  "federates": [
+    {
+      "directory": ".",
+      "exec": "python3 federate1.py",
+      "host": "localhost",
+      "name": "federate1"
+    },
+    {
+      "directory": ".",
+      "exec": "python3 DSSfederate.py",
+      "host": "localhost",
+      "name": "DSSfederate"
+    }
+  ],
+  "name": "der_control"
+}
