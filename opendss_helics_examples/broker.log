@@ -1,0 +1,32 @@
+[2025-08-01 11:22:17.668] [console] [warning] commWarning||1069406-jOdac-DDk5h-kms7R-E8rTE (1)[operating]::unknown route and no broker, dropping message pub:From (131073) handle(0) size 22850 at 60 to 131072
+[2025-08-01 11:23:17.668] [console] [warning] commWarning||1069406-jOdac-DDk5h-kms7R-E8rTE (1)[operating]::unknown route and no broker, dropping message pub:From (131073) handle(0) size 22859 at 120 to 131072
+[2025-08-01 11:24:17.668] [console] [warning] commWarning||1069406-jOdac-DDk5h-kms7R-E8rTE (1)[operating]::unknown route and no broker, dropping message pub:From (131073) handle(0) size 22859 at 180 to 131072
+[2025-08-01 11:25:17.668] [console] [warning] commWarning||1069406-jOdac-DDk5h-kms7R-E8rTE (1)[operating]::unknown route and no broker, dropping message pub:From (131073) handle(0) size 22860 at 240 to 131072
+[2025-08-01 11:26:17.668] [console] [warning] commWarning||1069406-jOdac-DDk5h-kms7R-E8rTE (1)[operating]::unknown route and no broker, dropping message pub:From (131073) handle(0) size 22864 at 300 to 131072
+[2025-08-01 11:27:17.668] [console] [warning] commWarning||1069406-jOdac-DDk5h-kms7R-E8rTE (1)[operating]::unknown route and no broker, dropping message pub:From (131073) handle(0) size 20065 at 360 to 131072
+[2025-08-01 11:28:17.668] [console] [warning] commWarning||1069406-jOdac-DDk5h-kms7R-E8rTE (1)[operating]::unknown route and no broker, dropping message pub:From (131073) handle(0) size 20072 at 420 to 131072
+[2025-08-01 11:29:17.668] [console] [warning] commWarning||1069406-jOdac-DDk5h-kms7R-E8rTE (1)[operating]::unknown route and no broker, dropping message pub:From (131073) handle(0) size 20048 at 480 to 131072
+[2025-08-01 11:30:17.668] [console] [warning] commWarning||1069406-jOdac-DDk5h-kms7R-E8rTE (1)[operating]::unknown route and no broker, dropping message pub:From (131073) handle(0) size 20055 at 540 to 131072
+Traceback (most recent call last):
+  File "/home/deras/.local/bin/helics_broker", line 8, in <module>
+    sys.exit(helics_broker())
+             ^^^^^^^^^^^^^^^
+  File "/home/deras/.local/lib/python3.12/site-packages/helics/bin.py", line 16, in helics_broker
+    raise SystemExit(_program('helics_broker', sys.argv[1:]))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/deras/.local/lib/python3.12/site-packages/helics/bin.py", line 10, in _program
+    return subprocess.call([os.path.join(BIN_DIR, name)] + args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 391, in call
+    return p.wait(timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 1264, in wait
+    return self._wait(timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 2053, in _wait
+    (pid, sts) = self._try_wait(0)
+                 ^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 2011, in _try_wait
+    (pid, sts) = os.waitpid(self.pid, wait_flags)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

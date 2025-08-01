@@ -1,10 +1,12 @@
 {
+  "name": "der_control",
   "broker": true,
+  "broker_args": "--federates=2 --loglevel=debug",
   "federates": [
     {
       "directory": ".",
       "exec": "python3 federate1.py",
-      "host": "localhost",
+      "host": "localhost", 
       "name": "federate1"
     },
     {
@@ -13,6 +15,5 @@
       "host": "localhost",
       "name": "DSSfederate"
     }
-  ],
-  "name": "der_control"
+  ]
 }

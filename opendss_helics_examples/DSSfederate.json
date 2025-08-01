@@ -1,14 +1,19 @@
 {
+  "name": "DSSfederate", 
   "coreType": "zmq",
-  "loglevel": "debug",
-  "name": "DSSfederate",
+  "timeDelta": 60.0,
+  "period": 60.0,
+  "real_time": true,
+  "rt_lag": 0.5,
+  "rt_lead": 0.1,
+  "uninterruptible": false,
+  "wait_for_current_time_update": true,
   "subscriptions": [
     {
-      "global": true,
-      "key": "topicA",
-      "required": true,
-      "type": "double"
+      "key": "storage_powers", 
+      "type": "string",
+      "global": true
     }
   ],
-  "timeDelta": 1.0
+  "loglevel": "debug"
 }

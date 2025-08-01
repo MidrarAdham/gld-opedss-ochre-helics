@@ -1,0 +1,76 @@
+[2025-08-01 11:21:12.618] [console] [info] DSSfederate::registering Input 
+/home/deras/.local/lib/python3.12/site-packages/opendss_wrapper/OpenDSS.py:115: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_numeric without passing `errors` and catch exceptions explicitly instead
+  df = dss.utils.class_to_dataframe(element, transform_string=lambda x: pd.to_numeric(x, errors='ignore'))
+/home/deras/.local/lib/python3.12/site-packages/opendss_wrapper/OpenDSS.py:115: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_numeric without passing `errors` and catch exceptions explicitly instead
+  df = dss.utils.class_to_dataframe(element, transform_string=lambda x: pd.to_numeric(x, errors='ignore'))
+[2025-08-01 11:21:17.766] [console] [debug] DSSfederate (131072)[initializing]::Granting Initialization
+[2025-08-01 11:21:17.766] [console] [debug] DSSfederate (131072)[initializing]::Granted Time=-9223372036.854776
+[2025-08-01 11:21:17.767] [console] [debug] DSSfederate (131072)[executing]::Granting Execution
+[2025-08-01 11:21:17.767] [console] [debug] DSSfederate (131072)[0]::Granted Time=0
+[2025-08-01 11:21:18.267] [console] [warning] DSSfederate (131072)[0]::forced Granted Time=0
+=== STARTING HELICS RUNNER DSSfederate ===
+Process start time: Fri Aug  1 11:21:12 2025
+Main Directory: /home/deras/gld-opedss-ochre-helics/opendss_helics_examples
+Model Directory: /home/deras/gld-opedss-ochre-helics/opendss_helics_examples/network_model
+Results Directory: /home/deras/gld-opedss-ochre-helics/opendss_helics_examples/results
+
+=== CREATING HELICS FEDERATE ===
+✓ HELICS federate created successfully
+Federate name: DSSfederate
+Subscriptions count: 1
+
+=== GETTING SUBSCRIPTIONS ===
+✓ Subscriptions obtained successfully
+
+=== CHECKING DSS FILES ===
+Master file exists: True - /home/deras/gld-opedss-ochre-helics/opendss_helics_examples/network_model/model_base.dss
+
+=== CREATING OPENDSS INSTANCE ===
+2025-08-01 11:21:12.619561 - DSS: Compiling...
+2025-08-01 11:21:12.619578 - DSS: Running file: /home/deras/gld-opedss-ochre-helics/opendss_helics_examples/network_model/model_base.dss
+2025-08-01 11:21:14.606597 - DSS: Compiled Circuit: source
+✓ OpenDSS created successfully
+
+=== RUNNING OPENDSS COMMANDS ===
+✓ OpenDSS control mode set successfully
+
+=== GETTING DSS STORAGE ELEMENTS ===
+✓ Found 960 storage elements in OpenDSS
+Sample storage elements: ['der_645_b_27', 'der_645_b_28', 'der_645_b_29']
+✓ Storage element info saved
+
+=== ENTERING EXECUTION MODE ===
+Waiting for synchronization... Time: Fri Aug  1 11:21:16 2025
+✓ Entered execution mode successfully
+Synchronized! Time: Fri Aug  1 11:21:17 2025
+
+=== STARTING SIMULATION LOOP ===
+Total simulation steps: 30
+
+STEP 0/30 at 2021-12-25 00:00:00
+Elapsed real time: 0.0s
+HELICS time - Requested: 0.0, Granted: 0.0
+
+
+
+
+storage data:<helics.HelicsInput(name = "_input_0", units = "", injection_units = "", publication_type = "string", type = "string", target = "storage_powers", info = "") at 0x72693f5d3e90>
+
+
+
+
+
+
+
+
+storage data:-9999999999999999464902769475481793196872414789632.000000
+
+
+
+
+DEBUG: Raw JSON type = <class 'str'>
+DEBUG: Raw JSON length = 57
+✗ ERROR reading data: object of type 'float' has no len()
+ stopping the simulation due to read error
+[2025-08-01 11:21:18.273] [console] [debug] DSSfederate (131072)[0]::Terminating
+[2025-08-01 11:21:18.273] [console] [debug] DSSfederate (131072)[0]::Granted Time=0

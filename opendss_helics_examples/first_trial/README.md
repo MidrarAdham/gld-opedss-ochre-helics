@@ -1,0 +1,1 @@
+The first trial was showing many errors, including time synch and data types (see the logs). Debugging these took so much time so I decided to start again with new files. We'll see where the new setup takes me.
