@@ -1,0 +1,54 @@
+[2025-08-01 13:08:32.298] [console] [debug] federate1 (131072)[initializing]::Granting Initialization
+[2025-08-01 13:08:32.298] [console] [debug] federate1 (131072)[initializing]::Granted Time=-9223372036.854776
+[2025-08-01 13:08:32.298] [console] [debug] federate1 (131072)[executing]::Granting Execution
+[2025-08-01 13:08:32.298] [console] [debug] federate1 (131072)[0]::Granted Time=0
+[2025-08-01 13:08:32.299] [console] [debug] federate1[0]::setting value for storage_powers size 38
+[2025-08-01 13:08:32.299] [console] [debug] federate1 (131072)[60]::Granted Time=60
+[2025-08-01 13:08:42.073] [console] [info] federate1_core_ew93Yt (1879048192)[t=60]:: core tick
+[2025-08-01 13:08:52.074] [console] [info] federate1_core_ew93Yt (1879048192)[t=60]:: core tick
+[2025-08-01 13:09:02.074] [console] [info] federate1_core_ew93Yt (1879048192)[t=60]:: core tick
+[2025-08-01 13:09:12.074] [console] [info] federate1_core_ew93Yt (1879048192)[t=60]:: core tick
+[2025-08-01 13:09:22.074] [console] [info] federate1_core_ew93Yt (1879048192)[t=60]:: core tick
+[2025-08-01 13:09:32.075] [console] [info] federate1_core_ew93Yt (1879048192)[t=60]:: core tick
+[2025-08-01 13:09:32.299] [console] [debug] federate1[60]::setting value for storage_powers size 38
+[2025-08-01 13:09:32.300] [console] [debug] federate1 (131072)[120]::Granted Time=120
+[2025-08-01 13:09:42.075] [console] [info] federate1_core_ew93Yt (1879048192)[t=120]:: core tick
+[2025-08-01 13:09:52.075] [console] [info] federate1_core_ew93Yt (1879048192)[t=120]:: core tick
+[2025-08-01 13:10:02.075] [console] [info] federate1_core_ew93Yt (1879048192)[t=120]:: core tick
+[2025-08-01 13:10:12.076] [console] [info] federate1_core_ew93Yt (1879048192)[t=120]:: core tick
+[2025-08-01 13:10:22.076] [console] [info] federate1_core_ew93Yt (1879048192)[t=120]:: core tick
+[2025-08-01 13:10:32.076] [console] [info] federate1_core_ew93Yt (1879048192)[t=120]:: core tick
+[2025-08-01 13:10:32.299] [console] [debug] federate1[120]::setting value for storage_powers size 38
+[2025-08-01 13:10:32.299] [console] [debug] federate1 (131072)[180]::Granted Time=180
+[2025-08-01 13:10:42.076] [console] [info] federate1_core_ew93Yt (1879048192)[t=180]:: core tick
+[2025-08-01 13:10:52.077] [console] [info] federate1_core_ew93Yt (1879048192)[t=180]:: core tick
+[2025-08-01 13:11:02.077] [console] [info] federate1_core_ew93Yt (1879048192)[t=180]:: core tick
+[2025-08-01 13:11:12.077] [console] [info] federate1_core_ew93Yt (1879048192)[t=180]:: core tick
+[2025-08-01 13:11:22.077] [console] [info] federate1_core_ew93Yt (1879048192)[t=180]:: core tick
+[2025-08-01 13:11:32.078] [console] [info] federate1_core_ew93Yt (1879048192)[t=180]:: core tick
+[2025-08-01 13:11:32.299] [console] [debug] federate1[180]::setting value for storage_powers size 38
+[2025-08-01 13:11:32.299] [console] [debug] federate1 (131072)[240]::Granted Time=240
+[2025-08-01 13:11:42.078] [console] [info] federate1_core_ew93Yt (1879048192)[t=240]:: core tick
+[2025-08-01 13:11:52.078] [console] [info] federate1_core_ew93Yt (1879048192)[t=240]:: core tick
+[2025-08-01 13:12:02.078] [console] [info] federate1_core_ew93Yt (1879048192)[t=240]:: core tick
+[2025-08-01 13:12:12.079] [console] [info] federate1_core_ew93Yt (1879048192)[t=240]:: core tick
+[2025-08-01 13:12:22.079] [console] [info] federate1_core_ew93Yt (1879048192)[t=240]:: core tick
+[2025-08-01 13:12:32.079] [console] [info] federate1_core_ew93Yt (1879048192)[t=240]:: core tick
+[2025-08-01 13:12:32.299] [console] [debug] federate1[240]::setting value for storage_powers size 38
+[2025-08-01 13:12:32.299] [console] [debug] federate1 (131072)[300]::Granted Time=300
+[2025-08-01 13:12:42.080] [console] [info] federate1_core_ew93Yt (1879048192)[t=300]:: core tick
+[2025-08-01 13:12:52.080] [console] [info] federate1_core_ew93Yt (1879048192)[t=300]:: core tick
+[2025-08-01 13:13:02.080] [console] [info] federate1_core_ew93Yt (1879048192)[t=300]:: core tick
+[2025-08-01 13:13:12.080] [console] [info] federate1_core_ew93Yt (1879048192)[t=300]:: core tick
+[2025-08-01 13:13:22.081] [console] [info] federate1_core_ew93Yt (1879048192)[t=300]:: core tick
+[2025-08-01 13:13:32.081] [console] [info] federate1_core_ew93Yt (1879048192)[t=300]:: core tick
+[2025-08-01 13:13:32.300] [console] [debug] federate1 (131072)[300]::Terminating
+[2025-08-01 13:13:32.300] [console] [debug] federate1 (131072)[300]::Granted Time=300
+Publishing simple JSON dict...
+Published at t=60.0: {"bat_1": 10.0, "bat_2": 20.0}
+Published at t=120.0: {"bat_1": 11.0, "bat_2": 21.0}
+Published at t=180.0: {"bat_1": 12.0, "bat_2": 22.0}
+Published at t=240.0: {"bat_1": 13.0, "bat_2": 23.0}
+Published at t=300.0: {"bat_1": 14.0, "bat_2": 24.0}
+federate1 done.
+Federate1 execution completed.
