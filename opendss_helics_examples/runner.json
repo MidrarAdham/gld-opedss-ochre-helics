@@ -1,7 +1,7 @@
 {
   "name": "der_control",
   "broker": true,
-  "broker_args": "--federates=2 --loglevel=debug",
+  "broker_args": "--federates=2 --loglevel=trace",
   "federates": [
     {
       "directory": ".",

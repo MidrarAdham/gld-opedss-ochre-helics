@@ -16,6 +16,8 @@ def create_timestamps (results_dir, filename):
     print("creating timestamps for", filename)
 
     df = pd.read_csv(results_dir+filename)
+    print(df.index.values)
+    # quit()
     num_rows = len(df)
     timestamps = pd.date_range(start='2021-01-01 00:00:00', end='2021-01-01 23:55:00', periods=num_rows)
     df['timestamp'] = timestamps.strftime('%Y-%m-%d %H:%M:%S')
@@ -27,21 +29,22 @@ if __name__ == "__main__":
         print(f"Processing file: {filename}")
 
         # if filename == 'storage_powers_results.csv':
-        if filename == 'main_results.csv':
-            df = create_timestamps(results_dir=results_dir, filename=filename)
-            cols = df.columns
-            # Plot all columns except 'timestamp' vs timestamp in one plot
-            plt.figure(figsize=(10, 6))
-            for col in cols:
-                if col != 'timestamp':
-                    plt.plot(df['timestamp'], df[col], label=col)
-            plt.xlabel('Timestamp')
-            plt.ylabel('Value')
-            plt.grid(True)
-            plt.title('All Columns vs Timestamp')
-            plt.legend()
-            plt.gca().xaxis.set_major_locator(plt.MaxNLocator(10))
-            plt.xticks(rotation=45)
-            plt.tight_layout()
-            plt.show()
-            break
+        # if filename == 'storage_powers_results.csv':
+        df = create_timestamps(results_dir=results_dir, filename=filename)
+        cols = df.columns[:10]
+        print(cols)
+        # Plot all columns except 'timestamp' vs timestamp in one plot
+        plt.figure(figsize=(10, 6))
+        for col in cols:
+            if col != 'timestamp':
+                plt.plot(df['timestamp'], df[col], label=col)
+        plt.xlabel('Timestamp')
+        plt.ylabel('Value')
+        plt.grid(True)
+        plt.title('All Columns vs Timestamp')
+        plt.legend()
+        plt.gca().xaxis.set_major_locator(plt.MaxNLocator(10))
+        plt.xticks(rotation=45)
+        plt.tight_layout()
+        plt.show()
+        # break
