@@ -16,3 +16,6 @@
 [submodule "references/OpenDSS"]
 	path = references/OpenDSS
 	url = https://github.com/tshort/OpenDSS.git
+[submodule "references/OCHRE"]
+	path = references/OCHRE
+	url = https://github.com/NREL/OCHRE.git

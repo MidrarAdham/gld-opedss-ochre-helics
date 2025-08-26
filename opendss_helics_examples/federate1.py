@@ -137,7 +137,6 @@ def publishing_values_to_opendss(profile_data, pub, fed):
     There is another script that runs the OpenDSS simulation, which is 'DSSfederate.py'.
     That federate will subscribe to the values published by this function.
     '''
-    
     print("Starting publishing values to OpenDSS...")
     simulation_time_seconds = 300
     time_step_seconds = 60
