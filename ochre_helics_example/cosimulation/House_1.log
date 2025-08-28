@@ -1,0 +1,299 @@
+2025-08-26 15:48:04.628230 - House_1 at 2018-01-01 00:00:00: Initializing House_1 (OCHRE v0.9.1)
+WARNING: Properties file weather station (G0800310) may be different from weather file used: /home/deras/.local/lib/python3.12/site-packages/ochre/defaults/Weather/USA_CO_Denver.Intl.AP.725650_TMY3.epw
+WARNING: Cooling setpoint is within 1C of heating setpoint. Separating setpoints by at least 1C.
+2025-08-26 15:48:07.337368 - PV at 2018-01-01 00:00:00: Running SAM
+2025-08-26 15:48:07.752176 - House_1 at 2018-01-01 00:00:00: Running initialization for 1 day, 0:00:00
+2025-08-26 15:48:07.935249 - House_1 at 2018-01-01 00:00:00: Dwelling Initialized
+House_1 initialized
+House_1 sending to agg: {"Battery Electric Power (kW)": 0, "Total Electric Power (kW)": 0}
+2018-01-01 00:00:00 house received bad data: -9999999999999999464902769475481793196872414789632.000000
+2018-01-01 00:00:00 house sending: {"Total Electric Power (kW)": 0.6198156476955307, "Battery Electric Power (kW)": 0}
+2018-01-01 00:10:00 house received: {'Battery': {'P Setpoint': 0.0}}
+2018-01-01 00:10:00 house sending: {"Total Electric Power (kW)": 0.6242727597981304, "Battery Electric Power (kW)": 0}
+2018-01-01 00:20:00 house received: {'Battery': {'P Setpoint': -3.227981784376362}}
+2018-01-01 00:20:00 house sending: {"Total Electric Power (kW)": -2.6035563122926044, "Battery Electric Power (kW)": -3.227981784376362}
+2018-01-01 00:30:00 house received: {'Battery': {'P Setpoint': -3.2136596238204334}}
+2018-01-01 00:30:00 house sending: {"Total Electric Power (kW)": -2.5887685954313864, "Battery Electric Power (kW)": -3.2136596238204334}
+2018-01-01 00:40:00 house received: {'Battery': {'P Setpoint': -3.3128548300700578}}
+2018-01-01 00:40:00 house sending: {"Total Electric Power (kW)": -2.686909369226991, "Battery Electric Power (kW)": -3.3128548300700578}
+2018-01-01 00:50:00 house received: {'Battery': {'P Setpoint': -3.3565403318582865}}
+2018-01-01 00:50:00 house sending: {"Total Electric Power (kW)": -2.7295795345607026, "Battery Electric Power (kW)": -3.3565403318582865}
+2018-01-01 01:00:00 house received: {'Battery': {'P Setpoint': -3.257387153007345}}
+2018-01-01 01:00:00 house sending: {"Total Electric Power (kW)": -2.630281387759384, "Battery Electric Power (kW)": -3.257387153007345}
+2018-01-01 01:10:00 house received: {'Battery': {'P Setpoint': -3.227042204376108}}
+2018-01-01 01:10:00 house sending: {"Total Electric Power (kW)": -2.598862178970294, "Battery Electric Power (kW)": -3.227042204376108}
+2018-01-01 01:20:00 house received: {'Battery': {'P Setpoint': -3.2213985250804864}}
+2018-01-01 01:20:00 house sending: {"Total Electric Power (kW)": -0.006059400652567493, "Battery Electric Power (kW)": -0.6353170106916367}
+2018-01-01 01:30:00 house received: {'Battery': {'P Setpoint': -3.225681207899064}}
+2018-01-01 01:30:00 house sending: {"Total Electric Power (kW)": 0.6142784992874079, "Battery Electric Power (kW)": -0.00010157615931532824}
+2018-01-01 01:40:00 house received: {'Battery': {'P Setpoint': -3.40535537124961}}
+2018-01-01 01:40:00 house sending: {"Total Electric Power (kW)": 0.6154711962380105, "Battery Electric Power (kW)": -2.580341023084409e-12}
+2018-01-01 01:50:00 house received: {'Battery': {'P Setpoint': -2.6410703966909392}}
+2018-01-01 01:50:00 house sending: {"Total Electric Power (kW)": 0.6166233359290606, "Battery Electric Power (kW)": 0.0}
+2018-01-01 02:00:00 house received: {'Battery': {'P Setpoint': -2.512878065225542}}
+2018-01-01 02:00:00 house sending: {"Total Electric Power (kW)": 0.6169292703065357, "Battery Electric Power (kW)": 0.0}
+2018-01-01 02:10:00 house received: {'Battery': {'P Setpoint': -2.474220420356624}}
+2018-01-01 02:10:00 house sending: {"Total Electric Power (kW)": 0.6181649881894412, "Battery Electric Power (kW)": 0.0}
+2018-01-01 02:20:00 house received: {'Battery': {'P Setpoint': -2.46806297204344}}
+2018-01-01 02:20:00 house sending: {"Total Electric Power (kW)": 0.6193852958764378, "Battery Electric Power (kW)": 0.0}
+2018-01-01 02:30:00 house received: {'Battery': {'P Setpoint': -2.4737492745730467}}
+2018-01-01 02:30:00 house sending: {"Total Electric Power (kW)": 0.606472565812176, "Battery Electric Power (kW)": 0.0}
+2018-01-01 02:40:00 house received: {'Battery': {'P Setpoint': -2.4831609475219425}}
+2018-01-01 02:40:00 house sending: {"Total Electric Power (kW)": 0.6076321940116798, "Battery Electric Power (kW)": 0.0}
+2018-01-01 02:50:00 house received: {'Battery': {'P Setpoint': -2.2819711681352577}}
+2018-01-01 02:50:00 house sending: {"Total Electric Power (kW)": 0.6088426956808015, "Battery Electric Power (kW)": 0.0}
+2018-01-01 03:00:00 house received: {'Battery': {'P Setpoint': -2.29330782284193}}
+2018-01-01 03:00:00 house sending: {"Total Electric Power (kW)": 0.6091409936097452, "Battery Electric Power (kW)": 0.0}
+2018-01-01 03:10:00 house received: {'Battery': {'P Setpoint': -2.30584230357458}}
+2018-01-01 03:10:00 house sending: {"Total Electric Power (kW)": 0.6103357974203738, "Battery Electric Power (kW)": 0.0}
+2018-01-01 03:20:00 house received: {'Battery': {'P Setpoint': -2.3176662515122386}}
+2018-01-01 03:20:00 house sending: {"Total Electric Power (kW)": 0.6114803984513736, "Battery Electric Power (kW)": 0.0}
+2018-01-01 03:30:00 house received: {'Battery': {'P Setpoint': -2.3310443368491196}}
+2018-01-01 03:30:00 house sending: {"Total Electric Power (kW)": 0.6025068030311702, "Battery Electric Power (kW)": 0.0}
+2018-01-01 03:40:00 house received: {'Battery': {'P Setpoint': -2.3440445326463752}}
+2018-01-01 03:40:00 house sending: {"Total Electric Power (kW)": 0.6035482921209266, "Battery Electric Power (kW)": 0.0}
+2018-01-01 03:50:00 house received: {'Battery': {'P Setpoint': -2.2098575071982633}}
+2018-01-01 03:50:00 house sending: {"Total Electric Power (kW)": 0.6046080726159258, "Battery Electric Power (kW)": 0.0}
+2018-01-01 04:00:00 house received: {'Battery': {'P Setpoint': -2.221948533759451}}
+2018-01-01 04:00:00 house sending: {"Total Electric Power (kW)": 0.6047342219982019, "Battery Electric Power (kW)": 0.0}
+2018-01-01 04:10:00 house received: {'Battery': {'P Setpoint': -2.2344703323060067}}
+2018-01-01 04:10:00 house sending: {"Total Electric Power (kW)": 0.6057402999569996, "Battery Electric Power (kW)": 0.0}
+2018-01-01 04:20:00 house received: {'Battery': {'P Setpoint': -2.24547330734707}}
+2018-01-01 04:20:00 house sending: {"Total Electric Power (kW)": 0.6066715721304392, "Battery Electric Power (kW)": 0.0}
+2018-01-01 04:30:00 house received: {'Battery': {'P Setpoint': -2.257881236301095}}
+2018-01-01 04:30:00 house sending: {"Total Electric Power (kW)": 0.5941460845523551, "Battery Electric Power (kW)": 0.0}
+2018-01-01 04:40:00 house received: {'Battery': {'P Setpoint': -2.269159171827605}}
+2018-01-01 04:40:00 house sending: {"Total Electric Power (kW)": 0.5949495673863747, "Battery Electric Power (kW)": 0.0}
+2018-01-01 04:50:00 house received: {'Battery': {'P Setpoint': -2.0620113245595104}}
+2018-01-01 04:50:00 house sending: {"Total Electric Power (kW)": 0.5957667496163299, "Battery Electric Power (kW)": 0.0}
+2018-01-01 05:00:00 house received: {'Battery': {'P Setpoint': -2.0718324966447867}}
+2018-01-01 05:00:00 house sending: {"Total Electric Power (kW)": 0.595577226464633, "Battery Electric Power (kW)": 0.0}
+2018-01-01 05:10:00 house received: {'Battery': {'P Setpoint': -2.081602675246424}}
+2018-01-01 05:10:00 house sending: {"Total Electric Power (kW)": 0.5963607118352422, "Battery Electric Power (kW)": 0.0}
+2018-01-01 05:20:00 house received: {'Battery': {'P Setpoint': -2.182669422423003}}
+2018-01-01 05:20:00 house sending: {"Total Electric Power (kW)": 0.5970519141293325, "Battery Electric Power (kW)": 0.0}
+2018-01-01 05:30:00 house received: {'Battery': {'P Setpoint': -2.3247597171380305}}
+2018-01-01 05:30:00 house sending: {"Total Electric Power (kW)": 0.578471381945572, "Battery Electric Power (kW)": 0.0}
+2018-01-01 05:40:00 house received: {'Battery': {'P Setpoint': -2.2980466959598282}}
+2018-01-01 05:40:00 house sending: {"Total Electric Power (kW)": 0.579025715469533, "Battery Electric Power (kW)": 0.0}
+2018-01-01 05:50:00 house received: {'Battery': {'P Setpoint': -1.900171716458356}}
+2018-01-01 05:50:00 house sending: {"Total Electric Power (kW)": 0.623621752481372, "Battery Electric Power (kW)": 0.0}
+2018-01-01 06:00:00 house received: {'Battery': {'P Setpoint': -1.8696588836484858}}
+2018-01-01 06:00:00 house sending: {"Total Electric Power (kW)": 0.6633308763642407, "Battery Electric Power (kW)": 0.0}
+2018-01-01 06:10:00 house received: {'Battery': {'P Setpoint': -1.906120723053626}}
+2018-01-01 06:10:00 house sending: {"Total Electric Power (kW)": 0.6623956373282864, "Battery Electric Power (kW)": 0.0}
+2018-01-01 06:20:00 house received: {'Battery': {'P Setpoint': -1.9248325523773042}}
+2018-01-01 06:20:00 house sending: {"Total Electric Power (kW)": 0.6627688509434051, "Battery Electric Power (kW)": 0.0}
+2018-01-01 06:30:00 house received: {'Battery': {'P Setpoint': -1.9057065870341843}}
+2018-01-01 06:30:00 house sending: {"Total Electric Power (kW)": 0.9840976516500612, "Battery Electric Power (kW)": 0.0}
+2018-01-01 06:40:00 house received: {'Battery': {'P Setpoint': -1.9072087387628582}}
+2018-01-01 06:40:00 house sending: {"Total Electric Power (kW)": 0.975995338632303, "Battery Electric Power (kW)": 0.0}
+2018-01-01 06:50:00 house received: {'Battery': {'P Setpoint': -2.0232542496400674}}
+2018-01-01 06:50:00 house sending: {"Total Electric Power (kW)": 0.9760055109097154, "Battery Electric Power (kW)": 0.0}
+2018-01-01 07:00:00 house received: {'Battery': {'P Setpoint': -1.9010350799897617}}
+2018-01-01 07:00:00 house sending: {"Total Electric Power (kW)": 1.1222049274358874, "Battery Electric Power (kW)": 0.0}
+2018-01-01 07:10:00 house received: {'Battery': {'P Setpoint': -1.8987727996918857}}
+2018-01-01 07:10:00 house sending: {"Total Electric Power (kW)": 1.1174018800140548, "Battery Electric Power (kW)": 0.0}
+2018-01-01 07:20:00 house received: {'Battery': {'P Setpoint': -2.0437115122423988}}
+2018-01-01 07:20:00 house sending: {"Total Electric Power (kW)": 1.1173147641223429, "Battery Electric Power (kW)": 0.0}
+2018-01-01 07:30:00 house received: {'Battery': {'P Setpoint': -1.9711535907838922}}
+2018-01-01 07:30:00 house sending: {"Total Electric Power (kW)": 1.096056577353745, "Battery Electric Power (kW)": 0.0}
+2018-01-01 07:40:00 house received: {'Battery': {'P Setpoint': -1.9683431945213195}}
+2018-01-01 07:40:00 house sending: {"Total Electric Power (kW)": 1.0964415936110123, "Battery Electric Power (kW)": 0.0}
+2018-01-01 07:50:00 house received: {'Battery': {'P Setpoint': -1.683528828479095}}
+2018-01-01 07:50:00 house sending: {"Total Electric Power (kW)": 1.0951867089783998, "Battery Electric Power (kW)": 0.0}
+2018-01-01 08:00:00 house received: {'Battery': {'P Setpoint': -1.6776969959257348}}
+2018-01-01 08:00:00 house sending: {"Total Electric Power (kW)": 1.1075782971365062, "Battery Electric Power (kW)": 0.0}
+2018-01-01 08:10:00 house received: {'Battery': {'P Setpoint': -1.6728019346102498}}
+2018-01-01 08:10:00 house sending: {"Total Electric Power (kW)": 1.1055688089698887, "Battery Electric Power (kW)": 0.0}
+2018-01-01 08:20:00 house received: {'Battery': {'P Setpoint': -1.6821392600907332}}
+2018-01-01 08:20:00 house sending: {"Total Electric Power (kW)": 1.1023235709921495, "Battery Electric Power (kW)": 0.0}
+2018-01-01 08:30:00 house received: {'Battery': {'P Setpoint': -1.6695632555466293}}
+2018-01-01 08:30:00 house sending: {"Total Electric Power (kW)": 0.7823274805853023, "Battery Electric Power (kW)": 0.0}
+2018-01-01 08:40:00 house received: {'Battery': {'P Setpoint': -1.6633232086781535}}
+2018-01-01 08:40:00 house sending: {"Total Electric Power (kW)": 0.7611713061075958, "Battery Electric Power (kW)": 0.0}
+2018-01-01 08:50:00 house received: {'Battery': {'P Setpoint': -1.1377515623442642}}
+2018-01-01 08:50:00 house sending: {"Total Electric Power (kW)": 0.7420196103472692, "Battery Electric Power (kW)": 0.0}
+2018-01-01 09:00:00 house received: {'Battery': {'P Setpoint': -1.1031632541427832}}
+2018-01-01 09:00:00 house sending: {"Total Electric Power (kW)": 0.7266445732394239, "Battery Electric Power (kW)": 0.0}
+2018-01-01 09:10:00 house received: {'Battery': {'P Setpoint': -1.0771839921621216}}
+2018-01-01 09:10:00 house sending: {"Total Electric Power (kW)": 0.7097423246583419, "Battery Electric Power (kW)": 0.0}
+2018-01-01 09:20:00 house received: {'Battery': {'P Setpoint': -1.0559345797331545}}
+2018-01-01 09:20:00 house sending: {"Total Electric Power (kW)": 0.6937827118642202, "Battery Electric Power (kW)": 0.0}
+2018-01-01 09:30:00 house received: {'Battery': {'P Setpoint': -1.0332854835344758}}
+2018-01-01 09:30:00 house sending: {"Total Electric Power (kW)": -0.1454555885338391, "Battery Electric Power (kW)": 0.0}
+2018-01-01 09:40:00 house received: {'Battery': {'P Setpoint': -1.0125402488521917}}
+2018-01-01 09:40:00 house sending: {"Total Electric Power (kW)": -0.23773787281242215, "Battery Electric Power (kW)": 0.0}
+2018-01-01 09:50:00 house received: {'Battery': {'P Setpoint': 0.0}}
+2018-01-01 09:50:00 house sending: {"Total Electric Power (kW)": -0.32574706258987907, "Battery Electric Power (kW)": 0}
+2018-01-01 10:00:00 house received: {'Battery': {'P Setpoint': 0.0}}
+2018-01-01 10:00:00 house sending: {"Total Electric Power (kW)": -0.4138920804125873, "Battery Electric Power (kW)": 0}
+2018-01-01 10:10:00 house received: {'Battery': {'P Setpoint': 0.0}}
+2018-01-01 10:10:00 house sending: {"Total Electric Power (kW)": -0.49318001341866285, "Battery Electric Power (kW)": 0}
+2018-01-01 10:20:00 house received: {'Battery': {'P Setpoint': 0.0}}
+2018-01-01 10:20:00 house sending: {"Total Electric Power (kW)": -0.5685622141508027, "Battery Electric Power (kW)": 0}
+2018-01-01 10:30:00 house received: {'Battery': {'P Setpoint': 0.0}}
+2018-01-01 10:30:00 house sending: {"Total Electric Power (kW)": -0.8588988537702984, "Battery Electric Power (kW)": 0}
+2018-01-01 10:40:00 house received: {'Battery': {'P Setpoint': 0.0}}
+2018-01-01 10:40:00 house sending: {"Total Electric Power (kW)": -0.9259585874422386, "Battery Electric Power (kW)": 0}
+2018-01-01 10:50:00 house received: {'Battery': {'P Setpoint': 0.0}}
+2018-01-01 10:50:00 house sending: {"Total Electric Power (kW)": -0.9886827296617686, "Battery Electric Power (kW)": 0}
+2018-01-01 11:00:00 house received: {'Battery': {'P Setpoint': 0.0}}
+2018-01-01 11:00:00 house sending: {"Total Electric Power (kW)": -1.0453010567704102, "Battery Electric Power (kW)": 0}
+2018-01-01 11:10:00 house received: {'Battery': {'P Setpoint': 0.0}}
+2018-01-01 11:10:00 house sending: {"Total Electric Power (kW)": -1.1013041672272244, "Battery Electric Power (kW)": 0}
+2018-01-01 11:20:00 house received: {'Battery': {'P Setpoint': 0.0}}
+2018-01-01 11:20:00 house sending: {"Total Electric Power (kW)": -1.1538670984149582, "Battery Electric Power (kW)": 0}
+2018-01-01 11:30:00 house received: {'Battery': {'P Setpoint': 0.0}}
+2018-01-01 11:30:00 house sending: {"Total Electric Power (kW)": -1.7868463825985927, "Battery Electric Power (kW)": 0}
+2018-01-01 11:40:00 house received: {'Battery': {'P Setpoint': 0.0}}
+2018-01-01 11:40:00 house sending: {"Total Electric Power (kW)": -1.8277693408683011, "Battery Electric Power (kW)": 0}
+2018-01-01 11:50:00 house received: {'Battery': {'P Setpoint': 0.1253976405924888}}
+2018-01-01 11:50:00 house sending: {"Total Electric Power (kW)": -1.7477342781813519, "Battery Electric Power (kW)": 0.1253976405924888}
+2018-01-01 12:00:00 house received: {'Battery': {'P Setpoint': 0.11865855359628075}}
+2018-01-01 12:00:00 house sending: {"Total Electric Power (kW)": -1.7900410169658914, "Battery Electric Power (kW)": 0.11865855359628075}
+2018-01-01 12:10:00 house received: {'Battery': {'P Setpoint': 0.21168802175112145}}
+2018-01-01 12:10:00 house sending: {"Total Electric Power (kW)": -1.735283484497982, "Battery Electric Power (kW)": 0.21168802175112145}
+2018-01-01 12:20:00 house received: {'Battery': {'P Setpoint': 0.2905875897048906}}
+2018-01-01 12:20:00 house sending: {"Total Electric Power (kW)": -1.6908142143458107, "Battery Electric Power (kW)": 0.2905875897048906}
+2018-01-01 12:30:00 house received: {'Battery': {'P Setpoint': 0.3553611872580147}}
+2018-01-01 12:30:00 house sending: {"Total Electric Power (kW)": -1.1517795350282962, "Battery Electric Power (kW)": 0.3553611872580147}
+2018-01-01 12:40:00 house received: {'Battery': {'P Setpoint': 0.4086375241089246}}
+2018-01-01 12:40:00 house sending: {"Total Electric Power (kW)": -1.1198642510164079, "Battery Electric Power (kW)": 0.4086375241089246}
+2018-01-01 12:50:00 house received: {'Battery': {'P Setpoint': 0.0}}
+2018-01-01 12:50:00 house sending: {"Total Electric Power (kW)": -1.5478852717135694, "Battery Electric Power (kW)": 0}
+2018-01-01 13:00:00 house received: {'Battery': {'P Setpoint': 0.0}}
+2018-01-01 13:00:00 house sending: {"Total Electric Power (kW)": -1.5662189022600597, "Battery Electric Power (kW)": 0}
+2018-01-01 13:10:00 house received: {'Battery': {'P Setpoint': 0.01596627808022255}}
+2018-01-01 13:10:00 house sending: {"Total Electric Power (kW)": -1.565440797612941, "Battery Electric Power (kW)": 0.01596627808022255}
+2018-01-01 13:20:00 house received: {'Battery': {'P Setpoint': 0.043101114035748456}}
+2018-01-01 13:20:00 house sending: {"Total Electric Power (kW)": -1.5514920996914217, "Battery Electric Power (kW)": 0.043101114035748456}
+2018-01-01 13:30:00 house received: {'Battery': {'P Setpoint': 0.06723393230726837}}
+2018-01-01 13:30:00 house sending: {"Total Electric Power (kW)": -1.7455000774373153, "Battery Electric Power (kW)": 0.06723393230726837}
+2018-01-01 13:40:00 house received: {'Battery': {'P Setpoint': 0.08981012223084761}}
+2018-01-01 13:40:00 house sending: {"Total Electric Power (kW)": -1.7270983198685637, "Battery Electric Power (kW)": 0.08981012223084761}
+2018-01-01 13:50:00 house received: {'Battery': {'P Setpoint': 0.2739363476432908}}
+2018-01-01 13:50:00 house sending: {"Total Electric Power (kW)": -1.5434115838248532, "Battery Electric Power (kW)": 0.2739363476432908}
+2018-01-01 14:00:00 house received: {'Battery': {'P Setpoint': 0.28886548422881386}}
+2018-01-01 14:00:00 house sending: {"Total Electric Power (kW)": -1.5315179527962022, "Battery Electric Power (kW)": 0.28886548422881386}
+2018-01-01 14:10:00 house received: {'Battery': {'P Setpoint': 0.2998676061499703}}
+2018-01-01 14:10:00 house sending: {"Total Electric Power (kW)": -1.5130999204267261, "Battery Electric Power (kW)": 0.2998676061499703}
+2018-01-01 14:20:00 house received: {'Battery': {'P Setpoint': 0.2791492846411636}}
+2018-01-01 14:20:00 house sending: {"Total Electric Power (kW)": -1.522585723045416, "Battery Electric Power (kW)": 0.2791492846411636}
+2018-01-01 14:30:00 house received: {'Battery': {'P Setpoint': 0.25030228505455043}}
+2018-01-01 14:30:00 house sending: {"Total Electric Power (kW)": -0.964650544021076, "Battery Electric Power (kW)": 0.25030228505455043}
+2018-01-01 14:40:00 house received: {'Battery': {'P Setpoint': 0.27180680666784673}}
+2018-01-01 14:40:00 house sending: {"Total Electric Power (kW)": -0.943723123040199, "Battery Electric Power (kW)": 0.27180680666784673}
+2018-01-01 14:50:00 house received: {'Battery': {'P Setpoint': 0.0}}
+2018-01-01 14:50:00 house sending: {"Total Electric Power (kW)": -1.216953527759391, "Battery Electric Power (kW)": 0}
+2018-01-01 15:00:00 house received: {'Battery': {'P Setpoint': 0.0}}
+2018-01-01 15:00:00 house sending: {"Total Electric Power (kW)": -1.1952911350608855, "Battery Electric Power (kW)": 0}
+2018-01-01 15:10:00 house received: {'Battery': {'P Setpoint': 0.0}}
+2018-01-01 15:10:00 house sending: {"Total Electric Power (kW)": -1.2020640246945586, "Battery Electric Power (kW)": 0}
+2018-01-01 15:20:00 house received: {'Battery': {'P Setpoint': 0.0}}
+2018-01-01 15:20:00 house sending: {"Total Electric Power (kW)": -1.2132818598648534, "Battery Electric Power (kW)": 0}
+2018-01-01 15:30:00 house received: {'Battery': {'P Setpoint': 0.0}}
+2018-01-01 15:30:00 house sending: {"Total Electric Power (kW)": -0.7754571299080323, "Battery Electric Power (kW)": 0}
+2018-01-01 15:40:00 house received: {'Battery': {'P Setpoint': 0.0}}
+2018-01-01 15:40:00 house sending: {"Total Electric Power (kW)": -0.7431363918799658, "Battery Electric Power (kW)": 0}
+2018-01-01 15:50:00 house received: {'Battery': {'P Setpoint': 0.0}}
+2018-01-01 15:50:00 house sending: {"Total Electric Power (kW)": -0.7045471308528237, "Battery Electric Power (kW)": 0}
+2018-01-01 16:00:00 house received: {'Battery': {'P Setpoint': 0.0}}
+2018-01-01 16:00:00 house sending: {"Total Electric Power (kW)": -0.6091991326842581, "Battery Electric Power (kW)": 0}
+2018-01-01 16:10:00 house received: {'Battery': {'P Setpoint': 0.0}}
+2018-01-01 16:10:00 house sending: {"Total Electric Power (kW)": -0.5185899705522423, "Battery Electric Power (kW)": 0}
+2018-01-01 16:20:00 house received: {'Battery': {'P Setpoint': 0.0}}
+2018-01-01 16:20:00 house sending: {"Total Electric Power (kW)": -0.2863825443304168, "Battery Electric Power (kW)": 0}
+2018-01-01 16:30:00 house received: {'Battery': {'P Setpoint': 0.0}}
+2018-01-01 16:30:00 house sending: {"Total Electric Power (kW)": 0.354025980137035, "Battery Electric Power (kW)": 0}
+2018-01-01 16:40:00 house received: {'Battery': {'P Setpoint': 0.0}}
+2018-01-01 16:40:00 house sending: {"Total Electric Power (kW)": 0.37437988430786384, "Battery Electric Power (kW)": 0}
+2018-01-01 16:50:00 house received: {'Battery': {'P Setpoint': -0.10158819352979243}}
+2018-01-01 16:50:00 house sending: {"Total Electric Power (kW)": 0.6260451125851891, "Battery Electric Power (kW)": -0.10158819352979243}
+2018-01-01 17:00:00 house received: {'Battery': {'P Setpoint': -0.2326574573062139}}
+2018-01-01 17:00:00 house sending: {"Total Electric Power (kW)": 0.5733370243036542, "Battery Electric Power (kW)": -0.2326574573062139}
+2018-01-01 17:10:00 house received: {'Battery': {'P Setpoint': -0.531071560799369}}
+2018-01-01 17:10:00 house sending: {"Total Electric Power (kW)": 0.2729947395326445, "Battery Electric Power (kW)": -0.531071560799369}
+2018-01-01 17:20:00 house received: {'Battery': {'P Setpoint': -0.5302487486643237}}
+2018-01-01 17:20:00 house sending: {"Total Electric Power (kW)": 0.2744421309008551, "Battery Electric Power (kW)": -0.5302487486643237}
+2018-01-01 17:30:00 house received: {'Battery': {'P Setpoint': -0.49702504537145975}}
+2018-01-01 17:30:00 house sending: {"Total Electric Power (kW)": 0.32609670365530774, "Battery Electric Power (kW)": -0.49702504537145975}
+2018-01-01 17:40:00 house received: {'Battery': {'P Setpoint': -0.610610027179272}}
+2018-01-01 17:40:00 house sending: {"Total Electric Power (kW)": 0.21392058295796168, "Battery Electric Power (kW)": -0.610610027179272}
+2018-01-01 17:50:00 house received: {'Battery': {'P Setpoint': -0.7262669339935734}}
+2018-01-01 17:50:00 house sending: {"Total Electric Power (kW)": 0.14914814092073092, "Battery Electric Power (kW)": -0.676500141257018}
+2018-01-01 18:00:00 house received: {'Battery': {'P Setpoint': -0.6766960817019789}}
+2018-01-01 18:00:00 house sending: {"Total Electric Power (kW)": 0.6643661564193415, "Battery Electric Power (kW)": -0.0001152166769627298}
+2018-01-01 18:10:00 house received: {'Battery': {'P Setpoint': -0.7456107778834595}}
+2018-01-01 18:10:00 house sending: {"Total Electric Power (kW)": 0.6709134584411381, "Battery Electric Power (kW)": -3.3208290699859033e-12}
+2018-01-01 18:20:00 house received: {'Battery': {'P Setpoint': -0.6792760507916809}}
+2018-01-01 18:20:00 house sending: {"Total Electric Power (kW)": 0.6719314205119045, "Battery Electric Power (kW)": 0.0}
+2018-01-01 18:30:00 house received: {'Battery': {'P Setpoint': -0.7585119070480335}}
+2018-01-01 18:30:00 house sending: {"Total Electric Power (kW)": 0.6931791082370478, "Battery Electric Power (kW)": 0.0}
+2018-01-01 18:40:00 house received: {'Battery': {'P Setpoint': -0.6917884059323463}}
+2018-01-01 18:40:00 house sending: {"Total Electric Power (kW)": 0.6941675322018644, "Battery Electric Power (kW)": 0.0}
+2018-01-01 18:50:00 house received: {'Battery': {'P Setpoint': -0.8342547009929211}}
+2018-01-01 18:50:00 house sending: {"Total Electric Power (kW)": 0.6951101482118291, "Battery Electric Power (kW)": 0.0}
+2018-01-01 19:00:00 house received: {'Battery': {'P Setpoint': -0.8572182030060826}}
+2018-01-01 19:00:00 house sending: {"Total Electric Power (kW)": 0.685803253629525, "Battery Electric Power (kW)": 0.0}
+2018-01-01 19:10:00 house received: {'Battery': {'P Setpoint': -0.8255677904517242}}
+2018-01-01 19:10:00 house sending: {"Total Electric Power (kW)": 0.6870467671891825, "Battery Electric Power (kW)": 0.0}
+2018-01-01 19:20:00 house received: {'Battery': {'P Setpoint': -0.7857477913678426}}
+2018-01-01 19:20:00 house sending: {"Total Electric Power (kW)": 0.687971881873899, "Battery Electric Power (kW)": 0.0}
+2018-01-01 19:30:00 house received: {'Battery': {'P Setpoint': -0.7808502922248872}}
+2018-01-01 19:30:00 house sending: {"Total Electric Power (kW)": 0.6927619434161483, "Battery Electric Power (kW)": 0.0}
+2018-01-01 19:40:00 house received: {'Battery': {'P Setpoint': -0.8233214529870774}}
+2018-01-01 19:40:00 house sending: {"Total Electric Power (kW)": 0.6937209470962866, "Battery Electric Power (kW)": 0.0}
+2018-01-01 19:50:00 house received: {'Battery': {'P Setpoint': -0.8507541697716083}}
+2018-01-01 19:50:00 house sending: {"Total Electric Power (kW)": 0.8996602380557979, "Battery Electric Power (kW)": 0.0}
+2018-01-01 20:00:00 house received: {'Battery': {'P Setpoint': -0.8328182976869387}}
+2018-01-01 20:00:00 house sending: {"Total Electric Power (kW)": 0.832948228651688, "Battery Electric Power (kW)": 0.0}
+2018-01-01 20:10:00 house received: {'Battery': {'P Setpoint': -1.0147651664269413}}
+2018-01-01 20:10:00 house sending: {"Total Electric Power (kW)": 0.8357530917833973, "Battery Electric Power (kW)": 0.0}
+2018-01-01 20:20:00 house received: {'Battery': {'P Setpoint': -0.9438381307169608}}
+2018-01-01 20:20:00 house sending: {"Total Electric Power (kW)": 0.8366271891159012, "Battery Electric Power (kW)": 0.0}
+2018-01-01 20:30:00 house received: {'Battery': {'P Setpoint': -1.0001241216081471}}
+2018-01-01 20:30:00 house sending: {"Total Electric Power (kW)": 0.8380820038860662, "Battery Electric Power (kW)": 0.0}
+2018-01-01 20:40:00 house received: {'Battery': {'P Setpoint': -0.9765450294486777}}
+2018-01-01 20:40:00 house sending: {"Total Electric Power (kW)": 0.8390060500973913, "Battery Electric Power (kW)": 0.0}
+2018-01-01 20:50:00 house received: {'Battery': {'P Setpoint': -1.004891127343388}}
+2018-01-01 20:50:00 house sending: {"Total Electric Power (kW)": 0.8399275015825505, "Battery Electric Power (kW)": 0.0}
+2018-01-01 21:00:00 house received: {'Battery': {'P Setpoint': -1.037942756339278}}
+2018-01-01 21:00:00 house sending: {"Total Electric Power (kW)": 0.779278571840877, "Battery Electric Power (kW)": 0.0}
+2018-01-01 21:10:00 house received: {'Battery': {'P Setpoint': -1.0115494757150412}}
+2018-01-01 21:10:00 house sending: {"Total Electric Power (kW)": 0.7823128167850765, "Battery Electric Power (kW)": 0.0}
+2018-01-01 21:20:00 house received: {'Battery': {'P Setpoint': -0.9232596623136455}}
+2018-01-01 21:20:00 house sending: {"Total Electric Power (kW)": 0.7832945888230542, "Battery Electric Power (kW)": 0.0}
+2018-01-01 21:30:00 house received: {'Battery': {'P Setpoint': -0.9336968166386217}}
+2018-01-01 21:30:00 house sending: {"Total Electric Power (kW)": 0.7846614834738305, "Battery Electric Power (kW)": 0.0}
+2018-01-01 21:40:00 house received: {'Battery': {'P Setpoint': -1.0575879166257587}}
+2018-01-01 21:40:00 house sending: {"Total Electric Power (kW)": 0.7856002094111096, "Battery Electric Power (kW)": 0.0}
+2018-01-01 21:50:00 house received: {'Battery': {'P Setpoint': -1.046387110229018}}
+2018-01-01 21:50:00 house sending: {"Total Electric Power (kW)": 0.7865205781373122, "Battery Electric Power (kW)": 0.0}
+2018-01-01 22:00:00 house received: {'Battery': {'P Setpoint': -0.9871450383146492}}
+2018-01-01 22:00:00 house sending: {"Total Electric Power (kW)": 0.7250358710359686, "Battery Electric Power (kW)": 0.0}
+2018-01-01 22:10:00 house received: {'Battery': {'P Setpoint': -0.9701356680869808}}
+2018-01-01 22:10:00 house sending: {"Total Electric Power (kW)": 0.7280036057725464, "Battery Electric Power (kW)": 0.0}
+2018-01-01 22:20:00 house received: {'Battery': {'P Setpoint': -0.9048951050000409}}
+2018-01-01 22:20:00 house sending: {"Total Electric Power (kW)": 0.7289369509552963, "Battery Electric Power (kW)": 0.0}
+2018-01-01 22:30:00 house received: {'Battery': {'P Setpoint': -0.9223937650791603}}
+2018-01-01 22:30:00 house sending: {"Total Electric Power (kW)": 0.7315919866422339, "Battery Electric Power (kW)": 0.0}
+2018-01-01 22:40:00 house received: {'Battery': {'P Setpoint': -0.9259554515634689}}
+2018-01-01 22:40:00 house sending: {"Total Electric Power (kW)": 0.7324604699105977, "Battery Electric Power (kW)": 0.0}
+2018-01-01 22:50:00 house received: {'Battery': {'P Setpoint': -0.9344359908725592}}
+2018-01-01 22:50:00 house sending: {"Total Electric Power (kW)": 0.7333042503918967, "Battery Electric Power (kW)": 0.0}
+2018-01-01 23:00:00 house received: {'Battery': {'P Setpoint': -0.9383976826006915}}
+2018-01-01 23:00:00 house sending: {"Total Electric Power (kW)": 0.6303101803283022, "Battery Electric Power (kW)": 0.0}
+2018-01-01 23:10:00 house received: {'Battery': {'P Setpoint': -0.9427626888699985}}
+2018-01-01 23:10:00 house sending: {"Total Electric Power (kW)": 0.634656985345479, "Battery Electric Power (kW)": 0.0}
+2018-01-01 23:20:00 house received: {'Battery': {'P Setpoint': -0.8433422991078081}}
+2018-01-01 23:20:00 house sending: {"Total Electric Power (kW)": 0.6355457677593306, "Battery Electric Power (kW)": 0.0}
+2018-01-01 23:30:00 house received: {'Battery': {'P Setpoint': -0.8743407911269816}}
+2018-01-01 23:30:00 house sending: {"Total Electric Power (kW)": 0.6387130098984418, "Battery Electric Power (kW)": 0.0}
+2018-01-01 23:40:00 house received: {'Battery': {'P Setpoint': -0.8792279485718173}}
+2018-01-01 23:40:00 house sending: {"Total Electric Power (kW)": 0.6394594567792564, "Battery Electric Power (kW)": 0.0}
+2018-01-01 23:50:00 house received: {'Battery': {'P Setpoint': -1.0319453280578585}}
+2018-01-01 23:50:00 house sending: {"Total Electric Power (kW)": 0.6402051189822358, "Battery Electric Power (kW)": 0.0}
+2025-08-26 15:48:08.410820 - House_1 at 2018-01-02 00:00:00: Simulation complete, time series results saved to: /home/deras/gld-opedss-ochre-helics/ochre_helics_example/cosimulation/bldg0112631/up00/House_1.csv
+2025-08-26 15:48:08.413587 - House_1 at 2018-01-02 00:00:00: Post-processing metrics saved to: /home/deras/gld-opedss-ochre-helics/ochre_helics_example/cosimulation/bldg0112631/up00/House_1_metrics.csv
+2025-08-26 15:48:08.419107 - House_1 at 2018-01-02 00:00:00: Hourly results saved to: /home/deras/gld-opedss-ochre-helics/ochre_helics_example/cosimulation/bldg0112631/up00/House_1_hourly.csv
