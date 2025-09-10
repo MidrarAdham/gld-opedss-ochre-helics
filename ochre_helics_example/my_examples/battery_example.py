@@ -15,7 +15,7 @@ equipment_args = {
     "seed": 1,  # setting random seed to create consistent charging events
 
     # Equipment-specific parameters
-    "vehicle_type": "PHEV",
+    "vehicle_type": "BEV",
     "charging_level": "Level 1",
     "range": 200,
 }
@@ -26,7 +26,9 @@ equipment = ElectricVehicle(**equipment_args)
 # Simulate equipment
 df = equipment.simulate()
 
-print(df.head())
+import PySAM.Grid
+
+
 
 # fig, ax = plt.subplots()
 
@@ -40,8 +42,8 @@ print(df.head())
 # ax.legend()
 # ax.grid(alpha=0.5)
 
-fig = CreateFigures.plot_daily_profile(df_raw=df, column="EV Electric Power (kW)", plot_max=False, plot_min=False, plot_average=False)
-plt.show()
+# fig = CreateFigures.plot_daily_profile(df_raw=df, column="EV Electric Power (kW)", plot_max=False, plot_min=False, plot_average=False)
+# plt.show()
 
 
 # fig, ax = plt.subplots()
