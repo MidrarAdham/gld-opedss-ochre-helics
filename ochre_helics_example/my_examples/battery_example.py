@@ -26,7 +26,7 @@ equipment = ElectricVehicle(**equipment_args)
 # Simulate equipment
 df = equipment.simulate()
 
-import PySAM.Grid
+import PySAM.Grid # <-- this is messed up
 
 
 

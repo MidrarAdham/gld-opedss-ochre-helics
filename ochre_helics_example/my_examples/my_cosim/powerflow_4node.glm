@@ -11,8 +11,8 @@ module reliability {
 module reliability;
 object helics_msg {
 	name helics;
-	parent ochre_house_load;
-	configure powerflow_4node_gld_config.json;
+	// parent ochre_house_load;
+	configure ./powerflow_4node_gld_config.json;
 }
 
 
@@ -189,14 +189,14 @@ object triplex_load {
 	name ochre_house_load;
 	parent house_meter;
 	phases CS;
-	constant_power_1 0; 
-	nominal_voltage 120; // this should be updated by HELICS
+	constant_power_12 0+0j; // this should be updated by HELICS
+	nominal_voltage 120; 
 }
 
 object recorder {
 	parent house_meter;
 	file meter_logs.csv;
-	interval 60;
+	interval 600;
 	property measured_real_power;
 }
 

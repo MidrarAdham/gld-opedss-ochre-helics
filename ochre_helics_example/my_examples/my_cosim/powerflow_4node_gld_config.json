@@ -1,6 +1,6 @@
 {
     "name": "GridLABD_federate",
-    "loglevel": 2,
+    "coreInitString": "--federates=1 --loglevel=warning",
     "coreType": "zmq",
     "period": 600.0,
     "uninterruptible": false,
@@ -9,9 +9,8 @@
         {
             "key": "ochre_house_load.constant_power_12",
             "type": "complex",
-            "info": "{\"object\":\"triplex_load\",\"property\":\"constant_power_12\"}",
-            "required": true,
-            "global": true
+            "info": "{\"object\":\"ochre_house_load\",\"property\":\"constant_power_12\"}",
+            "required": true
         }
     ],
     "publications": []

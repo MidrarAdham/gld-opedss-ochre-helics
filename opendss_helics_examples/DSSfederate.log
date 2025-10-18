@@ -1,0 +1,97 @@
+[2025-09-10 17:16:15.150] [console] [info] DSSfederate::registering Input 
+[2025-09-10 17:16:18.945] [console] [debug] DSSfederate (131072)[initializing]::Granting Initialization
+[2025-09-10 17:16:18.945] [console] [debug] DSSfederate (131072)[initializing]::Granted Time=-9223372036.854776
+[2025-09-10 17:16:18.945] [console] [debug] DSSfederate (131072)[executing]::Granting Execution
+[2025-09-10 17:16:18.945] [console] [debug] DSSfederate (131072)[0]::Granted Time=0
+/home/deras/.local/lib/python3.12/site-packages/opendss_wrapper/OpenDSS.py:115: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_numeric without passing `errors` and catch exceptions explicitly instead
+  df = dss.utils.class_to_dataframe(element, transform_string=lambda x: pd.to_numeric(x, errors='ignore'))
+/home/deras/.local/lib/python3.12/site-packages/opendss_wrapper/OpenDSS.py:115: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_numeric without passing `errors` and catch exceptions explicitly instead
+  df = dss.utils.class_to_dataframe(element, transform_string=lambda x: pd.to_numeric(x, errors='ignore'))
+[2025-09-10 17:16:30.049] [console] [info] DSSfederate_core_GIgyIv (1879048192)[operating]:: core tick
+[2025-09-10 17:16:45.050] [console] [info] DSSfederate_core_GIgyIv (1879048192)[operating]:: core tick
+[2025-09-10 17:17:00.050] [console] [info] DSSfederate_core_GIgyIv (1879048192)[operating]:: core tick
+[2025-09-10 17:17:15.051] [console] [info] DSSfederate_core_GIgyIv (1879048192)[operating]:: core tick
+[2025-09-10 17:17:18.847] [console] [debug] DSSfederate (131072)[0]::receive PUBLICATION pub:From (131073) handle(0) size 0 at 60 to 131072 from storage_powers
+[2025-09-10 17:17:18.947] [console] [debug] DSSfederate (131072)[60]::Granted Time=60
+[2025-09-10 17:17:30.052] [console] [info] DSSfederate_core_GIgyIv (1879048192)[operating]:: core tick
+[2025-09-10 17:17:45.053] [console] [info] DSSfederate_core_GIgyIv (1879048192)[operating]:: core tick
+[2025-09-10 17:18:00.053] [console] [info] DSSfederate_core_GIgyIv (1879048192)[operating]:: core tick
+[2025-09-10 17:18:15.054] [console] [info] DSSfederate_core_GIgyIv (1879048192)[operating]:: core tick
+[2025-09-10 17:18:18.847] [console] [debug] DSSfederate (131072)[60]::receive PUBLICATION pub:From (131073) handle(0) size 0 at 120 to 131072 from storage_powers
+[2025-09-10 17:18:18.947] [console] [debug] DSSfederate (131072)[120]::Granted Time=120
+[2025-09-10 17:18:30.055] [console] [info] DSSfederate_core_GIgyIv (1879048192)[operating]:: core tick
+[2025-09-10 17:18:45.055] [console] [info] DSSfederate_core_GIgyIv (1879048192)[operating]:: core tick
+[2025-09-10 17:19:00.056] [console] [info] DSSfederate_core_GIgyIv (1879048192)[operating]:: core tick
+[2025-09-10 17:19:15.057] [console] [info] DSSfederate_core_GIgyIv (1879048192)[operating]:: core tick
+[2025-09-10 17:19:18.847] [console] [debug] DSSfederate (131072)[120]::receive PUBLICATION pub:From (131073) handle(0) size 0 at 180 to 131072 from storage_powers
+[2025-09-10 17:19:18.947] [console] [debug] DSSfederate (131072)[180]::Granted Time=180
+[2025-09-10 17:19:30.058] [console] [info] DSSfederate_core_GIgyIv (1879048192)[operating]:: core tick
+[2025-09-10 17:19:45.059] [console] [info] DSSfederate_core_GIgyIv (1879048192)[operating]:: core tick
+[2025-09-10 17:20:00.059] [console] [info] DSSfederate_core_GIgyIv (1879048192)[operating]:: core tick
+[2025-09-10 17:20:15.060] [console] [info] DSSfederate_core_GIgyIv (1879048192)[operating]:: core tick
+[2025-09-10 17:20:18.849] [console] [debug] DSSfederate (131072)[180]::receive PUBLICATION pub:From (131073) handle(0) size 0 at 240 to 131072 from storage_powers
+[2025-09-10 17:20:18.949] [console] [debug] DSSfederate (131072)[240]::Granted Time=240
+[2025-09-10 17:20:30.061] [console] [info] DSSfederate_core_GIgyIv (1879048192)[operating]:: core tick
+[2025-09-10 17:20:45.061] [console] [info] DSSfederate_core_GIgyIv (1879048192)[operating]:: core tick
+[2025-09-10 17:21:00.062] [console] [info] DSSfederate_core_GIgyIv (1879048192)[operating]:: core tick
+[2025-09-10 17:21:15.063] [console] [info] DSSfederate_core_GIgyIv (1879048192)[operating]:: core tick
+[2025-09-10 17:21:18.849] [console] [debug] DSSfederate (131072)[240]::receive PUBLICATION pub:From (131073) handle(0) size 0 at 300 to 131072 from storage_powers
+[2025-09-10 17:21:18.949] [console] [debug] DSSfederate (131072)[300]::Granted Time=300
+[2025-09-10 17:21:19.117] [console] [debug] DSSfederate (131072)[300]::Terminating
+[2025-09-10 17:21:19.117] [console] [debug] DSSfederate (131072)[300]::Granted Time=300
+Entering executing mode...
+2025-09-10 17:16:18.946026 - DSS: Compiling...
+2025-09-10 17:16:18.946045 - DSS: Running file: /home/deras/gld-opedss-ochre-helics/opendss_helics_examples/network_model/model_base.dss
+2025-09-10 17:16:20.436570 - DSS: Compiled Circuit: source
+
+
+
+
+
+
+
+
+
+
+
+
+der_645_b_27
+
+
+
+
+
+
+
+
+
+
+
+
+
+==========================================
+
+Storage element sample: ['der_645_b_27', 'der_645_b_28', 'der_645_b_29']
+Storage element length: 960
+
+
+==========================================
+
+Initialized OpenDSS with 960 storage elements
+Step 0: t=60.0: Raw data length: 22842
+Step 0: t=60.0: Received 960 storage elements, Total: 4320031.51 kW
+Successfully set power for 960/960 storage elements
+Step 1: t=120.0: Raw data length: 22851
+Step 1: t=120.0: Received 960 storage elements, Total: 4320025.51 kW
+Successfully set power for 960/960 storage elements
+Step 2: t=180.0: Raw data length: 22851
+Step 2: t=180.0: Received 960 storage elements, Total: 4320031.01 kW
+Successfully set power for 960/960 storage elements
+Step 3: t=240.0: Raw data length: 22852
+Step 3: t=240.0: Received 960 storage elements, Total: 4319938.57 kW
+Successfully set power for 960/960 storage elements
+Step 4: t=300.0: Raw data length: 22856
+Step 4: t=300.0: Received 960 storage elements, Total: 4319905.95 kW
+Successfully set power for 960/960 storage elements
+federate1 execution completed.
+DSSfederate done.
