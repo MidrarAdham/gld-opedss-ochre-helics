@@ -43,7 +43,7 @@ def subscribe_values(sub, fed):
     storage_names = get_storage_names(dss=dss)
     print(f"Initialized OpenDSS with {len(storage_names)} storage elements")
 
-    simulation_time_seconds = 300
+    simulation_time_seconds = 3*3600 # three hours
     time_step_seconds = 60
     num_steps = simulation_time_seconds // time_step_seconds # five steps or every minutes
 

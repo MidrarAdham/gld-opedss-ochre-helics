@@ -1,0 +1,273 @@
+# %%
+import pandas as pd
+import json
+import datetime as dt
+import sys
+import click
+import helics
+from helics.cli import run
+import os
+
+from ochre import Dwelling, Analysis
+from ochre.utils import default_input_path
+
+# %%
+def create_dir ():
+    main_path = os.path.join(os.getcwd(), "cosimulation")
+    os.makedirs(main_path, exist_ok=True)
+    return main_path
+
+# %%
+# This cell calls the create_dir function, which creates a folder called cosimulation.
+    # This folder is currently empty.
+
+# This cell also creates a dictionary, locating the path of every building to be simulated.
+# This path is directed to the newly created folder, cosimulation
+main_path = create_dir()
+
+building_ids = ["bldg0112631"]
+upgrades = ["up00"]
+house_paths = {}
+i = 1
+for building in building_ids:
+    for upgrade in upgrades:
+        house_paths[f"House_{i}"] = os.path.join(main_path, building, upgrade)
+        i += 1
+n = len(house_paths)
+
+# %%
+# Set the co-simulation parameters:
+
+start_time = dt.datetime(2018, 1, 1)
+time_res = dt.timedelta(minutes=10)
+duration = dt.timedelta(days=1)
+sim_times = pd.date_range(
+    start_time,
+    start_time + duration,
+    freq=time_res,
+    inclusive="left",
+)
+
+initialization_time = dt.timedelta(days=1)
+equipment_args = {
+    # "PV": {"capacity": 5},
+    # "Battery": {"capacity": 5, "capacity_kwh": 10},
+}
+# status_keys = [
+#     "Battery Electric Power (kW)",
+#     "Total Electric Power (kW)",
+# ]
+status_keys = [
+    'Total Electric Power (kW)',
+]
+
+# %%
+# Download ochre weather files in the default path.
+# /home/deras/.local/lib/python3.12/site-packages/ochre/defaults/Weather/USA_CO_Denver.Intl.AP.725650_TMY3.epw
+
+default_weather_file = os.path.join(
+    default_input_path, "Weather", "USA_CO_Denver.Intl.AP.725650_TMY3.epw"
+)
+
+# %%
+# This will create a helics federate
+def make_helics_federate(name):
+    # use PyHELICS API to create federate
+    # see: https://docs.helics.org/en/latest/user-guide/examples/fundamental_examples/fundamental_fedintegration.html
+    fedinfo = helics.helicsCreateFederateInfo()
+    helics.helicsFederateInfoSetCoreTypeFromString(fedinfo, "zmq")
+    helics.helicsFederateInfoSetCoreInitString(fedinfo, "--federates=1")
+    helics.helicsFederateInfoSetIntegerProperty(fedinfo, helics.HELICS_PROPERTY_INT_LOG_LEVEL, 1)
+    
+    # Set time step
+    seconds = time_res.total_seconds()
+    helics.helicsFederateInfoSetTimeProperty(fedinfo, helics.HELICS_PROPERTY_TIME_PERIOD, seconds)
+    
+    # Configuration flags
+    helics.helicsFederateInfoSetFlagOption(fedinfo, helics.HELICS_FLAG_UNINTERRUPTIBLE, True)
+    helics.helicsFederateInfoSetFlagOption(fedinfo, helics.HELICS_FLAG_TERMINATE_ON_ERROR, True)
+
+    # create federate
+    fed = helics.helicsCreateValueFederate(name, fedinfo)
+
+    # enter initialization mode, wait for all federates to enter
+    fed.enter_initializing_mode()
+    return fed
+
+def register_publication(name, fed, pub_type="string"):
+    """
+    Register a publication - this is how the house sends data to others
+    """
+    # Map string types to HELICS data type enums
+    if pub_type == "complex":
+        helics_type = helics.HELICS_DATA_TYPE_COMPLEX
+    elif pub_type == "double":
+        helics_type = helics.HELICS_DATA_TYPE_DOUBLE
+    else:
+        helics_type = helics.HELICS_DATA_TYPE_STRING
+    
+    return helics.helicsFederateRegisterGlobalPublication(fed, name, helics_type, "")
+    
+
+# We don't gridlab-d to send things here, so this function is not really needed
+# def register_subscription(name, fed):
+#     return helics.helicsFederateRegisterSubscription(fed, name, "")
+
+
+def step_to(time, fed, offset=0):
+    # Here we coordinate the simulation. We request the next time step
+    # so all federates are synced up
+    t_requested = (time - start_time).total_seconds() + offset
+    while True:
+        t_new = helics.helicsFederateRequestTime(fed, t_requested)
+        if t_new >= t_requested:
+            return
+        time.sleep(0.01)
+
+# %%
+# Command line stuff. Need to understand this better
+@click.group()
+def cli():
+    """OCHRE commands for co-simulation"""
+    pass
+
+
+@cli.command()
+def setup():
+    # Download ResStock files to co-simulation path, so we need to run this first
+    # python3 cosim_from_scratch.py setup
+    for building in building_ids:
+        for upgrade in upgrades:
+            input_path = os.path.join(main_path, building, upgrade)
+            os.makedirs(input_path, exist_ok=True)
+            Analysis.download_resstock_model(building, upgrade, input_path, overwrite=False)
+            # shutil.copy(default_weather_file, input_path)
+
+# %%
+@cli.command()
+@click.argument("name", type=str)
+@click.argument("input_path", type=click.Path(exists=True))
+
+def house(name, input_path):
+    # This func runs the ochre house simulation as a HELICS federate
+    # This is called automatically from the main func so no need to run it manually
+    
+    
+    # create helics federate
+    fed = make_helics_federate(name)
+
+    # setup publications - we are not subscribing today! :)
+    # If we need to control the house, we add a subscriptions
+    pub = register_publication(name=f"ochre_house_load.constant_power_12", fed=fed, pub_type="complex")
+    # pub = helics.helicsFederateRegisterGlobalPublication(fed, "ochre_house_load.constant_power_12", helics.HELICS_DATA_TYPE_COMPLEX, "")
+
+    # initialize OCHRE dwelling stuff - need to understand this better.
+    dwelling = Dwelling(
+        name=name,
+        start_time=start_time,
+        time_res=time_res,
+        duration=duration,
+        initialization_time=dt.timedelta(days=1), # This command seems to be already defined. Will check it later
+        hpxml_file=os.path.join(input_path, "home.xml"),
+        hpxml_schedule_file=os.path.join(input_path, "in.schedules.csv"),
+        weather_file=default_weather_file,
+        output_path=input_path,
+        Equipment=equipment_args,
+    )
+    assert (dwelling.sim_times == sim_times).all()
+    print(name, "initialized")
+
+    # before simulation, publish default status
+    fed.enter_executing_mode()
+
+    initial_data = {key: 0 for key in status_keys}
+    pub.publish(json.dumps(initial_data))
+    print(f"{name} entering simulation loop...")
+
+    # begin simulation
+    for t in sim_times:
+        # request next time step in co-simulation
+        # offset lets aggregator run first
+
+        # Sync with helics broker - not sure why the offset is needed
+        # step_to(t, fed, offset=1)
+        step_to(t, fed)
+
+        # # get aggregator controls
+        # str_from_agg = sub.value
+        # if "-999" in str_from_agg:
+        #     print(t, "house received bad data:", str_from_agg)
+        #     control_signal = {}
+        # else:
+        #     control_signal = json.loads(str_from_agg)
+        #     print(t, "house received:", control_signal)
+
+        # run 1 time step
+        status = dwelling.update({})
+
+        # publish house power demand
+        # This is what gld receives
+
+        data_to_publish = {key: val for key, val in status.items() if key in status_keys}
+        # str_to_agg = json.dumps(data_to_publish)
+        # print(t, "house sending:", data_to_publish)
+        pub.publish(json.dumps(data_to_publish))
+        # Print status (optional - helpful for debugging)
+        print(f"{t}: Power = {data_to_publish['Total Electric Power (kW)']:.2f} kW")
+
+
+    # finalize OCHRE
+    dwelling.finalize()
+# %%
+
+def get_house_fed_config(name, input_path):
+    # This func tells helics how to run each house, which in this case we have one.
+    cmd = f"{sys.executable} -u {__file__} house {name} {input_path}"
+    cmd = cmd.replace("\\", "/")  # required for Windows?
+    return {
+        "name": name,
+        "host": "localhost",
+        "directory": ".",
+        "exec": cmd,
+    }
+
+
+@cli.command()
+def main():
+
+    # create federate config information
+    # Command: main
+    # Run the whole cosimulation
+    # python3 cosim_from_scratch.py main
+
+    house_feds = [get_house_fed_config(name, path) for name, path in house_paths.items()]
+    
+    # Create the cosimulation configuration
+    # This includes:
+    # - broker: True (helics will start the broker by itself)
+    # - federates: list of federates to run - we only have one house here
+
+    config = {
+        "name": "ochre_cosimulation",
+        "broker": True,
+        "federates": house_feds # we don't have an aggregator here
+    }
+
+    # create config file
+    config_file = os.path.join(main_path, "config.json")
+    with open(config_file, "w") as f:
+        f.write(json.dumps(config, indent=4))
+
+    # run
+    print("Running co-simulation, files saved to:", main_path)
+    run(["--path", config_file])
+    pass
+
+
+cli.add_command(setup)
+cli.add_command(house)
+cli.add_command(main)
+
+
+if __name__ == "__main__":
+    cli()

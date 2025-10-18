@@ -184,7 +184,7 @@ def main():
     # Initializing the start time and stepsize for the OpenDSS simulation
     start_time = dt.datetime(2021, 12, 25)
     stepsize = dt.timedelta(minutes=1)
-    duration = dt.timedelta(minutes=30)  # Start with 3 hours for testing
+    duration = dt.timedelta(minutes=3600*6)  # This does not mater, change it from the dss federate not here
     # --------------------------------------------------------
     # Setting the paths and initializing OpenDSS
     results_dir, profiles_dir, dss_file = set_paths()
