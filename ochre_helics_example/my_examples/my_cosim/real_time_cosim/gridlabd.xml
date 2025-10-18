@@ -17,7 +17,7 @@
 	<verbose>FALSE</verbose>
 	<iteration_limit>100</iteration_limit>
 	<federation_reiteration>FALSE</federation_reiteration>
-	<workdir>/home/deras/gld-opedss-ochre-helics/ochre_helics_example/my_examples/my_cosim</workdir>
+	<workdir>/home/deras/gld-opedss-ochre-helics/ochre_helics_example/my_examples/my_cosim/real_time_cosim</workdir>
 	<lock>TRUE</lock>
 	<dumpfile>gridlabd.xml</dumpfile>
 	<savefile>""</savefile>
@@ -43,7 +43,7 @@
 	<strictnames>TRUE</strictnames>
 	<website>http://www.gridlabd.org/</website>
 	<urlbase>http://www.gridlabd.org/</urlbase>
-	<randomseed>1818501824</randomseed>
+	<randomseed>-1942479550</randomseed>
 	<include>""</include>
 	<trace>""</trace>
 	<gdb_window>FALSE</gdb_window>
@@ -134,7 +134,6 @@
 				<rank>0</rank>
 				<out_svc>NEVER</out_svc>
 				<parent>house_meter</parent>
-				<clock>2017-12-31 16:00:00 PST</clock>
 				<name>recorder:21</name>
 				<property>measured_real_power</property>
 				<trigger>""</trigger>
@@ -148,7 +147,7 @@
 				<columns>""</columns>
 				<flush>-1</flush>
 				<format>FALSE</format>
-				<interval>+60 s</interval>
+				<interval>+600 s</interval>
 				<output>SCREEN</output>
 				<header_units>DEFAULT</header_units>
 				<line_units>DEFAULT</line_units>
@@ -158,7 +157,6 @@
 				<rank>0</rank>
 				<out_svc>NEVER</out_svc>
 				<parent>ochre_house_load</parent>
-				<clock>2017-12-31 16:00:00 PST</clock>
 				<name>recorder:22</name>
 				<property>constant_power_12</property>
 				<trigger>""</trigger>
@@ -182,7 +180,6 @@
 				<rank>0</rank>
 				<out_svc>NEVER</out_svc>
 				<parent>residential_transformer</parent>
-				<clock>2017-12-31 16:00:00 PST</clock>
 				<name>recorder:23</name>
 				<property>power_in,power_out</property>
 				<trigger>""</trigger>
@@ -224,13 +221,12 @@
 			<inherits_from>powerflow_object</inherits_from>
 			<node>
 				<id>9</id>
-				<rank>12</rank>
+				<rank>0</rank>
 				<out_svc>NEVER</out_svc>
-				<clock>2017-12-31 16:00:00 PST</clock>
 				<name>Node1</name>
 				<bustype>SWING</bustype>
 				<busflags>HASSOURCE</busflags>
-				<maximum_voltage_error>+0.00719956 V</maximum_voltage_error>
+				<maximum_voltage_error>+0 V</maximum_voltage_error>
 				<voltage_A>+7199.56+0d V</voltage_A>
 				<voltage_B>+7199.56-120d V</voltage_B>
 				<voltage_C>+7199.56+120d V</voltage_C>
@@ -321,14 +317,12 @@
 			</node>
 			<node>
 				<id>11</id>
-				<rank>10</rank>
+				<rank>0</rank>
 				<out_svc>NEVER</out_svc>
-				<parent>Link12</parent>
-				<clock>2017-12-31 16:00:00 PST</clock>
 				<name>Node2</name>
 				<bustype>PQ</bustype>
 				<busflags>HASSOURCE</busflags>
-				<maximum_voltage_error>+0.00719956 V</maximum_voltage_error>
+				<maximum_voltage_error>+0 V</maximum_voltage_error>
 				<voltage_A>+7199.56+0d V</voltage_A>
 				<voltage_B>+7199.56-120d V</voltage_B>
 				<voltage_C>+7199.56+120d V</voltage_C>
@@ -412,7 +406,6 @@
 				<GFA_volt_disconnect_time>+0.2 s</GFA_volt_disconnect_time>
 				<GFA_status>TRUE</GFA_status>
 				<GFA_trip_method>NONE</GFA_trip_method>
-				<topological_parent>Link12</topological_parent>
 				<behaving_as_swing>FALSE</behaving_as_swing>
 				<phases>ABC</phases>
 				<nominal_voltage>+7199.56 V</nominal_voltage>
@@ -420,14 +413,12 @@
 			</node>
 			<node>
 				<id>15</id>
-				<rank>6</rank>
+				<rank>0</rank>
 				<out_svc>NEVER</out_svc>
-				<parent>branch</parent>
-				<clock>2017-12-31 16:00:00 PST</clock>
 				<name>Node3</name>
 				<bustype>PQ</bustype>
 				<busflags>HASSOURCE</busflags>
-				<maximum_voltage_error>+0.00416 V</maximum_voltage_error>
+				<maximum_voltage_error>+0 V</maximum_voltage_error>
 				<voltage_A>+2401.78+0d V</voltage_A>
 				<voltage_B>+2401.78-120d V</voltage_B>
 				<voltage_C>+2401.78+120d V</voltage_C>
@@ -511,7 +502,6 @@
 				<GFA_volt_disconnect_time>+0.2 s</GFA_volt_disconnect_time>
 				<GFA_status>TRUE</GFA_status>
 				<GFA_trip_method>NONE</GFA_trip_method>
-				<topological_parent>branch</topological_parent>
 				<behaving_as_swing>FALSE</behaving_as_swing>
 				<phases>ABC</phases>
 				<nominal_voltage>+4160 V</nominal_voltage>
@@ -519,14 +509,12 @@
 			</node>
 			<node>
 				<id>17</id>
-				<rank>4</rank>
+				<rank>0</rank>
 				<out_svc>NEVER</out_svc>
-				<parent>branch1</parent>
-				<clock>2017-12-31 16:00:00 PST</clock>
 				<name>Node4</name>
 				<bustype>PQ</bustype>
 				<busflags>HASSOURCE</busflags>
-				<maximum_voltage_error>+0.00416 V</maximum_voltage_error>
+				<maximum_voltage_error>+0 V</maximum_voltage_error>
 				<voltage_A>+2401.78+0d V</voltage_A>
 				<voltage_B>+2401.78-120d V</voltage_B>
 				<voltage_C>+2401.78+120d V</voltage_C>
@@ -610,7 +598,6 @@
 				<GFA_volt_disconnect_time>+0.2 s</GFA_volt_disconnect_time>
 				<GFA_status>TRUE</GFA_status>
 				<GFA_trip_method>NONE</GFA_trip_method>
-				<topological_parent>branch1</topological_parent>
 				<behaving_as_swing>FALSE</behaving_as_swing>
 				<phases>ABC</phases>
 				<nominal_voltage>+4160 V</nominal_voltage>
@@ -630,10 +617,8 @@
 			<inherits_from>node</inherits_from>
 			<meter>
 				<id>13</id>
-				<rank>8</rank>
+				<rank>0</rank>
 				<out_svc>NEVER</out_svc>
-				<parent>substation_transformer</parent>
-				<clock>2017-12-31 16:00:00 PST</clock>
 				<name>substation_meter</name>
 				<measured_real_energy>+0 Wh</measured_real_energy>
 				<measured_real_energy_delta>+0 Wh</measured_real_energy_delta>
@@ -731,10 +716,10 @@
 				<third_tier_energy>+0 kWh</third_tier_energy>
 				<bustype>PQ</bustype>
 				<busflags>HASSOURCE</busflags>
-				<maximum_voltage_error>+0.00416 V</maximum_voltage_error>
-				<voltage_A>+4160+0d V</voltage_A>
-				<voltage_B>+4160-120d V</voltage_B>
-				<voltage_C>+4160+120d V</voltage_C>
+				<maximum_voltage_error>+0 V</maximum_voltage_error>
+				<voltage_A>+0+0d V</voltage_A>
+				<voltage_B>+0+0d V</voltage_B>
+				<voltage_C>+0+0d V</voltage_C>
 				<voltage_AB>+0+0d V</voltage_AB>
 				<voltage_BC>+0+0d V</voltage_BC>
 				<voltage_CA>+0+0d V</voltage_CA>
@@ -815,7 +800,6 @@
 				<GFA_volt_disconnect_time>+0.2 s</GFA_volt_disconnect_time>
 				<GFA_status>TRUE</GFA_status>
 				<GFA_trip_method>NONE</GFA_trip_method>
-				<topological_parent>substation_transformer</topological_parent>
 				<behaving_as_swing>FALSE</behaving_as_swing>
 				<phases>ABCN</phases>
 				<nominal_voltage>+4160 V</nominal_voltage>
@@ -830,7 +814,6 @@
 				<id>2</id>
 				<rank>0</rank>
 				<out_svc>NEVER</out_svc>
-				<clock>2017-12-31 16:00:00 PST</clock>
 				<name>LS200</name>
 				<distance_AB>+2.5 ft</distance_AB>
 				<distance_BC>+4.5 ft</distance_BC>
@@ -848,10 +831,8 @@
 			<inherits_from>line</inherits_from>
 			<overhead_line>
 				<id>10</id>
-				<rank>11</rank>
+				<rank>0</rank>
 				<out_svc>NEVER</out_svc>
-				<parent>Node1</parent>
-				<clock>2017-12-31 16:00:00 PST</clock>
 				<name>Link12</name>
 				<configuration>LC300</configuration>
 				<length>+2000 ft</length>
@@ -906,10 +887,8 @@
 			</overhead_line>
 			<overhead_line>
 				<id>14</id>
-				<rank>7</rank>
+				<rank>0</rank>
 				<out_svc>NEVER</out_svc>
-				<parent>substation_meter</parent>
-				<clock>2017-12-31 16:00:00 PST</clock>
 				<name>branch</name>
 				<configuration>LC300</configuration>
 				<length>+2000 ft</length>
@@ -964,10 +943,8 @@
 			</overhead_line>
 			<overhead_line>
 				<id>16</id>
-				<rank>5</rank>
+				<rank>0</rank>
 				<out_svc>NEVER</out_svc>
-				<parent>Node3</parent>
-				<clock>2017-12-31 16:00:00 PST</clock>
 				<name>branch1</name>
 				<configuration>LC300</configuration>
 				<length>+2000 ft</length>
@@ -1029,7 +1006,6 @@
 				<id>3</id>
 				<rank>0</rank>
 				<out_svc>NEVER</out_svc>
-				<clock>2017-12-31 16:00:00 PST</clock>
 				<name>OH100</name>
 				<geometric_mean_radius>+0.0244 ft</geometric_mean_radius>
 				<resistance>+0.306 Ohm/mile</resistance>
@@ -1043,7 +1019,6 @@
 				<id>4</id>
 				<rank>0</rank>
 				<out_svc>NEVER</out_svc>
-				<clock>2017-12-31 16:00:00 PST</clock>
 				<name>OH101</name>
 				<geometric_mean_radius>+0.00814 ft</geometric_mean_radius>
 				<resistance>+0.592 Ohm/mile</resistance>
@@ -1061,7 +1036,6 @@
 				<id>1</id>
 				<rank>0</rank>
 				<out_svc>NEVER</out_svc>
-				<clock>2017-12-31 16:00:00 PST</clock>
 				<name>LC300</name>
 				<conductor_A>OH100</conductor_A>
 				<conductor_B>OH100</conductor_B>
@@ -1097,7 +1071,6 @@
 				<id>5</id>
 				<rank>0</rank>
 				<out_svc>NEVER</out_svc>
-				<clock>2017-12-31 16:00:00 PST</clock>
 				<name>XFC400</name>
 				<connect_type>DELTA_DELTA</connect_type>
 				<install_type>UNKNOWN</install_type>
@@ -1106,9 +1079,9 @@
 				<primary_voltage>+12470 V</primary_voltage>
 				<secondary_voltage>+4160 V</secondary_voltage>
 				<power_rating>+6000 kVA</power_rating>
-				<powerA_rating>+2000 kVA</powerA_rating>
-				<powerB_rating>+2000 kVA</powerB_rating>
-				<powerC_rating>+2000 kVA</powerC_rating>
+				<powerA_rating>+0 kVA</powerA_rating>
+				<powerB_rating>+0 kVA</powerB_rating>
+				<powerC_rating>+0 kVA</powerC_rating>
 				<resistance>+0.01 pu*Ohm</resistance>
 				<reactance>+0.06 pu*Ohm</reactance>
 				<impedance>+0.01+0.06j pu*Ohm</impedance>
@@ -1143,7 +1116,6 @@
 				<id>6</id>
 				<rank>0</rank>
 				<out_svc>NEVER</out_svc>
-				<clock>2017-12-31 16:00:00 PST</clock>
 				<name>PoleTop</name>
 				<connect_type>SINGLE_PHASE_CENTER_TAPPED</connect_type>
 				<install_type>UNKNOWN</install_type>
@@ -1190,10 +1162,8 @@
 			<inherits_from>link</inherits_from>
 			<transformer>
 				<id>12</id>
-				<rank>9</rank>
+				<rank>0</rank>
 				<out_svc>NEVER</out_svc>
-				<parent>Node2</parent>
-				<clock>2017-12-31 16:00:00 PST</clock>
 				<name>substation_transformer</name>
 				<configuration>XFC400</configuration>
 				<ambient_temperature>+0 degC</ambient_temperature>
@@ -1244,10 +1214,10 @@
 				<overloaded_status>FALSE</overloaded_status>
 				<flow_direction>UNKNOWN</flow_direction>
 				<mean_repair_time>+0 s</mean_repair_time>
-				<continuous_rating_A>+6000 A</continuous_rating_A>
+				<continuous_rating_A>+1000 A</continuous_rating_A>
 				<continuous_rating_B>+1000 A</continuous_rating_B>
 				<continuous_rating_C>+1000 A</continuous_rating_C>
-				<emergency_rating_A>+6000 A</emergency_rating_A>
+				<emergency_rating_A>+2000 A</emergency_rating_A>
 				<emergency_rating_B>+2000 A</emergency_rating_B>
 				<emergency_rating_C>+2000 A</emergency_rating_C>
 				<inrush_convergence_value>+0.0001 V</inrush_convergence_value>
@@ -1261,10 +1231,8 @@
 			</transformer>
 			<transformer>
 				<id>18</id>
-				<rank>3</rank>
+				<rank>1</rank>
 				<out_svc>NEVER</out_svc>
-				<parent>Node4</parent>
-				<clock>2017-12-31 16:00:00 PST</clock>
 				<name>residential_transformer</name>
 				<configuration>PoleTop</configuration>
 				<ambient_temperature>+0 degC</ambient_temperature>
@@ -1315,10 +1283,10 @@
 				<overloaded_status>FALSE</overloaded_status>
 				<flow_direction>UNKNOWN</flow_direction>
 				<mean_repair_time>+0 s</mean_repair_time>
-				<continuous_rating_A>+400 A</continuous_rating_A>
+				<continuous_rating_A>+1000 A</continuous_rating_A>
 				<continuous_rating_B>+1000 A</continuous_rating_B>
 				<continuous_rating_C>+1000 A</continuous_rating_C>
-				<emergency_rating_A>+400 A</emergency_rating_A>
+				<emergency_rating_A>+2000 A</emergency_rating_A>
 				<emergency_rating_B>+2000 A</emergency_rating_B>
 				<emergency_rating_C>+2000 A</emergency_rating_C>
 				<inrush_convergence_value>+0.0001 V</inrush_convergence_value>
@@ -1348,8 +1316,6 @@
 				<id>19</id>
 				<rank>2</rank>
 				<out_svc>NEVER</out_svc>
-				<parent>residential_transformer</parent>
-				<clock>2017-12-31 16:00:00 PST</clock>
 				<name>house_meter</name>
 				<measured_real_energy>+0 Wh</measured_real_energy>
 				<measured_real_energy_delta>+0 Wh</measured_real_energy_delta>
@@ -1411,13 +1377,13 @@
 				<third_tier_energy>+0 kWh</third_tier_energy>
 				<bustype>PQ</bustype>
 				<busflags>HASSOURCE</busflags>
-				<maximum_voltage_error>+0.00012 V</maximum_voltage_error>
-				<voltage_1>+120+120d V</voltage_1>
-				<voltage_2>+120+120d V</voltage_2>
+				<maximum_voltage_error>+0 V</maximum_voltage_error>
+				<voltage_1>+0+0d V</voltage_1>
+				<voltage_2>+0+0d V</voltage_2>
 				<voltage_N>+0+0d V</voltage_N>
-				<voltage_12>+240+120d V</voltage_12>
-				<voltage_1N>+120+120d V</voltage_1N>
-				<voltage_2N>+120+120d V</voltage_2N>
+				<voltage_12>+0+0d V</voltage_12>
+				<voltage_1N>+0+0d V</voltage_1N>
+				<voltage_2N>+0+0d V</voltage_2N>
 				<prerotated_current_1>+0+0i A</prerotated_current_1>
 				<prerotated_current_2>+0+0i A</prerotated_current_2>
 				<prerotated_current_12>+0+0i A</prerotated_current_12>
@@ -1461,7 +1427,6 @@
 				<service_status_double>-1</service_status_double>
 				<previous_uptime>-1 min</previous_uptime>
 				<current_uptime>-1 min</current_uptime>
-				<topological_parent>residential_transformer</topological_parent>
 				<behaving_as_swing>FALSE</behaving_as_swing>
 				<frequency_measure_type>NONE</frequency_measure_type>
 				<sfm_Tf>+0.01 s</sfm_Tf>
@@ -1487,7 +1452,6 @@
 				<id>7</id>
 				<rank>0</rank>
 				<out_svc>NEVER</out_svc>
-				<clock>2017-12-31 16:00:00 PST</clock>
 				<name>triplex_line_config</name>
 				<conductor_1>Name_1_0_AA_triplex</conductor_1>
 				<conductor_2>Name_1_0_AA_triplex</conductor_2>
@@ -1509,7 +1473,6 @@
 				<id>8</id>
 				<rank>0</rank>
 				<out_svc>NEVER</out_svc>
-				<clock>2017-12-31 16:00:00 PST</clock>
 				<name>Name_1_0_AA_triplex</name>
 				<resistance>+0.57 Ohm/mile</resistance>
 				<geometric_mean_radius>+0.0111 ft</geometric_mean_radius>
@@ -1565,7 +1528,6 @@
 				<rank>1</rank>
 				<out_svc>NEVER</out_svc>
 				<parent>house_meter</parent>
-				<clock>2017-12-31 16:00:00 PST</clock>
 				<name>ochre_house_load</name>
 				<load_class>U</load_class>
 				<load_priority>DISCRETIONARY</load_priority>
@@ -1626,13 +1588,13 @@
 				<impedance_fraction_12>+0 pu</impedance_fraction_12>
 				<bustype>PQ</bustype>
 				<busflags>HASSOURCE</busflags>
-				<maximum_voltage_error>+0.00012 V</maximum_voltage_error>
-				<voltage_1>+120+120d V</voltage_1>
-				<voltage_2>+120+120d V</voltage_2>
+				<maximum_voltage_error>+0 V</maximum_voltage_error>
+				<voltage_1>+0+0d V</voltage_1>
+				<voltage_2>+0+0d V</voltage_2>
 				<voltage_N>+0+0d V</voltage_N>
-				<voltage_12>+240+120d V</voltage_12>
-				<voltage_1N>+120+120d V</voltage_1N>
-				<voltage_2N>+120+120d V</voltage_2N>
+				<voltage_12>+0+0d V</voltage_12>
+				<voltage_1N>+0+0d V</voltage_1N>
+				<voltage_2N>+0+0d V</voltage_2N>
 				<prerotated_current_1>+0+0i A</prerotated_current_1>
 				<prerotated_current_2>+0+0i A</prerotated_current_2>
 				<prerotated_current_12>+0+0i A</prerotated_current_12>
@@ -1676,7 +1638,6 @@
 				<service_status_double>-1</service_status_double>
 				<previous_uptime>-1 min</previous_uptime>
 				<current_uptime>-1 min</current_uptime>
-				<topological_parent>house_meter</topological_parent>
 				<behaving_as_swing>FALSE</behaving_as_swing>
 				<frequency_measure_type>NONE</frequency_measure_type>
 				<sfm_Tf>+0.01 s</sfm_Tf>

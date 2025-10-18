@@ -1,0 +1,217 @@
+#set profiler=1
+
+module tape;
+module powerflow;
+module generators;
+module residential;
+module connection;
+module reliability {
+    report_event_log false;
+}
+module reliability;
+object helics_msg {
+	name helics;
+	// parent ochre_house_load;
+	configure ./powerflow_4node_gld_config.json;
+}
+
+
+class player {
+    double value;
+}
+
+
+clock {
+    timestamp '2018-01-01 00:00:00';
+    stoptime '2018-01-02 00:00:00';  // 1 day duration
+    timezone PST+8PDT;
+}
+
+object line_configuration {
+	name LC300;
+	conductor_A OH100;
+	conductor_B OH100;
+	conductor_C OH100;
+	conductor_N OH101;
+	spacing LS200;
+}
+object line_spacing {
+	name LS200;
+	distance_AB 2.5;
+	distance_BC 4.5;
+	distance_AC 7.0;
+	distance_AN 5.656854;
+	distance_BN 4.272002;
+	distance_CN 5.0;
+}
+object overhead_line_conductor {
+	name OH100;
+	geometric_mean_radius 0.0244;
+	resistance 0.306;
+}
+object overhead_line_conductor {
+	name OH101;
+	geometric_mean_radius 0.00814;
+	resistance 0.592;
+}
+object transformer_configuration {
+	name XFC400;
+	connect_type 2;
+	power_rating 6000;
+	primary_voltage 12470;
+	secondary_voltage 4160;
+	resistance 0.01;
+	reactance 0.06;
+}
+object transformer_configuration {
+	name PoleTop;
+	connect_type SINGLE_PHASE_CENTER_TAPPED;
+	power_rating 400;
+	powerC_rating 400;
+	primary_voltage 2400;
+	secondary_voltage 120;
+	resistance 0.01;
+	reactance 0.06;
+}
+object triplex_line_configuration {
+      name triplex_line_config;
+      conductor_1 Name_1_0_AA_triplex;
+      conductor_2 Name_1_0_AA_triplex;
+      conductor_N Name_1_0_AA_triplex;
+      insulation_thickness 0.1;
+      diameter 0.4;
+}
+object triplex_line_conductor {
+      name Name_1_0_AA_triplex;
+      resistance 0.57;
+      geometric_mean_radius 0.0111;
+}
+
+object node {
+	name Node1;
+	bustype SWING;
+	phases A|B|C;
+	voltage_A +7199.558+0.000j;
+	voltage_B -3599.779-6235.000j;
+	voltage_C -3599.779+6235.000j;
+	nominal_voltage 7199.558;
+}
+
+object overhead_line {
+	name Link12;
+	phases A|B|C;
+	from Node1;
+	to Node2;
+	length 2000;
+	configuration LC300;
+	nominal_voltage 7199.558;
+}
+
+object node {
+	name Node2;
+	phases A|B|C;
+	voltage_A +7199.558+0.000j;
+	voltage_B -3599.779-6235.000j;
+	voltage_C -3599.779+6235.000j;
+	nominal_voltage 7199.558;
+}
+
+object transformer {
+	name substation_transformer;
+	phases A|B|C;
+	from Node2;
+	to substation_meter;
+	configuration XFC400;
+}
+
+object meter {
+      name substation_meter;
+      phases ABCN;
+      nominal_voltage 4160;
+}
+
+object overhead_line {
+	name branch;
+	phases A|B|C;
+	from substation_meter;
+	to Node3;
+	length 2000;
+	configuration LC300;
+	nominal_voltage 2401.777;
+}
+object node {
+	name Node3;
+	phases A|B|C;
+	voltage_A +2401.777+0.000j;
+	voltage_B -1200.889-2080.000j;
+	voltage_C -1200.889+2080.000j;
+	nominal_voltage 4160;
+}
+
+object overhead_line {
+	name branch1;
+	phases A|B|C;
+	from Node3;
+	to Node4;
+	length 2000;
+	configuration LC300;
+	nominal_voltage 4160;
+}
+
+object node {
+	name Node4;
+	phases A|B|C;
+	voltage_A +2401.777+0.000j;
+	voltage_B -1200.889-2080.000j;
+	voltage_C -1200.889+2080.000j;
+	nominal_voltage 4160;
+}
+
+
+//// here are the stuff I added
+
+object transformer{
+	name residential_transformer;
+	phases CS;
+	from Node4;
+	to house_meter;
+	configuration PoleTop;
+}
+
+
+object triplex_meter{
+	name house_meter;
+	phases CS;
+	nominal_voltage 120;
+}
+
+object triplex_load {
+	name ochre_house_load;
+	parent house_meter;
+	phases CS;
+	constant_power_12 0+0j; // this should be updated by HELICS
+	nominal_voltage 120; 
+}
+
+object recorder {
+	parent house_meter;
+	file meter_logs.csv;
+	interval 600;
+	property measured_real_power;
+}
+
+// Record the OCHRE load directly
+object recorder {
+    parent ochre_house_load;
+    file ochre_load.csv;
+    interval 600;  // 10 minutes
+    property constant_power_12;
+}
+
+// Record residential transformer loading
+object recorder {
+    parent residential_transformer;
+    file residential_transformer.csv;
+    interval 600;
+    property power_in,power_out;
+}
