@@ -1,7 +1,8 @@
 # Simple OCHRE-HELICS Co-simulation Script
 # This script runs ONE house in OCHRE as a HELICS federate
-# The house publishes its power demand (no controls)
-# Ready to connect with GridLAB-D federate
+# The house publishes its own power demand (no controls)
+        # Maube later add PV, Battery, and Water heater model later
+# Ready to link with GridLAB-D federate
 
 import pandas as pd
 import json
@@ -12,13 +13,12 @@ import helics
 from helics.cli import run
 import os
 
-from ochre import Dwelling, Analysis
+from ochre import Dwelling, Analysis, Battery, WaterHeater, PV
 from ochre.utils import default_input_path
 from datetime import timedelta, timezone
 
-# =============================================================================
-# STEP 1: Setup folders and paths
-# =============================================================================
+
+# Set up files
 
 def create_dir():
     """Create a folder called 'cosimulation' to store all files"""
@@ -42,36 +42,48 @@ for building in building_ids:
         house_paths[f"House_{i}"] = os.path.join(main_path, building, upgrade)
         i += 1
 
-# =============================================================================
-# STEP 2: Set simulation parameters
-# =============================================================================
+# print(house_paths)
+# quit()
 
-# Time settings
+
+
+# Simulation paramters:
+
+# A) Time settings
 def epw_timezone(epw_path: str):
     with open(epw_path, "r", encoding="latin-1") as f:
         first = f.readline().strip()
     parts = [p.strip() for p in first.split(",")]
-    tz_hours = float(parts[8])          # <- EPW "Time Zone" (hours east of UTC; Denver: -7.0)
+    tz_hours = float(parts[8])          # EPW "Time Zone" (hours west (I think) of UTC; Portland: -8.0)
     return timezone(timedelta(hours=tz_hours))
 
 
 # Weather file location
 default_weather_file = os.path.join(
-    default_input_path, "Weather", "USA_CO_Denver.Intl.AP.725650_TMY3.epw"
+    default_input_path, "Weather", "USA_OR_Portland.Intl.AP.726980_TMY3.epw"
 )
 
-epw_tz = epw_timezone(default_weather_file)
-aware_start = dt.datetime(2018, 5, 1, 0, 0, tzinfo=epw_tz)
-start_time_for_dwelling = aware_start.replace(tzinfo=None)
+# epw_tz = f"{epw_timezone(default_weather_file)}"
 
-start_time = dt.datetime.now()
-start_time = start_time.replace(tzinfo=None)
+# print(epw_tz.split('-')[1].split(':')[0])
+# print(timezone(timedelta(int(epw_tz.split('-')[1].split(':')[0]))))
+
+current_timezone = timezone(timedelta(hours=-8))
+
+aware_start = dt.datetime.now(tz=current_timezone)
+
+# x = dt.datetime.today()
+
+# print(x.index.tz_localize(current_timezone))
+
+# quit()
+
 time_res = dt.timedelta(minutes=10)            # Time step = 10 minutes
-duration = dt.timedelta(days=365)
+duration = dt.timedelta(days=30)
 # duration = dt.timedelta(days=365*100)                # INFINITYYYY
 sim_times = pd.date_range(
-    start_time,
-    start_time + duration,
+    aware_start,
+    aware_start + duration,
     freq=time_res,
     inclusive="left",
 )
@@ -90,10 +102,6 @@ equipment_args = {
 status_keys = [
     "Total Electric Power (kW)",  # Main thing GridLAB-D needs
 ]
-
-# =============================================================================
-# STEP 3: HELICS helper functions
-# =============================================================================
 
 def make_helics_federate(name, config_file="ochre_helics_config.json"):
     """
@@ -121,15 +129,11 @@ def step_to(time, fed, offset=0):
     Request the next time step in the co-simulation
     All federates must sync up at each time step
     """
-    t_requested = (time - start_time).total_seconds() + offset
+    t_requested = (time - aware_start).total_seconds() + offset
     while True:
         t_new = helics.helicsFederateRequestTime(fed, t_requested)
         if t_new >= t_requested:
             return
-
-# =============================================================================
-# STEP 4: Command-line interface (CLI) setup
-# =============================================================================
 
 @click.group()
 def cli():
@@ -140,7 +144,6 @@ def cli():
 @cli.command()
 def setup():
     """
-    COMMAND: setup
     Downloads the building data files from ResStock
     Run this FIRST, before running main
     Usage: python3 script.py setup
@@ -180,7 +183,7 @@ def house(name, input_path):
     print(f"Initializing OCHRE dwelling...")
     dwelling = Dwelling (
         name=name,
-        start_time=start_time_for_dwelling,
+        start_time=aware_start,
         time_res=time_res,
         duration=duration,
         initialization_time=initialization_time,
@@ -240,7 +243,7 @@ def get_house_fed_config(name, input_path):
     This tells HELICS how to launch the house
     """
     cmd = f"{sys.executable} -u {__file__} house {name} {input_path}"
-    cmd = cmd.replace("\\", "/")  # Fix for Windows paths
+    cmd = cmd.replace("\\", "/") 
     return {
         "name": name,
         "host": "localhost",
