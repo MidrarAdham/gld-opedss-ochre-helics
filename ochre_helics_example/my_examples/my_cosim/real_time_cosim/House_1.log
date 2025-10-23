@@ -1,38 +1,76 @@
 Starting house federate: House_1
 Initializing OCHRE dwelling...
-2025-10-18 16:51:37.468740 - House_1 at 2018-05-01 00:00:00: Initializing House_1 (OCHRE v0.9.1)
-Simulation spans multiple years (2018-2019). Duplicating time series data.
-WARNING: Properties file weather station (G0800310) may be different from weather file used: /home/deras/.local/lib/python3.12/site-packages/ochre/defaults/Weather/USA_CO_Denver.Intl.AP.725650_TMY3.epw
-Simulation spans multiple years (2018-2019). Duplicating time series data.
+2025-10-21 17:20:45.651117 - House_1 at 2025-10-21 16:20:45.534000-08:00: Initializing House_1 (OCHRE v0.9.1)
+================================================================================
+hey from the library, let's figure this out.
+ df index: 2025-10-21 16:20:45.534000-08:00
+ start time: 2025-10-21 16:20:45.534000-08:00
+================================================================================
+WARNING: Properties file weather station (G0800310) may be different from weather file used: /home/midrar/.local/lib/python3.10/site-packages/ochre/defaults/Weather/USA_OR_Portland.Intl.AP.726980_TMY3.epw
+================================================================================
+hey from the library, let's figure this out.
+ df index: 2025-01-01 00:30:00-08:00
+ start time: 2025-10-21 16:20:45.534000-08:00
+================================================================================
+================================================================================
+hey from the library, let's figure this out.
+ df index: 2025-01-01 00:00:00-08:00
+ start time: 2025-10-21 16:20:45.534000-08:00
+================================================================================
+Hello from enevelop.py source code. Let's strip the timezone
+
+
+
+
+Weather timezone in the solar irradiance is:                                   Ambient Dry Bulb (C)  ...  Ambient Wet Bulb (-)
+Time                                                    ...                      
+2025-10-21 16:20:45.534000-08:00                   NaN  ...                   NaN
+2025-10-21 16:30:45.534000-08:00                   NaN  ...                   NaN
+2025-10-21 16:40:45.534000-08:00                   NaN  ...                   NaN
+2025-10-21 16:50:45.534000-08:00                   NaN  ...                   NaN
+2025-10-21 17:00:45.534000-08:00                   NaN  ...                   NaN
+...                                                ...  ...                   ...
+2025-11-20 15:30:45.534000-08:00                   NaN  ...                   NaN
+2025-11-20 15:40:45.534000-08:00                   NaN  ...                   NaN
+2025-11-20 15:50:45.534000-08:00                   NaN  ...                   NaN
+2025-11-20 16:00:45.534000-08:00                   NaN  ...                   NaN
+2025-11-20 16:10:45.534000-08:00                   NaN  ...                   NaN
+
+[4320 rows x 12 columns]
+
+
+
 Traceback (most recent call last):
-  File "/home/deras/gld-opedss-ochre-helics/ochre_helics_example/my_examples/my_cosim/real_time_cosim/cosim_from_scratch.py", line 303, in <module>
+  File "/home/midrar/gld-opedss-ochre-helics/ochre_helics_example/my_examples/my_cosim/real_time_cosim/cosim_from_scratch.py", line 312, in <module>
     cli()
-  File "/usr/lib/python3/dist-packages/click/core.py", line 1157, in __call__
+  File "/home/midrar/.local/lib/python3.10/site-packages/click/core.py", line 1442, in __call__
     return self.main(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/click/core.py", line 1078, in main
+  File "/home/midrar/.local/lib/python3.10/site-packages/click/core.py", line 1363, in main
     rv = self.invoke(ctx)
-         ^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/click/core.py", line 1688, in invoke
+  File "/home/midrar/.local/lib/python3.10/site-packages/click/core.py", line 1830, in invoke
     return _process_result(sub_ctx.command.invoke(sub_ctx))
-                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/click/core.py", line 1434, in invoke
+  File "/home/midrar/.local/lib/python3.10/site-packages/click/core.py", line 1226, in invoke
     return ctx.invoke(self.callback, **ctx.params)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/click/core.py", line 783, in invoke
-    return __callback(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/deras/gld-opedss-ochre-helics/ochre_helics_example/my_examples/my_cosim/real_time_cosim/cosim_from_scratch.py", line 181, in house
+  File "/home/midrar/.local/lib/python3.10/site-packages/click/core.py", line 794, in invoke
+    return callback(*args, **kwargs)
+  File "/home/midrar/gld-opedss-ochre-helics/ochre_helics_example/my_examples/my_cosim/real_time_cosim/cosim_from_scratch.py", line 190, in house
     dwelling = Dwelling (
-               ^^^^^^^^^^
-  File "/home/deras/.local/lib/python3.12/site-packages/ochre/Dwelling.py", line 92, in __init__
+  File "/home/midrar/.local/lib/python3.10/site-packages/ochre/Dwelling.py", line 92, in __init__
     schedule, location = load_schedule(
-                         ^^^^^^^^^^^^^^
-  File "/home/deras/.local/lib/python3.12/site-packages/ochre/utils/schedule.py", line 543, in load_schedule
-    df_weather = resample_and_reindex(df_weather, **house_args)  # loses weather timezone info
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/deras/.local/lib/python3.12/site-packages/ochre/utils/schedule.py", line 477, in resample_and_reindex
-    if df.index[0] <= start_time:
-       ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "pandas/_libs/tslibs/timestamps.pyx", line 337, in pandas._libs.tslibs.timestamps._Timestamp.__richcmp__
-TypeError: can't compare offset-naive and offset-aware datetimes
+  File "/home/midrar/.local/lib/python3.10/site-packages/ochre/utils/schedule.py", line 550, in load_schedule
+    df_weather = calculate_solar_irradiance(df_weather, weather_tz, location, properties['boundaries'], **house_args)
+  File "/home/midrar/.local/lib/python3.10/site-packages/ochre/utils/envelope.py", line 128, in calculate_solar_irradiance
+    weather = weather.join(df)
+  File "/home/midrar/.local/lib/python3.10/site-packages/pandas/core/frame.py", line 10757, in join
+    return merge(
+  File "/home/midrar/.local/lib/python3.10/site-packages/pandas/core/reshape/merge.py", line 184, in merge
+    return op.get_result(copy=copy)
+  File "/home/midrar/.local/lib/python3.10/site-packages/pandas/core/reshape/merge.py", line 886, in get_result
+    join_index, left_indexer, right_indexer = self._get_join_info()
+  File "/home/midrar/.local/lib/python3.10/site-packages/pandas/core/reshape/merge.py", line 1137, in _get_join_info
+    join_index, left_indexer, right_indexer = left_ax.join(
+  File "/home/midrar/.local/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 279, in join
+    join_index, lidx, ridx = meth(self, other, how=how, level=level, sort=sort)
+  File "/home/midrar/.local/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 4598, in join
+    raise TypeError("Cannot join tz-naive with tz-aware DatetimeIndex")
+TypeError: Cannot join tz-naive with tz-aware DatetimeIndex

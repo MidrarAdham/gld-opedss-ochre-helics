@@ -17,7 +17,7 @@
 	<verbose>FALSE</verbose>
 	<iteration_limit>100</iteration_limit>
 	<federation_reiteration>FALSE</federation_reiteration>
-	<workdir>/home/deras/gld-opedss-ochre-helics/ochre_helics_example/my_examples/my_cosim/real_time_cosim</workdir>
+	<workdir>/home/midrar/gld-opedss-ochre-helics/ochre_helics_example/my_examples/my_cosim/real_time_cosim</workdir>
 	<lock>TRUE</lock>
 	<dumpfile>gridlabd.xml</dumpfile>
 	<savefile>""</savefile>
@@ -43,11 +43,11 @@
 	<strictnames>TRUE</strictnames>
 	<website>http://www.gridlabd.org/</website>
 	<urlbase>http://www.gridlabd.org/</urlbase>
-	<randomseed>-1942479550</randomseed>
+	<randomseed>-1011980316</randomseed>
 	<include>""</include>
 	<trace>""</trace>
 	<gdb_window>FALSE</gdb_window>
-	<tmp>/home/deras/.gridlabd/tmp</tmp>
+	<tmp>/home/midrar/.gridlabd/tmp</tmp>
 	<force_compile>0</force_compile>
 	<nolocks>FALSE</nolocks>
 	<skipsafe>FALSE</skipsafe>
