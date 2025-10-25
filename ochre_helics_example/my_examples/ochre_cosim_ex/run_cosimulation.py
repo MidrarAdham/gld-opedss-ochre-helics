@@ -30,7 +30,8 @@ for building in building_ids:
 n = len(house_paths)
 
 # Co-simulation timing parameters
-start_time = dt.datetime(2018, 1, 1)
+# start_time = dt.datetime(2025, 1, 1)
+start_time = dt.datetime.now()
 time_res = dt.timedelta(minutes=10)
 duration = dt.timedelta(days=1)
 sim_times = pd.date_range(
@@ -141,6 +142,10 @@ def house(name, input_path):
         Equipment=equipment_args,
     )
     assert (dwelling.sim_times == sim_times).all()
+    
+    
+    print(f"_______ sim_times: \n{dwelling.sim_times}\n_______ \n")
+    print(f"_______ sim_times: \n{sim_times}\n_______ \n")
     print(name, "initialized")
 
     # before simulation, publish default status
@@ -255,7 +260,10 @@ def main():
         "exec": cmd,
     }
     # create co-sim config information
-    config = {"name": "ochre_cosimulation", "broker": True, "federates": house_feds + [agg_fed]}
+    config = {"name": "ochre_cosimulation",
+              "broker": True,
+              "federates": house_feds + [agg_fed]
+              }
 
     # create config file
     config_file = os.path.join(main_path, "config.json")

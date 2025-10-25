@@ -42,44 +42,21 @@ for building in building_ids:
         house_paths[f"House_{i}"] = os.path.join(main_path, building, upgrade)
         i += 1
 
-# print(house_paths)
-# quit()
 
+# Use the following block for real time:
+# aware_start = dt.datetime.now()
+# aware_start = aware_start.replace(second=0, microsecond=0)
 
+# Use the following block for real time simulation 
+# but clock-synchronized.
+aware_start = dt.datetime(2025, 10, 23, 17, 5, 0)
+print("=="*60)
+print(f'Simulation start time is:\t{aware_start}')
 
-# Simulation paramters:
+time_res = dt.timedelta(minutes=1)            # Time step = 10 minutes
+duration = dt.timedelta(hours=13)
+print(f"Simulation duration is:\t{duration}")
 
-# A) Time settings
-def epw_timezone(epw_path: str):
-    with open(epw_path, "r", encoding="latin-1") as f:
-        first = f.readline().strip()
-    parts = [p.strip() for p in first.split(",")]
-    tz_hours = float(parts[8])          # EPW "Time Zone" (hours west (I think) of UTC; Portland: -8.0)
-    return timezone(timedelta(hours=tz_hours))
-
-
-# Weather file location
-default_weather_file = os.path.join(
-    default_input_path, "Weather", "USA_OR_Portland.Intl.AP.726980_TMY3.epw"
-)
-
-# epw_tz = f"{epw_timezone(default_weather_file)}"
-
-# print(epw_tz.split('-')[1].split(':')[0])
-# print(timezone(timedelta(int(epw_tz.split('-')[1].split(':')[0]))))
-
-current_timezone = timezone(timedelta(hours=-8))
-
-aware_start = dt.datetime.now(tz=current_timezone)
-
-# x = dt.datetime.today()
-
-# print(x.index.tz_localize(current_timezone))
-
-# quit()
-
-time_res = dt.timedelta(minutes=10)            # Time step = 10 minutes
-duration = dt.timedelta(days=30)
 # duration = dt.timedelta(days=365*100)                # INFINITYYYY
 sim_times = pd.date_range(
     aware_start,
@@ -87,7 +64,8 @@ sim_times = pd.date_range(
     freq=time_res,
     inclusive="left",
 )
-
+print(f"simulation times are as follows: \n{sim_times}")
+print("=="*60)
 # OCHRE initialization time (warmup period)
 initialization_time = dt.timedelta(days=1)
 
@@ -102,6 +80,11 @@ equipment_args = {
 status_keys = [
     "Total Electric Power (kW)",  # Main thing GridLAB-D needs
 ]
+
+# Weather file location
+default_weather_file = os.path.join(
+    default_input_path, "Weather", "USA_OR_Portland-Hillsboro.AP.726986_TMY3.epw"
+)
 
 def make_helics_federate(name, config_file="ochre_helics_config.json"):
     """
@@ -129,9 +112,17 @@ def step_to(time, fed, offset=0):
     Request the next time step in the co-simulation
     All federates must sync up at each time step
     """
-    t_requested = (time - aware_start).total_seconds() + offset
+    print("="*60)
+    print("In the step_to function\n")
+    t_requested = (time - aware_start+dt.timedelta(minutes=1)).total_seconds() + offset
+    print("HELICS information:\n")
+    print(f"time at the moment is: {time}")
+    print(f"t_requested (in seconds) is: {t_requested}")
     while True:
+        print("Inside the while true loop")
         t_new = helics.helicsFederateRequestTime(fed, t_requested)
+        print(f"HELICS requested time: {t_new}")
+        print("="*60)
         if t_new >= t_requested:
             return
 
@@ -195,6 +186,8 @@ def house(name, input_path):
     )
     print(f"{name} initialized successfully!")
 
+    assert (dwelling.sim_times == sim_times).all()
+
     # Enter execution mode - simulation is ready to start
     fed.enter_executing_mode()
     
@@ -204,9 +197,6 @@ def house(name, input_path):
     pub.publish(complex(0, 0))
     print(f"{name} entering simulation loop...")
 
-    # =============================================================================
-    # SIMULATION LOOP - runs for each time step
-    # =============================================================================
     for t in sim_times:
         # Sync with HELICS broker - wait for this time step
         step_to(t, fed)
@@ -221,20 +211,24 @@ def house(name, input_path):
         # Convert to Watts (*1000) for GridLAB-D
         # GridLAB-D uses Watts, OCHRE uses kW
         power_w = power_kw * 1000
+        print("=="*80)
+        print(f"The house W is: {power_w}")
         
         # Publish as complex power (real + j*reactive)
         # Assuming power factor = 1.0 (purely real power, no reactive)
         # You can adjust this if you want to include reactive power
         power_complex = complex(power_w, 0)
+        print(f"The published complex power (VA) is: {power_complex}")
+        print("=="*80)
         pub.publish(power_complex)
         
         # Print status (optional - helpful for debugging)
-        print(f"{t}: Power = {power_kw:.2f} kW ({power_w:.0f} W)")
+        # print(f"{t}: Power = {power_kw:.2f} kW ({power_w:.0f} W)")
 
     # Simulation complete - save results and close
     print(f"{name} simulation complete!")
     dwelling.finalize()
-    fed.finalize()
+    # fed.finalize()
 
 
 def get_house_fed_config(name, input_path):

@@ -22,8 +22,8 @@ class player {
 
 
 clock {
-    timestamp '2018-01-01 00:00:00';
-    stoptime '2018-01-02 00:00:00';  // 1 day duration
+    timestamp '2025-10-23 17:05:00';
+    stoptime '2025-10-24 06:10:00';  // 1 day duration
     timezone PST+8PDT;
 }
 
@@ -196,7 +196,7 @@ object triplex_load {
 object recorder {
 	parent house_meter;
 	file meter_logs.csv;
-	interval 600;
+	interval 60;
 	property measured_real_power;
 }
 
@@ -204,7 +204,7 @@ object recorder {
 object recorder {
     parent ochre_house_load;
     file ochre_load.csv;
-    interval 600;  // 10 minutes
+    interval 60;  // 10 minutes
     property constant_power_12;
 }
 
@@ -212,6 +212,6 @@ object recorder {
 object recorder {
     parent residential_transformer;
     file residential_transformer.csv;
-    interval 600;
+    interval 60;
     property power_in,power_out;
 }

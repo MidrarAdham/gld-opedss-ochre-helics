@@ -2,7 +2,7 @@
     "name": "House_1",
     "coreType": "zmq",
     "coreInitString": "--federates=1",
-    "period": 600.0,
+    "period": 60.0,
     "realtime": true,
     "rt_lag": 0.2,
     "rt_lead": 0.2,

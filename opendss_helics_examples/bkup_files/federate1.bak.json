@@ -1,0 +1,20 @@
+{
+  "coreType": "zmq",
+  "loglevel": "debug",
+  "name": "federate1",
+  "publications": [
+    {
+      "global": true,
+      "key": "pv_powers",
+      "required": true,
+      "type": "String"
+    },
+    {
+      "global": true,
+      "key": "storage_powers",
+      "required": true,
+      "type": "String"
+    }
+  ],
+  "timeDelta": 1.0
+}

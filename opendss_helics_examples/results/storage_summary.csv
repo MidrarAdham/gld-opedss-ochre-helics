@@ -1,0 +1,2 @@
+total_elements,simulation_steps,total_energy_charged,avg_power_per_element,max_power_per_element,min_power_per_element,nonzero_values
+960,30,-7200.0,-0.25,-0.25,-0.25,28800
