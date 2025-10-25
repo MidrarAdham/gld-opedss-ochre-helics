@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 dwelling_args = {
     # Timing parameters
-    "start_time": dt.datetime(2018, 1, 1, 0, 0),  # (year, month, day, hour, minute)
+    "start_time": dt.datetime(2025, 1, 1, 0, 0),  # (year, month, day, hour, minute)
     "time_res": dt.timedelta(minutes=10),         # time resolution of the simulation
     "duration": dt.timedelta(days=3),             # duration of the simulation
 

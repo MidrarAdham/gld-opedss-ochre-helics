@@ -1,0 +1,44 @@
+2025-10-23 14:06:05.017140 - House_1 at 2025-10-23 14:06:04.887308: Initializing House_1 (OCHRE v0.9.1)
+2025-10-23 14:06:05.017444 - House_1 at 2025-10-23 14:06:04.887308: Removing previous results file: /home/deras/gld-opedss-ochre-helics/ochre_helics_example/my_examples/ochre_cosim_ex/cosimulation/bldg0112631/up00/House_1.csv
+2025-10-23 14:06:05.020819 - House_1 at 2025-10-23 14:06:04.887308: Removing previous results file: /home/deras/gld-opedss-ochre-helics/ochre_helics_example/my_examples/ochre_cosim_ex/cosimulation/bldg0112631/up00/House_1_metrics.csv
+2025-10-23 14:06:05.020895 - House_1 at 2025-10-23 14:06:04.887308: Removing previous results file: /home/deras/gld-opedss-ochre-helics/ochre_helics_example/my_examples/ochre_cosim_ex/cosimulation/bldg0112631/up00/House_1_hourly.csv
+WARNING: Properties file weather station (G0800310) may be different from weather file used: /home/deras/.local/lib/python3.12/site-packages/ochre/defaults/Weather/USA_CO_Denver.Intl.AP.725650_TMY3.epw
+Traceback (most recent call last):
+  File "/home/deras/gld-opedss-ochre-helics/ochre_helics_example/my_examples/ochre_cosim_ex/run_cosimulation.py", line 286, in <module>
+    cli()
+  File "/usr/lib/python3/dist-packages/click/core.py", line 1157, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/click/core.py", line 1078, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/click/core.py", line 1688, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/click/core.py", line 1434, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/click/core.py", line 783, in invoke
+    return __callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/deras/gld-opedss-ochre-helics/ochre_helics_example/my_examples/ochre_cosim_ex/run_cosimulation.py", line 132, in house
+    dwelling = Dwelling(
+               ^^^^^^^^^
+  File "/home/deras/.local/lib/python3.12/site-packages/ochre/Dwelling.py", line 92, in __init__
+    schedule, location = load_schedule(
+                         ^^^^^^^^^^^^^^
+  File "/home/deras/.local/lib/python3.12/site-packages/ochre/utils/schedule.py", line 581, in load_schedule
+    raise OCHREException(f'Missing data found in schedule columns {bad_cols}. See time step {first_na}')
+ochre.utils.base.OCHREException: Missing data found in schedule columns Index(['Ambient Dry Bulb (C)', 'Ambient Relative Humidity (-)',
+       'Ambient Pressure (kPa)', 'GHI (W/m^2)', 'DNI (W/m^2)', 'DHI (W/m^2)',
+       'Wind Speed (m/s)', 'Mains Temperature (C)', 'Ground Temperature (C)',
+       'Ambient Humidity Ratio (-)', 'Ambient Wet Bulb (-)',
+       'Occupancy (Persons)', 'Indoor Lighting (kW)', 'Garage Lighting (kW)',
+       'Cooking Range (kW)', 'Cooking Range (therms/hour)', 'Dishwasher (kW)',
+       'Clothes Washer (kW)', 'Clothes Dryer (kW)',
+       'Clothes Dryer (therms/hour)', 'MELs (kW)', 'Dishwasher (L/min)',
+       'Clothes Washer (L/min)', 'Water Heating (L/min)',
+       'Water Heating Setpoint (C)', 'Refrigerator (kW)',
+       'Exterior Lighting (kW)', 'HVAC Heating Setpoint (C)',
+       'HVAC Cooling Setpoint (C)'],
+      dtype='object'). See time step 2025-10-23 14:06:04.887308

@@ -15,10 +15,6 @@ import os
 from ochre import Dwelling, Analysis
 from ochre.utils import default_input_path
 
-# =============================================================================
-# STEP 1: Setup folders and paths
-# =============================================================================
-
 def create_dir():
     """Create a folder called 'cosimulation' to store all files"""
     main_path = os.path.join(os.getcwd(), "cosimulation")
@@ -40,10 +36,6 @@ for building in building_ids:
     for upgrade in upgrades:
         house_paths[f"House_{i}"] = os.path.join(main_path, building, upgrade)
         i += 1
-
-# =============================================================================
-# STEP 2: Set simulation parameters
-# =============================================================================
 
 # Time settings
 start_time = dt.datetime(2018, 1, 1)           # Start date
@@ -76,10 +68,6 @@ default_weather_file = os.path.join(
     default_input_path, "Weather", "USA_CO_Denver.Intl.AP.725650_TMY3.epw"
 )
 
-# =============================================================================
-# STEP 3: HELICS helper functions
-# =============================================================================
-
 def make_helics_federate(name, config_file="ochre_helics_config.json"):
     """
     Create a HELICS federate from a JSON configuration file
@@ -111,10 +99,6 @@ def step_to(time, fed, offset=0):
         t_new = helics.helicsFederateRequestTime(fed, t_requested)
         if t_new >= t_requested:
             return
-
-# =============================================================================
-# STEP 4: Command-line interface (CLI) setup
-# =============================================================================
 
 @click.group()
 def cli():

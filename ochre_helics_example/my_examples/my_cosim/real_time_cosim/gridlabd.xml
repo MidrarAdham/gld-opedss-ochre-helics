@@ -6,7 +6,7 @@
 	<version.patch>0</version.patch>
 	<version.build>20236</version.build>
 	<version.branch>e1841e1e:master</version.branch>
-	<command_line>"/usr/local/bin/gridlabd powerflow_4node.glm"</command_line>
+	<command_line>"gridlabd powerflow_4node.glm"</command_line>
 	<environment>batch</environment>
 	<quiet>FALSE</quiet>
 	<warn>TRUE</warn>
@@ -17,7 +17,7 @@
 	<verbose>FALSE</verbose>
 	<iteration_limit>100</iteration_limit>
 	<federation_reiteration>FALSE</federation_reiteration>
-	<workdir>/home/midrar/gld-opedss-ochre-helics/ochre_helics_example/my_examples/my_cosim/real_time_cosim</workdir>
+	<workdir>/home/deras/gld-opedss-ochre-helics/ochre_helics_example/my_examples/my_cosim/real_time_cosim</workdir>
 	<lock>TRUE</lock>
 	<dumpfile>gridlabd.xml</dumpfile>
 	<savefile>""</savefile>
@@ -39,15 +39,15 @@
 	<object_tree_balance>FALSE</object_tree_balance>
 	<kmlfile>""</kmlfile>
 	<modelname>powerflow_4node.glm</modelname>
-	<execdir>/usr/local/bin</execdir>
+	<execdir>gridlabd</execdir>
 	<strictnames>TRUE</strictnames>
 	<website>http://www.gridlabd.org/</website>
 	<urlbase>http://www.gridlabd.org/</urlbase>
-	<randomseed>-1011980316</randomseed>
+	<randomseed>-1612152608</randomseed>
 	<include>""</include>
 	<trace>""</trace>
 	<gdb_window>FALSE</gdb_window>
-	<tmp>/home/midrar/.gridlabd/tmp</tmp>
+	<tmp>/home/deras/.gridlabd/tmp</tmp>
 	<force_compile>0</force_compile>
 	<nolocks>FALSE</nolocks>
 	<skipsafe>FALSE</skipsafe>
@@ -114,7 +114,7 @@
 	<deltamode_preferred_module_order>TRUE</deltamode_preferred_module_order>
 	<run_powerworld>FALSE</run_powerworld>
 	<bigranks>TRUE</bigranks>
-	<exename>/usr/local/bin/gridlabd</exename>
+	<exename>gridlabd</exename>
 	<wget_options>"maxsize:100MB;update:newer"</wget_options>
 	<svnroot>http://gridlab-d.svn.sourceforge.net/svnroot/gridlab-d</svnroot>
 	<allow_reinclude>FALSE</allow_reinclude>
