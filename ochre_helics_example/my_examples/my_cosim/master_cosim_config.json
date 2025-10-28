@@ -6,7 +6,7 @@
             "name": "House_1",
             "host": "localhost",
             "directory": ".",
-            "exec": "/usr/bin/python3 -u cosim_from_scratch.py house House_1 /home/midrar/gld-opedss-ochre-helics/ochre_helics_example/my_examples/my_cosim/cosimulation/bldg0112631/up00"
+            "exec": "/usr/bin/python3 -u cosim_from_scratch.py house House_1 /home/deras/gld-opedss-ochre-helics/ochre_helics_example/my_examples/my_cosim/cosimulation/bldg0112631/up00"
         },
         {
             "name": "GridLABD_federate",

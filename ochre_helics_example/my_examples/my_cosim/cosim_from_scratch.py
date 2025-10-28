@@ -27,7 +27,7 @@ main_path = create_dir()
 # Define which building to simulate
 # You can change these to simulate different buildings
 building_ids = ["bldg0112631"]  # Just ONE building
-upgrades = ["up00"]              # Just ONE upgrade scenario
+upgrades = ["up00"]             # Just ONE upgrade scenario
 
 # Create a dictionary to store the path for this house
 house_paths = {}
@@ -38,9 +38,9 @@ for building in building_ids:
         i += 1
 
 # Time settings
-start_time = dt.datetime(2018, 1, 1)           # Start date
-time_res = dt.timedelta(minutes=10)            # Time step = 10 minutes
-duration = dt.timedelta(days=1)                # Simulate 1 day
+start_time = dt.datetime(2025, 1, 1)           # Start date
+time_res = dt.timedelta(minutes=1)            # Time step = 10 minutes
+duration = dt.timedelta(days=30)                # Simulate 1 day
 sim_times = pd.date_range(
     start_time,
     start_time + duration,
@@ -65,7 +65,7 @@ status_keys = [
 
 # Weather file location
 default_weather_file = os.path.join(
-    default_input_path, "Weather", "USA_CO_Denver.Intl.AP.725650_TMY3.epw"
+    default_input_path, "Weather", "USA_OR_Portland.Intl.AP.726980_TMY3.epw"
 )
 
 def make_helics_federate(name, config_file="ochre_helics_config.json"):
@@ -140,7 +140,7 @@ def house(name, input_path):
     # Setup publication - house will publish its power demand
     # Using 'complex' type for GridLAB-D compatibility (real + imaginary power)
     # pub = register_publication(f"ochre_house_load.constant_power_12", fed, pub_type="complex")
-    pub = register_publication(f"ochre_house_load.constant_power_12", fed, pub_type="complex")
+    pub = register_publication(f"ochre_house_load_1.constant_power_12", fed, pub_type="complex")
     
     # NOTE: No subscription! House doesn't receive controls
     # It just runs naturally and publishes power
