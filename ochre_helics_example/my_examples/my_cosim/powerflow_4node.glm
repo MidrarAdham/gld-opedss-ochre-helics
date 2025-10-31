@@ -193,13 +193,13 @@ object triplex_load {
 	nominal_voltage 120; 
 }
 
-// object triplex_load {
-// 	name ochre_house_load_2;
-// 	parent house_meter;
-// 	phases CS;
-// 	constant_power_12 0+0j; // this should be updated by HELICS
-// 	nominal_voltage 120; 
-// }
+object triplex_load {
+	name ochre_house_load_2;
+	parent house_meter;
+	phases CS;
+	constant_power_12 0+0j; // this should be updated by HELICS
+	nominal_voltage 120; 
+}
 
 // object triplex_load {
 // 	name ochre_house_load_3;
@@ -232,10 +232,19 @@ object triplex_load {
 // 	property measured_real_power;
 // }
 
-// Record the OCHRE load directly
+// Record the OCHRE load 1 directly
 object recorder {
     parent ochre_house_load_1;
-    file ochre_load.csv;
+    file ochre_load_1.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+
+// Record the OCHRE load 2 directly
+object recorder {
+    parent ochre_house_load_2;
+    file ochre_load_2.csv;
     interval 60;
     property constant_power_12;
 }

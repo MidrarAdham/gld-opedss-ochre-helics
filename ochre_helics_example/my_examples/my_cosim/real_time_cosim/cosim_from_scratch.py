@@ -53,7 +53,7 @@ aware_start = dt.datetime(2025, 10, 23, 17, 5, 0)
 print("=="*60)
 print(f'Simulation start time is:\t{aware_start}')
 
-time_res = dt.timedelta(minutes=1)            # Time step = 10 minutes
+time_res = dt.timedelta(seconds=5)            # Time step = 10 minutes
 duration = dt.timedelta(hours=13)
 print(f"Simulation duration is:\t{duration}")
 
@@ -119,7 +119,6 @@ def step_to(time, fed, offset=0):
     print(f"time at the moment is: {time}")
     print(f"t_requested (in seconds) is: {t_requested}")
     while True:
-        print("Inside the while true loop")
         t_new = helics.helicsFederateRequestTime(fed, t_requested)
         print(f"HELICS requested time: {t_new}")
         print("="*60)
@@ -207,12 +206,15 @@ def house(name, input_path):
 
         # Get the house's real power demand (in kW)
         power_kw = status.get("Total Electric Power (kW)", 0)
+
         
         # Convert to Watts (*1000) for GridLAB-D
         # GridLAB-D uses Watts, OCHRE uses kW
         power_w = power_kw * 1000
         print("=="*80)
-        print(f"The house W is: {power_w}")
+        with open ('test.csv', mode='a') as f:
+            print(f'{t},{power_w}', file=f)
+        # print(f"W, {power_w}", file='./testing.csv')
         
         # Publish as complex power (real + j*reactive)
         # Assuming power factor = 1.0 (purely real power, no reactive)
