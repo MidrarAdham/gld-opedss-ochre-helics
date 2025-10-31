@@ -27,7 +27,7 @@ main_path = create_dir()
 # Define which building to simulate
 # You can change these to simulate different buildings
 building_ids = ["bldg0112631"]  # Just ONE building
-upgrades = ["up00"]             # Just ONE upgrade scenario
+upgrades = ["up00", "up01"]     # Two upgrade scenario
 
 # Create a dictionary to store the path for this house
 house_paths = {}
@@ -138,12 +138,12 @@ def house(name, input_path):
     fed = make_helics_federate(name)
 
     # Setup publication - house will publish its power demand
-    # Using 'complex' type for GridLAB-D compatibility (real + imaginary power)
     # pub = register_publication(f"ochre_house_load.constant_power_12", fed, pub_type="complex")
-    pub = register_publication(f"ochre_house_load_1.constant_power_12", fed, pub_type="complex")
+    pub1 = register_publication(f"ochre_house_load_1.constant_power_12", fed, pub_type="complex")
+    pub2 = register_publication(f"ochre_house_load_2.constant_power_12", fed, pub_type="complex")
     
     # NOTE: No subscription! House doesn't receive controls
-    # It just runs naturally and publishes power
+    # It just runs naturally and publish power
 
     # Initialize OCHRE dwelling (the house simulation)
     print(f"Initializing OCHRE dwelling...")
@@ -164,38 +164,39 @@ def house(name, input_path):
     # Enter execution mode - simulation is ready to start
     fed.enter_executing_mode()
     
-    # Publish initial status (power = 0 before simulation starts)
-    # GridLAB-D expects complex power (real + j*reactive)
-    # For now, assuming power factor = 1 (reactive = 0)
-    pub.publish(complex(0, 0))
+    pub1.publish(complex(0, 0))
+    pub2.publish(complex(0, 0))
     print(f"{name} entering simulation loop...")
 
-    # =============================================================================
-    # SIMULATION LOOP - runs for each time step
-    # =============================================================================
     for t in sim_times:
-        # Sync with HELICS broker - wait for this time step
+        # Sync with HELICS broker - wait for this time step - nice func
         step_to(t, fed)
 
         # Run OCHRE for one time step
-        # Empty dictionary {} means no controls - house runs naturally
+        # Empty dictionary {} means no controls - house runs naturally unlike the ex in nrel repo
         status = dwelling.update({})
 
         # Get the house's real power demand (in kW)
-        power_kw = status.get("Total Electric Power (kW)", 0)
+        power_kw_1 = status.get("Total Electric Power (kW)", 0)
+
+        # Get the house's real power demand (in kW)
+        power_kw_2 = status.get("Total Electric Power (kW)", 0)
+
+
+
         
-        # Convert to Watts (*1000) for GridLAB-D
-        # GridLAB-D uses Watts, OCHRE uses kW
-        power_w = power_kw * 1000
+        # GridLAB-D uses Watts, OCHRE uses kW easpy peasy conversion
+        power_w_1 = power_kw_1 * 1000
+        power_w_2 = power_kw_2 * 1000
         
-        # Publish as complex power (real + j*reactive)
-        # Assuming power factor = 1.0 (purely real power, no reactive)
-        # You can adjust this if you want to include reactive power
-        power_complex = complex(power_w, 0)
-        pub.publish(power_complex)
+        power_complex_1 = complex(power_w_1, 0)
+        power_complex_2 = complex(power_w_2, 0)
+        pub1.publish(power_complex_1)
+        pub2.publish(power_complex_2)
         
         # Print status (optional - helpful for debugging)
-        print(f"{t}: Power = {power_kw:.2f} kW ({power_w:.0f} W)")
+        print(f"{t}: Power = {power_kw_1:.2f} kW ({power_w_1:.0f} W)")
+        print(f"{t}: Power = {power_kw_2:.2f} kW ({power_w_2:.0f} W)")
 
     # Simulation complete - save results and close
     print(f"{name} simulation complete!")
@@ -229,11 +230,10 @@ def main():
     print("OCHRE-HELICS Co-simulation")
     print("="*60)
     
-    # Create configuration for the house federate
+    # Write the config configuration for the house federate
     house_feds = [get_house_fed_config(name, path) for name, path in house_paths.items()]
     
-    # Create co-simulation configuration
-    # This includes:
+    # This include:
     # - broker: True (HELICS will start a broker automatically)
     # - federates: list of all federates to run
     config = {
@@ -256,17 +256,9 @@ def main():
     print("="*60)
     print("Co-simulation complete!")
 
-
-# =============================================================================
-# Register all commands
-# =============================================================================
 cli.add_command(setup)
 cli.add_command(house)
 cli.add_command(main)
 
-
-# =============================================================================
-# Run the script
-# =============================================================================
 if __name__ == "__main__":
     cli()

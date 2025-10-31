@@ -11,6 +11,12 @@
             "type": "complex",
             "info": "{\"object\":\"ochre_house_load_1\",\"property\":\"constant_power_12\"}",
             "required": true
+        },
+        {
+            "key": "ochre_house_load_2.constant_power_12",
+            "type": "complex",
+            "info": "{\"object\":\"ochre_house_load_2\",\"property\":\"constant_power_12\"}",
+            "required": true
         }
     ],
     "publications": []
