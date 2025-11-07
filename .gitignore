@@ -1,2 +1,3 @@
 datasets/cosimulation
-opendss_helics_examples/profiles/
+opendss_helics_examples/profiles/\
+.venv
