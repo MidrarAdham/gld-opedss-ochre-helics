@@ -22,6 +22,12 @@ source .venv/bin/activate
 source .venv/bin/activate
 ```
 
+NOTE: if running a virtual environment, you need to move the Analysis.py file into the ochre directory within the virtual environment:
+
+```bash
+./.venv/lib/python3.##/site-packages/ochre/Analysis.py
+```
+
 - Install the requirements.txt file in this directory:
      1) The following command installs OCHRE with its dependencies.
 ```bash
