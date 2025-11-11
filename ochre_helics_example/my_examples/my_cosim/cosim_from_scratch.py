@@ -132,7 +132,6 @@ def house(name, input_path):
     Runs the OCHRE house simulation as a HELICS federate
     This is called automatically by 'main' - you don't run this directly
     """
-    print(f"Starting house federate: {name}")
     
     # Create HELICS federate
     fed = make_helics_federate(name)
@@ -158,6 +157,8 @@ def house(name, input_path):
         weather_file=default_weather_file,
         output_path=input_path,
         Equipment=equipment_args,
+        save_args_to_json=True,
+        # metrics_verbosity=5
     )
     print(f"{name} initialized successfully!")
 

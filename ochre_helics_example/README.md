@@ -1,3 +1,0 @@
-- Run the "run_multiple.py" script first.
-- Then run the "run_cosimulation.py" script as follows:
-    - ```run_cosimulation.py main```
