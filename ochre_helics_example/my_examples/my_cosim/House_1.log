@@ -1,13 +1,9 @@
-Starting house federate: House_1
 Initializing OCHRE dwelling...
-2025-10-30 17:09:03.833740 - House_1 at 2025-01-01 00:00:00: Initializing House_1 (OCHRE v0.9.1)
-2025-10-30 17:09:03.833999 - House_1 at 2025-01-01 00:00:00: Removing previous results file: /home/deras/gld-opedss-ochre-helics/ochre_helics_example/my_examples/my_cosim/cosimulation/bldg0112631/up00/House_1.csv
-2025-10-30 17:09:04.186634 - House_1 at 2025-01-01 00:00:00: Removing previous results file: /home/deras/gld-opedss-ochre-helics/ochre_helics_example/my_examples/my_cosim/cosimulation/bldg0112631/up00/House_1_metrics.csv
-2025-10-30 17:09:04.187033 - House_1 at 2025-01-01 00:00:00: Removing previous results file: /home/deras/gld-opedss-ochre-helics/ochre_helics_example/my_examples/my_cosim/cosimulation/bldg0112631/up00/House_1_hourly.csv
+2025-11-08 16:49:11.085900 - House_1 at 2025-01-01 00:00:00: Initializing House_1 (OCHRE v0.9.1)
 WARNING: Properties file weather station (G0800310) may be different from weather file used: /home/deras/.local/lib/python3.12/site-packages/ochre/defaults/Weather/USA_OR_Portland.Intl.AP.726980_TMY3.epw
 WARNING: Cooling setpoint is within 1C of heating setpoint. Separating setpoints by at least 1C.
-2025-10-30 17:09:15.858167 - House_1 at 2025-01-01 00:00:00: Running initialization for 1 day, 0:00:00
-2025-10-30 17:09:17.383871 - House_1 at 2025-01-01 00:00:00: Dwelling Initialized
+2025-11-08 16:49:15.517169 - House_1 at 2025-01-01 00:00:00: Running initialization for 1 day, 0:00:00
+2025-11-08 16:49:17.134420 - House_1 at 2025-01-01 00:00:00: Dwelling Initialized
 House_1 initialized successfully!
 House_1 entering simulation loop...
 2025-01-01 00:00:00: Power = 0.81 kW (812 W)
@@ -86411,8 +86407,8 @@ House_1 entering simulation loop...
 2025-01-30 23:59:00: Power = 0.37 kW (367 W)
 2025-01-30 23:59:00: Power = 0.37 kW (367 W)
 House_1 simulation complete!
-2025-10-30 17:10:02.875330 - House_1 at 2025-01-31 00:00:00: Simulation complete, time series results saved to: /home/deras/gld-opedss-ochre-helics/ochre_helics_example/my_examples/my_cosim/cosimulation/bldg0112631/up00/House_1.csv
-2025-10-30 17:10:02.881578 - House_1 at 2025-01-31 00:00:00: Post-processing metrics saved to: /home/deras/gld-opedss-ochre-helics/ochre_helics_example/my_examples/my_cosim/cosimulation/bldg0112631/up00/House_1_metrics.csv
-2025-10-30 17:10:02.907464 - House_1 at 2025-01-31 00:00:00: Hourly results saved to: /home/deras/gld-opedss-ochre-helics/ochre_helics_example/my_examples/my_cosim/cosimulation/bldg0112631/up00/House_1_hourly.csv
+2025-11-08 16:50:02.110489 - House_1 at 2025-01-31 00:00:00: Simulation complete, time series results saved to: /home/deras/gld-opedss-ochre-helics/ochre_helics_example/my_examples/my_cosim/cosimulation/bldg0112631/up00/House_1.csv
+2025-11-08 16:50:02.115339 - House_1 at 2025-01-31 00:00:00: Post-processing metrics saved to: /home/deras/gld-opedss-ochre-helics/ochre_helics_example/my_examples/my_cosim/cosimulation/bldg0112631/up00/House_1_metrics.csv
+2025-11-08 16:50:02.133490 - House_1 at 2025-01-31 00:00:00: Hourly results saved to: /home/deras/gld-opedss-ochre-helics/ochre_helics_example/my_examples/my_cosim/cosimulation/bldg0112631/up00/House_1_hourly.csv
 /home/deras/.local/lib/python3.12/site-packages/helics/capi.py:2090: UserWarning: This function is deprecated. Use the `HelicsFederate.disconnect` function instead.
   warnings.warn("This function is deprecated. Use the `HelicsFederate.disconnect` function instead.")
