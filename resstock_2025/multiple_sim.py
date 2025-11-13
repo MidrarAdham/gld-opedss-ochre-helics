@@ -2,6 +2,7 @@ import os
 import shutil
 import numpy as np
 import pandas as pd
+import datetime as dt
 from ochre import Analysis, Dwelling
 from ochre.utils import default_input_path
 from ochre.cli import create_dwelling, limit_input_paths, run_multiple_local, run_multiple_hpc
@@ -67,6 +68,8 @@ def filter_datasets(dataset_path):
     and ignore them. It also remove building IDs with empty in.schedules.csv
 
     The fuction returns a list of building IDs that have in.schedules.csv file
+
+    TODO: Remove this function from here. It takes so much time. Also, this is bad implementation
     '''
     missing = []
     exists = []
@@ -85,17 +88,27 @@ def filter_datasets(dataset_path):
             else:
                 "Checking if in.schedules.csv exists"
                 missing.append(bldg_id)
+    # exists is just a list of building IDs.
     return exists
     
 
-
+def create_sim_times ():
+    start_time = dt.datetime(2025, 1, 1)           # Start date
+    time_res = dt.timedelta(minutes=1)            # Time step = 1 minutes
+    duration = dt.timedelta(days=1)                # Simulate 1 day
+    sim_times = pd.date_range(
+        start_time,
+        start_time + duration,
+        freq=time_res,
+        inclusive="left",
+    )
+    return start_time, time_res, duration, sim_times
 
 if __name__ == "__main__":
     main_path = os.getcwd()
-
-    # Download ResStock files to current directory
     dataset = '/home/deras/gld-opedss-ochre-helics/datasets/cosimulation/'
     buildings = filter_datasets(dataset_path=dataset)
+    start_time, time_res, duration, sim_times = create_sim_times()
     # buildings = ['451658']
     input_paths = []
     upgrades = ["up00"]
@@ -105,13 +118,19 @@ if __name__ == "__main__":
             input_paths.append(input_path)
     
     for input_path in input_paths:
-        target_file = os.path.join(input_path, "in.schedules.csv")
-        if not os.path.isfile(target_file):
-            continue
-        else:
-            dwelling = create_dwelling (
-                input_path=input_path,
-                duration=7,
-                weather_file_or_path=default_weather_file
-            )
-            dwelling.simulate()
+        output_file_name = f"out_{input_path.split('/')[-2]}_{input_path.split('/')[-1]}"
+        dwelling = Dwelling (
+            verbosity = 8,
+            name = output_file_name,
+            initialization_time = dt.timedelta(days=1),
+            # output_path = './output_path/',
+            save_results = True,
+            start_time = start_time,
+            time_res = time_res,
+            duration = duration,
+            hpxml_file = os.path.join(input_path, "home.xml"),
+            hpxml_schedule_file = os.path.join(input_path, "in.schedules.csv"),
+            weather_file = default_weather_file,
+            equipment_args = {},
+        )
+        dwelling.simulate()
