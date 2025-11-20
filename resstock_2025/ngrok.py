@@ -10,6 +10,7 @@ port = 8000
 handler = "https://cinderlike-enrique-magnetically.ngrok-free.dev"
 
 with socketserver.TCPServer(("", port), handler) as httpd:
+    print()
 
 # hostname = 
 
