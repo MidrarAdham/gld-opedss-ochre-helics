@@ -10,76 +10,6 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 
 #%%
-def filter_datasets(dataset_path):
-    '''
-    This function looks into the ResStock datasets, checks buildings with no in.schedules.csv file,
-    and ignore them. It also remove building IDs with empty in.schedules.csv
-
-    The fuction returns a list of building IDs that have in.schedules.csv file
-
-    TODO: Remove this function from here. It takes so much time. Also, this is bad implementation
-    '''
-    exists = []
-    root = Path(dataset_path)
-    for entry in root.iterdir():
-        up00 = entry / 'up00'
-        target_file = up00 / 'in.schedules.csv'
-        # try:
-
-        if target_file.is_file() and target_file.stat().st_size > 0:
-            exists.append(entry.name)
-
-    # for folder in os.listdir(dataset_path):
-    #     upgrade_path = os.path.join(dataset_path, folder, 'up00')
-    #     if os.path.isdir(upgrade_path):
-    #         target_file = os.path.join(upgrade_path, 'in.schedules.csv')
-    #         # Instead of reading the file to see if it's empty, check its size and skip if it's zero
-    #         if os.path.isfile(target_file) and os.path.getsize(target_file) > 0:
-    #             "Checking if in.schedules.csv is empty or not"
-    #             bldg_id = upgrade_path.split('/')[-2]
-    #             exists.append(bldg_id)
-    # exists is just a list of building IDs.
-    return exists
-
-# %%
-
-def bar_plots (ldc):
-    '''
-    This function plots the maximum demand vs percentage of the time
-    '''
-    df = ldc.copy()
-
-    df["duration_bin"] = df["duration_fraction"] * 100
-    df["duration_bin"] = pd.cut(df["duration_fraction"], bins=96, labels=False)
-
-    bin_means = df.groupby("duration_bin")["P_sorted_kW"].mean().reset_index()
-    bin_means["P_sorted_kW"] = bin_means["P_sorted_kW"]/1000
-
-    fig, ax = plt.subplots(figsize=(10,5))
-    sns.barplot(data=bin_means,
-                x="duration_bin",
-                y="P_sorted_kW")
-    
-
-    # plt.xticks([], [])
-    ax.xaxis.set_major_locator(ticker.MaxNLocator(10))
-    ax.set_xlabel("Percent of Time (%)")
-    ax.set_ylabel("Power (MW)")
-    ax.set_title("Load Duration Curve")
-    plt.tight_layout()
-    plt.savefig('./ldc.png')
-    plt.show()
-# %%
-def line_plots (df: pd.DataFrame, x: str, y:str, title: str):
-    plt.figure(figsize=(10,6))
-    sns.lineplot(data=df, x=x, y=y)
-    plt.xlabel(x)
-    plt.ylabel(y)
-    plt.title(title)
-    plt.grid(True)
-    plt.tight_layout()
-
-#%%
 def calculate_daily_metrics (df: pd.DataFrame, p_max_summary: list, bldg: str, up: str):
     '''
     This function calculates the load factor for every customer. [Add more context. Why?].
@@ -230,69 +160,377 @@ def calculate_utilization_factor (max_diversified_demand, pf = 0.9, transformer_
     Utilization factor = Maximum kVA demand / Transformer rating, where:
 
         Maximum kVA demand = Maximum diversified demand / Power factor
+    
+    Returns the utilization factor
     '''
     max_kva_demand = max_diversified_demand / pf
     utilization_factor = max_kva_demand / transformer_rating
 
     return utilization_factor
     
+# %%
+class LoadProfileAnalyzer:
 
+    def __init__(self,
+                 dataset_dir: str,
+                 n_buildings: int = 12,
+                 upgrades: list[str] = ['up00']
+                 ):
+        """
+        Parameters:
+
+        1) dataset_dir : str
+            Path to where the ResStock dataset lives
+        
+        2) n_buildings: int
+            The number of buildings to include after filtering
+
+        3) upgrades: list[str] | None
+            Which upgrades to process. Default is ["up00"]
+        
+        4) building_ids_file:
+            The name of the file wherein the correct building IDs are saved.
+            
+        """
+        self.upgrades = upgrades
+        self.dataset_dir = dataset_dir
+        self.n_buildings = n_buildings
+        self.bldg_ids_file = './cached_building_ids.csv'
+
+# %%
+    def _filter_datasets(self):
+        '''
+        Parameters:
+
+            Takes noting and returns nothing
+        
+        Function:
+
+            Write a file called cached_building_ids.csv containing the building IDs
+            for files that incorporate the appropriate in.schedules.csv files.
+
+        Internal method: Learning info:
+        
+        The leading underscore says that this method cannot be called externally. 
+        If we were to call any of the methods within the class from an outside script, 
+        we can do that. However, the underscore says you should be used internally within the class.
+        '''
+        root = Path(self.dataset_dir)
+        with open(self.bldg_ids_file, 'w') as f:
+            for upgrade in self.upgrades:
+                for bldg_id in root.iterdir():
+                    up00 = bldg_id / upgrade
+                    target_file = up00 / 'in.schedules.csv'
+                    if target_file.is_file() and target_file.stat().st_size > 0:
+                        f.write(f"{bldg_id.name}\n")
+
+    def _load_profiles (self, input_path: str):
+        """
+        Internal method.
+
+        Load a single building's csv file into a dataframe.
+
+        Returns:
+        
+        1) df : pd.DataFrame
+            The loaded dataframe with parsed time column
+        
+        2) bldg : str
+            building ID extracted from the input_path
+
+        3) up : str
+            upgrade (i.e. up00) extracted from path
+        """
+        keep_cols = ['Time', 'Total Electric Power (kW)',
+                     'Total Reactive Power (kVAR)',
+                    'Total Electric Energy (kWh)',
+                    'Total Reactive Energy (kVARh)'
+                    ]
+        try:
+            bldg = os.path.basename(os.path.dirname(input_path))
+            upgrade = os.path.basename(input_path)
+            csv_filename = f"out_{bldg}_{upgrade}.csv"
+            target_file = os.path.join(input_path, csv_filename)
+            df = pd.read_csv(target_file, usecols=keep_cols)
+            df['Time'] = pd.to_datetime(df['Time'])
+        
+        except FileNotFoundError:
+            print("="*50)
+            print(f"CSV file {target_file} not found.")
+            print(f"Checking building {bldg}, upgrade {upgrade} to see if {target_file} exists!")
+            print("Quitting ... ")
+            print("="*50)
+            quit()
+        
+        return df, bldg, upgrade
+
+# %%
+    def _compute_customer_metrics (self, load_summary: list[dict]) -> dict:
+
+        """
+        Computer metrics per customer.
+
+        INPUTS:
+        load_summary: list of dictionaries
+            Each dict contains metrics for a single building and upgrade. These are produced by
+            calculate_daily_metrics()
+        
+        RETURNS:
+        dictionary with the following:
+
+        - "summary_df": One row per building/upgrade with the following columns:
+
+            bldg_id, upgrade, daily_peak_power [kW], daily_avg [kW], daily_energy [kWh], daily_load_factor
+        """
+
+        summary_df = pd.DataFrame(load_summary)
+        return {"summary_df":summary_df}
+    
+    # %%
+    def _compute_aggregation_metrics (self,
+                                      customer_metrics: dict,
+                                      load_profiles: list[np.ndarray],
+                                      diversified_p,
+                                      diversified_time) -> dict:
+        
+        """
+        Compute aggregation-level metrics for all customers.
+
+        INPUTS:
+        customer_metrics: pd.DataFrame
+            Results from _compute_customer_metrics()
+        
+        load_profiles:
+            each array is a time series of 'Total Electric Power (kW)' for a single customer.
+
+        diversified_p:
+            Aggregated diverisifed demand time series (sum of all customers' power)
+
+        diversified_time:
+            Time index of the diversified_p
+
+        RETURNS:
+        dict with keys:
+            diverisifed_demand : {
+                                    "time": diverisifed_time,
+                                    "power_kw": diverisifed_p,
+                                    }
+            ldf: pd.DataFrame, diversity_factor: float, coincidence_factor: float,
+            diversity_vs_n: pd.DataFrame, p_max_diversified: float, t_max_diverisifed: Timestamp
+        """
+        summary_df = customer_metrics['summary_df']
+
+        # find the max diversified demand and when it occurs:
+        idx_group_peak = np.argmax(diversified_p)
+        p_max_diversified = diversified_p[idx_group_peak]
+        t_max_diversified = diversified_time.iloc[idx_group_peak]
+
+        # Load Duration Curve (ldc)
+        ldc = calculate_load_duration_curve(
+            p_diversified=diversified_p,
+            t_diversified=diversified_time,
+        )
+        
+        # Diversity / coincidence factors (scalar)
+        diversity_factor, coincidence_factor = calculate_diversity_factor(
+            df=summary_df,
+            max_div_demand=p_max_diversified,
+        )
+
+        # Diversity factor vs number of customers
+        diversity_factor_n_df = accumulated_diversity_factor(
+            load_profiles=load_profiles,
+            summary_df=summary_df,
+        )
+
+        return {
+            "diversified_demand": {
+                "time": diversified_time,
+                "power_kw": diversified_p,
+            },
+            "ldc": ldc,
+            "diversity_factor": diversity_factor,
+            "coincidence_factor": coincidence_factor,
+            "diversity_vs_n": diversity_factor_n_df,
+            "p_max_diversified": p_max_diversified,
+            "t_max_diversified": t_max_diversified,
+        }
+    
+    # %%
+
+    def _compute_transformer_metrics (self,
+                                      aggregation_metrics: dict,
+                                      pf: float = 1,
+                                      transformer_size_kva: float = 15.0,
+                                      ) -> dict:
+        """
+        Compute transformer-level metrics based on aggregated demand.
+
+        Inputs
+        ------
+        aggregation_metrics : dict
+            Result from _compute_aggregation_metrics(), must contain "p_max_diversified".
+        pf : float, optional
+            Assumed power factor for converting kW to kVA (default 0.9).
+        transformer_rating_kva : float, optional
+            Transformer kVA rating (default 15 kVA).
+
+        Returns
+        -------
+        dict with keys:
+            - "max_diversified_kw": float
+            - "max_kva_demand": float
+            - "transformer_rating_kva": float
+            - "pf": float
+            - "utilization_factor": float
+        """
+        p_max_diversified = aggregation_metrics['p_max_diversified']
+
+        utilization_factor = calculate_utilization_factor(
+            max_diversified_demand=p_max_diversified,
+            pf=pf,
+            transformer_rating=transformer_size_kva,
+        )
+
+        max_kva_demand = p_max_diversified / pf
+
+        return {
+            "max_diversified_kw": p_max_diversified,
+            "max_kva_demand": max_kva_demand,
+            "transformer_rating_kva": transformer_size_kva,
+            "pf": pf,
+            "utilization_factor": utilization_factor,
+        }
+# %%
+    def check_cache_exists(self):
+        '''
+        INPUTS:
+            cached_building_ids.csv
+
+        Looks for cached_building_ids.csv. If it exists, then it parses it. If not, it excutes
+        _filter_datasets method to write the file. See _filter_datasets() to learn more about
+        cached_building_ids.csv
+        '''
+        file_path = Path(self.bldg_ids_file)
+        if file_path.is_file():
+            print('\n\nfile cached_building_ids.csv is in directory!\n\n')
+        else:
+            self._filter_datasets()
+
+    def read_input_paths_files(self):
+        """
+        Read the cached_building_ids.csv file.
+        Returns the input paths in a list limited by n_buildings
+
+        Parameters:
+            None
+        """
+        with open (self.bldg_ids_file, 'r') as input_paths:
+            lines = [line.strip() for line in input_paths if line.strip()]
+        
+        available = len(lines)
+        if self.n_buildings > available:
+            print("="*50)
+            print(
+                f"[LoadProfileAnalyzer] Requested n_buildings={self.n_buildings} "
+                f"but only {available} are available in {self.bldg_ids_file}. "
+                f"Using {available}."
+            )
+            print("="*50)
+            n = available
+        else:
+            n = self.n_buildings
+
+        return lines[:n]
+
+    def _build_input_paths(self, building_ids):
+        """
+        convert building IDs into a full path input files
+
+        INPUTS:
+            building IDs
+        
+        Returns:
+            full building path
+        """
+        input_paths = []
+        for upgrade in self.upgrades:
+            for bldg in building_ids:
+                input_paths.append(os.path.join(self.dataset_dir, bldg, upgrade))
+        
+        return input_paths
+    
+    def run(self):
+        """
+        Parameters:
+
+        None
+
+        The main function. Here you can see the flow of methods excution.
+        """
+        self.check_cache_exists()
+        building_ids = self.read_input_paths_files()
+        input_paths = self._build_input_paths(building_ids=building_ids)
+        
+        sns.set_theme(style="whitegrid", context="talk")
+
+        load_summary = []
+        load_profiles = []
+        diversified_demand_p = None
+        diversified_demand_time = None
+        
+        for input_path in input_paths:
+            df, bldg, up = self._load_profiles(input_path)
+
+            load_profiles.append(df['Total Electric Power (kW)'].to_numpy())
+
+            load_summary = calculate_daily_metrics (
+                df=df,
+                p_max_summary=load_summary,
+                bldg=bldg,
+                up=up
+                )
+            
+            diversified_demand_p, diversified_demand_time = calculate_diversified_demand(df=df, 
+                                                        group_p_sum=diversified_demand_p,
+                                                        group_time_index=diversified_demand_time
+                                                        )
+
+        if diversified_demand_p is None:
+            print("="*50)
+            raise ValueError(
+                "Unknown diversified_demand_p. Check the input files or the calculations." \
+                "Sorry this message sucks. I'm working on a better detailed message"
+                )
+        
+
+        customer_metrics = self._compute_customer_metrics(load_summary=load_summary)
+        
+        aggregation_metrics = self._compute_aggregation_metrics(
+            load_profiles=load_profiles,
+            customer_metrics=customer_metrics,
+            diversified_p=diversified_demand_p,
+            diversified_time=diversified_demand_time
+        )
+
+        transformer_metrics = self._compute_transformer_metrics (
+            pf = 1.0,
+            transformer_size_kva= 15,
+            aggregation_metrics=aggregation_metrics,
+        )
+
+        results = {
+            "customer_metrics": customer_metrics,
+            "aggregation_metrics": aggregation_metrics,
+            "transformer_metrics": transformer_metrics,
+            }
+        
+        return results
 #%%
 if __name__ == '__main__':
-    input_paths = []
     dataset_dir = '/home/deras/gld-opedss-ochre-helics/datasets/cosimulation'
-    bldgs = filter_datasets(dataset_path=dataset_dir)
-    # random.shuffle(bldgs)
-    bldgs = bldgs[:500]
-    # bldgs = ['298']
-    upgrades = ['up00']
-    for upgrade in upgrades:
-        for bldg in bldgs:
-            input_path = os.path.join(dataset_dir, bldg, upgrade)
-            input_paths.append(input_path)
-    
-    sns.set_theme(style="whitegrid", context="talk")
-
-    load_summary = []
-    load_profiles = []
-    diversified_demand_p = None
-    diversified_demand_time = None
-
-    keep_cols = ['Time', 'Total Electric Power (kW)', 'Total Reactive Power (kVAR)',
-                 'Total Electric Energy (kWh)', 'Total Reactive Energy (kVARh)' ]
-    
-    for input_path in input_paths:
-        bldg = input_path.split('/')[-2]
-        up = input_path.split('/')[-1]
-        target_file = input_path+f"/out_{input_path.split('/')[-2]}_{input_path.split('/')[-1]}.csv"
-        df = pd.read_csv(target_file, usecols=keep_cols)
-        df['Time'] = pd.to_datetime(df['Time'])
-        load_profiles.append(df['Total Electric Power (kW)'].to_numpy())
-
-        load_summary = calculate_daily_metrics (df=df, 
-                              p_max_summary=load_summary,
-                              bldg=bldg,
-                              up=up)
-        
-        diversified_demand_p, diversified_demand_time = calculate_diversified_demand(df=df, 
-                                                    group_p_sum=diversified_demand_p,
-                                                    group_time_index=diversified_demand_time)
-    
-    if diversified_demand_p is not None:
-        summary_df = pd.DataFrame(load_summary)
-        # Here is the Diversified demand reporting:
-        idx_group_peak = np.argmax(diversified_demand_p) # This is a column of P values. grab the max P value index
-        p_max_diversified = diversified_demand_p[idx_group_peak] # This is the P value at the index
-        t_max_diversified = diversified_demand_time.iloc[idx_group_peak] # this is the time of the max P value occurred
-
-        ldc = calculate_load_duration_curve(p_diversified=diversified_demand_p, t_diversified=diversified_demand_time)
-        bar_plots(ldc=ldc)
-        
-        diversity_factor, coincidence_factor = calculate_diversity_factor(
-            df=summary_df, max_div_demand=p_max_diversified)
-
-    diversity_factor_n_df = accumulated_diversity_factor (load_profiles=load_profiles,
-                                                          summary_df=summary_df)
-    line_plots(df=diversity_factor_n_df, x='n_customers', y='diversity_factor', 
-               title='Diversity Factor - Loads: 500')
-    plt.show()
+    analyzer = LoadProfileAnalyzer(dataset_dir=dataset_dir, n_buildings=500)
+    results = analyzer.run()
+    print(results)
+    # from pprint import pprint as pp
+    # pp(results)
