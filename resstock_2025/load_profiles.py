@@ -15,6 +15,12 @@ class LoadProfiles:
         self.dataset_dir = dataset_dir
         self.n_buildings = n_buildings
         self.cached_bldg_ids_file = './cached_building_ids.csv'
+
+        # Data storing structure:
+
+        self.customer_data: dict[str, pd.DataFrame] = {}
+        self.customer_summaries: dict[str, dict] = {}
+        self.load_profiles: list[str] = []
     
     def _check_file_exists (self):
         '''
@@ -225,30 +231,6 @@ class LoadProfiles:
             'load_factor': load_factor,
         }
     
-    def _build_data_and_summary_dictionary (self, data: pd.DataFrame, summary: dict, bldg: str, upgrade: list[str]):
-
-        self.load_profiles.append({
-                f'bldg_{bldg}_{upgrade}_data': data,
-                f'bldg_{bldg}_{upgrade}_summary': summary
-            })
-        
-
-    def individual_customer_load_calculations (self,
-                                               data: pd.DataFrame,
-                                               bldg: str,
-                                               up: str
-                                               ):
-
-        demand = self._calculate_demand (data=data)
-
-        demand = self._calculate_maximum_demand (data= demand)
-
-        demand = self._calculate_energy_and_average_demand (data=demand)
-
-        summary = self._summarize_individual_customers (data=demand)
-
-        self._build_data_and_summary_dictionary (data=demand, summary=summary, bldg=bldg, upgrade=up)
-
     # ============================================================
     # ============== Aggregate Customers Methods =================
     # ============================================================
@@ -308,8 +290,42 @@ class LoadProfiles:
 
         return diversified_demand_for_ldc
 
+    def _build_data_and_summary_dictionary (self, data: pd.DataFrame,
+                                            summary: dict,
+                                            bldg: str,
+                                            upgrade: str):
+        
+        customer_id = f"bldg_{bldg}_{upgrade}"
+
+        self.customer_data[customer_id] = data
+
+        self.customer_summaries[customer_id] = summary
+
+        # Now load_profiles only has customer IDs, which can then be referenced later to get the data for each customer.
+        # Try this in the api_test.py script. Now this script can be used as a module!
+        # You jsut need to remember that load_profiles is a list!
+        self.load_profiles.append(customer_id)
+        
+
+    def individual_customer_load_calculations (self,
+                                               data: pd.DataFrame,
+                                               bldg: str,
+                                               up: str
+                                               ):
+
+        demand = self._calculate_demand (data=data)
+
+        demand = self._calculate_maximum_demand (data= demand)
+
+        demand = self._calculate_energy_and_average_demand (data=demand)
+
+        summary = self._summarize_individual_customers (data=demand)
+
+        self._build_data_and_summary_dictionary (data=demand, summary=summary, bldg=bldg, upgrade=up)
+
     def aggregate_customers_load_calculations (self,
-                                               transformer_kva: list[int],
+                                               customer_ids: list[str] | None = None,
+                                               transformer_kva: float = 50.0,
                                                power_factor: float = 0.9
                                                ):
         '''
@@ -322,42 +338,49 @@ class LoadProfiles:
 
         OUTPUTS:
         '''
+        if customer_ids is None:
+            print("-"*50)
+            print("No customer IDs data was passed. Customer IDs data is None")
+            print(f"Defaulting to original customer data number: {len(self.customer_data)} customers")
+            print("-"*50)
+            
+        # get every dataframe from the self.load_profiles dictionary
+        # list_of_dfs = [list(self.load_profiles[dfs].values())[0] for dfs in range(len(self.load_profiles))]
 
-        for kva in transformer_kva:
+        # get every dataframe from the self.load_profiles dictionary
+        list_of_dfs = [self.customer_data[customer_id] for customer_id in self.load_profiles]
 
+        # concatente the dataframes such that they included in a single dataframe.
+        concat_df = pd.concat(list_of_dfs, axis=0)
+
+        # calculate the diversified demand
+        diversified_demand = self._calculate_diversified_demand(data=concat_df)
+
+        # calculate the max. diversified demand
+        max_diversified_demand = self._calculate_max_diverisifed_demand (data=diversified_demand)
+
+        # calculate the max. noncoincident demand
+        max_noncoincident_demand = self._calculate_noncoincident_demand (data=list_of_dfs)
+
+        # calculate diversity factor
+        diversity_factor = self._calculate_diversity_factor (max_noncoincident_demand = max_noncoincident_demand,
+                                                                max_diversified_demand = max_diversified_demand)
         
-            # get every dataframe from the self.load_profiles dictionary
-            list_of_dfs = [list(self.load_profiles[dfs].values())[0] for dfs in range(len(self.load_profiles))]
+        # calculate utilization factor: (this won't make sense if the n_buildings is high and kva is low!)
+        utilization_factor = self._calculate_utilization_factor (max_diversified_demand = max_diversified_demand,
+                                                                    transformer_rating=transformer_kva)
 
-            # concatente the dataframes such that they included in a single dataframe.
-            concat_df = pd.concat(list_of_dfs, axis=0)
+        load_diversity = self._calculate_load_diversity (max_noncoincident_demand = max_noncoincident_demand,
+                                                            max_diversified_demand = max_diversified_demand)
+        
+        # only returning the data, no plots here
+        load_duration_curve_data = self._calculate_load_duration_curve (diversified_demand = diversified_demand)
 
-            # calculate the diversified demand
-            diversified_demand = self._calculate_diversified_demand(data=concat_df)
-
-            # calculate the max. diversified demand
-            max_diversified_demand = self._calculate_max_diverisifed_demand (data=diversified_demand)
-
-            # calculate the max. noncoincident demand
-            max_noncoincident_demand = self._calculate_noncoincident_demand (data=list_of_dfs)
-
-            # calculate diversity factor
-            diversity_factor = self._calculate_diversity_factor (max_noncoincident_demand = max_noncoincident_demand,
-                                                                 max_diversified_demand = max_diversified_demand)
-            
-            # calculate utilization factor: (this won't make sense if the n_buildings is high and kva is low!)
-            utilization_factor = self._calculate_utilization_factor (max_diversified_demand = max_diversified_demand,
-                                                                     transformer_rating=kva)
-
-            load_diversity = self._calculate_load_diversity (max_noncoincident_demand = max_noncoincident_demand,
-                                                             max_diversified_demand = max_diversified_demand)
-            
-            # only returning the data, no plots here
-            load_duration_curve_data = self._calculate_load_duration_curve (diversified_demand = diversified_demand)
-            print(load_duration_curve_data)
 
     def run(self):
         
+        self.customer_data = {}
+        self.customer_summaries = {}
         self.load_profiles = []
 
         input_paths = self.input_files_handler()
@@ -368,7 +391,7 @@ class LoadProfiles:
 
             self.individual_customer_load_calculations (data= df, bldg= bldg, up=upgrade)
         
-        self.aggregate_customers_load_calculations(transformer_kva=[15])
+        return self.load_profiles
 
 
 if __name__ == "__main__":
