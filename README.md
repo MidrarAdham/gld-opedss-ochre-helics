@@ -1,3 +1,7 @@
+# ResStock 2025:
+
+Clone this directory, and go to the dataset/ folder to see intructions about how to download ResStock 2025
+
 # Quick Progress Overview
 So far, I resolved some HELICS issues. Here are the important ones:
 

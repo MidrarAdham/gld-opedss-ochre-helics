@@ -1,5 +1,7 @@
-datasets/cosimulation
-opendss_helics_examples/profiles/\
-.venv
+env/
+venv/
+references/
+__pycache__/
+resstock_2025/datasets/cosimulation
 opendss_helics_examples/profiles/
 ochre_helics_example/my_examples/my_cosim/cosimulation

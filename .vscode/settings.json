@@ -1,0 +1,24 @@
+{
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": "meta.function-call.generic.python",
+                "settings": {
+                    "foreground": "#DCDCAA"
+                }
+            },
+            {
+                "scope": "support.module.python",
+                "settings": {
+                    "foreground": "#DCDCAA"
+                }
+            },
+            {
+                "scope": "entity.name.namespace.python",
+                "settings": {
+                    "foreground": "#DCDCAA"
+                }
+            }
+        ]
+    }
+}

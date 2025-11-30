@@ -3,17 +3,17 @@
 # The house publishes its power demand (no controls)
 # Ready to connect with GridLAB-D federate
 
-import pandas as pd
-import json
-import datetime as dt
+import os
 import sys
+import json
 import click
 import helics
+import pandas as pd
+import datetime as dt
 from helics.cli import run
-import os
-
 from ochre import Dwelling, Analysis
 from ochre.utils import default_input_path
+
 
 def create_dir():
     """Create a folder called 'cosimulation' to store all files"""
@@ -48,10 +48,8 @@ sim_times = pd.date_range(
     inclusive="left",
 )
 
-# OCHRE initialization time (warmup period)
 initialization_time = dt.timedelta(days=1)
 
-# Equipment in the house (optional - remove if you don't want PV/Battery)
 equipment_args = {
     # "PV": {"capacity": 5},                    # 5 kW solar panels
     # "Battery": {"capacity": 5, "capacity_kwh": 10},  # 5 kW, 10 kWh battery
