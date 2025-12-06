@@ -1,4 +1,5 @@
 import os
+import random
 import numpy as np
 import pandas as pd
 from pathlib import Path
@@ -8,13 +9,15 @@ class LoadProfiles:
     def __init__(self,
                  dataset_dir: str,
                  n_buildings: int,
-                 upgrades: list[str] = ['up00']
+                 upgrades: list[str] = ['up00'],
+                 randomized : bool = False
                  ):
         
         self.upgrades = upgrades
         self.dataset_dir = dataset_dir
         self.n_buildings = n_buildings
         self.cached_bldg_ids_file = './cached_building_ids.csv'
+        self.randomized = randomized
 
         # Data storing structure:
 
@@ -22,7 +25,7 @@ class LoadProfiles:
         self.customer_summaries: dict[str, dict] = {}
         self.load_profiles: list[str] = []
     
-    def _check_file_exists (self):
+    def _check_file_exists (self) -> bool:
         '''
         look for self.cached_bldg_ids file, which contains all the correct building IDs.
         INPUTS: NONE
@@ -33,9 +36,9 @@ class LoadProfiles:
         file_path = Path(self.cached_bldg_ids_file)
 
         if file_path.is_file():
-            print('='*50)
-            print(f'file {self.cached_bldg_ids_file}.csv is in directory.')
-            print('='*50)
+            # print('='*50)
+            # print(f'file {self.cached_bldg_ids_file} is in directory.')
+            # print('='*50)
             return True
         
         else:
@@ -63,7 +66,7 @@ class LoadProfiles:
                     if target_file.is_file() and target_file.stat().st_size > 0:
                         f.write(f"{bldg_id.name}\n")
 
-    def _build_input_files_paths (self, building_ids):
+    def _build_input_files_paths (self, building_ids) -> list[str]:
         '''
         Build paths to the correct building ID folders.
         INPUTS: building IDs folders
@@ -77,7 +80,7 @@ class LoadProfiles:
         
         return input_paths
 
-    def _read_the_cached_file (self):
+    def _read_the_cached_file (self) -> list:
         '''
         Reads the cached_bldg_ids file, adjust the buildings according to the existing ones
         INPUTS: NONE
@@ -93,16 +96,20 @@ class LoadProfiles:
             print("="*50)
             print(
                 f"[LoadProfileAnalyzer] Requested n_buildings={self.n_buildings} "
-                f"but only {available} are available in {self.bldg_ids_file}. "
+                f"but only {available} are available in {self.cached_bldg_ids_file}. "
                 f"Using {available}."
             )
             print("="*50)
-            n = available
+            num_buildings = available
         
         else:
-            n = self.n_buildings
+            num_buildings = self.n_buildings
         
-        return lines[:n]
+        if self.randomized:
+            # This picks a random set of num_buildings. 
+            return random.sample(lines, num_buildings)
+        else:
+            return lines[:num_buildings]
         
     def _read_simulation_output_files (self, input_path: str):
         '''
@@ -239,8 +246,10 @@ class LoadProfiles:
         '''
         Diversified demand is defined as the sum of all customers demand for each instant of time
         '''
+        data_unique = data.drop_duplicates(subset=['interval_start', 'Total Electric Power Average Demand (kW)'])
+
         diversified_demand = (
-            data.groupby('interval_start')['Total Electric Power Average Demand (kW)']
+            data_unique.groupby('interval_start')['Total Electric Power Average Demand (kW)']
             .sum()
             .reset_index(name='Diversified Demand (kW)')
             .sort_values('interval_start')
@@ -259,7 +268,7 @@ class LoadProfiles:
         max_noncoincident_demand = 0
 
         for df in data:
-            max_noncoincident_demand += df['Total Electric Power Average Demand (kW)'].max()
+            max_noncoincident_demand += df['Total Electric Power Max Demand (kW)'].max()
 
         return max_noncoincident_demand
     
@@ -312,7 +321,7 @@ class LoadProfiles:
                                                bldg: str,
                                                up: str
                                                ):
-
+        
         demand = self._calculate_demand (data=data)
 
         demand = self._calculate_maximum_demand (data= demand)
@@ -338,19 +347,23 @@ class LoadProfiles:
 
         OUTPUTS:
         '''
-        if customer_ids is None:
+        try:
+            # get every dataframe from the self.load_profiles dictionary
+            list_of_dfs = [self.customer_data[cid] for cid in customer_ids]
+        
+        except TypeError as e:
             print("-"*50)
+            print(e)
             print("No customer IDs data was passed. Customer IDs data is None")
-            print(f"Defaulting to original customer data number: {len(self.customer_data)} customers")
+            print(f"Defaulting to original customer data number: \n\n{self.load_profiles}")
             print("-"*50)
-            
+            customer_ids = self.load_profiles            
+
         # get every dataframe from the self.load_profiles dictionary
         # list_of_dfs = [list(self.load_profiles[dfs].values())[0] for dfs in range(len(self.load_profiles))]
 
-        # get every dataframe from the self.load_profiles dictionary
-        list_of_dfs = [self.customer_data[customer_id] for customer_id in self.load_profiles]
-
         # concatente the dataframes such that they included in a single dataframe.
+
         concat_df = pd.concat(list_of_dfs, axis=0)
 
         # calculate the diversified demand
@@ -361,6 +374,8 @@ class LoadProfiles:
 
         # calculate the max. noncoincident demand
         max_noncoincident_demand = self._calculate_noncoincident_demand (data=list_of_dfs)
+        # print(max_diversified_demand, '\t -- ', max_noncoincident_demand)
+        # quit()
 
         # calculate diversity factor
         diversity_factor = self._calculate_diversity_factor (max_noncoincident_demand = max_noncoincident_demand,
@@ -375,6 +390,20 @@ class LoadProfiles:
         
         # only returning the data, no plots here
         load_duration_curve_data = self._calculate_load_duration_curve (diversified_demand = diversified_demand)
+
+        return {
+            'load_profiles_data' : concat_df,
+            'diversified_demand': diversified_demand,
+            'load_duration_curve': load_duration_curve_data,
+            'max_diversified_kw': max_diversified_demand,
+            'max_noncoincident_kw': max_noncoincident_demand,
+            'diversity_factor': diversity_factor,
+            'load_diversity_kw': load_diversity,
+            'utilization_factor': utilization_factor,
+            'n_customers': len(customer_ids),
+            'transformer_kva_rating': transformer_kva,
+            'power_factor_assumed': power_factor,
+            }
 
 
     def run(self):
@@ -394,13 +423,13 @@ class LoadProfiles:
         return self.load_profiles
 
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
     
-    dataset_dir = f"{os.getcwd()}/datasets/cosimulation/"
+#     dataset_dir = f"{os.getcwd()}/datasets/cosimulation/"
     
-    analyzer = LoadProfiles (dataset_dir=dataset_dir,
-                             n_buildings=50,
-                             upgrades=['up00'],
-                             )
+#     analyzer = LoadProfiles (dataset_dir=dataset_dir,
+#                              n_buildings=50,
+#                              upgrades=['up00'],
+#                              )
     
-    analyzer.run()
+#     analyzer.run()
