@@ -60,6 +60,7 @@ def plot_method1_results (results):
     ax[1].grid(True, alpha=0.3)
     
     plt.tight_layout()
+    plt.savefig('./method1.png')
     plt.show()
 
 def load_survey_plot (kw, kwh, regr_results):
@@ -83,10 +84,11 @@ def load_survey_plot (kw, kwh, regr_results):
              transform=plt.gca().transAxes, fontsize=12, verticalalignment='top')
     
     plt.tight_layout()
+    # plt.savefig('./method.png')
     plt.show()
 
 def transformer_load_management_plot (regr_results, data_results):
-    fig, axes = plt.subplots (1, 3, figsize = (18, 5))
+    fig, axes = plt.subplots (1, 3, figsize = (18, 10))
 
     for idx, kva in enumerate(regr_results):
         ax = axes[idx]
@@ -136,6 +138,7 @@ def transformer_load_management_plot (regr_results, data_results):
         
     plt.suptitle('Method 3: Transformer Load Management', fontsize=14)
     plt.tight_layout()
+    # plt.savefig('./method3.png')
     plt.show()
 
 def plot_method4_allocation(results):
@@ -228,6 +231,7 @@ def plot_method4_allocation(results):
                 ha='center', va='bottom', fontsize=8)
     
     plt.tight_layout()
+    plt.savefig('./method4.png')
     plt.show()
     
     # ============================================================
@@ -245,7 +249,7 @@ def plot_method4_allocation(results):
     # print(f"All transformers within limits: {'YES ✓' if all(u <= 1.0 for u in utilizations) else 'NO ✗'}")
     # print("="*60)
 
-# data = check_file (filename = 'method1_50.csv')
+data = check_file (filename = 'method1_50.csv')
 # ================= Diversified Peak Method ==================
 # plot_method1_results (results=data)
 # ================= Diversified Peak Method ==================
@@ -258,11 +262,11 @@ dataset_dir = f"{os.getcwd()}/datasets/cosimulation/"
 # ==================== Load Survey Method ====================
 # ------------------------------------------------------------
 # ================ Transformer Load Management ===============
-# results = api.method3_transformer_load_management (dataset_dir=dataset_dir)
+results = api.method3_transformer_load_management (dataset_dir=dataset_dir)
 # regression_res = api.method3_regr (results=results)
 # transformer_load_management_plot (regr_results=regression_res, data_results=results)
 # ================ Transformer Load Management ===============
 # ------------------------------------------------------------
 # ================ Metered Feeder Max. Demand ================
-results = api.method4_metered_feeder_max_demand(dataset_dir=dataset_dir, n_total_customers=35)
+# results = api.method4_metered_feeder_max_demand(dataset_dir=dataset_dir, n_total_customers=300)
 plot_method4_allocation (results=results)

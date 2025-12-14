@@ -32,7 +32,8 @@ IGNORE_COMBINATIONS = {
         'Garage Roof': [
             {'Finish Type': 'slate or tile shingles', 'Construction Type': 'Flat'},
             {'Finish Type': 'wood shingles or shakes', 'Construction Type': 'Flat'},
-            {'Finish Type': 'metal surfacing', 'Construction Type': 'Flat'}
+            {'Finish Type': 'metal surfacing', 'Construction Type': 'Flat'},
+            {'Finish Type': 'asphalt or fiberglass shingles', 'Construction Type': 'Flat'}
         ]
 }
 

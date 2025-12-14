@@ -1,11 +1,11 @@
 import os
+import pint
 import shutil
 import numpy as np
 import pandas as pd
 from ochre import Analysis, Dwelling
 from ochre.utils import default_input_path
 from ochre.cli import create_dwelling, limit_input_paths, run_multiple_local, run_multiple_hpc
-
 
 # 1) Run multiple simulations: Three house instances
 # 2) Run multiple simulations: Three houses + one EV in each of them
@@ -114,7 +114,12 @@ if __name__ == "__main__":
             print("="*50)
             dwelling = create_dwelling (
                 input_path=input_path,
-                duration=7,
+                start_year=2025,
+                start_month=1,
+                start_day=1,
+                initialization_time=1,
+                time_res=60,
+                duration=30,
                 weather_file_or_path=default_weather_file
             )
             dwelling.simulate()

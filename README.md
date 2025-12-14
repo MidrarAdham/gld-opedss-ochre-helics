@@ -43,3 +43,50 @@ python3 powerflow_test.py
 - I tried adding a ```triplex_load``` object instead, which worked as expected.
 
 - I posted a question in the GridLAB-D forum, see [here](https://sourceforge.net/p/gridlab-d/discussion/842562/thread/e5a93df6c6/).
+
+# Poetry usage:
+This project uses poetry to manage the dependencies. In this section, a step-by-step guide showing how to install poetry, add the dependencies, and solve anticipated errors.
+
+## Requirements:
+
+### Python Requirements:
+
+This project is built for:
+```
+Python 3.12.x
+```
+
+This constraint is enforced because OCHRE supports <3.13. In pyproject.toml:
+```
+requires-python = ">=3.12,<3.13"
+```
+
+## Installing Poetry (Ubuntu):
+
+- Install Poetry:
+```
+curl -sSL https://install.python-poetry.org | python3 -
+```
+- Ensure it is on the Path:
+```
+export PATH="$HOME/.local/bin:$PATH"
+```
+- Verify it is installed correctly:
+```
+poetry --version
+```
+
+## Install Dependencies:
+```
+poetry install 
+```
+Here are the list dependencies that should be installed:
+
+- numpy (>=1.26,<2.0)
+- scipy
+- pandas
+- matplotlib
+- seaborn
+- click
+- helics[cli]
+- ochre-nrel
