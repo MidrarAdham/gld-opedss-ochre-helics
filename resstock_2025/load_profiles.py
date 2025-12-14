@@ -357,7 +357,7 @@ class LoadProfiles:
             print("No customer IDs data was passed. Customer IDs data is None")
             print(f"Defaulting to original customer data number: \n\n{self.load_profiles}")
             print("-"*50)
-            customer_ids = self.load_profiles            
+            customer_ids = self.load_profiles
 
         # get every dataframe from the self.load_profiles dictionary
         # list_of_dfs = [list(self.load_profiles[dfs].values())[0] for dfs in range(len(self.load_profiles))]

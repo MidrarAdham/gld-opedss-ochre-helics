@@ -1,33 +1,45 @@
+# Standard Python Libraries that we'll use in this script:
 import os
 import click
 import numpy as np
 import pandas as pd
 from scipy import stats
-# Calling my new method, hehe :D
+from pprint import pprint as pp
+from pathlib import Path
+
+# Calling my methods (all of these methods are Python files inside this folder):
+from config import load_config
 from load_profiles import LoadProfiles
 
-# Configurations: 
+"""
+- This file read the configuration of the methods, calls the methods from load_profiles.py, and write the results.
+- There are no computations here. Please read the README file before running any scripts.
+"""
 
-DEFAULT_DATASET_DIR = f"{os.getcwd()}/datasets/cosimulation/"
+# Writing results to a file for analysis later
 
-# Engine: 
-def check_file (filename: str):
-
-    for files in os.listdir ('./api_methods'):
-        if files == filename:
-            return pd.read_csv ('./api_methods/'+filename)
-
-def method1_diversity_factor (dataset_dir : str):
-
-    transformer_sizes = [25.0, 50.0, 75.0]
-
-    pf = 0.9
+def write_results (cfg, method : str, results : pd.DataFrame):
     
-    n_trials = 10
+    results_dir = cfg["project"]["results_dir"]
+    
+    Path(results_dir).mkdir(parents=True, exist_ok=True)
+    
+    results_id = cfg["project"]["run_id"]
+    
+    results.to_csv(f"{results_dir}/{results_id}_{method}.csv", index=False)
 
+def method1_diversity_factor (cfg):
+    
     results = []
+    max_buildings = 10
+    upgrades = cfg["data"]["upgrades"]
+    n_trials = cfg["method1"]["n_trials"]
+    pf = cfg["electrical"]["power_factor"]
+    dataset_dir = cfg["data"]["dataset_dir"]
+    transformer_sizes = cfg["method1"]["transformer_kva_list"]
+    
 
-    max_buildings = 50
+
 
     for kva in transformer_sizes:
 
@@ -42,8 +54,8 @@ def method1_diversity_factor (dataset_dir : str):
             for trial in range(n_trials):
 
                 analyzer = LoadProfiles (n_buildings = n_buildings,
-                            dataset_dir=dataset_dir,
-                            upgrades=['up00'],
+                            dataset_dir = dataset_dir,
+                            upgrades = upgrades,
                             randomized = True
                             )
             
@@ -69,12 +81,18 @@ def method1_diversity_factor (dataset_dir : str):
                 'avg_diversity_factor': avg_DF
             })
 
+    df = pd.DataFrame(results)
+    
+    write_results (cfg=cfg, method="method1", results= df)
 
-    return results, max_buildings
+    return df
 
 
-def method2_load_survey (dataset_dir : str):
-    n_buildings = 1e6
+def method2_load_survey (cfg):
+    dataset_dir = cfg["data"]["dataset_dir"]
+    upgrades = cfg["data"]["upgrades"]
+
+    n_buildings = 10
 
     kw_list = []
     kwh_list = []
@@ -83,7 +101,7 @@ def method2_load_survey (dataset_dir : str):
 
     analyzer = LoadProfiles (n_buildings = n_buildings,
                             dataset_dir=dataset_dir,
-                            upgrades=['up00'],
+                            upgrades=upgrades,
                             randomized = False
                             )
             
@@ -95,7 +113,7 @@ def method2_load_survey (dataset_dir : str):
     
     return kw_list, kwh_list
 
-def linear_regr (kwh : list, kw : list):
+def linear_regr (cfg, kwh : list, kw : list):
     slope, intercept, r_value, p_value, std_err = stats.linregress (x=kwh, y=kw)
     r_squared = r_value ** 2
 
@@ -105,11 +123,23 @@ def linear_regr (kwh : list, kw : list):
         'r_squared':r_squared,
         'equation': f"kW_peak = {intercept:.4f} + {slope:.6f} x kWh"
     }
+    
+    data_df = pd.DataFrame ({
+        'kwh': kwh,
+        'kw': kw
+    })
+    regression_df = pd.DataFrame ([results])
 
-    return results
+    write_results (cfg=cfg, method="method2_data", results=data_df)
+    write_results (cfg=cfg, method="method2_regression", results=regression_df)
 
-def method3_transformer_load_management (dataset_dir : str):
-    pf = 0.9
+    return regression_df
+
+def method3_transformer_load_management (cfg):
+    
+    upgrades = cfg["data"]["upgrades"]
+    pf = cfg["electrical"]["power_factor"]
+    dataset_dir = cfg["data"]["dataset_dir"]
     
     # These transformer configs. are obtained from method 1:
     transformer_config = [
@@ -135,7 +165,7 @@ def method3_transformer_load_management (dataset_dir : str):
             analyzer = LoadProfiles (
                 n_buildings = n_customers,
                 dataset_dir=dataset_dir,
-                upgrades=['up00'],
+                upgrades=upgrades,
                 randomized = True
                 )
             analyzer.run()
@@ -149,7 +179,16 @@ def method3_transformer_load_management (dataset_dir : str):
             max_diverisifed_kw_list.append(agg_results['max_diversified_kw'])
         
 
+        raw_data = pd.DataFrame ({
+            'trial': range(n_trials),
+            'transformer_kwh': transformer_kwh_list,
+            'max_diversified_kw': max_diverisifed_kw_list,
+            'kva_rating': kva,
+            'n_customers': n_customers
+        })
         
+        write_results (cfg=cfg, method = f"method3_kva_{int(kva)}", results = raw_data)
+
         all_results[kva] = {
             'transformer_kwh' : transformer_kwh_list,
             'max_diversified_kw' : max_diverisifed_kw_list,
@@ -159,7 +198,9 @@ def method3_transformer_load_management (dataset_dir : str):
     return all_results
 
 def method3_regr (results):
+
     regression_results = {}
+    regression_list = []
 
     for kva, data in results.items():
         kwh_list = data['transformer_kwh']
@@ -182,20 +223,21 @@ def method3_regr (results):
             'r_squared' : r_value ** 2,
             'equation' : f"kw_max_div = {intercept:.4f} + {slope:.6f} x kWh_transformer",
             'n_customers': data['n_customers'],
-
-            'statistics' : {
-                'kwh_mean' : kwh_mean,
-                'kwh_std': kwh_std,
-                'kw_mean': kw_mean,
-                'kw_std': kw_std,
-                'residual_std': residual_std,  # Prediction uncertainty
-                'n_trials': len(kwh_list)
+            'kwh_mean' : kwh_mean,
+            'kwh_std': kwh_std,
+            'kw_mean': kw_mean,
+            'kw_std': kw_std,
+            'residual_std': residual_std,  # Prediction uncertainty
+            'n_trials': len(kwh_list)
             }
-        }
+        
+        regression_list.append (regression_results[kva])
+    
+    write_results (cfg=cfg, method= "method3_regr", results=pd.DataFrame (regression_list))
 
     return regression_results
             
-def method4_metered_feeder_max_demand(dataset_dir: str, n_total_customers: int = 300):
+def method4_metered_feeder_max_demand(cfg):
     """
     Method 4: Allocate load based on metered feeder demand. Ch. 2.4.1.4
     
@@ -204,9 +246,12 @@ def method4_metered_feeder_max_demand(dataset_dir: str, n_total_customers: int =
     2. Determine transformer configuration needed
     3. Apply allocation factor to distribute load
     """
-    pf = 0.9
-    
+    dataset_dir = cfg["data"]["dataset_dir"]
+    upgrades = cfg["data"]["upgrades"]
+    pf = cfg["electrical"]["power_factor"]
+    n_total_customers = 300
     # Transformer capacity from Method 1
+    
     transformer_capacity = {
         25.0: 6,   # 25 kVA can handle 6 customers
         50.0: 11,  # 50 kVA can handle 11 customers
@@ -214,13 +259,11 @@ def method4_metered_feeder_max_demand(dataset_dir: str, n_total_customers: int =
     }
     
     # simulate substation meter:
-
-    print(f"Step 1: Simulating metered demand for {n_total_customers} customers...")
     
     analyzer = LoadProfiles(
-        n_buildings=n_total_customers,
-        dataset_dir=dataset_dir,
-        upgrades=['up00'],
+        n_buildings = n_total_customers,
+        dataset_dir = dataset_dir,
+        upgrades = upgrades,
         randomized=True
     )
     analyzer.run()
@@ -228,11 +271,10 @@ def method4_metered_feeder_max_demand(dataset_dir: str, n_total_customers: int =
     agg_results = analyzer.aggregate_customers_load_calculations(
         customer_ids=analyzer.load_profiles,
         transformer_kva=1000,  # Dummy value, we just need max diversified demand
-        power_factor=pf
+        power_factor = pf
     )
     
     metered_demand_kw = agg_results['max_diversified_kw']
-    print(f"  Metered Demand: {metered_demand_kw:.2f} kW")
     
     
     # Determine how many transformers needed
@@ -277,14 +319,17 @@ def method4_metered_feeder_max_demand(dataset_dir: str, n_total_customers: int =
             'utilization_factor': utilization
         })
     
-    return {
+    summary_data = {
         'metered_demand_kw': metered_demand_kw,
         'total_customers': n_total_customers,
         'allocation_factor': allocation_factor,
         'total_transformer_kva': total_transformer_kva,
-        'transformer_allocations': allocation_results,
-        'n_transformers': len(transformer_list)
+        'n_transformers_25kva': sum(1 for t in transformer_list if t['kva'] == 25.0),
+        'n_transformers_50kva': sum(1 for t in transformer_list if t['kva'] == 50.0),
+        'n_transformers_75kva': sum(1 for t in transformer_list if t['kva'] == 75.0)
     }
+    write_results (cfg=cfg, method= "method4_allocation_results", results = pd.DataFrame(allocation_results))
+    write_results (cfg=cfg, method= "method4_summary", results = pd.DataFrame ([summary_data]))
 
 
 # Second step is to add decorators. Above any function, add a an argument (if needed) and a command
@@ -296,103 +341,45 @@ def cli ():
     """
     pass
 
-@cli.command("method1")
-@click.option (
-    "--dataset-dir",
-    default = DEFAULT_DATASET_DIR,
-    show_default = True,
-    help = "Path to dataset directory"
-)
+cfg = load_config ()
+# method1_cfg = cfg["method1"]
 
-def method1_command (dataset_dir):
+@cli.command("method1")
+def method1_command ():
     """
     Run Method 1 - Diversity Factor
     """
-    results, ax_buildings = method1_diversity_factor(dataset_dir=dataset_dir)
+    method1_df = method1_diversity_factor (cfg=cfg)
+
 
 
 @cli.command("method2")
-@click.option(
-    "--dataset-dir",
-    default=DEFAULT_DATASET_DIR,
-    show_default=True,
-    help="Path to dataset directory"
-)
-def method2_command(dataset_dir):
+def method2_command():
     """
     Run Method 2 - Load Survey.
     """
-    kw_list, kwh_list = method2_load_survey(dataset_dir=dataset_dir)
-    method2_regr_results = linear_regr(kwh_list, kw_list)
+    kw_list, kwh_list = method2_load_survey(cfg=cfg)
+    method2_regr_results = linear_regr(cfg, kwh_list, kw_list)
 
 
 @cli.command("method3")
-@click.option (
-    "--dataset-dir",
-    default = DEFAULT_DATASET_DIR,
-    show_default = True,
-    help = "Path to dataset directory"
-)
-
-def method3_command (dataset_dir):
+def method3_command ():
     """
     Run method 3 - transformer load management (TLM)
     
     dataset_dir: ResStock dataset directory
     """
 
-    results = method3_transformer_load_management (dataset_dir=dataset_dir)
+    results = method3_transformer_load_management (cfg=cfg)
     method3_regr_results = method3_regr (results=results)
 
 
 @cli.command("method4")
-@click.option(
-    "--dataset-dir",
-    default=DEFAULT_DATASET_DIR,
-    show_default=True,
-    help="Path to dataset directory"
-)
-def method4_command(dataset_dir):
+def method4_command ():
     """
     Run Method 4 - metered_feeder max demand
     """
-    all_results = method4_metered_feeder_max_demand (dataset_dir=dataset_dir)
-    
-
-
-
-def main ():
-    data = check_file (filename = 'method1_50.csv')
-
-    if isinstance(data, pd.DataFrame):
-        # ================= Diversified Peak Method ==================
-        # data, max_buildings = method1_diversity_factor (dataset_dir=dataset_dir)
-        cli()
-        # df = pd.DataFrame(data)
-        # df.to_csv(f'./api_methods/method1_{max_buildings}.csv', index=False)
-        # ================= Diversified Peak Method ==================
-        # ------------------------------------------------------------
-        # ==================== Load Survey Method ====================
-        # kw_list, kwh_list = method2_load_survey (dataset_dir=dataset_dir)
-        # results = linear_regr (kwh=kwh_list, kw=kw_list)
-        # print(pd.DataFrame(results))
-        # ==================== Load Survey Method ====================
-        # ------------------------------------------------------------
-        # ================ Transformer Load Management ===============
-        # results = method3_transformer_load_management (dataset_dir=dataset_dir)
-        # regr_results = method3_regr (results=results)
-
-        # for kva, results in regr_results.items():
-        #     print(f"\n{kva} kVA Transformer ({results['n_customers']} customers):")
-        #     print(f"  {results['equation']}")
-        #     print(f"  R² = {results['r_squared']:.4f}")
-        # ================ Transformer Load Management ===============
-        # ------------------------------------------------------------
-        # ================ Metered Feeder Max. Demand =================
-        # method4_metered_feeder_max_demand (dataset_dir=dataset_dir)
-        pass
-    else:
-        data = pd.read_csv ('./api_methods/method3_50.csv')
+    all_results = method4_metered_feeder_max_demand (cfg=cfg)
 
 if __name__ == '__main__':
     cli()
