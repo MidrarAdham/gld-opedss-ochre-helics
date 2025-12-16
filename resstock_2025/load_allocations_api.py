@@ -31,7 +31,7 @@ def write_results (cfg, method : str, results : pd.DataFrame):
 def method1_diversity_factor (cfg):
     
     results = []
-    max_buildings = 10
+    max_buildings = 100
     upgrades = cfg["data"]["upgrades"]
     n_trials = cfg["method1"]["n_trials"]
     pf = cfg["electrical"]["power_factor"]

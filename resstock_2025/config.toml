@@ -42,7 +42,7 @@ transformer_kva_list = [25.0, 50.0, 75.0]
 power_factor = 0.9
 
 # Monte Carlo Settings:
-n_trials = 20
+n_trials = 30
 random_seed = 123
 
 # Results file format:
