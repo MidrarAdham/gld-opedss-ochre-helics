@@ -6,13 +6,11 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 import load_allocations_api as api
 
-def check_file (filename: str):
-    file_dir = './api_methods'
+def check_file (method : str):
+    file_dir = './results/'
     for files in os.listdir (file_dir):
-        print(files)
-        if files == filename:
-            return pd.read_csv (file_dir+'/'+filename)
-
+        if method in files:
+            return pd.read_csv (file_dir+files)
         else:
             return False
 
@@ -249,9 +247,9 @@ def plot_method4_allocation(results):
     # print(f"All transformers within limits: {'YES ✓' if all(u <= 1.0 for u in utilizations) else 'NO ✗'}")
     # print("="*60)
 
-data = check_file (filename = 'method1_50.csv')
+data = check_file (method='method1')
 # ================= Diversified Peak Method ==================
-# plot_method1_results (results=data)
+plot_method1_results (results=data)
 # ================= Diversified Peak Method ==================
 # ------------------------------------------------------------
 # ==================== Load Survey Method ====================
@@ -269,4 +267,4 @@ results = api.method3_transformer_load_management (dataset_dir=dataset_dir)
 # ------------------------------------------------------------
 # ================ Metered Feeder Max. Demand ================
 # results = api.method4_metered_feeder_max_demand(dataset_dir=dataset_dir, n_total_customers=300)
-plot_method4_allocation (results=results)
+# plot_method4_allocation (results=results)
