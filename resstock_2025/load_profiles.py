@@ -114,14 +114,20 @@ class LoadProfiles:
     def _read_simulation_output_files (self, input_path: str):
         '''
         After running OCHRE simulation, this method reads the output file.
+
+        The input files we are reading are the ochre.json files.
+
         INTPUTS: Path to the ochre simulation output file
         OUTPUTS: NONE
         RETURNS: The building name [str], upgrade name [str], and the data within the simulation output file
         '''
+        # keep_cols = ['Time', 'Total Electric Power (kW)',
+        #              'Total Reactive Power (kVAR)',
+        #             'Total Electric Energy (kWh)',
+        #             'Total Reactive Energy (kVARh)'
+        #             ]
         keep_cols = ['Time', 'Total Electric Power (kW)',
                      'Total Reactive Power (kVAR)',
-                    'Total Electric Energy (kWh)',
-                    'Total Reactive Energy (kVARh)'
                     ]
         
         try:
@@ -132,14 +138,20 @@ class LoadProfiles:
             upgrade = os.path.basename(input_path)
 
             # build the output file name
-            csv_filename = f"out_{bldg}_{upgrade}.csv"
+            # csv_filename = f"out_{bldg}_{upgrade}.csv"
+            csv_filename = "ochre.csv"
 
             # Create the path that leads to the output file name
             target_file = os.path.join(input_path, csv_filename)
 
+
             # Read the output file name
             df = pd.read_csv(target_file, usecols=keep_cols)
+            
             df['Time'] = pd.to_datetime(df['Time'])
+
+            df['day'] = df['Time'].dt.floor('D')
+
         
         except FileNotFoundError:
             print("="*50)
@@ -152,7 +164,7 @@ class LoadProfiles:
         return df, bldg, upgrade
 
 
-    def input_files_handler (self):
+    def input_files_handler (self) -> list:
         '''
         A container method. It contains the methods needed to:
             - Ensures a build ID file exists in the current directory, and write a new one if none exists
@@ -175,9 +187,15 @@ class LoadProfiles:
         return input_paths
 
     def _calculate_demand (self, data: pd.DataFrame):
-        '''
-        Resample the dataset into a 5-minute intervals. The average of each interval is the demand.
-        '''
+        """
+        Introducing the 'demand'. As defined by Kersting, the demand is the power consumption over a period of time. In
+        this work, the demand is chosen over a five-minute interval.
+
+        This method resample the dataset into five-minute.
+
+        INPUTS: Dataframe of a single-day simulation.
+        RETURNS: The original Dataframe with a new column representing the average demand.
+        """
         data['Time'] = pd.to_datetime(data['Time'])
 
         data['interval_start'] = data['Time'].dt.floor('5min')
@@ -193,6 +211,14 @@ class LoadProfiles:
         return data
 
     def _calculate_maximum_demand (self, data: pd.DataFrame):
+        """
+        Docstring for _calculate_maximum_demand
+        
+        :param data: A single-day OCHRE simulation. Resolution does not matter.
+        :type data: pd.DataFrame
+        :Returns: Dataframe with a new column representing the maximum demand.
+        """
+
 
         max_demand = data['Total Electric Power Average Demand (kW)'].max()
 
@@ -201,9 +227,16 @@ class LoadProfiles:
         return data
     
     def _calculate_energy_and_average_demand (self, data: pd.DataFrame):
-        '''
-        calculate energy, then take the average of that energy
-        '''
+        """
+        Method to _calculate_energy_and_average_demand
+        
+        :param data: A single-day OCHRE simulation. Resolution does not matter.
+        :type data: pd.DataFrame
+
+        Return: original data with two new columns:
+            - The energy consumed over time.
+            - The average demand, that is: Energy / total simulation time
+        """
 
         energy = (
             data.groupby('interval_start')['Total Electric Power (kW)'].mean().mul(5/60)
@@ -302,17 +335,41 @@ class LoadProfiles:
     def _build_data_and_summary_dictionary (self, data: pd.DataFrame,
                                             summary: dict,
                                             bldg: str,
-                                            upgrade: str):
+                                            upgrade: str,
+                                            day : int):
         
+        """
+        Docstring for _build_data_and_summary_dictionary
+        
+        :param data: A single day load profile of each house.
+        :type data: pd.DataFrame
+        :param summary: Description
+        :type summary: dict
+        :param bldg: Description
+        :type bldg: str
+        :param upgrade: Description
+        :type upgrade: str
+        """
+
         customer_id = f"bldg_{bldg}_{upgrade}"
 
-        self.customer_data[customer_id] = data
+        # customer_data: nested by day
 
-        self.customer_summaries[customer_id] = summary
+        if customer_id not in self.customer_data:
+            self.customer_data[customer_id] = {}
+
+        self.customer_data[customer_id][day] = data
+
+        # customer_summaries: nested by day
+        if customer_id not in self.customer_summaries:
+            self.customer_summaries[customer_id] = {}
+
+        self.customer_summaries[customer_id][day] = summary
+
 
         # Now load_profiles only has customer IDs, which can then be referenced later to get the data for each customer.
         # Try this in the api_test.py script. Now this script can be used as a module!
-        # You jsut need to remember that load_profiles is a list!
+        # You jsut need to remember that load_profiles is a list of customer IDs!
         self.load_profiles.append(customer_id)
         
 
@@ -322,15 +379,38 @@ class LoadProfiles:
                                                up: str
                                                ):
         
-        demand = self._calculate_demand (data=data)
+        """
+        Method encapsulates all the individual customer calculations
+        :param data: A single day power consumption profile
+        :type data: pd.DataFrame
+        :param bldg: a string representing the simulated building in OCHRE
+        :type bldg: str
+        :param up: A string representing the OCHRE upgrade being simulated
+        :type up: str
+        """
 
-        demand = self._calculate_maximum_demand (data= demand)
+        data = data.set_index ('Time')
 
-        demand = self._calculate_energy_and_average_demand (data=demand)
+        groups = data.groupby ('day')
 
-        summary = self._summarize_individual_customers (data=demand)
+        for day, df_group in groups:
+            
+            df_group = df_group.reset_index()
+        
+            demand = self._calculate_demand (data=df_group)
 
-        self._build_data_and_summary_dictionary (data=demand, summary=summary, bldg=bldg, upgrade=up)
+            demand = self._calculate_maximum_demand (data= demand)
+
+            demand = self._calculate_energy_and_average_demand (data=demand)
+
+            summary = self._summarize_individual_customers (data=demand)
+
+            self._build_data_and_summary_dictionary (data=demand,
+                                                     summary=summary,
+                                                     bldg=bldg,
+                                                     upgrade=up,
+                                                     day=day
+                                                     )
 
     def aggregate_customers_load_calculations (self,
                                                customer_ids: list[str] | None = None,
@@ -421,15 +501,17 @@ class LoadProfiles:
             self.individual_customer_load_calculations (data= df, bldg= bldg, up=upgrade)
         
         return self.load_profiles
+    
 
 
-# if __name__ == "__main__":
+if __name__ == "__main__":
+
     
-#     dataset_dir = f"{os.getcwd()}/datasets/cosimulation/"
+    dataset_dir = f"{os.getcwd()}/datasets/cosimulation/"
     
-#     analyzer = LoadProfiles (dataset_dir=dataset_dir,
-#                              n_buildings=50,
-#                              upgrades=['up00'],
-#                              )
+    analyzer = LoadProfiles (dataset_dir = dataset_dir,
+                              n_buildings = 50,
+                              upgrades = ['up00']
+                              )
     
-#     analyzer.run()
+    analyzer.run()
