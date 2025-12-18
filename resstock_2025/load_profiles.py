@@ -191,24 +191,33 @@ class LoadProfiles:
         Introducing the 'demand'. As defined by Kersting, the demand is the power consumption over a period of time. In
         this work, the demand is chosen over a five-minute interval.
 
-        This method resample the dataset into five-minute.
+        This method aggregates the dataset into five-minute intervals.
 
         INPUTS: Dataframe of a single-day simulation.
-        RETURNS: The original Dataframe with a new column representing the average demand.
+        RETURNS: A 5-minute interval dataframe with one row per interval.
         """
         data['Time'] = pd.to_datetime(data['Time'])
 
         data['interval_start'] = data['Time'].dt.floor('5min')
 
-        demand = (
-            data.groupby('interval_start')['Total Electric Power (kW)']
-            .mean()
-            .reset_index(name='Total Electric Power Average Demand (kW)')
+        demand = data.groupby('interval_start', as_index=False).agg(
+            {
+                'Total Electric Power (kW)': 'mean',
+                'Total Reactive Power (kVAR)': 'mean',
+            }
         )
 
-        data = data.merge(demand, on='interval_start', how='left')
+        demand = demand.rename(
+            columns={
+                'Total Electric Power (kW)': 'Total Electric Power Average Demand (kW)',
+                'Total Reactive Power (kVAR)': 'Total Reactive Power Average Demand (kVAR)',
+            }
+        )
 
-        return data
+        demand['Time'] = demand['interval_start']
+        demand['day'] = demand['Time'].dt.floor('D')
+
+        return demand
 
     def _calculate_maximum_demand (self, data: pd.DataFrame):
         """
@@ -238,22 +247,19 @@ class LoadProfiles:
             - The average demand, that is: Energy / total simulation time
         """
 
-        energy = (
-            data.groupby('interval_start')['Total Electric Power (kW)'].mean().mul(5/60)
-            .reset_index(name='Energy Interval (kWh)')
-        )
-        
-        data = data.merge(energy, on='interval_start', how='left')
+        if data.empty:
+            data['Energy Interval (kWh)'] = np.nan
+            data['Average Demand (kW)'] = np.nan
+            return data
 
-        # Calculate average demand
+        interval_hours = 5 / 60
+
+        data['Energy Interval (kWh)'] = data['Total Electric Power Average Demand (kW)'] * interval_hours
 
         total_energy = data['Energy Interval (kWh)'].sum()
+        total_hours = data['interval_start'].nunique() * interval_hours
 
-        total_hours = (data['Time'].max() - data['Time'].min()).total_seconds() / 3600.0
-
-        avg_demand = total_energy / total_hours
-
-        data['Average Demand (kW)'] = avg_demand
+        data['Average Demand (kW)'] = total_energy / total_hours if total_hours > 0 else np.nan
 
         return data
 
@@ -279,10 +285,10 @@ class LoadProfiles:
         '''
         Diversified demand is defined as the sum of all customers demand for each instant of time
         '''
-        data_unique = data.drop_duplicates(subset=['interval_start', 'Total Electric Power Average Demand (kW)'])
+        # data_unique = data.drop_duplicates(subset=['interval_start', 'Total Electric Power Average Demand (kW)'])
 
         diversified_demand = (
-            data_unique.groupby('interval_start')['Total Electric Power Average Demand (kW)']
+            data.groupby('interval_start')['Total Electric Power Average Demand (kW)']
             .sum()
             .reset_index(name='Diversified Demand (kW)')
             .sort_values('interval_start')
@@ -332,7 +338,8 @@ class LoadProfiles:
 
         return diversified_demand_for_ldc
 
-    def _build_data_and_summary_dictionary (self, data: pd.DataFrame,
+    def _build_data_and_summary_dictionary (self, 
+                                            data: pd.DataFrame,
                                             summary: dict,
                                             bldg: str,
                                             upgrade: str,
@@ -370,7 +377,8 @@ class LoadProfiles:
         # Now load_profiles only has customer IDs, which can then be referenced later to get the data for each customer.
         # Try this in the api_test.py script. Now this script can be used as a module!
         # You jsut need to remember that load_profiles is a list of customer IDs!
-        self.load_profiles.append(customer_id)
+        if customer_id not in self.load_profiles:
+            self.load_profiles.append(customer_id)
         
 
     def individual_customer_load_calculations (self,
@@ -417,27 +425,25 @@ class LoadProfiles:
                                                transformer_kva: float = 50.0,
                                                power_factor: float = 0.9
                                                ):
-        '''
+        """
         A container method. It contains all methods needed to calculate aggregate metrics using Kersting's Book, Chapter 2.
 
         INPUTS: 
-        - list[dict] -> self.load_profiles
+        - dict {Timestamp (day) : dataframe} -> self.load_profiles
         - list[float] -> transformer capacity in kVA
         - float -> power factor. Default is 0.9
 
         OUTPUTS:
-        '''
-        try:
-            # get every dataframe from the self.load_profiles dictionary
-            list_of_dfs = [self.customer_data[cid] for cid in customer_ids]
-        
-        except TypeError as e:
-            print("-"*50)
-            print(e)
-            print("No customer IDs data was passed. Customer IDs data is None")
-            print(f"Defaulting to original customer data number: \n\n{self.load_profiles}")
-            print("-"*50)
+        """
+        if customer_ids is None:
             customer_ids = self.load_profiles
+
+        # get every dataframe from the self.load_profiles dictionary
+        list_of_dfs = [
+            day_df
+            for cid in customer_ids
+            for day_df in self.customer_data[cid].values()
+            ]
 
         # get every dataframe from the self.load_profiles dictionary
         # list_of_dfs = [list(self.load_profiles[dfs].values())[0] for dfs in range(len(self.load_profiles))]
@@ -445,6 +451,7 @@ class LoadProfiles:
         # concatente the dataframes such that they included in a single dataframe.
 
         concat_df = pd.concat(list_of_dfs, axis=0)
+
 
         # calculate the diversified demand
         diversified_demand = self._calculate_diversified_demand(data=concat_df)
@@ -463,7 +470,8 @@ class LoadProfiles:
         
         # calculate utilization factor: (this won't make sense if the n_buildings is high and kva is low!)
         utilization_factor = self._calculate_utilization_factor (max_diversified_demand = max_diversified_demand,
-                                                                    transformer_rating=transformer_kva)
+                                                                    transformer_rating=transformer_kva,
+                                                                    pf= power_factor)
 
         load_diversity = self._calculate_load_diversity (max_noncoincident_demand = max_noncoincident_demand,
                                                             max_diversified_demand = max_diversified_demand)
