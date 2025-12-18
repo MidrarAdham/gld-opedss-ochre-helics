@@ -1,0 +1,2 @@
+intercept_a,slope_b,r_squared,equation
+0.9314250518325862,0.1548249040412632,0.8262997557896483,kW_peak = 0.9314 + 0.154825 x kWh

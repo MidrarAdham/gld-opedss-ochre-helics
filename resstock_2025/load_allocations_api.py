@@ -31,7 +31,7 @@ def write_results (cfg, method : str, results : pd.DataFrame):
 def method1_diversity_factor (cfg):
     
     results = []
-    max_buildings = 100
+    max_buildings = 50
     upgrades = cfg["data"]["upgrades"]
     n_trials = cfg["method1"]["n_trials"]
     pf = cfg["electrical"]["power_factor"]
@@ -108,8 +108,9 @@ def method2_load_survey (cfg):
     load_profiles = analyzer.run()
 
     for cid in load_profiles:
-        kw_list.append(analyzer.customer_summaries[cid]['max_demand_kw'])
-        kwh_list.append(analyzer.customer_summaries[cid]['total_energy_kwh'])
+        for key, value in analyzer.customer_summaries[cid].items():
+            kw_list.append(analyzer.customer_summaries[cid][key]['max_demand_kw'])
+            kwh_list.append(analyzer.customer_summaries[cid][key]['total_energy_kwh'])
     
     return kw_list, kwh_list
 
@@ -138,14 +139,15 @@ def linear_regr (cfg, kwh : list, kw : list):
 def method3_transformer_load_management (cfg):
     
     upgrades = cfg["data"]["upgrades"]
+    n_trials = 20
     pf = cfg["electrical"]["power_factor"]
     dataset_dir = cfg["data"]["dataset_dir"]
     
     # These transformer configs. are obtained from method 1:
     transformer_config = [
-        {'kva' : 25.0, 'n_customers': 6},
-        {'kva' : 50.0, 'n_customers': 11},
-        {'kva' : 75.0, 'n_customers': 18}
+        {'kva' : 25.0, 'n_customers': 3},
+        {'kva' : 50.0, 'n_customers': 9},
+        {'kva' : 75.0, 'n_customers': 17}
     ]
 
     all_results = {}
@@ -153,9 +155,6 @@ def method3_transformer_load_management (cfg):
     for config in transformer_config:
         kva = config['kva']
         n_customers = config['n_customers']
-
-        # A monte Carlo simulation - run myltiple trials
-        n_trials = 50
 
         transformer_kwh_list = []
         max_diverisifed_kw_list = []
@@ -175,7 +174,13 @@ def method3_transformer_load_management (cfg):
                 transformer_kva = kva,
                 power_factor = pf
                 )
-            transformer_kwh_list.append(agg_results['load_profiles_data']['Total Electric Energy (kWh)'].sum())
+            # from pprint import pprint as pp
+            # print("\n====\n")
+            # # pp(agg_results)
+            # print(agg_results['load_profiles_data'].columns)
+            # print("="*50)
+            # transformer_kwh_list.append(agg_results['load_profiles_data']['Total Electric Energy (kWh)'].sum())
+            transformer_kwh_list.append(agg_results['load_profiles_data']['Energy Interval (kWh)'].sum())
             max_diverisifed_kw_list.append(agg_results['max_diversified_kw'])
         
 
@@ -228,12 +233,13 @@ def method3_regr (results):
             'kw_mean': kw_mean,
             'kw_std': kw_std,
             'residual_std': residual_std,  # Prediction uncertainty
-            'n_trials': len(kwh_list)
+            'n_trials': len(kwh_list),
+            'kva' : kva
             }
         
         regression_list.append (regression_results[kva])
     
-    write_results (cfg=cfg, method= "method3_regr", results=pd.DataFrame (regression_list))
+    write_results (cfg=cfg, method= "method3_regression", results=pd.DataFrame (regression_list))
 
     return regression_results
             
