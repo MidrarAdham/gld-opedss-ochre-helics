@@ -8,13 +8,19 @@ import load_allocations_api as api
 
 def check_file (method : str):
     file_dir = './results/'
-    for files in os.listdir (file_dir):
-        if method in files:
-            return pd.read_csv (file_dir+files)
-        else:
-            return False
+    input_paths = []
 
-def plot_method1_results (results):
+    for files in os.listdir (file_dir):
+    
+        if method in files:
+            input_paths.append(file_dir+files)
+    
+    if input_paths:
+        return input_paths
+
+def plot_method1_results (filename):
+
+    results = pd.read_csv (filename[0])
     # Use capsize to make the error bars less annoying
     # Maybe remove markers from the DF plot, they are not useful
     df_25 = results[results['kva'] == 25.0]
@@ -61,9 +67,19 @@ def plot_method1_results (results):
     plt.savefig('./method1.png')
     plt.show()
 
-def load_survey_plot (kw, kwh, regr_results):
-    a = regr_results['intercept_a']
-    b = regr_results['slope_b']
+def load_survey_plot (data, regr_results):
+
+    data_df = pd.read_csv (data)
+    regr_df = pd.read_csv (regr_results)
+
+    kwh = data_df['kwh'].to_list()
+    kw = data_df['kw'].to_list()
+
+
+    a = regr_df['intercept_a'].iloc[0]
+    b = regr_df['slope_b'].iloc[0]
+    r_squared = regr_df['r_squared'].iloc[0]
+
 
     kwh_range = np.linspace (min(kwh), max(kwh), 100)
     kw_peak = a + b * kwh_range
@@ -77,38 +93,45 @@ def load_survey_plot (kw, kwh, regr_results):
     plt.legend()
     plt.grid(True, alpha=0.3)
     
-    # Add R² to plot
-    plt.text(0.05, 0.95, f"R² = {regr_results['r_squared']:.3f}", 
+    plt.text(0.05, 0.95, f"R^2 = {r_squared:.3f}", 
              transform=plt.gca().transAxes, fontsize=12, verticalalignment='top')
     
     plt.tight_layout()
     # plt.savefig('./method.png')
     plt.show()
 
-def transformer_load_management_plot (regr_results, data_results):
+def transformer_load_management_plot (data, regr_results):
+    # data_results = pd.read_csv(data)
+    regr_results = pd.read_csv (regr_results)
+
     fig, axes = plt.subplots (1, 3, figsize = (18, 10))
 
-    for idx, kva in enumerate(regr_results):
+    for idx, filename in enumerate(data):
+        
         ax = axes[idx]
 
-        kwh_list = data_results[kva]['transformer_kwh']
-        kw_list = data_results[kva]['max_diversified_kw']
+        df = pd.read_csv (filename)
+        # print(df)
+        # quit()
 
-        a = regr_results[kva]['intercept']
-        b = regr_results[kva]['slope']
-        r2 = regr_results[kva]['r_squared']
-        n_customers = regr_results[kva]['n_customers']
+        kwh_list = df['transformer_kwh'].to_list()
+        kw_list = df['max_diversified_kw'].to_list()
+        kva = df['kva_rating'].iloc[0]
 
-        # Stats:
-        stats = regr_results[kva]['statistics']
-        pred_error = stats['residual_std']
+        regression_full_results = regr_results[regr_results['kva']==kva]
 
-        ax.scatter(kwh_list, kw_list, alpha=0.6, s=50, label='Actual Data')
+        a = regression_full_results['intercept'].iloc[0]
+        b = regression_full_results['slope'].iloc[0]
+        r2 = regression_full_results['r_squared'].iloc[0]
+        n_customers = regression_full_results['n_customers'].iloc[0]
+        pred_error = regression_full_results['residual_std'].iloc[0]
 
-        kwh_range = np.linspace(min(kwh_list), max(kwh_list), 100)
+        ax.scatter (kwh_list, kw_list, alpha=0.6, s=50, label='actual data')
+
+        kwh_range = np.linspace (min(kwh_list), max(kwh_list), 100)
         kw_peak = a + b * kwh_range
 
-        ax.plot(kwh_range, kw_peak, 'r-', linewidth=2, label=f'kW = {a:.2f} + {b:.3f} x kWh')
+        ax.plot (kwh_range, kw_peak, 'r-', linewidth=2, label = f'kW = {a:.2f} + {b:.3f} x kWh')
         ax.fill_between (kwh_range,
                          kw_peak - pred_error,
                          kw_peak + pred_error,
@@ -124,20 +147,20 @@ def transformer_load_management_plot (regr_results, data_results):
 
         stats_text = f"{r"$R^2$"} = {r2:.3f}\n"
         
-        stats_text += f"kWh: {stats['kwh_mean']:.0f} {r"$\pm$"} {stats['kwh_std']:.0f}\n"
-        stats_text += f"kW: {stats['kw_mean']:.1f} {r"$\pm$"} {stats['kw_std']:.1f}"
+        stats_text += f"kWh: {regression_full_results['kwh_mean'].iloc[0]:.0f} {r"$\pm$"} {regression_full_results['kwh_std'].iloc[0]:.0f}\n"
+        stats_text += f"kW: {regression_full_results['kw_mean'].iloc[0]:.1f} {r"$\pm$"} {regression_full_results['kw_std'].iloc[0]:.1f}"
 
 
-        ax.text(0.05, 0.95, stats_text, 
-                transform=ax.transAxes, 
-                fontsize=9, 
-                verticalalignment='top',
-                bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
-        
-    plt.suptitle('Method 3: Transformer Load Management', fontsize=14)
+        # ax.text(0.05, 0.95, [regression_full_results.to_json()[0]],
+        #         transform=ax.transAxes, 
+        #         fontsize=9, 
+        #         verticalalignment='top',
+        #         bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
+    
+    plt.suptitle ('Method 3: Transformer Load Management (TLM)', fontsize=14)
     plt.tight_layout()
-    # plt.savefig('./method3.png')
-    plt.show()
+    plt.show ()
+
 
 def plot_method4_allocation(results):
     """
@@ -247,22 +270,37 @@ def plot_method4_allocation(results):
     # print(f"All transformers within limits: {'YES ✓' if all(u <= 1.0 for u in utilizations) else 'NO ✗'}")
     # print("="*60)
 
-data = check_file (method='method1')
+# regr_results = None
+# data = None
+
+filename = check_file (method='method3')
+
+# for f in filename:
+#     if 'regression' in f:
+#         regr_results = f
+#     else:
+#         data = f
+
 # ================= Diversified Peak Method ==================
-plot_method1_results (results=data)
+# plot_method1_results (filename=filename)
 # ================= Diversified Peak Method ==================
+
 # ------------------------------------------------------------
+
 # ==================== Load Survey Method ====================
-dataset_dir = f"{os.getcwd()}/datasets/cosimulation/"
-# kw, kwh = api.method2_load_survey (dataset_dir=dataset_dir)
-# regr_results = api.linear_regr(kwh= kwh, kw=kw)
-# load_survey_plot (kw=kw, kwh=kwh, regr_results=regr_results)
+# load_survey_plot (data=data, regr_results=regr_results)
 # ==================== Load Survey Method ====================
+
 # ------------------------------------------------------------
+
 # ================ Transformer Load Management ===============
-results = api.method3_transformer_load_management (dataset_dir=dataset_dir)
+# results = api.method3_transformer_load_management (dataset_dir=dataset_dir)
 # regression_res = api.method3_regr (results=results)
-# transformer_load_management_plot (regr_results=regression_res, data_results=results)
+
+data = [data for data in filename if not "regression" in data]
+regr = [data for data in filename if "regression" in data]
+
+transformer_load_management_plot (data = data, regr_results=regr[0])
 # ================ Transformer Load Management ===============
 # ------------------------------------------------------------
 # ================ Metered Feeder Max. Demand ================
