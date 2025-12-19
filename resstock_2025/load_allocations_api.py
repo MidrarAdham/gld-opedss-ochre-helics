@@ -31,7 +31,7 @@ def write_results (cfg, method : str, results : pd.DataFrame):
 def method1_diversity_factor (cfg):
     
     results = []
-    max_buildings = 50
+    max_buildings = cfg["method1"]["max_buildings"]
     upgrades = cfg["data"]["upgrades"]
     n_trials = cfg["method1"]["n_trials"]
     pf = cfg["electrical"]["power_factor"]
@@ -92,7 +92,7 @@ def method2_load_survey (cfg):
     dataset_dir = cfg["data"]["dataset_dir"]
     upgrades = cfg["data"]["upgrades"]
 
-    n_buildings = 10
+    n_buildings = cfg["method2"]["max_buildings"]
 
     kw_list = []
     kwh_list = []
@@ -139,7 +139,7 @@ def linear_regr (cfg, kwh : list, kw : list):
 def method3_transformer_load_management (cfg):
     
     upgrades = cfg["data"]["upgrades"]
-    n_trials = 20
+    n_trials = cfg["method3"]["n_trials"]
     pf = cfg["electrical"]["power_factor"]
     dataset_dir = cfg["data"]["dataset_dir"]
     
@@ -243,99 +243,101 @@ def method3_regr (results):
 
     return regression_results
             
+def _build_transformer_list(n_total_customers: int, transformer_capacity: dict[float, int]) -> list:
+    """
+    Greedy sizing as per kersting: as many 75 kvas as possible, then 50s, then 25s.
+    transformer_capacity maps kVA -> customers_supported (from your Method 1 results).
+    """
+    remaining = n_total_customers
+    t_list = []
+    idx = 1
+
+    for kva in (75.0, 50.0, 25.0):
+        cap = transformer_capacity[kva]
+        while remaining >= cap:
+            t_list.append({"kva": kva, "id": f"T{idx}_{int(kva)}kVA"})
+            idx += 1
+            remaining -= cap
+
+    # if anything remains (because capacities are coarse), add one 25kVA to cover the remainder
+    if remaining > 0:
+        t_list.append({"kva": 25.0, "id": f"T{idx}_25kVA"})
+
+    return t_list
+
+
 def method4_metered_feeder_max_demand(cfg):
-    """
-    Method 4: Allocate load based on metered feeder demand. Ch. 2.4.1.4
-    
-    Steps:
-    1. Simulate metered demand (aggregate all customers)
-    2. Determine transformer configuration needed
-    3. Apply allocation factor to distribute load
-    """
-    dataset_dir = cfg["data"]["dataset_dir"]
     upgrades = cfg["data"]["upgrades"]
     pf = cfg["electrical"]["power_factor"]
-    n_total_customers = 300
-    # Transformer capacity from Method 1
-    
-    transformer_capacity = {
-        25.0: 6,   # 25 kVA can handle 6 customers
-        50.0: 11,  # 50 kVA can handle 11 customers
-        75.0: 18   # 75 kVA can handle 18 customers
-    }
-    
-    # simulate substation meter:
-    
-    analyzer = LoadProfiles(
-        n_buildings = n_total_customers,
-        dataset_dir = dataset_dir,
-        upgrades = upgrades,
-        randomized=True
-    )
-    analyzer.run()
-    
-    agg_results = analyzer.aggregate_customers_load_calculations(
-        customer_ids=analyzer.load_profiles,
-        transformer_kva=1000,  # Dummy value, we just need max diversified demand
-        power_factor = pf
-    )
-    
-    metered_demand_kw = agg_results['max_diversified_kw']
-    
-    
-    # Determine how many transformers needed
-    
-    # Interesting, Kersting says use as many 75 kVA as possible, then 50 kVA, then 25 kVA
-    remaining_customers = n_total_customers
-    transformer_list = []
-    
-    # Add 75 kVA transformers
-    while remaining_customers >= transformer_capacity[75.0]:
-        transformer_list.append({'kva': 75.0, 'id': f'T{len(transformer_list)+1}_75kVA'})
-        remaining_customers -= transformer_capacity[75.0]
-    
-    # Add 50 kVA transformers
-    while remaining_customers >= transformer_capacity[50.0]:
-        transformer_list.append({'kva': 50.0, 'id': f'T{len(transformer_list)+1}_50kVA'})
-        remaining_customers -= transformer_capacity[50.0]
-    
-    # Add 25 kVA transformers
-    while remaining_customers > 0:
-        transformer_list.append({'kva': 25.0, 'id': f'T{len(transformer_list)+1}_25kVA'})
-        remaining_customers -= min(remaining_customers, transformer_capacity[25.0])
-    
-    
-    # Calculate total transformer kVA
-    total_transformer_kva = sum(t['kva'] for t in transformer_list)
-    
-    # Calculate allocation factor (Kersting Eq 2.11)
-    allocation_factor = metered_demand_kw / total_transformer_kva
-    
-    # Allocate load to each transformer (Kersting Eq 2.12)
-    allocation_results = []
-    for transformer in transformer_list:
-        allocated_kw = allocation_factor * transformer['kva']
-        utilization = allocated_kw / (transformer['kva'] * pf)  # Convert to kVA and get utilization
+    dataset_dir = cfg["data"]["dataset_dir"]
+    n_trials = cfg["method4"]["n_trials"]
+    n_total_customers = cfg["method4"]["n_total_customers"]
+
+    transformer_capacity = {25.0: 3, 50.0: 9, 75.0: 17}
+
+    transformer_list = _build_transformer_list(n_total_customers, transformer_capacity)
+    total_transformer_kva = sum(t["kva"] for t in transformer_list)
+
+    trial_rows = []
+    for trial in range(n_trials):
+        analyzer = LoadProfiles(
+            n_buildings=n_total_customers,
+            dataset_dir=dataset_dir,
+            upgrades=upgrades,
+            randomized=True
+        )
+        analyzer.run()
+
+        agg_results = analyzer.aggregate_customers_load_calculations(
+            customer_ids=analyzer.load_profiles,
+            transformer_kva=total_transformer_kva,
+            power_factor=pf
+        )
         
-        allocation_results.append({
-            'transformer_id': transformer['id'],
-            'kva_rating': transformer['kva'],
-            'allocated_kw': allocated_kw,
-            'allocated_kva': allocated_kw / pf,
-            'utilization_factor': utilization
+        # max diversified demand = metered demand; just going of Kersting terminology
+        metered_demand_kw = agg_results["max_diversified_kw"]
+        allocation_factor = metered_demand_kw / total_transformer_kva
+        utilization_system = allocation_factor / pf
+
+        trial_rows.append({
+            "trial": trial,
+            "n_total_customers": n_total_customers,
+            "metered_demand_kw": metered_demand_kw,
+            "total_transformer_kva": total_transformer_kva,
+            "allocation_factor_kw_per_kva": allocation_factor,
+            "utilization_factor": utilization_system,
+            "utilization_factor_check": agg_results["utilization_factor"],  # should match
+            "n_75kva": sum(1 for t in transformer_list if t["kva"] == 75.0),
+            "n_50kva": sum(1 for t in transformer_list if t["kva"] == 50.0),
+            "n_25kva": sum(1 for t in transformer_list if t["kva"] == 25.0),
         })
-    
-    summary_data = {
-        'metered_demand_kw': metered_demand_kw,
-        'total_customers': n_total_customers,
-        'allocation_factor': allocation_factor,
-        'total_transformer_kva': total_transformer_kva,
-        'n_transformers_25kva': sum(1 for t in transformer_list if t['kva'] == 25.0),
-        'n_transformers_50kva': sum(1 for t in transformer_list if t['kva'] == 50.0),
-        'n_transformers_75kva': sum(1 for t in transformer_list if t['kva'] == 75.0)
-    }
-    write_results (cfg=cfg, method= "method4_allocation_results", results = pd.DataFrame(allocation_results))
-    write_results (cfg=cfg, method= "method4_summary", results = pd.DataFrame ([summary_data]))
+
+    df_trials = pd.DataFrame(trial_rows)
+    write_results(cfg=cfg, method="method4_trials", results=df_trials)
+
+    # Summary stats
+    s = df_trials["metered_demand_kw"]
+    u = df_trials["utilization_factor"]
+    df_summary = pd.DataFrame([{
+        "n_trials": n_trials,
+        "n_total_customers": n_total_customers,
+        "total_transformer_kva": total_transformer_kva,
+        "metered_kw_mean": s.mean(),
+        "metered_kw_std": s.std(ddof=1),
+        "metered_kw_p50": s.quantile(0.50),
+        "metered_kw_p90": s.quantile(0.90),
+        "metered_kw_p95": s.quantile(0.95),
+        "metered_kw_p99": s.quantile(0.99),
+        "util_mean": u.mean(),
+        "util_std": u.std(ddof=1),
+        "util_p95": u.quantile(0.95),
+        "util_p99": u.quantile(0.99),
+    }])
+
+    write_results(cfg=cfg, method="method4_summary", results=df_summary)
+    return df_trials, df_summary
+
+
 
 
 # Second step is to add decorators. Above any function, add a an argument (if needed) and a command

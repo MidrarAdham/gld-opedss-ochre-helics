@@ -161,8 +161,12 @@ def transformer_load_management_plot (data, regr_results):
     plt.tight_layout()
     plt.show ()
 
+def add_vlines(ax, x_mean, x_p95):
+    ax.axvline(x_mean, linewidth=2, label=f"mean = {x_mean:.2f}")
+    ax.axvline(x_p95, linewidth=2, linestyle="--", label=f"p95 = {x_p95:.2f}")
+    ax.legend()
 
-def plot_method4_allocation(results):
+def plot_method4_allocation(data, stat):
     """
     Visualize Method 4: Metered Feeder Allocation
     
@@ -171,89 +175,126 @@ def plot_method4_allocation(results):
     2. Utilization factors
     3. Summary statistics
     """
-    import matplotlib.pyplot as plt
-    import numpy as np
-    
-    allocations = results['transformer_allocations']
-    
-    # Extract data
-    transformer_ids = [a['transformer_id'] for a in allocations]
-    kva_ratings = [a['kva_rating'] for a in allocations]
-    allocated_kw = [a['allocated_kw'] for a in allocations]
-    utilizations = [a['utilization_factor'] for a in allocations]
-    
-    # Create figure with two subplots
-    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(14, 10))
-    
-    # ============================================================
-    # Plot 1: Allocated Load per Transformer
-    # ============================================================
-    
-    # Color by transformer size
-    colors = ['lightcoral' if kva == 25.0 else 'lightblue' if kva == 50.0 else 'lightgreen' 
-              for kva in kva_ratings]
-    
-    bars1 = ax1.bar(range(len(transformer_ids)), allocated_kw, color=colors, 
-                    edgecolor='black', linewidth=1.5, alpha=0.8)
-    
-    ax1.set_xlabel('Transformer', fontsize=12, fontweight='bold')
-    ax1.set_ylabel('Allocated Load (kW)', fontsize=12, fontweight='bold')
-    ax1.set_title(f'Method 4: Load Allocation ({results["n_transformers"]} Transformers, '
-                  f'{results["total_customers"]} Customers)\n'
-                  f'Metered Demand: {results["metered_demand_kw"]:.2f} kW | '
-                  f'Allocation Factor: {results["allocation_factor"]:.4f}',
-                  fontsize=13, fontweight='bold', pad=20)
-    ax1.set_xticks(range(len(transformer_ids)))
-    ax1.set_xticklabels(transformer_ids, rotation=45, ha='right', fontsize=9)
-    ax1.grid(axis='y', alpha=0.3)
-    
-    # Add value labels on bars
-    for i, (bar, kw) in enumerate(zip(bars1, allocated_kw)):
-        height = bar.get_height()
-        ax1.text(bar.get_x() + bar.get_width()/2., height,
-                f'{kw:.1f}',
-                ha='center', va='bottom', fontsize=8)
-    
-    # Legend for colors
-    from matplotlib.patches import Patch
-    legend_elements = [
-        Patch(facecolor='lightgreen', edgecolor='black', label='75 kVA'),
-        Patch(facecolor='lightblue', edgecolor='black', label='50 kVA'),
-        Patch(facecolor='lightcoral', edgecolor='black', label='25 kVA')
-    ]
-    ax1.legend(handles=legend_elements, loc='upper right', fontsize=10)
-    
-    # ============================================================
-    # Plot 2: Utilization Factors
-    # ============================================================
-    
-    bars2 = ax2.bar(range(len(transformer_ids)), 
-                    [u * 100 for u in utilizations],  # Convert to percentage
-                    color=colors, edgecolor='black', linewidth=1.5, alpha=0.8)
-    
-    # Add 100% reference line
-    ax2.axhline(y=100, color='red', linestyle='--', linewidth=2, 
-                label='100% Utilization Limit', zorder=5)
-    
-    ax2.set_xlabel('Transformer', fontsize=12, fontweight='bold')
-    ax2.set_ylabel('Utilization Factor (%)', fontsize=12, fontweight='bold')
-    ax2.set_title('Transformer Utilization Factors', fontsize=13, fontweight='bold')
-    ax2.set_xticks(range(len(transformer_ids)))
-    ax2.set_xticklabels(transformer_ids, rotation=45, ha='right', fontsize=9)
-    ax2.set_ylim([0, max(110, max([u*100 for u in utilizations]) + 10)])
-    ax2.grid(axis='y', alpha=0.3)
-    ax2.legend(loc='upper right', fontsize=10)
-    
-    # Add value labels on bars
-    for bar, util in zip(bars2, utilizations):
-        height = bar.get_height()
-        ax2.text(bar.get_x() + bar.get_width()/2., height,
-                f'{util*100:.1f}%',
-                ha='center', va='bottom', fontsize=8)
-    
+    stat = pd.read_csv (stat)
+    data = pd.read_csv (data)
+    # print(data.columns)
+    # print("="*50)
+    # print(stat.columns)
+
+    plt.figure()
+    # max diversified demand = metered demand; just going of Kersting terminology
+    metered_demand = stat['metered_demand_kw'].to_numpy()
+    uf = stat['utilization_factor'].to_numpy()
+
+    metered_mean = float(np.mean(metered_demand))
+    metered_p95 = float(np.quantile(metered_demand, 0.95))
+    uf_mean = float(np.mean(uf))
+    uf_p95 = float(np.quantile(uf, 0.95))
+
+    sns.histplot (data=stat, x=metered_demand, discrete=True)
+    plt.grid(True)
+    plt.title(f"Method 4: Metered Feeder Peak (kW)")
+    plt.xlabel("metered_demand_kw (kW)")
+    plt.ylabel("count")
+    add_vlines(ax = plt.gca(), x_mean=metered_mean, x_p95=metered_p95)
     plt.tight_layout()
-    plt.savefig('./method4.png')
+
+    # UF vs diversified demand:
+
+    plt.figure ()
+    plt.scatter (metered_demand, uf)
+    plt.grid (True)
+
+    if len(stat) >=2:
+        m, b = np.polyfit (metered_demand, uf, 1)
+        xs = np.array([metered_demand.min(), metered_demand.max()])
+        ys = m * xs + b
+        plt.plot (xs, ys, linewidth=2, label=f"fit: UF = {m:.4f}*kW + {b:.3f}")
+        plt.legend ()
+    
+    plt.tight_layout ()
     plt.show()
+
+    # allocations = results['transformer_allocations']
+    
+    # # Extract data
+    # transformer_ids = [a['transformer_id'] for a in allocations]
+    # kva_ratings = [a['kva_rating'] for a in allocations]
+    # allocated_kw = [a['allocated_kw'] for a in allocations]
+    # utilizations = [a['utilization_factor'] for a in allocations]
+    
+    # # Create figure with two subplots
+    # fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(14, 10))
+    
+    # # ============================================================
+    # # Plot 1: Allocated Load per Transformer
+    # # ============================================================
+    
+    # # Color by transformer size
+    # colors = ['lightcoral' if kva == 25.0 else 'lightblue' if kva == 50.0 else 'lightgreen' 
+    #           for kva in kva_ratings]
+    
+    # bars1 = ax1.bar(range(len(transformer_ids)), allocated_kw, color=colors, 
+    #                 edgecolor='black', linewidth=1.5, alpha=0.8)
+    
+    # ax1.set_xlabel('Transformer', fontsize=12, fontweight='bold')
+    # ax1.set_ylabel('Allocated Load (kW)', fontsize=12, fontweight='bold')
+    # ax1.set_title(f'Method 4: Load Allocation ({results["n_transformers"]} Transformers, '
+    #               f'{results["total_customers"]} Customers)\n'
+    #               f'Metered Demand: {results["metered_demand_kw"]:.2f} kW | '
+    #               f'Allocation Factor: {results["allocation_factor"]:.4f}',
+    #               fontsize=13, fontweight='bold', pad=20)
+    # ax1.set_xticks(range(len(transformer_ids)))
+    # ax1.set_xticklabels(transformer_ids, rotation=45, ha='right', fontsize=9)
+    # ax1.grid(axis='y', alpha=0.3)
+    
+    # # Add value labels on bars
+    # for i, (bar, kw) in enumerate(zip(bars1, allocated_kw)):
+    #     height = bar.get_height()
+    #     ax1.text(bar.get_x() + bar.get_width()/2., height,
+    #             f'{kw:.1f}',
+    #             ha='center', va='bottom', fontsize=8)
+    
+    # # Legend for colors
+    # from matplotlib.patches import Patch
+    # legend_elements = [
+    #     Patch(facecolor='lightgreen', edgecolor='black', label='75 kVA'),
+    #     Patch(facecolor='lightblue', edgecolor='black', label='50 kVA'),
+    #     Patch(facecolor='lightcoral', edgecolor='black', label='25 kVA')
+    # ]
+    # ax1.legend(handles=legend_elements, loc='upper right', fontsize=10)
+    
+    # # ============================================================
+    # # Plot 2: Utilization Factors
+    # # ============================================================
+    
+    # bars2 = ax2.bar(range(len(transformer_ids)), 
+    #                 [u * 100 for u in utilizations],  # Convert to percentage
+    #                 color=colors, edgecolor='black', linewidth=1.5, alpha=0.8)
+    
+    # # Add 100% reference line
+    # ax2.axhline(y=100, color='red', linestyle='--', linewidth=2, 
+    #             label='100% Utilization Limit', zorder=5)
+    
+    # ax2.set_xlabel('Transformer', fontsize=12, fontweight='bold')
+    # ax2.set_ylabel('Utilization Factor (%)', fontsize=12, fontweight='bold')
+    # ax2.set_title('Transformer Utilization Factors', fontsize=13, fontweight='bold')
+    # ax2.set_xticks(range(len(transformer_ids)))
+    # ax2.set_xticklabels(transformer_ids, rotation=45, ha='right', fontsize=9)
+    # ax2.set_ylim([0, max(110, max([u*100 for u in utilizations]) + 10)])
+    # ax2.grid(axis='y', alpha=0.3)
+    # ax2.legend(loc='upper right', fontsize=10)
+    
+    # # Add value labels on bars
+    # for bar, util in zip(bars2, utilizations):
+    #     height = bar.get_height()
+    #     ax2.text(bar.get_x() + bar.get_width()/2., height,
+    #             f'{util*100:.1f}%',
+    #             ha='center', va='bottom', fontsize=8)
+    
+    # plt.tight_layout()
+    # plt.savefig('./method4.png')
+    # plt.show()
     
     # ============================================================
     # Print Summary Statistics
@@ -273,7 +314,7 @@ def plot_method4_allocation(results):
 # regr_results = None
 # data = None
 
-filename = check_file (method='method3')
+filename = check_file (method='method4')
 
 # for f in filename:
 #     if 'regression' in f:
@@ -294,15 +335,14 @@ filename = check_file (method='method3')
 # ------------------------------------------------------------
 
 # ================ Transformer Load Management ===============
-# results = api.method3_transformer_load_management (dataset_dir=dataset_dir)
-# regression_res = api.method3_regr (results=results)
 
-data = [data for data in filename if not "regression" in data]
-regr = [data for data in filename if "regression" in data]
+# data = [data for data in filename if not "regression" in data]
+# regr = [data for data in filename if "regression" in data]
 
-transformer_load_management_plot (data = data, regr_results=regr[0])
+# transformer_load_management_plot (data = data, regr_results=regr[0])
 # ================ Transformer Load Management ===============
 # ------------------------------------------------------------
 # ================ Metered Feeder Max. Demand ================
-# results = api.method4_metered_feeder_max_demand(dataset_dir=dataset_dir, n_total_customers=300)
-# plot_method4_allocation (results=results)
+data = [data for data in filename if not "trials" in data]
+stat = [data for data in filename if not "summary" in data]
+plot_method4_allocation (data=data[0], stat=stat[0])
