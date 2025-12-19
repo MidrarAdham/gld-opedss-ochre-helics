@@ -422,7 +422,7 @@ class LoadProfiles:
 
     def aggregate_customers_load_calculations (self,
                                                customer_ids: list[str] | None = None,
-                                               transformer_kva: float = 50.0,
+                                               transformer_kva: float | None = None,
                                                power_factor: float = 0.9
                                                ):
         """

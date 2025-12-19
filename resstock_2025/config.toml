@@ -33,7 +33,6 @@ power_factor = 0.9
 
 # Parameters for each method (See Kerstings: Ch. 2 Nature of Loads):
 [method1]
-enabled = true
 
 # Which transformer sizes we need to evaluate:
 transformer_kva_list = [25.0, 50.0, 75.0]
@@ -42,8 +41,32 @@ transformer_kva_list = [25.0, 50.0, 75.0]
 power_factor = 0.9
 
 # Monte Carlo Settings:
-n_trials = 5
+n_trials = 20
 random_seed = 123
+
+# How many buildings to process per a single monte carlo trial?
+max_buildings = 50
+
+# Parameters for the second method - Load Survey
+[method2]
+
+# Get the number of buildings to simulated in the load survey method
+n_buildings = 10
+
+# Parameters for the third method - transformer load management
+[method3]
+
+# Monte Carlo Settings:
+n_trials = 20
+
+# Parameters for the fourth method - metered feeder max. demand:
+[method4]
+
+# How many customers does the feeder sees?
+n_total_customers = 300
+
+# Monte carlo parameters:
+n_trials = 20
 
 # Results file format:
 [storage]
