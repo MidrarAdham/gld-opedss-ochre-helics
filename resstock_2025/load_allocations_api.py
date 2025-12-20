@@ -256,18 +256,23 @@ def _choose_transformer_mix (required_kva:float, sizes=(25.0, 50.0, 75.0)):
     s25, s50, s75 = sizes # rated kva for each transformer
     best = None
 
-    # The maximum allowable kVA for each transformer (the worst case)
+    # The maximum allowable number of customers for each transformer (the worst case)
     max_n25 = int(np.ceil (required_kva/s25)) + 2
     max_n50 = int(np.ceil (required_kva/s50)) + 2
     max_n75 = int(np.ceil (required_kva/s75)) + 2
+    print(max_n25)
+    print(max_n50)
+    print(max_n75)
 
     for n75 in range (max_n75 + 1):
         for n50 in range(max_n50 + 1):
             for n25 in range (max_n25 + 1):
                 installed = n25*s25 + n50*s50 + n75*s75
+
                 if installed < required_kva:
                     continue
                 overbuild = installed - required_kva
+                # print('installed: ', installed, 'required kVA: ', required_kva, 'overbuild? ', overbuild)
                 n_total = n25 + n50 + n75
                 candidate = (overbuild, n_total, n75, n50, n25, installed)
                 if best is None or candidate < best:
