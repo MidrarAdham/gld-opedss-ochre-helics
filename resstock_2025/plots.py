@@ -257,230 +257,197 @@ def transformer_load_management_plot (data, regr_results):
 #     plt.savefig('./method4.png', dpi=300, bbox_inches='tight')
 #     plt.show()
 
-def plot_method4_allocation(plan_file, allocation_file, summary_file):
+def plot_method4_allocation(trials_file, clusters_file):
     """
-    Plot Method 4: Metered Feeder Allocation with Cost Optimization
+    Plot Method 4: Cluster-Based Transformer Sizing
     
     Args:
-        plan_file: path to method4_transformer_plan.csv
-        allocation_file: path to method4_allocation_results.csv
-        summary_file: path to method4_summary.csv
+        trials_file: path to method4_cluster_trials.csv
+        clusters_file: path to method4_cluster_assignments.csv
     """
     
     # Load data
-    plan_df = pd.read_csv(plan_file)
-    allocation_df = pd.read_csv(allocation_file)
-    summary_df = pd.read_csv(summary_file)
+    trials_df = pd.read_csv(trials_file)
+    clusters_df = pd.read_csv(clusters_file)
     
-    # Create figure with 5 subplots
-    fig = plt.figure(figsize=(18, 14))
+    # Create figure with 6 subplots
+    fig = plt.figure(figsize=(18, 16))
     gs = fig.add_gridspec(3, 2, hspace=0.35, wspace=0.3)
     
-    ax1 = fig.add_subplot(gs[0, 0])  # Top left - Pie chart
-    ax2 = fig.add_subplot(gs[0, 1])  # Top right - Capacity
-    ax3 = fig.add_subplot(gs[1, 0])  # Middle left - Cost breakdown
-    ax4 = fig.add_subplot(gs[1, 1])  # Middle right - Optimization metrics
-    ax5 = fig.add_subplot(gs[2, :])  # Bottom - Allocations
+    ax1 = fig.add_subplot(gs[0, 0])  # Transformer mix distribution
+    ax2 = fig.add_subplot(gs[0, 1])  # Cluster size distribution
+    ax3 = fig.add_subplot(gs[1, 0])  # Installed capacity per trial
+    ax4 = fig.add_subplot(gs[1, 1])  # Number of transformers per trial
+    ax5 = fig.add_subplot(gs[2, 0])  # Cluster peak vs size (scatter)
+    ax6 = fig.add_subplot(gs[2, 1])  # Transformer choice by cluster size
     
-    # Extract key values
-    n_25 = plan_df['n_25kva'].iloc[0]
-    n_50 = plan_df['n_50kva'].iloc[0]
-    n_75 = plan_df['n_75kva'].iloc[0]
-    
-    required_kva = plan_df['required_installed_kva'].iloc[0]
-    installed_kva = plan_df['installed_kva'].iloc[0]
-    overbuild_kva = plan_df['overbuild_kva'].iloc[0]
-    proxy_cost = plan_df['proxy_cost'].iloc[0]
-    metered_kw = plan_df['metered_demand_kw'].iloc[0]
-    pf = plan_df['pf'].iloc[0]
-    uf_target = plan_df['uf_target'].iloc[0]
-    
-    # Parse weights from string if needed
-    weights_str = plan_df['weights'].iloc[0]
-    if isinstance(weights_str, str):
-        import ast
-        weights = ast.literal_eval(weights_str)
-    else:
-        weights = {25.0: 1.0, 50.0: 2.2, 75.0: 3.6}  # Default
+    # Get summary statistics
+    mean_n25 = trials_df['n_25kva'].mean()
+    mean_n50 = trials_df['n_50kva'].mean()
+    mean_n75 = trials_df['n_75kva'].mean()
+    mean_installed = trials_df['installed_kva_total'].mean()
+    mean_clusters = trials_df['n_clusters'].mean()
+    n_customers = trials_df['n_total_customers'].iloc[0]
+    cluster_min = trials_df['cluster_min'].iloc[0]
+    cluster_max = trials_df['cluster_max'].iloc[0]
     
     # ============================================================
-    # Plot 1: Transformer Mix (Pie Chart)
+    # Plot 1: Average Transformer Mix (Pie Chart)
     # ============================================================
     
-    sizes = [n_25, n_50, n_75]
-    labels = [f'{n_25}× 25 kVA', f'{n_50}× 50 kVA', f'{n_75}× 75 kVA']
+    sizes = [mean_n25, mean_n50, mean_n75]
+    labels = [f'25 kVA\n(avg: {mean_n25:.1f})', 
+              f'50 kVA\n(avg: {mean_n50:.1f})', 
+              f'75 kVA\n(avg: {mean_n75:.1f})']
     colors = ['lightcoral', 'lightblue', 'lightgreen']
-    explode = (0.05, 0.05, 0.05)
     
-    # Only plot non-zero values
+    # Filter non-zero
     non_zero_sizes = [s for s in sizes if s > 0]
     non_zero_labels = [l for l, s in zip(labels, sizes) if s > 0]
     non_zero_colors = [c for c, s in zip(colors, sizes) if s > 0]
-    non_zero_explode = [e for e, s in zip(explode, sizes) if s > 0]
     
     ax1.pie(non_zero_sizes, labels=non_zero_labels, colors=non_zero_colors,
-            autopct='%1.1f%%', explode=non_zero_explode, shadow=True, startangle=90)
-    ax1.set_title(f'Transformer Mix\n(Total: {n_25 + n_50 + n_75} transformers)', 
+            autopct='%1.1f%%', shadow=True, startangle=90)
+    ax1.set_title(f'Average Transformer Mix\n(Avg: {mean_n25+mean_n50+mean_n75:.1f} transformers)', 
                   fontweight='bold', fontsize=11)
     
     # ============================================================
-    # Plot 2: Capacity Overview (Bar Chart)
+    # Plot 2: Cluster Size Distribution (Histogram)
     # ============================================================
     
-    categories = ['Required\nkVA', 'Installed\nkVA']
-    values = [required_kva, installed_kva]
-    colors_bar = ['orange', 'green']
-    
-    bars = ax2.bar(categories, values, color=colors_bar, edgecolor='black', 
-                   linewidth=2, alpha=0.7)
-    
-    for bar, val in zip(bars, values):
-        height = bar.get_height()
-        ax2.text(bar.get_x() + bar.get_width()/2., height,
-                f'{val:.1f} kVA',
-                ha='center', va='bottom', fontweight='bold', fontsize=10)
-    
-    ax2.text(1, installed_kva * 0.5, 
-             f'Overbuild:\n{overbuild_kva:.1f} kVA\n({overbuild_kva/required_kva*100:.1f}%)',
-             ha='center', va='center', fontsize=9,
-             bbox=dict(boxstyle='round', facecolor='yellow', alpha=0.7))
-    
-    ax2.set_ylabel('Capacity (kVA)', fontweight='bold', fontsize=10)
-    ax2.set_title('Capacity Planning', fontweight='bold', fontsize=11)
+    ax2.hist(clusters_df['cluster_size_houses'], bins=range(cluster_min, cluster_max+2),
+             edgecolor='black', alpha=0.7, color='steelblue', align='left')
+    ax2.set_xlabel('Houses per Cluster', fontweight='bold')
+    ax2.set_ylabel('Frequency', fontweight='bold')
+    ax2.set_title(f'Cluster Size Distribution\n(Range: {cluster_min}-{cluster_max} houses)', 
+                  fontweight='bold', fontsize=11)
+    ax2.set_xticks(range(cluster_min, cluster_max+1))
     ax2.grid(axis='y', alpha=0.3)
     
     # ============================================================
-    # Plot 3: Cost Breakdown (Stacked Bar)
+    # Plot 3: Installed Capacity per Trial (Box + Violin)
     # ============================================================
     
-    cost_25 = n_25 * weights[25.0]
-    cost_50 = n_50 * weights[50.0]
-    cost_75 = n_75 * weights[75.0]
+    parts = ax3.violinplot([trials_df['installed_kva_total']], positions=[1],
+                           showmeans=True, showmedians=True)
     
-    ax3.bar('Total', cost_25, color='lightcoral', label='25 kVA', edgecolor='black')
-    ax3.bar('Total', cost_50, bottom=cost_25, color='lightblue', label='50 kVA', edgecolor='black')
-    ax3.bar('Total', cost_75, bottom=cost_25+cost_50, color='lightgreen', label='75 kVA', edgecolor='black')
-    
-    ax3.set_ylabel('Proxy Cost (weighted units)', fontweight='bold', fontsize=10)
-    ax3.set_title(f'Cost Breakdown\nTotal Proxy Cost: {proxy_cost:.2f}', 
+    ax3.axhline(mean_installed, color='red', linestyle='--', linewidth=2,
+                label=f'Mean: {mean_installed:.1f} kVA')
+    ax3.set_ylabel('Installed Capacity (kVA)', fontweight='bold')
+    ax3.set_title(f'Installed Capacity Distribution\nAcross {len(trials_df)} Trials', 
                   fontweight='bold', fontsize=11)
-    ax3.legend(loc='upper right', fontsize=9)
-    ax3.set_ylim([0, proxy_cost * 1.1])
-    
-    # Add cost weights as text
-    weights_text = f"Weights:\n25 kVA: {weights[25.0]:.1f}\n50 kVA: {weights[50.0]:.1f}\n75 kVA: {weights[75.0]:.1f}"
-    ax3.text(0.5, proxy_cost * 0.5, weights_text,
-             ha='center', va='center', fontsize=9,
-             bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.7))
+    ax3.set_xticks([1])
+    ax3.set_xticklabels(['All Trials'])
+    ax3.legend()
+    ax3.grid(axis='y', alpha=0.3)
     
     # ============================================================
-    # Plot 4: Optimization Metrics (Table-style)
+    # Plot 4: Number of Transformers per Trial (Stacked Bar)
     # ============================================================
     
-    ax4.axis('off')
+    trial_nums = trials_df['trial']
     
-    metrics_data = [
-        ['Metric', 'Value'],
-        ['Metered Demand', f'{metered_kw:.2f} kW'],
-        ['Feeder Peak', f'{metered_kw/pf:.2f} kVA'],
-        ['Target Utilization', f'{uf_target*100:.0f}%'],
-        ['Required Capacity', f'{required_kva:.2f} kVA'],
-        ['Installed Capacity', f'{installed_kva:.2f} kVA'],
-        ['Overbuild', f'{overbuild_kva:.2f} kVA ({overbuild_kva/required_kva*100:.1f}%)'],
-        ['Proxy Cost', f'{proxy_cost:.2f}'],
-        ['Total Transformers', f'{n_25 + n_50 + n_75}'],
-        ['Actual Utilization', f'{(metered_kw/pf)/installed_kva*100:.1f}%']
-    ]
+    ax4.bar(trial_nums, trials_df['n_25kva'], color='lightcoral', 
+            label='25 kVA', edgecolor='black')
+    ax4.bar(trial_nums, trials_df['n_50kva'], 
+            bottom=trials_df['n_25kva'],
+            color='lightblue', label='50 kVA', edgecolor='black')
+    ax4.bar(trial_nums, trials_df['n_75kva'], 
+            bottom=trials_df['n_25kva'] + trials_df['n_50kva'],
+            color='lightgreen', label='75 kVA', edgecolor='black')
     
-    table = ax4.table(cellText=metrics_data, cellLoc='left', loc='center',
-                     colWidths=[0.5, 0.5])
-    table.auto_set_font_size(False)
-    table.set_fontsize(9)
-    table.scale(1, 2)
-    
-    # Style header row
-    for i in range(2):
-        table[(0, i)].set_facecolor('#4472C4')
-        table[(0, i)].set_text_props(weight='bold', color='white')
-    
-    # Alternate row colors
-    for i in range(1, len(metrics_data)):
-        for j in range(2):
-            if i % 2 == 0:
-                table[(i, j)].set_facecolor('#E7E6E6')
-    
-    ax4.set_title('Optimization Metrics', fontweight='bold', fontsize=11, pad=20)
+    ax4.set_xlabel('Trial Number', fontweight='bold')
+    ax4.set_ylabel('Number of Transformers', fontweight='bold')
+    ax4.set_title('Transformer Count by Trial', fontweight='bold', fontsize=11)
+    ax4.legend()
+    ax4.grid(axis='y', alpha=0.3)
     
     # ============================================================
-    # Plot 5: Individual Transformer Allocations
+    # Plot 5: Cluster Peak vs Cluster Size (Scatter)
     # ============================================================
     
-    transformer_ids = allocation_df['transformer_id'].tolist()
-    allocated_kw = allocation_df['allocated_kw'].tolist()
-    utilizations = allocation_df['utilization_factor'].tolist()
-    kva_ratings = allocation_df['kva_rating'].tolist()
+    ax5.scatter(clusters_df['cluster_size_houses'], 
+                clusters_df['cluster_peak_kw'],
+                alpha=0.5, s=30, c='steelblue')
     
-    bar_colors = ['lightcoral' if kva == 25.0 else 'lightblue' if kva == 50.0 else 'lightgreen' 
-                  for kva in kva_ratings]
+    ax5.set_xlabel('Cluster Size (houses)', fontweight='bold')
+    ax5.set_ylabel('Cluster Peak Demand (kW)', fontweight='bold')
+    ax5.set_title('Peak Demand vs Cluster Size', fontweight='bold', fontsize=11)
+    ax5.grid(True, alpha=0.3)
     
-    bars5 = ax5.bar(range(len(transformer_ids)), allocated_kw, color=bar_colors,
-                    edgecolor='black', linewidth=1.5, alpha=0.8)
+    # Add trend line
+    from scipy import stats as sp_stats
+    slope, intercept, r_value, _, _ = sp_stats.linregress(
+        clusters_df['cluster_size_houses'], 
+        clusters_df['cluster_peak_kw']
+    )
+    x_line = np.array([cluster_min, cluster_max])
+    y_line = slope * x_line + intercept
+    ax5.plot(x_line, y_line, 'r--', linewidth=2, 
+             label=f'Trend: y={slope:.2f}x+{intercept:.2f}')
+    ax5.legend()
     
-    ax5.set_xlabel('Transformer', fontweight='bold', fontsize=10)
-    ax5.set_ylabel('Allocated Load (kW)', fontweight='bold', fontsize=10)
-    ax5.set_title(f'Load Allocation per Transformer | '
-                  f'Allocation Factor: {metered_kw/installed_kva:.4f} kW/kVA',
-                  fontweight='bold', fontsize=11)
-    ax5.set_xticks(range(len(transformer_ids)))
-    ax5.set_xticklabels(transformer_ids, rotation=45, ha='right', fontsize=7)
-    ax5.grid(axis='y', alpha=0.3)
+    # ============================================================
+    # Plot 6: Transformer Choice by Cluster Size (Stacked Bar)
+    # ============================================================
     
-    # Add utilization labels
-    for i, (bar, util) in enumerate(zip(bars5, utilizations)):
-        height = bar.get_height()
-        color = 'green' if util <= 1.0 else 'red'
-        ax5.text(bar.get_x() + bar.get_width()/2., height,
-                f'{util*100:.0f}%',
-                ha='center', va='bottom', fontsize=6, color=color, fontweight='bold')
+    # Count transformer choices by cluster size
+    choice_data = []
+    for size in range(cluster_min, cluster_max + 1):
+        subset = clusters_df[clusters_df['cluster_size_houses'] == size]
+        n_25 = (subset['chosen_transformer_kva'] == 25.0).sum()
+        n_50 = (subset['chosen_transformer_kva'] == 50.0).sum()
+        n_75 = (subset['chosen_transformer_kva'] == 75.0).sum()
+        choice_data.append({'size': size, '25kVA': n_25, '50kVA': n_50, '75kVA': n_75})
     
-    # Legend
-    from matplotlib.patches import Patch
-    legend_elements = [
-        Patch(facecolor='lightgreen', edgecolor='black', label='75 kVA'),
-        Patch(facecolor='lightblue', edgecolor='black', label='50 kVA'),
-        Patch(facecolor='lightcoral', edgecolor='black', label='25 kVA')
-    ]
-    ax5.legend(handles=legend_elements, loc='upper right', fontsize=8)
+    choice_df = pd.DataFrame(choice_data)
+    x_pos = np.arange(len(choice_df))
+    
+    ax6.bar(x_pos, choice_df['25kVA'], color='lightcoral', 
+            label='25 kVA', edgecolor='black')
+    ax6.bar(x_pos, choice_df['50kVA'], bottom=choice_df['25kVA'],
+            color='lightblue', label='50 kVA', edgecolor='black')
+    ax6.bar(x_pos, choice_df['75kVA'], 
+            bottom=choice_df['25kVA'] + choice_df['50kVA'],
+            color='lightgreen', label='75 kVA', edgecolor='black')
+    
+    ax6.set_xlabel('Cluster Size (houses)', fontweight='bold')
+    ax6.set_ylabel('Count', fontweight='bold')
+    ax6.set_title('Transformer Selection by Cluster Size', fontweight='bold', fontsize=11)
+    ax6.set_xticks(x_pos)
+    ax6.set_xticklabels(choice_df['size'])
+    ax6.legend()
+    ax6.grid(axis='y', alpha=0.3)
     
     # Overall title
-    plt.suptitle(f'Method 4: Optimized Metered Feeder Allocation\n'
-                 f'Cost-Optimized Configuration for {summary_df["total_customers_simulated"].iloc[0]} Customers',
+    plt.suptitle(f'Method 4: Cluster-Based Transformer Sizing\n'
+                 f'{n_customers} Customers | {len(trials_df)} Trials | '
+                 f'Cluster Size: {cluster_min}-{cluster_max} houses',
                  fontsize=14, fontweight='bold')
     
-    plt.savefig('./method4.png', dpi=300, bbox_inches='tight')
+    plt.savefig('./method4_clusters.png', dpi=300, bbox_inches='tight')
     plt.show()
     
     # ============================================================
     # Print Summary
     # ============================================================
     print("\n" + "="*70)
-    print("METHOD 4: COST-OPTIMIZED FEEDER ALLOCATION")
+    print("METHOD 4: CLUSTER-BASED TRANSFORMER SIZING")
     print("="*70)
-    print(f"Customers: {summary_df['total_customers_simulated'].iloc[0]}")
-    print(f"Metered Demand: {metered_kw:.2f} kW")
-    print(f"\nOptimization Objective: Minimize (Overbuild, Cost, Count)")
-    print(f"  Cost Weights: 25kVA={weights[25.0]:.1f}, 50kVA={weights[50.0]:.1f}, 75kVA={weights[75.0]:.1f}")
-    print(f"\nOptimal Configuration:")
-    print(f"  {n_75}× 75 kVA (cost: {cost_75:.2f})")
-    print(f"  {n_50}× 50 kVA (cost: {cost_50:.2f})")
-    print(f"  {n_25}× 25 kVA (cost: {cost_25:.2f})")
-    print(f"  Total: {n_25 + n_50 + n_75} transformers")
-    print(f"  Proxy Cost: {proxy_cost:.2f}")
-    print(f"\nCapacity:")
-    print(f"  Required: {required_kva:.2f} kVA")
-    print(f"  Installed: {installed_kva:.2f} kVA")
-    print(f"  Overbuild: {overbuild_kva:.2f} kVA ({overbuild_kva/required_kva*100:.1f}%)")
-    print(f"\nActual Utilization: {(metered_kw/pf)/installed_kva*100:.1f}%")
+    print(f"Total Customers: {n_customers}")
+    print(f"Number of Trials: {len(trials_df)}")
+    print(f"Cluster Size Range: {cluster_min}-{cluster_max} houses")
+    print(f"\nAverage Results per Trial:")
+    print(f"  Number of Clusters: {mean_clusters:.1f}")
+    print(f"  Transformer Mix:")
+    print(f"    {mean_n25:.1f}× 25 kVA")
+    print(f"    {mean_n50:.1f}× 50 kVA")
+    print(f"    {mean_n75:.1f}× 75 kVA")
+    print(f"  Total Transformers: {mean_n25+mean_n50+mean_n75:.1f}")
+    print(f"  Installed Capacity: {mean_installed:.1f} kVA")
+    print(f"\nOversize Clusters:")
+    print(f"  Total: {trials_df['n_oversize_clusters'].sum()} (across all trials)")
+    print(f"  Average per trial: {trials_df['n_oversize_clusters'].mean():.2f}")
     print("="*70)
 
 filename = check_file (method='method4')
@@ -508,8 +475,8 @@ filename = check_file (method='method4')
 # ================ Transformer Load Management ===============
 # ------------------------------------------------------------
 # ================ Metered Feeder Max. Demand ================
-plan_file = [data for data in filename if "transformer_plan" in data and data.endswith('csv')]
-allocation_file = [data for data in filename if "allocation_results" in data and data.endswith('csv')]
-summary_file = [data for data in filename if "summary" in data and data.endswith('csv')]
+trials_file = [data for data in filename if "cluster_trials" in data and data.endswith('csv')]
+clusters_file = [data for data in filename if "cluster_assignments" in data and data.endswith('csv')]
 
-plot_method4_allocation (plan_file[0], allocation_file[0], summary_file[0])
+
+plot_method4_allocation (trials_file=trials_file[0], clusters_file=clusters_file[0])
