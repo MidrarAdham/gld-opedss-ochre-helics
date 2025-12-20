@@ -259,7 +259,7 @@ def transformer_load_management_plot (data, regr_results):
 
 def plot_method4_allocation(plan_file, allocation_file, summary_file):
     """
-    Plot Method 4: Metered Feeder Allocation with Optimization
+    Plot Method 4: Metered Feeder Allocation with Cost Optimization
     
     Args:
         plan_file: path to method4_transformer_plan.csv
@@ -272,24 +272,43 @@ def plot_method4_allocation(plan_file, allocation_file, summary_file):
     allocation_df = pd.read_csv(allocation_file)
     summary_df = pd.read_csv(summary_file)
     
-    # Create figure with 4 subplots
-    fig = plt.figure(figsize=(16, 12))
-    gs = fig.add_gridspec(2, 2, hspace=0.3, wspace=0.3)
+    # Create figure with 5 subplots
+    fig = plt.figure(figsize=(18, 14))
+    gs = fig.add_gridspec(3, 2, hspace=0.35, wspace=0.3)
     
-    ax1 = fig.add_subplot(gs[0, 0])  # Top left
-    ax2 = fig.add_subplot(gs[0, 1])  # Top right
-    ax3 = fig.add_subplot(gs[1, :])  # Bottom, full width
+    ax1 = fig.add_subplot(gs[0, 0])  # Top left - Pie chart
+    ax2 = fig.add_subplot(gs[0, 1])  # Top right - Capacity
+    ax3 = fig.add_subplot(gs[1, 0])  # Middle left - Cost breakdown
+    ax4 = fig.add_subplot(gs[1, 1])  # Middle right - Optimization metrics
+    ax5 = fig.add_subplot(gs[2, :])  # Bottom - Allocations
+    
+    # Extract key values
+    n_25 = plan_df['n_25kva'].iloc[0]
+    n_50 = plan_df['n_50kva'].iloc[0]
+    n_75 = plan_df['n_75kva'].iloc[0]
+    
+    required_kva = plan_df['required_installed_kva'].iloc[0]
+    installed_kva = plan_df['installed_kva'].iloc[0]
+    overbuild_kva = plan_df['overbuild_kva'].iloc[0]
+    proxy_cost = plan_df['proxy_cost'].iloc[0]
+    metered_kw = plan_df['metered_demand_kw'].iloc[0]
+    pf = plan_df['pf'].iloc[0]
+    uf_target = plan_df['uf_target'].iloc[0]
+    
+    # Parse weights from string if needed
+    weights_str = plan_df['weights'].iloc[0]
+    if isinstance(weights_str, str):
+        import ast
+        weights = ast.literal_eval(weights_str)
+    else:
+        weights = {25.0: 1.0, 50.0: 2.2, 75.0: 3.6}  # Default
     
     # ============================================================
     # Plot 1: Transformer Mix (Pie Chart)
     # ============================================================
     
-    n_25 = plan_df['n_25kva'].iloc[0]
-    n_50 = plan_df['n_50kva'].iloc[0]
-    n_75 = plan_df['n_75kva'].iloc[0]
-    
     sizes = [n_25, n_50, n_75]
-    labels = [f'{n_25}x 25 kVA', f'{n_50}x 50 kVA', f'{n_75}x 75 kVA']
+    labels = [f'{n_25}× 25 kVA', f'{n_50}× 50 kVA', f'{n_75}× 75 kVA']
     colors = ['lightcoral', 'lightblue', 'lightgreen']
     explode = (0.05, 0.05, 0.05)
     
@@ -302,17 +321,11 @@ def plot_method4_allocation(plan_file, allocation_file, summary_file):
     ax1.pie(non_zero_sizes, labels=non_zero_labels, colors=non_zero_colors,
             autopct='%1.1f%%', explode=non_zero_explode, shadow=True, startangle=90)
     ax1.set_title(f'Transformer Mix\n(Total: {n_25 + n_50 + n_75} transformers)', 
-                  fontweight='bold', fontsize=12)
+                  fontweight='bold', fontsize=11)
     
     # ============================================================
     # Plot 2: Capacity Overview (Bar Chart)
     # ============================================================
-    
-    required_kva = plan_df['required_installed_kva'].iloc[0]
-    installed_kva = plan_df['installed_kva'].iloc[0]
-    overbuild_kva = plan_df['overbuild_kva'].iloc[0]
-    metered_kw = plan_df['metered_demand_kw'].iloc[0]
-    pf = plan_df['pf'].iloc[0]
     
     categories = ['Required\nkVA', 'Installed\nkVA']
     values = [required_kva, installed_kva]
@@ -321,25 +334,85 @@ def plot_method4_allocation(plan_file, allocation_file, summary_file):
     bars = ax2.bar(categories, values, color=colors_bar, edgecolor='black', 
                    linewidth=2, alpha=0.7)
     
-    # Add value labels on bars
     for bar, val in zip(bars, values):
         height = bar.get_height()
         ax2.text(bar.get_x() + bar.get_width()/2., height,
                 f'{val:.1f} kVA',
-                ha='center', va='bottom', fontweight='bold', fontsize=11)
+                ha='center', va='bottom', fontweight='bold', fontsize=10)
     
-    # Add overbuild annotation
     ax2.text(1, installed_kva * 0.5, 
              f'Overbuild:\n{overbuild_kva:.1f} kVA\n({overbuild_kva/required_kva*100:.1f}%)',
-             ha='center', va='center', fontsize=10,
+             ha='center', va='center', fontsize=9,
              bbox=dict(boxstyle='round', facecolor='yellow', alpha=0.7))
     
-    ax2.set_ylabel('Capacity (kVA)', fontweight='bold', fontsize=11)
-    ax2.set_title('Capacity Planning', fontweight='bold', fontsize=12)
+    ax2.set_ylabel('Capacity (kVA)', fontweight='bold', fontsize=10)
+    ax2.set_title('Capacity Planning', fontweight='bold', fontsize=11)
     ax2.grid(axis='y', alpha=0.3)
     
     # ============================================================
-    # Plot 3: Individual Transformer Allocations (Bar Chart)
+    # Plot 3: Cost Breakdown (Stacked Bar)
+    # ============================================================
+    
+    cost_25 = n_25 * weights[25.0]
+    cost_50 = n_50 * weights[50.0]
+    cost_75 = n_75 * weights[75.0]
+    
+    ax3.bar('Total', cost_25, color='lightcoral', label='25 kVA', edgecolor='black')
+    ax3.bar('Total', cost_50, bottom=cost_25, color='lightblue', label='50 kVA', edgecolor='black')
+    ax3.bar('Total', cost_75, bottom=cost_25+cost_50, color='lightgreen', label='75 kVA', edgecolor='black')
+    
+    ax3.set_ylabel('Proxy Cost (weighted units)', fontweight='bold', fontsize=10)
+    ax3.set_title(f'Cost Breakdown\nTotal Proxy Cost: {proxy_cost:.2f}', 
+                  fontweight='bold', fontsize=11)
+    ax3.legend(loc='upper right', fontsize=9)
+    ax3.set_ylim([0, proxy_cost * 1.1])
+    
+    # Add cost weights as text
+    weights_text = f"Weights:\n25 kVA: {weights[25.0]:.1f}\n50 kVA: {weights[50.0]:.1f}\n75 kVA: {weights[75.0]:.1f}"
+    ax3.text(0.5, proxy_cost * 0.5, weights_text,
+             ha='center', va='center', fontsize=9,
+             bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.7))
+    
+    # ============================================================
+    # Plot 4: Optimization Metrics (Table-style)
+    # ============================================================
+    
+    ax4.axis('off')
+    
+    metrics_data = [
+        ['Metric', 'Value'],
+        ['Metered Demand', f'{metered_kw:.2f} kW'],
+        ['Feeder Peak', f'{metered_kw/pf:.2f} kVA'],
+        ['Target Utilization', f'{uf_target*100:.0f}%'],
+        ['Required Capacity', f'{required_kva:.2f} kVA'],
+        ['Installed Capacity', f'{installed_kva:.2f} kVA'],
+        ['Overbuild', f'{overbuild_kva:.2f} kVA ({overbuild_kva/required_kva*100:.1f}%)'],
+        ['Proxy Cost', f'{proxy_cost:.2f}'],
+        ['Total Transformers', f'{n_25 + n_50 + n_75}'],
+        ['Actual Utilization', f'{(metered_kw/pf)/installed_kva*100:.1f}%']
+    ]
+    
+    table = ax4.table(cellText=metrics_data, cellLoc='left', loc='center',
+                     colWidths=[0.5, 0.5])
+    table.auto_set_font_size(False)
+    table.set_fontsize(9)
+    table.scale(1, 2)
+    
+    # Style header row
+    for i in range(2):
+        table[(0, i)].set_facecolor('#4472C4')
+        table[(0, i)].set_text_props(weight='bold', color='white')
+    
+    # Alternate row colors
+    for i in range(1, len(metrics_data)):
+        for j in range(2):
+            if i % 2 == 0:
+                table[(i, j)].set_facecolor('#E7E6E6')
+    
+    ax4.set_title('Optimization Metrics', fontweight='bold', fontsize=11, pad=20)
+    
+    # ============================================================
+    # Plot 5: Individual Transformer Allocations
     # ============================================================
     
     transformer_ids = allocation_df['transformer_id'].tolist()
@@ -347,30 +420,28 @@ def plot_method4_allocation(plan_file, allocation_file, summary_file):
     utilizations = allocation_df['utilization_factor'].tolist()
     kva_ratings = allocation_df['kva_rating'].tolist()
     
-    # Color by transformer size
     bar_colors = ['lightcoral' if kva == 25.0 else 'lightblue' if kva == 50.0 else 'lightgreen' 
                   for kva in kva_ratings]
     
-    bars3 = ax3.bar(range(len(transformer_ids)), allocated_kw, color=bar_colors,
+    bars5 = ax5.bar(range(len(transformer_ids)), allocated_kw, color=bar_colors,
                     edgecolor='black', linewidth=1.5, alpha=0.8)
     
-    ax3.set_xlabel('Transformer', fontweight='bold', fontsize=11)
-    ax3.set_ylabel('Allocated Load (kW)', fontweight='bold', fontsize=11)
-    ax3.set_title(f'Load Allocation per Transformer\n'
-                  f'Metered Demand: {metered_kw:.2f} kW | '
+    ax5.set_xlabel('Transformer', fontweight='bold', fontsize=10)
+    ax5.set_ylabel('Allocated Load (kW)', fontweight='bold', fontsize=10)
+    ax5.set_title(f'Load Allocation per Transformer | '
                   f'Allocation Factor: {metered_kw/installed_kva:.4f} kW/kVA',
-                  fontweight='bold', fontsize=12)
-    ax3.set_xticks(range(len(transformer_ids)))
-    ax3.set_xticklabels(transformer_ids, rotation=45, ha='right', fontsize=8)
-    ax3.grid(axis='y', alpha=0.3)
+                  fontweight='bold', fontsize=11)
+    ax5.set_xticks(range(len(transformer_ids)))
+    ax5.set_xticklabels(transformer_ids, rotation=45, ha='right', fontsize=7)
+    ax5.grid(axis='y', alpha=0.3)
     
-    # Add utilization labels on bars
-    for i, (bar, util) in enumerate(zip(bars3, utilizations)):
+    # Add utilization labels
+    for i, (bar, util) in enumerate(zip(bars5, utilizations)):
         height = bar.get_height()
         color = 'green' if util <= 1.0 else 'red'
-        ax3.text(bar.get_x() + bar.get_width()/2., height,
+        ax5.text(bar.get_x() + bar.get_width()/2., height,
                 f'{util*100:.0f}%',
-                ha='center', va='bottom', fontsize=7, color=color, fontweight='bold')
+                ha='center', va='bottom', fontsize=6, color=color, fontweight='bold')
     
     # Legend
     from matplotlib.patches import Patch
@@ -379,17 +450,38 @@ def plot_method4_allocation(plan_file, allocation_file, summary_file):
         Patch(facecolor='lightblue', edgecolor='black', label='50 kVA'),
         Patch(facecolor='lightcoral', edgecolor='black', label='25 kVA')
     ]
-    ax3.legend(handles=legend_elements, loc='upper right', fontsize=9)
+    ax5.legend(handles=legend_elements, loc='upper right', fontsize=8)
     
     # Overall title
-    uf_target = plan_df['uf_target'].iloc[0]
-    plt.suptitle(f'Method 4: Metered Feeder Maximum Demand\n'
-                 f'Planning Utilization Target: {uf_target*100:.0f}% | Power Factor: {pf:.2f}',
+    plt.suptitle(f'Method 4: Optimized Metered Feeder Allocation\n'
+                 f'Cost-Optimized Configuration for {summary_df["total_customers_simulated"].iloc[0]} Customers',
                  fontsize=14, fontweight='bold')
     
-    plt.tight_layout ()
     plt.savefig('./method4.png', dpi=300, bbox_inches='tight')
     plt.show()
+    
+    # ============================================================
+    # Print Summary
+    # ============================================================
+    print("\n" + "="*70)
+    print("METHOD 4: COST-OPTIMIZED FEEDER ALLOCATION")
+    print("="*70)
+    print(f"Customers: {summary_df['total_customers_simulated'].iloc[0]}")
+    print(f"Metered Demand: {metered_kw:.2f} kW")
+    print(f"\nOptimization Objective: Minimize (Overbuild, Cost, Count)")
+    print(f"  Cost Weights: 25kVA={weights[25.0]:.1f}, 50kVA={weights[50.0]:.1f}, 75kVA={weights[75.0]:.1f}")
+    print(f"\nOptimal Configuration:")
+    print(f"  {n_75}× 75 kVA (cost: {cost_75:.2f})")
+    print(f"  {n_50}× 50 kVA (cost: {cost_50:.2f})")
+    print(f"  {n_25}× 25 kVA (cost: {cost_25:.2f})")
+    print(f"  Total: {n_25 + n_50 + n_75} transformers")
+    print(f"  Proxy Cost: {proxy_cost:.2f}")
+    print(f"\nCapacity:")
+    print(f"  Required: {required_kva:.2f} kVA")
+    print(f"  Installed: {installed_kva:.2f} kVA")
+    print(f"  Overbuild: {overbuild_kva:.2f} kVA ({overbuild_kva/required_kva*100:.1f}%)")
+    print(f"\nActual Utilization: {(metered_kw/pf)/installed_kva*100:.1f}%")
+    print("="*70)
 
 filename = check_file (method='method4')
 

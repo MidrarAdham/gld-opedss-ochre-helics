@@ -1,0 +1,2 @@
+n_25kva,n_50kva,n_75kva,installed_kva,overbuild_kva,proxy_cost,n_total_transformers,weights,metered_demand_kw,required_installed_kva,uf_target,pf
+0,1,14,1100.0,9.128472966521713,29.5,15,"{25.0: 1.0, 50.0: 1.5, 75.0: 2}",785.4274994641045,1090.8715270334783,0.8,0.9

@@ -1,11 +1,11 @@
 # Standard Python Libraries that we'll use in this script:
-import os
+import math
 import click
 import numpy as np
 import pandas as pd
 from scipy import stats
-from pprint import pprint as pp
 from pathlib import Path
+from pprint import pprint as pp
 
 # Calling my methods (all of these methods are Python files inside this folder):
 from config import load_config
@@ -243,7 +243,7 @@ def method3_regr (results):
 
     return regression_results
 
-def _choose_transformer_mix (required_kva:float, sizes=(25.0, 50.0, 75.0)):
+def _choose_transformer_mix (required_kva:float, sizes=(25.0, 50.0, 75.0), weights=None):
     """
     Find an integer count for each transformer size (n25, n50, n75) that meet or exceed
     the required kVA. 
@@ -251,18 +251,32 @@ def _choose_transformer_mix (required_kva:float, sizes=(25.0, 50.0, 75.0)):
     :param required_kva: the max. diversified demand
     :type required_kva: float
     :param sizes: chosen transformer sizes
+    :param weights: a proxy cost where we prefer smaller size transformers:
+        for instance, population per transformers is n25, n50, and n75
+        This poopulation is multiplied by weights (large weights for bigger transformers)
+        So the higher the weight, the less likely that the transformer will be chosen
+    
+    :param slack is the allowable range to be exceeded. <-- I don't think it is important but I'll try it
     """
 
     s25, s50, s75 = sizes # rated kva for each transformer
+
     best = None
 
+    if weights is None:
+        # random weights - kept trying things and this what I came up with. They can be tuned but not important for now
+        weights = {25.0: 1.0, 50.0: 1.5, 75.0:2}
+
+    w25, w50, w75 = weights[s25], weights[s50], weights[s75]
+
+    # target = max(0.0, required_kva - slack_kva)
     # The maximum allowable number of customers for each transformer (the worst case)
-    max_n25 = int(np.ceil (required_kva/s25)) + 2
-    max_n50 = int(np.ceil (required_kva/s50)) + 2
-    max_n75 = int(np.ceil (required_kva/s75)) + 2
-    print(max_n25)
-    print(max_n50)
-    print(max_n75)
+    max_n25 = int(np.ceil (required_kva/s25)) + 4
+    max_n50 = int(np.ceil (required_kva/s50)) + 4
+    max_n75 = int(np.ceil (required_kva/s75)) + 4
+    # print(max_n25)
+    # print(max_n50)
+    # print(max_n75)
 
     for n75 in range (max_n75 + 1):
         for n50 in range(max_n50 + 1):
@@ -272,13 +286,15 @@ def _choose_transformer_mix (required_kva:float, sizes=(25.0, 50.0, 75.0)):
                 if installed < required_kva:
                     continue
                 overbuild = installed - required_kva
-                # print('installed: ', installed, 'required kVA: ', required_kva, 'overbuild? ', overbuild)
+                proxy_cost = n25*w25 + n50*w50 + n75*w75
                 n_total = n25 + n50 + n75
-                candidate = (overbuild, n_total, n75, n50, n25, installed)
+
+                # print('installed: ', installed, 'required kVA: ', required_kva, 'overbuild? ', overbuild)
+                candidate = (overbuild, proxy_cost, n_total, n75, n50, n25, installed)
                 if best is None or candidate < best:
                     best = candidate
     
-    overbuild, n_total, n75, n50, n25, installed = best
+    overbuild, proxy_cost, n_total, n75, n50, n25, installed = best
 
     return {
         "n_25kva": int(n25),
@@ -286,7 +302,9 @@ def _choose_transformer_mix (required_kva:float, sizes=(25.0, 50.0, 75.0)):
         "n_75kva": int(n75),
         "installed_kva": float(installed),
         "overbuild_kva": float(overbuild),
+        "proxy_cost": float(proxy_cost),
         "n_total_transformers": int(n_total),
+        "weights": dict(weights)
     }
 
 
@@ -328,7 +346,8 @@ def method4_metered_feeder_max_demand (cfg):
     required_installed_kva = feeder_peak_kva / UF
 
     # 3- Choose a transformer count:
-    plan = _choose_transformer_mix (required_kva=required_installed_kva, sizes=sizes)
+    plan = _choose_transformer_mix (required_kva=required_installed_kva, sizes=sizes,
+                                    weights={25.0: 1.0, 50.0: 1.5, 75.0:2})
 
     transformer_list = []
     tid = 1 # transformer ID
