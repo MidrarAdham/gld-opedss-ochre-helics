@@ -1,0 +1,2 @@
+metered_demand_kw,feeder_peak_kva,pf,uf_target,required_installed_kva,installed_kva,overbuild_kva,total_transformer_kva,allocation_factor_kw_per_kva,n_transformers_25kva,n_transformers_50kva,n_transformers_75kva,n_total_transformers,total_customers_simulated
+729.6608135690027,810.7342372988919,0.9,0.8,1013.4177966236149,1025.0,11.58220337638511,1025.0,0.7118642083600026,0,1,13,14,303
