@@ -63,7 +63,7 @@ n_trials = 20
 [method4]
 
 # How many customers does the feeder sees?
-n_total_customers = 303
+n_total_customers = 60
 
 # Monte carlo parameters:
 n_trials = 15
