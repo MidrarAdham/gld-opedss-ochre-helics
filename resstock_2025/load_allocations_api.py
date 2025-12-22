@@ -385,7 +385,7 @@ def method4_metered_feeder_max_demand (cfg):
     n_total_customers = cfg["method4"]["n_total_customers"]
 
     cluster_min = 1
-    cluster_max = 6
+    cluster_max = 18
 
     seed = 123
     rng = np.random.default_rng(seed=seed)
