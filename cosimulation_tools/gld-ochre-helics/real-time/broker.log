@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "/home/deras/.cache/pypoetry/virtualenvs/gld-opedss-ochre-helics-o_1DRW9c-py3.12/bin/helics_broker", line 8, in <module>
+    sys.exit(helics_broker())
+             ^^^^^^^^^^^^^^^
+  File "/home/deras/.cache/pypoetry/virtualenvs/gld-opedss-ochre-helics-o_1DRW9c-py3.12/lib/python3.12/site-packages/helics/bin.py", line 16, in helics_broker
+    raise SystemExit(_program('helics_broker', sys.argv[1:]))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/deras/.cache/pypoetry/virtualenvs/gld-opedss-ochre-helics-o_1DRW9c-py3.12/lib/python3.12/site-packages/helics/bin.py", line 10, in _program
+    return subprocess.call([os.path.join(BIN_DIR, name)] + args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 391, in call
+    return p.wait(timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 1264, in wait
+    return self._wait(timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 2053, in _wait
+    (pid, sts) = self._try_wait(0)
+                 ^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 2011, in _try_wait
+    (pid, sts) = os.waitpid(self.pid, wait_flags)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

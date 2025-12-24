@@ -1,0 +1,376 @@
+{
+    "Occupancy": {
+        "Number of Occupants (-)": 6.0,
+        "weekday_fractions": [0.035, 0.035, 0.035, 0.035, 0.035, 0.059, 0.082, 0.055, 0.027, 0.014, 0.014, 0.014, 0.014, 0.014, 0.019, 0.027, 0.041, 0.055, 0.068, 0.082, 0.082, 0.07, 0.053, 0.035],
+        "weekend_fractions": [0.035, 0.035, 0.035, 0.035, 0.035, 0.059, 0.082, 0.055, 0.027, 0.014, 0.014, 0.014, 0.014, 0.014, 0.019, 0.027, 0.041, 0.055, 0.068, 0.082, 0.082, 0.07, 0.053, 0.035],
+        "month_multipliers": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+    },
+    "Construction": {
+        "Number of Bedrooms (-)": 5,
+        "Number of Bathrooms (-)": 3,
+        "House Type": "single-family detached",
+        "Total Floors": 2.0,
+        "Indoor Floors": 2.0,
+        "Conditioned Floor Area (m^2)": 519.04928448,
+        "Conditioned Volume (m^3)": 1265.6497752760317,
+        "Ceiling Height (m)": 2.4383999999999997,
+        "Foundation Type": null,
+        "First Floor Area (m^2)": 232.76856671999997,
+        "Attic Floor Area (m^2)": 286.28071775999996,
+        "Garage Floor Area (m^2)": 53.51215103999999,
+        "Garage Protruded Area (m^2)": 26.756075519999996,
+        "Indoor Floor Area (m^2)": 519.04928448,
+        "Number of Bedrooms, Adjusted (-)": 5.860000000000001
+    },
+    "Boundaries": {
+        "Exterior Wall": {
+            "Interior Zone": "Indoor",
+            "Exterior Zone": "Outdoor",
+            "Area (m^2)": [
+                92.75439513599999,
+                51.533316288,
+                75.20501087999999,
+                59.383623168
+            ],
+            "Azimuth (deg)": [
+                270,
+                0,
+                90,
+                180
+            ],
+            "Boundary R Value": 16.0,
+            "Exterior Solar Absorptivity (-)": 0.5,
+            "Exterior Emissivity (-)": 0.9,
+            "Finish Type": "vinyl siding",
+            "Construction Type": "WoodStud"
+        },
+        "Garage Attached Wall": {
+            "Interior Zone": "Indoor",
+            "Exterior Zone": "Garage",
+            "Area (m^2)": [
+                17.83738368,
+                8.91869184
+            ],
+            "Azimuth (deg)": [
+                90,
+                0
+            ],
+            "Boundary R Value": 16.0,
+            "Construction Type": "WoodStud",
+            "Finish Type": "vinyl siding"
+        },
+        "Garage Wall": {
+            "Interior Zone": "Garage",
+            "Exterior Zone": "Outdoor",
+            "Area (m^2)": [
+                17.83738368,
+                17.83738368,
+                8.91869184
+            ],
+            "Azimuth (deg)": [
+                0,
+                90,
+                180
+            ],
+            "Boundary R Value": 4.0,
+            "Exterior Solar Absorptivity (-)": 0.5,
+            "Exterior Emissivity (-)": 0.9,
+            "Finish Type": "vinyl siding",
+            "Construction Type": "WoodStud"
+        },
+        "Garage Interior Ceiling": {
+            "Interior Zone": "Indoor",
+            "Exterior Zone": "Garage",
+            "Area (m^2)": [
+                53.51215103999999
+            ],
+            "Boundary R Value": 5.3
+        },
+        "Floor": {
+            "Interior Zone": "Indoor",
+            "Exterior Zone": "Ground",
+            "Area (m^2)": [
+                232.76856671999997
+            ],
+            "Insulation Details": "2ft R10 Perimeter"
+        },
+        "Garage Floor": {
+            "Interior Zone": "Garage",
+            "Exterior Zone": "Ground",
+            "Area (m^2)": [
+                53.51215103999999
+            ],
+            "Insulation Details": "2ft R10 Perimeter"
+        },
+        "Roof": {
+            "Interior Zone": "Indoor",
+            "Exterior Zone": "Outdoor",
+            "Area (m^2)": [
+                286.28071775999996
+            ],
+            "Boundary R Value": 21.2,
+            "Exterior Solar Absorptivity (-)": 0.75,
+            "Exterior Emissivity (-)": 0.9,
+            "Finish Type": "slate or tile shingles",
+            "Construction Type": "Flat",
+            "Tilt (deg)": 0.0,
+            "Radiant Barrier": false
+        },
+        "Window": {
+            "Interior Zone": "Indoor",
+            "Exterior Zone": "Outdoor",
+            "Area (m^2)": [
+                7.023469823999999,
+                10.507333823999998,
+                8.091854783999999,
+                12.653394047999997
+            ],
+            "Azimuth (deg)": [
+                0,
+                90,
+                180,
+                270
+            ],
+            "U Factor (W/m^2-K)": 0.49,
+            "SHGC (-)": 0.56,
+            "Shading Fraction (-)": 0.7
+        },
+        "Door": {
+            "Interior Zone": "Indoor",
+            "Exterior Zone": "Outdoor",
+            "Area (m^2)": [
+                1.8580607999999998
+            ],
+            "Azimuth (deg)": [
+                90
+            ],
+            "Boundary R Value": 5.0
+        },
+        "Interior Wall": {
+            "Area (m^2)": [
+                519.04928448
+            ],
+            "Interior Zone": "Indoor",
+            "Exterior Zone": "Indoor",
+            "Insulation Level": "Standard"
+        },
+        "Indoor Furniture": {
+            "Area (m^2)": [
+                207.619713792
+            ],
+            "Interior Zone": "Indoor",
+            "Exterior Zone": "Indoor",
+            "Insulation Level": "Standard"
+        },
+        "Garage Furniture": {
+            "Area (m^2)": [
+                5.351215104
+            ],
+            "Interior Zone": "Garage",
+            "Exterior Zone": "Garage",
+            "Insulation Level": "Standard"
+        }
+    },
+    "Zones": {
+        "Indoor": {
+            "Zone Area (m^2)": 519.04928448,
+            "Volume (m^3)": 1265.6497752760317,
+            "ELA stack coefficient (L/s/cm^4/K)": 0.00017928771712599802,
+            "ELA wind coefficient (L/s/cm^4/(m/s))": 0.0001506030635210884,
+            "Infiltration Method": "ASHRAE",
+            "inf_f_t": 0.6120349677568974,
+            "inf_sft": 0.4284244774298282,
+            "inf_n_i": 0.65,
+            "inf_c": 0.08218052362397263,
+            "inf_Cs": 0.09469761906849986,
+            "inf_Cw": 0.14935713017546387
+        },
+        "Garage": {
+            "Zone Area (m^2)": 53.51215103999999,
+            "Volume (m^3)": 130.48402909593597,
+            "Infiltration Method": "ACH",
+            "Air Changes (1/hour)": 3.0
+        }
+    },
+    "Equipment": {
+        "HVAC Heating": {
+            "Equipment Name": "WallFurnace",
+            "Fuel": "Natural gas",
+            "Capacity (W)": 11213.193782222223,
+            "EIR (-)": 1.6666666666666667,
+            "Rated Efficiency": "0.6 AFUE",
+            "SHR (-)": null,
+            "Conditioned Space Fraction (-)": 1.0,
+            "Number of Speeds (-)": 1,
+            "Rated Auxiliary Power (W)": 0.0,
+            "Weekday Setpoints (C)": [19.444444444444457, 19.444444444444457, 19.444444444444457, 16.111111111111143, 16.111111111111143, 16.111111111111143, 16.111111111111143, 16.111111111111143, 16.111111111111143, 16.111111111111143, 16.111111111111143, 16.111111111111143, 19.444444444444457, 19.444444444444457, 19.444444444444457, 19.444444444444457, 19.444444444444457, 19.444444444444457, 19.444444444444457, 19.444444444444457, 19.444444444444457, 19.444444444444457, 19.444444444444457, 19.444444444444457],
+            "Weekend Setpoints (C)": [19.444444444444457, 19.444444444444457, 19.444444444444457, 16.111111111111143, 16.111111111111143, 16.111111111111143, 16.111111111111143, 16.111111111111143, 16.111111111111143, 16.111111111111143, 16.111111111111143, 16.111111111111143, 19.444444444444457, 19.444444444444457, 19.444444444444457, 19.444444444444457, 19.444444444444457, 19.444444444444457, 19.444444444444457, 19.444444444444457, 19.444444444444457, 19.444444444444457, 19.444444444444457, 19.444444444444457],
+            "Ducts": {
+                "Zone": "Garage",
+                "Supply Leakage (-)": 0.2,
+                "Supply Area (ft^2)": 1131.3675,
+                "Supply R Value": 8.0,
+                "Return Leakage (-)": 0.1,
+                "Return Area (ft^2)": 419.02500000000003,
+                "Return R Value": 8.0
+            }
+        },
+        "HVAC Cooling": {
+            "Equipment Name": "central air conditioner",
+            "Fuel": "Electricity",
+            "Capacity (W)": 12213.445484444444,
+            "EIR (-)": 0.262472396652952,
+            "Rated Efficiency": "13.0 SEER",
+            "SHR (-)": 0.73,
+            "Conditioned Space Fraction (-)": 1.0,
+            "Number of Speeds (-)": 1,
+            "Rated Auxiliary Power (W)": 541.7620000000001,
+            "Weekday Setpoints (C)": [22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285],
+            "Weekend Setpoints (C)": [22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285],
+            "Ducts": {
+                "Zone": "Garage",
+                "Supply Leakage (-)": 0.2,
+                "Supply Area (ft^2)": 1131.3675,
+                "Supply R Value": 8.0,
+                "Return Leakage (-)": 0.1,
+                "Return Area (ft^2)": 419.02500000000003,
+                "Return R Value": 8.0
+            }
+        },
+        "Water Heating": {
+            "Equipment Name": "storage water heater",
+            "Fuel": "Natural gas",
+            "Zone": "Garage",
+            "Setpoint Temperature (C)": 51.666666666666686,
+            "UA (W/K)": 4.103651067201618,
+            "Efficiency (-)": 0.7709392474205203,
+            "Energy Factor (-)": 0.59,
+            "Tank Volume (L)": 179.80705973999994,
+            "Tank Height (m)": 1.2191999999999998,
+            "Capacity (W)": 14067.413333333334,
+            "weekday_fractions": [0.012, 0.006, 0.004, 0.005, 0.01, 0.034, 0.078, 0.086, 0.08, 0.067, 0.056, 0.047, 0.04, 0.035, 0.033, 0.031, 0.038, 0.051, 0.06, 0.06, 0.055, 0.048, 0.038, 0.026],
+            "weekend_fractions": [0.012, 0.006, 0.004, 0.005, 0.01, 0.034, 0.078, 0.086, 0.08, 0.067, 0.056, 0.047, 0.04, 0.035, 0.033, 0.031, 0.038, 0.051, 0.06, 0.06, 0.055, 0.048, 0.038, 0.026],
+            "month_multipliers": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0],
+            "Fixture Average Water Draw (L/day)": 320.7959960717171
+        },
+        "Clothes Washer": {
+            "Annual Electric Energy (kWh)": 40.35426222029102,
+            "Average Water Draw (L/day)": 5.474430903108831,
+            "Convective Gain Fraction (-)": 0.2700000000000001,
+            "Radiative Gain Fraction (-)": 0,
+            "Latent Gain Fraction (-)": 0.030000000000000027,
+            "weekday_fractions": [0.009, 0.007, 0.004, 0.004, 0.007, 0.011, 0.022, 0.049, 0.073, 0.086, 0.084, 0.075, 0.067, 0.06, 0.049, 0.051, 0.05, 0.049, 0.049, 0.049, 0.049, 0.047, 0.032, 0.017],
+            "weekend_fractions": [0.009, 0.007, 0.004, 0.004, 0.007, 0.011, 0.022, 0.049, 0.073, 0.086, 0.084, 0.075, 0.067, 0.06, 0.049, 0.051, 0.05, 0.049, 0.049, 0.049, 0.049, 0.047, 0.032, 0.017],
+            "month_multipliers": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+        },
+        "Clothes Dryer": {
+            "Annual Electric Energy (kWh)": 690.8392693691546,
+            "Annual Gas Energy (therms)": 0.0,
+            "Convective Gain Fraction (-)": 0.13500000000000004,
+            "Radiative Gain Fraction (-)": 0,
+            "Latent Gain Fraction (-)": 0.015000000000000013,
+            "weekday_fractions": [0.01, 0.006, 0.004, 0.002, 0.004, 0.006, 0.016, 0.032, 0.048, 0.068, 0.078, 0.081, 0.074, 0.067, 0.058, 0.061, 0.055, 0.054, 0.051, 0.051, 0.052, 0.054, 0.044, 0.024],
+            "weekend_fractions": [0.01, 0.006, 0.004, 0.002, 0.004, 0.006, 0.016, 0.032, 0.048, 0.068, 0.078, 0.081, 0.074, 0.067, 0.058, 0.061, 0.055, 0.054, 0.051, 0.051, 0.052, 0.054, 0.044, 0.024],
+            "month_multipliers": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+        },
+        "Dishwasher": {
+            "Annual Electric Energy (kWh)": 172.17558069956905,
+            "Average Water Draw (L/day)": 12.75921040746875,
+            "Convective Gain Fraction (-)": 0.3,
+            "Radiative Gain Fraction (-)": 0,
+            "Latent Gain Fraction (-)": 0.29999999999999993,
+            "weekday_fractions": [0.015, 0.007, 0.005, 0.003, 0.003, 0.01, 0.02, 0.031, 0.058, 0.065, 0.056, 0.048, 0.042, 0.046, 0.036, 0.038, 0.038, 0.049, 0.087, 0.111, 0.09, 0.067, 0.044, 0.031],
+            "weekend_fractions": [0.015, 0.007, 0.005, 0.003, 0.003, 0.01, 0.02, 0.031, 0.058, 0.065, 0.056, 0.048, 0.042, 0.046, 0.036, 0.038, 0.038, 0.049, 0.087, 0.111, 0.09, 0.067, 0.044, 0.031],
+            "month_multipliers": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+        },
+        "Refrigerator": {
+            "Annual Electric Energy (kWh)": 383.0,
+            "Convective Gain Fraction (-)": 1.0,
+            "Radiative Gain Fraction (-)": 0,
+            "Latent Gain Fraction (-)": 0,
+            "weekday_fractions": [0.04, 0.039, 0.038, 0.037, 0.036, 0.036, 0.038, 0.04, 0.041, 0.041, 0.04, 0.04, 0.042, 0.042, 0.042, 0.041, 0.044, 0.048, 0.05, 0.048, 0.047, 0.046, 0.044, 0.041],
+            "month_multipliers": [0.837, 0.835, 1.084, 1.084, 1.084, 1.096, 1.096, 1.096, 1.096, 0.931, 0.925, 0.837]
+        },
+        "Cooking Range": {
+            "Annual Electric Energy (kWh)": 559.5400000000001,
+            "Annual Gas Energy (therms)": 0.0,
+            "Convective Gain Fraction (-)": 0.7200000000000001,
+            "Radiative Gain Fraction (-)": 0,
+            "Latent Gain Fraction (-)": 0.0799999999999999,
+            "weekday_fractions": [0.008, 0.008, 0.008, 0.008, 0.008, 0.015, 0.023, 0.039, 0.046, 0.046, 0.046, 0.054, 0.062, 0.046, 0.039, 0.054, 0.076, 0.134, 0.114, 0.058, 0.039, 0.031, 0.023, 0.015],
+            "weekend_fractions": [0.008, 0.008, 0.008, 0.008, 0.008, 0.015, 0.023, 0.039, 0.046, 0.046, 0.046, 0.054, 0.062, 0.046, 0.039, 0.054, 0.076, 0.134, 0.114, 0.058, 0.039, 0.031, 0.023, 0.015],
+            "month_multipliers": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+        },
+        "Exterior Lighting": {
+            "Annual Electric Energy (kWh)": 63.22500000000001,
+            "Convective Gain Fraction (-)": 1,
+            "Radiative Gain Fraction (-)": 0,
+            "Latent Gain Fraction (-)": 0,
+            "weekday_fractions": [0.04, 0.037, 0.037, 0.035, 0.035, 0.039, 0.044, 0.041, 0.031, 0.025, 0.024, 0.024, 0.025, 0.028, 0.03, 0.035, 0.044, 0.056, 0.064, 0.068, 0.07, 0.065, 0.056, 0.047],
+            "weekend_fractions": [0.04, 0.037, 0.037, 0.035, 0.035, 0.039, 0.044, 0.041, 0.031, 0.025, 0.024, 0.024, 0.025, 0.028, 0.03, 0.035, 0.044, 0.056, 0.064, 0.068, 0.07, 0.065, 0.056, 0.047],
+            "month_multipliers": [1.19, 1.11, 1.02, 0.93, 0.84, 0.8, 0.82, 0.88, 0.98, 1.07, 1.16, 1.2]
+        },
+        "Garage Lighting": {
+            "Annual Electric Energy (kWh)": 16.666666666666664,
+            "Convective Gain Fraction (-)": 1,
+            "Radiative Gain Fraction (-)": 0,
+            "Latent Gain Fraction (-)": 0,
+            "weekday_fractions": [0.023, 0.019, 0.015, 0.017, 0.021, 0.031, 0.042, 0.041, 0.034, 0.029, 0.027, 0.025, 0.021, 0.021, 0.021, 0.026, 0.031, 0.044, 0.084, 0.117, 0.113, 0.096, 0.063, 0.039],
+            "weekend_fractions": [0.023, 0.019, 0.015, 0.017, 0.021, 0.031, 0.042, 0.041, 0.034, 0.029, 0.027, 0.025, 0.021, 0.021, 0.021, 0.026, 0.031, 0.044, 0.084, 0.117, 0.113, 0.096, 0.063, 0.039],
+            "month_multipliers": [1.19, 1.11, 1.02, 0.93, 0.84, 0.8, 0.82, 0.88, 0.98, 1.07, 1.16, 1.2]
+        },
+        "Indoor Lighting": {
+            "Annual Electric Energy (kWh)": 1291.043783783784,
+            "Convective Gain Fraction (-)": 1,
+            "Radiative Gain Fraction (-)": 0,
+            "Latent Gain Fraction (-)": 0,
+            "weekday_fractions": [0.012, 0.01, 0.01, 0.01, 0.011, 0.018, 0.03, 0.038, 0.041, 0.041, 0.039, 0.037, 0.036, 0.035, 0.037, 0.041, 0.05, 0.065, 0.086, 0.106, 0.11, 0.079, 0.04, 0.018],
+            "weekend_fractions": [0.012, 0.01, 0.01, 0.01, 0.011, 0.018, 0.03, 0.038, 0.041, 0.041, 0.039, 0.037, 0.036, 0.035, 0.037, 0.041, 0.05, 0.065, 0.086, 0.106, 0.11, 0.079, 0.04, 0.018],
+            "month_multipliers": [1.19, 1.11, 1.02, 0.93, 0.84, 0.8, 0.82, 0.88, 0.98, 1.07, 1.16, 1.2]
+        },
+        "TV": {
+            "Annual Electric Energy (kWh)": 1149.0748,
+            "Convective Gain Fraction (-)": 1.0,
+            "Radiative Gain Fraction (-)": 0,
+            "Latent Gain Fraction (-)": 0.0,
+            "weekday_fractions": [0.014, 0.007, 0.004, 0.003, 0.004, 0.006, 0.01, 0.015, 0.02, 0.025, 0.028, 0.031, 0.033, 0.038, 0.042, 0.046, 0.054, 0.062, 0.08, 0.11, 0.132, 0.125, 0.077, 0.034],
+            "weekend_fractions": [0.014, 0.007, 0.004, 0.003, 0.004, 0.006, 0.01, 0.015, 0.02, 0.025, 0.028, 0.031, 0.033, 0.038, 0.042, 0.046, 0.054, 0.062, 0.08, 0.11, 0.132, 0.125, 0.077, 0.034],
+            "month_multipliers": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+        },
+        "MELs": {
+            "Annual Electric Energy (kWh)": 3836.5254,
+            "Convective Gain Fraction (-)": 0.93,
+            "Radiative Gain Fraction (-)": 0,
+            "Latent Gain Fraction (-)": 0.021,
+            "weekday_fractions": [0.036, 0.036, 0.036, 0.036, 0.036, 0.036, 0.038, 0.041, 0.042, 0.042, 0.042, 0.042, 0.042, 0.042, 0.042, 0.044, 0.047, 0.05, 0.051, 0.05, 0.048, 0.044, 0.04, 0.037],
+            "weekend_fractions": [0.036, 0.036, 0.036, 0.036, 0.036, 0.036, 0.038, 0.041, 0.042, 0.042, 0.042, 0.042, 0.042, 0.042, 0.042, 0.044, 0.047, 0.05, 0.051, 0.05, 0.048, 0.044, 0.04, 0.037],
+            "month_multipliers": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+        },
+        "Ceiling Fan": {
+            "Annual Electric Energy (kWh)": 163.31676136363635,
+            "Convective Gain Fraction (-)": 0,
+            "Radiative Gain Fraction (-)": 0,
+            "Latent Gain Fraction (-)": 0,
+            "weekday_fractions": [0.057, 0.057, 0.057, 0.057, 0.057, 0.057, 0.057, 0.024, 0.024, 0.024, 0.024, 0.024, 0.024, 0.024, 0.024, 0.024, 0.024, 0.024, 0.052, 0.057, 0.057, 0.057, 0.057, 0.057],
+            "weekend_fractions": [0.057, 0.057, 0.057, 0.057, 0.057, 0.057, 0.057, 0.024, 0.024, 0.024, 0.024, 0.024, 0.024, 0.024, 0.024, 0.024, 0.024, 0.024, 0.052, 0.057, 0.057, 0.057, 0.057, 0.057],
+            "month_multipliers": [0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0]
+        }
+    },
+    "Location": {
+        "loc": "LOCATION",
+        "city": "Portland International Ap",
+        "state-prov": "OR",
+        "country": "USA",
+        "data_type": "TMY3",
+        "WMO_code": "726980",
+        "latitude": 45.6,
+        "longitude": -122.62,
+        "TZ": -8.0,
+        "altitude": 6.0,
+        "timezone": -8.0,
+        "Weather Station": "G4100510",
+        "Average Wind Speed (m/s)": 3.379223744292238,
+        "Average Ambient Temperature (C)": 12.237340182648401,
+        "Average Ground Temperature (C)": 12.199467046455347
+    }
+}

@@ -1,6 +1,6 @@
 env/
 venv/
 __pycache__/
+datasets/resstock_2025/load_prfiles/
 cosimulation_tools/dss-ochre-helics/profiles
-datasets/resstock_2025/load_prfiles/cosimulation
 ochre_helics_example/my_examples/my_cosim/cosimulation

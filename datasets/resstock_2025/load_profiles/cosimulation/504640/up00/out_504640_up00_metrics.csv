@@ -1,0 +1,22 @@
+Metric,Value
+Total Electric Energy (kWh),12.690787740600792
+Total Gas Energy (therms),0.41344621090253564
+Average Electric Power (kW),0.528782822525033
+Peak Electric Power (kW),1.515147902268476
+Lighting Electric Energy (kWh),1.1211633834374495
+Other Electric Energy (kWh),9.303774355116854
+HVAC Heating Electric Energy (kWh),0.05011125
+HVAC Cooling Electric Energy (kWh),2.215738752046488
+Water Heating Gas Energy (therms),0.3639154000917248
+HVAC Heating Gas Energy (therms),0.04953081081081081
+Average Temperature - Indoor (C),21.550400515434443
+Unmet Heating Load (C-hours),0.41838190918433493
+Unmet Cooling Load (C-hours),1.8186388004036658
+Total HVAC Heating Delivered (kWh),1.3928458526666665
+Average HVAC Heating COP (-),0.9250000000000003
+Average HVAC Heating Duct Efficiency (-),0.9999999999999997
+Total HVAC Cooling Delivered (kWh),4.254185755136476
+Average HVAC Cooling COP (-),2.1211683536829278
+Average HVAC Cooling SHR (-),1.0
+Average HVAC Cooling Duct Efficiency (-),1.0
+Total Hot Water Unmet Demand (kWh),0.0

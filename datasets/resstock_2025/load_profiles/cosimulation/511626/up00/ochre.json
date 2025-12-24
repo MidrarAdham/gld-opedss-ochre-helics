@@ -1,0 +1,340 @@
+{
+    "Occupancy": {
+        "Number of Occupants (-)": 2.0,
+        "weekday_fractions": [0.035, 0.035, 0.035, 0.035, 0.035, 0.059, 0.082, 0.055, 0.027, 0.014, 0.014, 0.014, 0.014, 0.014, 0.019, 0.027, 0.041, 0.055, 0.068, 0.082, 0.082, 0.07, 0.053, 0.035],
+        "weekend_fractions": [0.035, 0.035, 0.035, 0.035, 0.035, 0.059, 0.082, 0.055, 0.027, 0.014, 0.014, 0.014, 0.014, 0.014, 0.019, 0.027, 0.041, 0.055, 0.068, 0.082, 0.082, 0.07, 0.053, 0.035],
+        "month_multipliers": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+    },
+    "Construction": {
+        "Number of Bedrooms (-)": 2,
+        "Number of Bathrooms (-)": 1,
+        "House Type": "apartment unit",
+        "Total Floors": 1.0,
+        "Indoor Floors": 1.0,
+        "Conditioned Floor Area (m^2)": 29.914778879999997,
+        "Conditioned Volume (m^3)": 72.94419682099199,
+        "Ceiling Height (m)": 2.4384,
+        "Foundation Type": "Crawlspace",
+        "First Floor Area (m^2)": 29.914778879999997,
+        "Attic Floor Area (m^2)": 29.914778879999997,
+        "Garage Floor Area (m^2)": 0,
+        "Garage Protruded Area (m^2)": 0,
+        "Indoor Floor Area (m^2)": 29.914778879999997,
+        "Number of Bedrooms, Adjusted (-)": 1.91
+    },
+    "Boundaries": {
+        "Exterior Wall": {
+            "Interior Zone": "Indoor",
+            "Exterior Zone": "Outdoor",
+            "Area (m^2)": [
+                9.346045823999999,
+                16.815450239999997,
+                7.4879850239999985
+            ],
+            "Azimuth (deg)": [
+                90,
+                180,
+                270
+            ],
+            "Boundary R Value": 4.8,
+            "Exterior Solar Absorptivity (-)": 0.85,
+            "Exterior Emissivity (-)": 0.9,
+            "Finish Type": "wood siding",
+            "Construction Type": "WoodStud"
+        },
+        "Adjacent Wall": {
+            "Interior Zone": "Indoor",
+            "Exterior Zone": "Indoor",
+            "Area (m^2)": [
+                17.893125503999997
+            ],
+            "Azimuth (deg)": [
+                0
+            ],
+            "Boundary R Value": 4.0,
+            "Construction Type": "WoodStud"
+        },
+        "Foundation Wall": {
+            "Interior Zone": "Foundation",
+            "Exterior Zone": "Ground",
+            "Area (m^2)": [
+                4.9703126399999995,
+                8.946562751999998,
+                4.9703126399999995
+            ],
+            "Azimuth (deg)": [
+                90,
+                180,
+                270
+            ],
+            "Insulation Details": "Uninsulated",
+            "Height (m)": 1.2191999999999998,
+            "Construction Type": "Crawlspace"
+        },
+        "Adjacent Foundation Wall": {
+            "Interior Zone": "Foundation",
+            "Exterior Zone": "Foundation",
+            "Area (m^2)": [
+                8.946562751999998
+            ],
+            "Azimuth (deg)": [
+                0
+            ],
+            "Construction Type": "Crawlspace"
+        },
+        "Foundation Ceiling": {
+            "Interior Zone": "Indoor",
+            "Exterior Zone": "Foundation",
+            "Area (m^2)": [
+                29.914778879999997
+            ],
+            "Boundary R Value": 5.3
+        },
+        "Adjacent Ceiling": {
+            "Interior Zone": "Indoor",
+            "Exterior Zone": "Indoor",
+            "Area (m^2)": [
+                29.914778879999997
+            ],
+            "Boundary R Value": 2.1
+        },
+        "Foundation Floor": {
+            "Interior Zone": "Foundation",
+            "Exterior Zone": "Ground",
+            "Area (m^2)": [
+                29.914778879999997
+            ],
+            "Insulation Details": "Uninsulated"
+        },
+        "Rim Joist": {
+            "Interior Zone": "Foundation",
+            "Exterior Zone": "Outdoor",
+            "Area (m^2)": [
+                0.956901312,
+                1.727996544,
+                0.956901312
+            ],
+            "Azimuth (deg)": [
+                90,
+                180,
+                270
+            ],
+            "Boundary R Value": 3.9,
+            "Exterior Solar Absorptivity (-)": 0.85,
+            "Exterior Emissivity (-)": 0.9,
+            "Finish Type": "wood siding"
+        },
+        "Adjacent Rim Joist": {
+            "Interior Zone": "Foundation",
+            "Exterior Zone": "Foundation",
+            "Area (m^2)": [
+                1.727996544
+            ],
+            "Azimuth (deg)": [
+                0
+            ],
+            "Boundary R Value": 4.0
+        },
+        "Window": {
+            "Interior Zone": "Indoor",
+            "Exterior Zone": "Outdoor",
+            "Area (m^2)": [
+                0.594579456,
+                1.0776752639999998,
+                0.594579456
+            ],
+            "Azimuth (deg)": [
+                90,
+                180,
+                270
+            ],
+            "U Factor (W/m^2-K)": 0.76,
+            "SHGC (-)": 0.67,
+            "Shading Fraction (-)": 0.7
+        },
+        "Door": {
+            "Interior Zone": "Indoor",
+            "Exterior Zone": "Outdoor",
+            "Area (m^2)": [
+                1.8580607999999998
+            ],
+            "Azimuth (deg)": [
+                270
+            ],
+            "Boundary R Value": 5.0
+        },
+        "Interior Wall": {
+            "Area (m^2)": [
+                29.914778879999997
+            ],
+            "Interior Zone": "Indoor",
+            "Exterior Zone": "Indoor",
+            "Insulation Level": "Standard"
+        },
+        "Indoor Furniture": {
+            "Area (m^2)": [
+                11.965911552
+            ],
+            "Interior Zone": "Indoor",
+            "Exterior Zone": "Indoor",
+            "Insulation Level": "Standard"
+        },
+        "Foundation Furniture": {
+            "Area (m^2)": [
+                11.965911552
+            ],
+            "Interior Zone": "Foundation",
+            "Exterior Zone": "Foundation",
+            "Insulation Level": "Standard"
+        }
+    },
+    "Zones": {
+        "Indoor": {
+            "Zone Area (m^2)": 29.914778879999997,
+            "Volume (m^3)": 72.94419682099199,
+            "ELA stack coefficient (L/s/cm^4/K)": 8.964385856299902e-05,
+            "ELA wind coefficient (L/s/cm^4/(m/s))": 0.00011413577917306574,
+            "Infiltration Method": "ASHRAE",
+            "inf_f_t": 0.5254720692073672,
+            "inf_sft": 0.2627360346036836,
+            "inf_n_i": 0.65,
+            "inf_c": 0.06315167020325564,
+            "inf_Cs": 0.05549283942636408,
+            "inf_Cw": 0.10156623432739614
+        },
+        "Foundation": {
+            "Zone Type": "Crawlspace",
+            "Zone Area (m^2)": 29.914778879999997,
+            "Volume (m^3)": 36.47209841049599,
+            "Vented": true,
+            "Infiltration Method": "ELA",
+            "ELA (cm^2)": 1994.4183079296,
+            "ELA stack coefficient (L/s/cm^4/K)": 4.4821929281499506e-05,
+            "ELA wind coefficient (L/s/cm^4/(m/s))": 8.64987456620941e-05
+        }
+    },
+    "Equipment": {
+        "HVAC Heating": {
+            "Equipment Name": "Boiler",
+            "Fuel": "Natural gas",
+            "Capacity (W)": 2416.6643822222222,
+            "EIR (-)": 1.282051282051282,
+            "Rated Efficiency": "0.78 AFUE",
+            "SHR (-)": null,
+            "Conditioned Space Fraction (-)": 1.0,
+            "Number of Speeds (-)": 1,
+            "Rated Auxiliary Power (W)": 105.76923076923077,
+            "Weekday Setpoints (C)": [21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143],
+            "Weekend Setpoints (C)": [21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143, 21.111111111111143]
+        },
+        "HVAC Cooling": {
+            "Equipment Name": "room air conditioner",
+            "Fuel": "Electricity",
+            "Capacity (W)": 935.7760577777777,
+            "EIR (-)": 0.3188916968680725,
+            "Rated Efficiency": "10.7 EER",
+            "SHR (-)": 0.65,
+            "Conditioned Space Fraction (-)": 0.4,
+            "Number of Speeds (-)": 1,
+            "Rated Auxiliary Power (W)": 0,
+            "Weekday Setpoints (C)": [22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285],
+            "Weekend Setpoints (C)": [22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285, 22.222222222222285]
+        },
+        "Water Heating": {
+            "Equipment Name": "storage water heater",
+            "Fuel": "Electricity",
+            "Zone": "Adjacent",
+            "Setpoint Temperature (C)": 51.666666666666686,
+            "UA (W/K)": 1.1635681296899638,
+            "Efficiency (-)": 1.0,
+            "Energy Factor (-)": 0.92,
+            "Tank Volume (L)": 102.20611816799997,
+            "Tank Height (m)": 1.2191999999999998,
+            "Capacity (W)": 3499.855208888889,
+            "weekday_fractions": [0.012, 0.006, 0.004, 0.005, 0.01, 0.034, 0.078, 0.086, 0.08, 0.067, 0.056, 0.047, 0.04, 0.035, 0.033, 0.031, 0.038, 0.051, 0.06, 0.06, 0.055, 0.048, 0.038, 0.026],
+            "weekend_fractions": [0.012, 0.006, 0.004, 0.005, 0.01, 0.034, 0.078, 0.086, 0.08, 0.067, 0.056, 0.047, 0.04, 0.035, 0.033, 0.031, 0.038, 0.051, 0.06, 0.06, 0.055, 0.048, 0.038, 0.026],
+            "month_multipliers": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0],
+            "Fixture Average Water Draw (L/day)": 158.9102674191035
+        },
+        "Refrigerator": {
+            "Annual Electric Energy (kWh)": 433.0,
+            "Convective Gain Fraction (-)": 1.0,
+            "Radiative Gain Fraction (-)": 0,
+            "Latent Gain Fraction (-)": 0,
+            "weekday_fractions": [0.04, 0.039, 0.038, 0.037, 0.036, 0.036, 0.038, 0.04, 0.041, 0.041, 0.04, 0.04, 0.042, 0.042, 0.042, 0.041, 0.044, 0.048, 0.05, 0.048, 0.047, 0.046, 0.044, 0.041],
+            "month_multipliers": [0.837, 0.835, 1.084, 1.084, 1.084, 1.096, 1.096, 1.096, 1.096, 0.931, 0.925, 0.837]
+        },
+        "Cooking Range": {
+            "Annual Electric Energy (kWh)": 27.757,
+            "Annual Gas Energy (therms)": 27.757,
+            "Convective Gain Fraction (-)": 0.6381527439104868,
+            "Radiative Gain Fraction (-)": 0,
+            "Latent Gain Fraction (-)": 0.16184725608951317,
+            "weekday_fractions": [0.008, 0.008, 0.008, 0.008, 0.008, 0.015, 0.023, 0.039, 0.046, 0.046, 0.046, 0.054, 0.062, 0.046, 0.039, 0.054, 0.076, 0.134, 0.114, 0.058, 0.039, 0.031, 0.023, 0.015],
+            "weekend_fractions": [0.008, 0.008, 0.008, 0.008, 0.008, 0.015, 0.023, 0.039, 0.046, 0.046, 0.046, 0.054, 0.062, 0.046, 0.039, 0.054, 0.076, 0.134, 0.114, 0.058, 0.039, 0.031, 0.023, 0.015],
+            "month_multipliers": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+        },
+        "Exterior Lighting": {
+            "Annual Electric Energy (kWh)": 19.349999999999998,
+            "Convective Gain Fraction (-)": 1,
+            "Radiative Gain Fraction (-)": 0,
+            "Latent Gain Fraction (-)": 0,
+            "weekday_fractions": [0.04, 0.037, 0.037, 0.035, 0.035, 0.039, 0.044, 0.041, 0.031, 0.025, 0.024, 0.024, 0.025, 0.028, 0.03, 0.035, 0.044, 0.056, 0.064, 0.068, 0.07, 0.065, 0.056, 0.047],
+            "weekend_fractions": [0.04, 0.037, 0.037, 0.035, 0.035, 0.039, 0.044, 0.041, 0.031, 0.025, 0.024, 0.024, 0.025, 0.028, 0.03, 0.035, 0.044, 0.056, 0.064, 0.068, 0.07, 0.065, 0.056, 0.047],
+            "month_multipliers": [1.19, 1.11, 1.02, 0.93, 0.84, 0.8, 0.82, 0.88, 0.98, 1.07, 1.16, 1.2]
+        },
+        "Indoor Lighting": {
+            "Annual Electric Energy (kWh)": 186.81675675675675,
+            "Convective Gain Fraction (-)": 1,
+            "Radiative Gain Fraction (-)": 0,
+            "Latent Gain Fraction (-)": 0,
+            "weekday_fractions": [0.012, 0.01, 0.01, 0.01, 0.011, 0.018, 0.03, 0.038, 0.041, 0.041, 0.039, 0.037, 0.036, 0.035, 0.037, 0.041, 0.05, 0.065, 0.086, 0.106, 0.11, 0.079, 0.04, 0.018],
+            "weekend_fractions": [0.012, 0.01, 0.01, 0.01, 0.011, 0.018, 0.03, 0.038, 0.041, 0.041, 0.039, 0.037, 0.036, 0.035, 0.037, 0.041, 0.05, 0.065, 0.086, 0.106, 0.11, 0.079, 0.04, 0.018],
+            "month_multipliers": [1.19, 1.11, 1.02, 0.93, 0.84, 0.8, 0.82, 0.88, 0.98, 1.07, 1.16, 1.2]
+        },
+        "TV": {
+            "Annual Electric Energy (kWh)": 391.59720000000004,
+            "Convective Gain Fraction (-)": 1.0,
+            "Radiative Gain Fraction (-)": 0,
+            "Latent Gain Fraction (-)": 0.0,
+            "weekday_fractions": [0.014, 0.007, 0.004, 0.003, 0.004, 0.006, 0.01, 0.015, 0.02, 0.025, 0.028, 0.031, 0.033, 0.038, 0.042, 0.046, 0.054, 0.062, 0.08, 0.11, 0.132, 0.125, 0.077, 0.034],
+            "weekend_fractions": [0.014, 0.007, 0.004, 0.003, 0.004, 0.006, 0.01, 0.015, 0.02, 0.025, 0.028, 0.031, 0.033, 0.038, 0.042, 0.046, 0.054, 0.062, 0.08, 0.11, 0.132, 0.125, 0.077, 0.034],
+            "month_multipliers": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+        },
+        "MELs": {
+            "Annual Electric Energy (kWh)": 1047.7740000000001,
+            "Convective Gain Fraction (-)": 0.93,
+            "Radiative Gain Fraction (-)": 0,
+            "Latent Gain Fraction (-)": 0.021,
+            "weekday_fractions": [0.036, 0.036, 0.036, 0.036, 0.036, 0.036, 0.038, 0.041, 0.042, 0.042, 0.042, 0.042, 0.042, 0.042, 0.042, 0.044, 0.047, 0.05, 0.051, 0.05, 0.048, 0.044, 0.04, 0.037],
+            "weekend_fractions": [0.036, 0.036, 0.036, 0.036, 0.036, 0.036, 0.038, 0.041, 0.042, 0.042, 0.042, 0.042, 0.042, 0.042, 0.042, 0.044, 0.047, 0.05, 0.051, 0.05, 0.048, 0.044, 0.04, 0.037],
+            "month_multipliers": [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+        },
+        "Ceiling Fan": {
+            "Annual Electric Energy (kWh)": 163.31676136363635,
+            "Convective Gain Fraction (-)": 0,
+            "Radiative Gain Fraction (-)": 0,
+            "Latent Gain Fraction (-)": 0,
+            "weekday_fractions": [0.057, 0.057, 0.057, 0.057, 0.057, 0.057, 0.057, 0.024, 0.024, 0.024, 0.024, 0.024, 0.024, 0.024, 0.024, 0.024, 0.024, 0.024, 0.052, 0.057, 0.057, 0.057, 0.057, 0.057],
+            "weekend_fractions": [0.057, 0.057, 0.057, 0.057, 0.057, 0.057, 0.057, 0.024, 0.024, 0.024, 0.024, 0.024, 0.024, 0.024, 0.024, 0.024, 0.024, 0.024, 0.052, 0.057, 0.057, 0.057, 0.057, 0.057],
+            "month_multipliers": [0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0]
+        }
+    },
+    "Location": {
+        "loc": "LOCATION",
+        "city": "Portland International Ap",
+        "state-prov": "OR",
+        "country": "USA",
+        "data_type": "TMY3",
+        "WMO_code": "726980",
+        "latitude": 45.6,
+        "longitude": -122.62,
+        "TZ": -8.0,
+        "altitude": 6.0,
+        "timezone": -8.0,
+        "Weather Station": "G4100510",
+        "Average Wind Speed (m/s)": 3.379223744292238,
+        "Average Ambient Temperature (C)": 12.237340182648401,
+        "Average Ground Temperature (C)": 12.199467046455347
+    }
+}
