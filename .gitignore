@@ -1,6 +1,6 @@
 env/
 venv/
-vscode/
+.vscode/
 __pycache__/
 datasets/resstock_2025/load_profiles/
 cosimulation_tools/dss-ochre-helics/profiles
