@@ -1,0 +1,14 @@
+# file...... load_logs.csv
+# date...... Wed Jul 16 18:26:01 2025
+# user...... deras
+# host...... (null)
+# target.... triplex_load 22
+# trigger... (none)
+# interval.. 60
+# limit..... 0
+# timestamp,constant_power_1
+2021-12-25 00:00:00 UTC,+0+0i
+2021-12-25 00:01:00 UTC,+0+0j
+2021-12-25 00:02:00 UTC,+0+0j
+2021-12-25 00:03:00 UTC,+5000.12+0j
+2021-12-25 00:04:00 UTC,+2000.13+0j

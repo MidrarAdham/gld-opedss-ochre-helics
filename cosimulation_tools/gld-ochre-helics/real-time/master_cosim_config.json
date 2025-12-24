@@ -1,0 +1,18 @@
+{
+    "name": "ochre_gridlabd_cosimulation",
+    "broker": true,
+    "federates": [
+        {
+            "name": "House_1",
+            "host": "localhost",
+            "directory": ".",
+            "exec": "/home/deras/.cache/pypoetry/virtualenvs/gld-opedss-ochre-helics-o_1DRW9c-py3.12/bin/python -u cosim_from_scratch.py house House_1 /home/deras/gld-opedss-ochre-helics_bkup/cosimulation/gld-ochre-helics/real-time/cosimulation/bldg0112631/up00"
+        },
+        {
+            "name": "GridLABD_federate",
+            "host": "localhost",
+            "directory": ".",
+            "exec": "gridlabd powerflow_4node.glm"
+        }
+    ]
+}

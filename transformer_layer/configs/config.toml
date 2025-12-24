@@ -1,0 +1,50 @@
+[meta]
+description = "ResStock 2025, OR, upgrade 00, winter week"
+
+#Project
+[project]
+name = "load-allocation"
+# A unique run ID for each simulation - makes it easy to tracj down results
+# run_id = "run_2025-01-01-01_up00_test"
+run_id = "auto"
+
+# Location of results data:
+results_dir = "results"
+
+# Resstock dataset input directory:
+[data]
+dataset_dir = "datasets/cosimulation"
+
+# currently we only have one upgrade - up00
+upgrades = ["up00"]
+
+# Reading the dataset files takes time, so we'll store the appropriate path in a file and read from it later:
+use_cached_building_ids = true
+building_ids_cache_name = "building_ids.csv"
+
+# OCHRE files have so many columns we don't use. So let's focus on the ones we need
+[columns]
+time = "Time"
+power_kw = "Total Electric Power (kW)"
+
+[electrical]
+# We use pf = 0.9 - this can be changed later. I prefer to calculate it rather than assume a single value
+power_factor = 0.9
+
+# Parameters for each method (See Kerstings: Ch. 2 Nature of Loads):
+[method1]
+enabled = true
+
+# Which transformer sizes we need to evaluate:
+transformer_kva_list = [25.0, 50.0, 75.0]
+
+# We use pf = 0.9 - this can be changed later. I prefer to calculate it rather than assume a single value
+power_factor = 0.9
+
+# Monte Carlo Settings:
+n_trials = 5
+random_seed = 123
+
+# Results file format:
+[storage]
+cache_format = "parquet"

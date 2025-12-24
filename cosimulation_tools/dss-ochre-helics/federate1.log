@@ -1,0 +1,89 @@
+/home/deras/.local/lib/python3.12/site-packages/opendss_wrapper/OpenDSS.py:115: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_numeric without passing `errors` and catch exceptions explicitly instead
+  df = dss.utils.class_to_dataframe(element, transform_string=lambda x: pd.to_numeric(x, errors='ignore'))
+/home/deras/.local/lib/python3.12/site-packages/opendss_wrapper/OpenDSS.py:115: FutureWarning: errors='ignore' is deprecated and will raise in a future version. Use to_numeric without passing `errors` and catch exceptions explicitly instead
+  df = dss.utils.class_to_dataframe(element, transform_string=lambda x: pd.to_numeric(x, errors='ignore'))
+[2025-09-10 17:16:18.945] [console] [debug] federate1 (131073)[initializing]::Granting Initialization
+[2025-09-10 17:16:18.945] [console] [debug] federate1 (131073)[initializing]::Granted Time=-9223372036.854776
+[2025-09-10 17:16:18.945] [console] [debug] federate1 (131073)[executing]::Granting Execution
+[2025-09-10 17:16:18.945] [console] [debug] federate1 (131073)[0]::Granted Time=0
+[2025-09-10 17:16:18.945] [console] [debug] federate1 (131073)[60]::Granted Time=60
+[2025-09-10 17:16:33.843] [console] [info] federate1_core_LzTUEi (1879048193)[t=60]:: core tick
+[2025-09-10 17:16:48.844] [console] [info] federate1_core_LzTUEi (1879048193)[t=60]:: core tick
+[2025-09-10 17:17:03.844] [console] [info] federate1_core_LzTUEi (1879048193)[t=60]:: core tick
+[2025-09-10 17:17:18.845] [console] [info] federate1_core_LzTUEi (1879048193)[t=60]:: core tick
+[2025-09-10 17:17:18.846] [console] [debug] federate1[60]::setting value for storage_powers size 22850
+[2025-09-10 17:17:18.946] [console] [debug] federate1 (131073)[120]::Granted Time=120
+[2025-09-10 17:17:33.846] [console] [info] federate1_core_LzTUEi (1879048193)[t=120]:: core tick
+[2025-09-10 17:17:48.846] [console] [info] federate1_core_LzTUEi (1879048193)[t=120]:: core tick
+[2025-09-10 17:18:03.847] [console] [info] federate1_core_LzTUEi (1879048193)[t=120]:: core tick
+[2025-09-10 17:18:18.846] [console] [debug] federate1[120]::setting value for storage_powers size 22859
+[2025-09-10 17:18:18.947] [console] [debug] federate1 (131073)[180]::Granted Time=180
+[2025-09-10 17:18:33.848] [console] [info] federate1_core_LzTUEi (1879048193)[t=180]:: core tick
+[2025-09-10 17:18:48.849] [console] [info] federate1_core_LzTUEi (1879048193)[t=180]:: core tick
+[2025-09-10 17:19:03.850] [console] [info] federate1_core_LzTUEi (1879048193)[t=180]:: core tick
+[2025-09-10 17:19:18.846] [console] [debug] federate1[180]::setting value for storage_powers size 22859
+[2025-09-10 17:19:18.946] [console] [debug] federate1 (131073)[240]::Granted Time=240
+[2025-09-10 17:19:33.851] [console] [info] federate1_core_LzTUEi (1879048193)[t=240]:: core tick
+[2025-09-10 17:19:48.852] [console] [info] federate1_core_LzTUEi (1879048193)[t=240]:: core tick
+[2025-09-10 17:20:03.852] [console] [info] federate1_core_LzTUEi (1879048193)[t=240]:: core tick
+[2025-09-10 17:20:18.847] [console] [debug] federate1[240]::setting value for storage_powers size 22860
+[2025-09-10 17:20:18.948] [console] [debug] federate1 (131073)[300]::Granted Time=300
+[2025-09-10 17:20:33.853] [console] [info] federate1_core_LzTUEi (1879048193)[t=300]:: core tick
+[2025-09-10 17:20:48.854] [console] [info] federate1_core_LzTUEi (1879048193)[t=300]:: core tick
+[2025-09-10 17:21:03.855] [console] [info] federate1_core_LzTUEi (1879048193)[t=300]:: core tick
+[2025-09-10 17:21:18.847] [console] [debug] federate1[300]::setting value for storage_powers size 22864
+[2025-09-10 17:21:18.949] [console] [debug] federate1 (131073)[300]::Terminating
+[2025-09-10 17:21:18.949] [console] [debug] federate1 (131073)[300]::Granted Time=300
+
+
+Setting Paths
+
+
+
+2025-09-10 17:16:15.060299 - DSS: Compiling...
+2025-09-10 17:16:15.060313 - DSS: Running file: /home/deras/gld-opedss-ochre-helics/opendss_helics_examples/network_model/model_base.dss
+2025-09-10 17:16:16.517050 - DSS: Compiled Circuit: source
+
+==========================================
+
+Storage element sample: ['der_645_b_27', 'der_645_b_28', 'der_645_b_29']
+Storage element length: 960
+
+
+==========================================
+
+Bus to Storage Map length: 960
+==========================================
+
+
+
+
+
+Loading the csv file right now
+
+
+
+
+Starting publishing values to OpenDSS...
+Step 0: Published at t=60.0: 960 elements, Total: 4320031.51 kW
+
+granted time:	 60.0
+
+Step 1: Published at t=120.0: 960 elements, Total: 4320025.51 kW
+
+granted time:	 120.0
+
+Step 2: Published at t=180.0: 960 elements, Total: 4320031.01 kW
+
+granted time:	 180.0
+
+Step 3: Published at t=240.0: 960 elements, Total: 4319938.57 kW
+
+granted time:	 240.0
+
+Step 4: Published at t=300.0: 960 elements, Total: 4319905.95 kW
+
+granted time:	 300.0
+
+federate1 execution completed.
+federate1 done.

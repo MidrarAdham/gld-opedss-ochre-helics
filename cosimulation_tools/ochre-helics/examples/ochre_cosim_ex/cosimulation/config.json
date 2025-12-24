@@ -1,0 +1,24 @@
+{
+    "name": "ochre_cosimulation",
+    "broker": true,
+    "federates": [
+        {
+            "name": "House_1",
+            "host": "localhost",
+            "directory": ".",
+            "exec": "/usr/bin/python3 -u /home/deras/gld-opedss-ochre-helics/ochre_helics_example/my_examples/ochre_cosim_ex/run_cosimulation.py house House_1 /home/deras/gld-opedss-ochre-helics/ochre_helics_example/my_examples/ochre_cosim_ex/cosimulation/bldg0112631/up00"
+        },
+        {
+            "name": "House_2",
+            "host": "localhost",
+            "directory": ".",
+            "exec": "/usr/bin/python3 -u /home/deras/gld-opedss-ochre-helics/ochre_helics_example/my_examples/ochre_cosim_ex/run_cosimulation.py house House_2 /home/deras/gld-opedss-ochre-helics/ochre_helics_example/my_examples/ochre_cosim_ex/cosimulation/bldg0112631/up11"
+        },
+        {
+            "name": "Aggregator",
+            "host": "localhost",
+            "directory": ".",
+            "exec": "/usr/bin/python3 -u /home/deras/gld-opedss-ochre-helics/ochre_helics_example/my_examples/ochre_cosim_ex/run_cosimulation.py aggregator"
+        }
+    ]
+}

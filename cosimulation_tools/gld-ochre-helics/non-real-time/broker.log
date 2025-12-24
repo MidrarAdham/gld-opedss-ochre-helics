@@ -1,0 +1,2 @@
+[2025-12-22 17:48:40.167] [console] [warning] commWarning||226540-vanlz-82ghw-IwcnB-LGCv7 (1)[operating]::unknown route and no broker, dropping message pub:From (131073) handle(0) size 24 at 2592000 to 131072
+[2025-12-22 17:48:40.167] [console] [warning] commWarning||226540-vanlz-82ghw-IwcnB-LGCv7 (1)[operating]::unknown route and no broker, dropping message pub:From (131073) handle(1) size 24 at 2592000 to 131072
