@@ -2,7 +2,7 @@ env/
 venv/
 .vscode/
 __pycache__/
-self-learning/
+self-learning/*
 datasets/resstock_2025/load_profiles
 cosimulation_tools/dss-ochre-helics/profiles
 ochre_helics_example/my_examples/my_cosim/cosimulation
