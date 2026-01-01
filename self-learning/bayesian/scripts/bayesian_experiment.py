@@ -6,6 +6,7 @@ import pandas as pd
 from pathlib import Path
 from scipy.special import comb # calculates combinations (N choose K)
 import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
 from scipy.stats import beta, binom
 # %%
 def load_wh_data (filepath : str) -> pd.DataFrame:
@@ -51,6 +52,7 @@ def prepare_data (df : pd.DataFrame, start_index : int, window_size : int) -> pd
     df_sliced = df.iloc[start_index: start_index+window_size]
     H = (df_sliced['state'] == 1).sum()
     T = (df_sliced['state'] == 0).sum()
+    print(H, T)
     n = H + T
 
     return H, T, n, df_sliced
@@ -125,7 +127,7 @@ def calculate_evidence (theta_values : np.array, likelihood : np.array, prior : 
 # def calculate_posterior (theta_values:np.array, likelihood:np.array, prior:np.array, evidence:float) -> np.array:
 def calculate_posterior (likelihood:np.array, prior:np.array, evidence:float) -> np.array:
     """
-    Calculate the posterior = P(X | theta) = [P(theta | X) * P(theta)]/P(X)
+    Calculate the posterior = P(theta | X) = [P(X | theta) * P(theta)]/P(X)
     :param theta_values: distribution of theta values
     :type theta_values: np.array
     :param likelihood: calculated likelihood
@@ -140,10 +142,10 @@ def calculate_posterior (likelihood:np.array, prior:np.array, evidence:float) ->
     posterior = (likelihood * prior)/(evidence)
     return posterior
 
-def calculate_posterior_conjugate (H, T, alpha, beta_param):
+def calculate_posterior_conjugate (theta_values, H, T, alpha, beta_param):
     """
-    If we want to skip using the integration in calculating the evidence, we can use apparently.
-
+    The current method is we calculate the prior, likelihood, and normlization factor. However, method 2 says:
+    posterior = beta.pdf (theta_values, alpha+H, beta+T), that's it!
     :param H: number of ONs
     :type H: int
     :param T: number of OFFs
@@ -160,12 +162,45 @@ def calculate_posterior_conjugate (H, T, alpha, beta_param):
     alpha_posterior = alpha + H
     beta_posterior = beta_param + T
 
-    return alpha_posterior, beta_posterior
+    posterior = beta.pdf (theta_values, alpha_posterior, beta_posterior)
 
-def plot_likelyhood (theta_values, likelihood, H, n):
+    return posterior
+
+def calculate_stats (alpha : int, beta_param : int) -> dict:
+    """
+    calculate_stats for prior and posterior.
+    
+    :param alpha: the first variable for the Beta function
+    :type alpha: int
+    :param beta_param: The second variable for the Beta function
+    :type beta_param: int
+    :return: mean, variance, std_dev, lower, upper, and width of the CI.
+    :rtype: dict
+    """
+    # for a beta function, the mean can be calculated as follows:
+    mean = (alpha) / (alpha + beta_param)
+    # for a beta function, the variance can be calculated as follows:
+    variance = (alpha * beta_param) / (((alpha + beta_param)**2) * (alpha+beta_param+1))
+    
+    std = np.sqrt (variance)
+    
+    # 95% confidence interval:
+    ci_lower = beta.ppf (0.025, alpha, beta_param)
+    ci_upper = beta.ppf (0.9745, alpha, beta_param)
+    ci_width = ci_upper - ci_lower
+
+    return {
+        'mean' : mean,
+        'std' : std,
+        'ci_lower' : ci_lower,
+        'ci_upper' : ci_upper,
+        'ci_width' : ci_width,
+    }
+
+def plot_likelihood (theta_values, likelihood, H, n):
     plt.figure (figsize=(10, 6))
     plt.plot (theta_values, likelihood, linewidth=2,
-              label=f'P(theta | X) = ({n} choose {H}) * theta ^ {H} * (1-theta)^{n-H}')
+              label=f'P(X | theta) = ({n} choose {H}) * theta ^ {H} * (1-theta)^{n-H}')
     plt.xlabel ('theta (Probability of ON)', fontsize=12)
     plt.ylabel ('P(X | theta)', fontsize=12)
     plt.title ('Likelihood function', fontsize=14, fontweight='bold')
@@ -174,48 +209,73 @@ def plot_likelyhood (theta_values, likelihood, H, n):
     plt.legend()
     return plt
 
-def plot_bayesian (theta_values, prior, likelihood, posterior, H, T, n):
+def plot_bayesian (theta_values, prior, likelihood, posterior, H, T, n, alpha, beta_param):
+    
+    stats = calculate_stats (alpha=alpha+H, beta_param=beta_param+T)
+    y_pos = 0
     fig, axes = plt.subplots (3, 1, figsize=(10,12))
-    print(prior)
-
+    # prob = np.trapz (theta_values, prior)
+    # print(prob)
     axes[0].plot(theta_values, prior, linewidth=2, color='blue')
-    axes[0].set_ylim(0,1.5)
+    # axes[0].set_ylim(-0.2,1.5)
+    axes[0].set_xlim(0,1)
     axes[0].set_title('Prior: P(θ)', fontweight='bold')
     axes[0].set_xlabel('θ')
     axes[0].set_ylabel('Density')
+    # axes[0].fill_between (theta_values, prior, label=f'Probability = {np.trapz(prior,theta_values):.1f}')
+    # axes[0].axvline(x=prob, color='red', linestyle='--', label=f'MLE = {prob:.3f}')
+    axes[0].legend()
     axes[0].grid(True, alpha=0.3)
+    axes[0].xaxis.set_major_locator(ticker.MaxNLocator(nbins=20))
 
     axes[1].plot(theta_values, likelihood, linewidth=2, color='green')
     axes[1].set_title(f'Likelihood: P(X|theta) where X = {H} ONs, {T} OFFs', 
                       fontweight='bold')
+    axes[1].set_xlim(0,1)
     axes[1].set_xlabel('theta')
     axes[1].set_ylabel('P(X|theta)')
     axes[1].axvline(x=H/n, color='red', linestyle='--', label=f'MLE = {H/n:.3f}')
     axes[1].legend()
     axes[1].grid(True, alpha=0.3)
+    axes[1].xaxis.set_major_locator(ticker.MaxNLocator(nbins=20))
 
     axes[2].plot(theta_values, posterior, linewidth=2, color='red')
+    axes[2].set_xlim(0,1)
     axes[2].set_title('Posterior: P(θ|X)', fontweight='bold')
     axes[2].set_xlabel('θ')
     axes[2].set_ylabel('Density')
+    axes[2].plot ([stats['ci_lower'], stats['ci_upper']], [0,0], linewidth=8,
+                  marker='|', markersize=15,
+                  label=f"Confidence Interval={stats['ci_width']:.3f}\nstd={stats['std']:.3f}")
+
+    # axes[2].plot(stats['mean'], y_pos, markersize=10, color='blue', label=f"mean={stats['mean']:.3f}")
+    # axes[2].fill_between (theta_values, posterior, label=f'Probability = {np.trapz(posterior,theta_values):.1f}')
+    # axes[2].axvline(x=np.trapz(posterior,theta_values), color='red', linestyle='--',
+                    # label=f'MLE = {np.trapz(posterior,theta_values):.3f}')
+
     axes[2].legend()
     axes[2].grid(True, alpha=0.3)
-    plt.tight_layout()
-    plt.savefig ('./test.png')
+    axes[2].xaxis.set_major_locator(ticker.MaxNLocator(nbins=20))
+    # plt.tight_layout()
+    # plt.savefig ('./test.png')
     return plt
 
 
 def bayesian_implementation (H: int, T: int, n: int):
     """
+    There are two methods to calculate the posterior:
+    1- Calculating every term individually - likelihood, prior, and normalization constant
+    2- Or, we can use the posterior conjugate. Both return the same results!
     
+    NOTE: posterior conjugate only works with beta prior and binomial likelihood
     """
-    prior_params = choose_prior (alpha=1, beta_param=1)
+    prior_params = choose_prior (alpha=10, beta_param=1)
 
     theta_values = np.linspace (0.001, 0.999, 1000)
 
     likelihood = calculate_likelihood (theta_values=theta_values, H=H, T=T, n=n)
 
-    # plot_likelyhood (theta_values=theta_values, likelihood=likelihood, H=H, n=n)
+    # plot_likelihood (theta_values=theta_values, likelihood=likelihood, H=H, n=n)
 
     # prior is expected be flat, because alpha = 1 and beta = 1
     prior = calculate_prior (theta_values=theta_values, alpha=prior_params['alpha'], beta_param=prior_params['beta'])
@@ -224,9 +284,17 @@ def bayesian_implementation (H: int, T: int, n: int):
     
     posterior = calculate_posterior (likelihood=likelihood, prior=prior, evidence=evidence)
 
-    plot_bayesian (theta_values=theta_values, prior=prior, likelihood=likelihood, posterior=posterior, H=H, T=n-H, n=n)
+    posterior_conj = calculate_posterior_conjugate (theta_values=theta_values, H=H, T=T,
+                                                    alpha=prior_params['alpha'],
+                                                    beta_param=prior_params['beta']
+                                                    )
 
-    return posterior
+    plot_bayesian (theta_values=theta_values, prior=prior, likelihood=likelihood,
+                   posterior=posterior_conj, H=H, T=n-H, n=n,
+                   alpha=prior_params["alpha"],
+                   beta_param=prior_params["beta"])
+
+    return posterior_conj
 # %%
 if __name__ == '__main__':
 
