@@ -142,7 +142,7 @@ def calculate_posterior (likelihood:np.array, prior:np.array, evidence:float) ->
     posterior = (likelihood * prior)/(evidence)
     return posterior
 
-def calculate_posterior_conjugate (theta_values, H, T, alpha, beta_param):
+def calculate_posterior_conjugate (theta_values, alpha_posterior, beta_posterior):
     """
     The current method is we calculate the prior, likelihood, and normlization factor. However, method 2 says:
     posterior = beta.pdf (theta_values, alpha+H, beta+T), that's it!
@@ -159,8 +159,8 @@ def calculate_posterior_conjugate (theta_values, H, T, alpha, beta_param):
     :return updated beta_param : beta_param + T
     :rtype int
     """
-    alpha_posterior = alpha + H
-    beta_posterior = beta_param + T
+    # alpha_posterior = alpha + H
+    # beta_posterior = beta_param + T
 
     posterior = beta.pdf (theta_values, alpha_posterior, beta_posterior)
 
@@ -283,10 +283,13 @@ def bayesian_implementation (H: int, T: int, n: int):
     evidence = calculate_evidence (theta_values=theta_values, likelihood=likelihood, prior=prior)
     
     posterior = calculate_posterior (likelihood=likelihood, prior=prior, evidence=evidence)
+    
+    alpha_posterior = prior_params['alpha'] + H
+    beta_posterior = prior_params['beta'] + T
 
-    posterior_conj = calculate_posterior_conjugate (theta_values=theta_values, H=H, T=T,
-                                                    alpha=prior_params['alpha'],
-                                                    beta_param=prior_params['beta']
+    posterior_conj = calculate_posterior_conjugate (theta_values=theta_values,
+                                                    alpha_posterior=alpha_posterior,
+                                                    beta_posterior=beta_posterior
                                                     )
 
     plot_bayesian (theta_values=theta_values, prior=prior, likelihood=likelihood,
