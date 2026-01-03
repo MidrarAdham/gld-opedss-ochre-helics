@@ -1,6 +1,5 @@
 # %%
 # Import libs
-import os
 import numpy as np
 import pandas as pd
 from pathlib import Path
@@ -29,7 +28,8 @@ def create_binary_states (df : pd.DataFrame) -> pd.DataFrame:
     :return: df with added "state" column
     :rtype: DataFrame
     """
-    df['state'] = (df['tn_meter_4br_46:measured_real_power'] ==4500).astype(int)
+    # df['state'] = (df['tn_meter_4br_46:measured_real_power'] ==4500).astype(int)
+    df['state'] = (df[df.columns[1]] ==4500).astype(int)
     return df
 
 def prepare_data (df : pd.DataFrame, start_index : int, window_size : int) -> pd.DataFrame:

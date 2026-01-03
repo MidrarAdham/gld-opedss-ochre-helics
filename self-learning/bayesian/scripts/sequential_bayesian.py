@@ -2,11 +2,11 @@
 import numpy as np
 import pandas as pd
 from pathlib import Path
+from scipy.stats import beta
 from scipy.special import comb
 import matplotlib.pyplot as plt
 from pprint import pprint as pp
 import matplotlib.ticker as ticker
-from scipy.stats import beta, binom
 import bayesian_experiment as bayesian
 
 # %%
@@ -30,7 +30,7 @@ def prepare_data (df : pd.DataFrame, start_index : int, window_size : int) -> pd
     T = (df_sliced['state'] == 0).sum()
     n = H + T
 
-    return H, T, n
+    return H, T, n, df_sliced
 
 def calculate_stats (alpha : int, beta_param : int) -> dict:
     
@@ -80,7 +80,8 @@ def sequential_bayesian_implementation (theta_values : np.array, df : pd.DataFra
         
         start_idx = chunk_idx * window_size
         
-        Hsliced, Tsliced, nsliced = prepare_data (df=df,
+        # df_sliced is used for debugging
+        Hsliced, Tsliced, nsliced, df_slice = prepare_data (df=df,
                                                              start_index=start_idx,
                                                              window_size=window_size
                                                              )
@@ -207,7 +208,7 @@ if __name__ == '__main__':
     input_files = [file for file in dataset_dir.iterdir()]
 
     # Read the input files
-    df = bayesian.load_wh_data (filepath=input_files[0])
+    df = bayesian.load_wh_data (filepath=input_files[1])
 
     # Create binary states
     df = bayesian.create_binary_states (df=df)
