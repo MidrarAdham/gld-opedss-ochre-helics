@@ -78,8 +78,6 @@ if __name__ == '__main__':
     df['state'] = (df[df.columns[1]] > 4).astype(int)
     
     df['Time'] = pd.to_datetime(df['Time'])
-    
-    grouped = df.groupby(df['Time'].dt.day)
 
     theta_values = np.linspace (0.001, 0.999, 1000)
 
