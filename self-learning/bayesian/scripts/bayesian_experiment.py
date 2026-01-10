@@ -19,7 +19,7 @@ def load_wh_data (filepath : str) -> pd.DataFrame:
     """
     return pd.read_csv (filepath)
 
-def create_binary_states (df : pd.DataFrame) -> pd.DataFrame:
+def create_binary_states (df : pd.DataFrame, threshold : float) -> pd.DataFrame:
     """
     convert power values to binary states (ON = 1, OFF=0)
     
@@ -29,7 +29,7 @@ def create_binary_states (df : pd.DataFrame) -> pd.DataFrame:
     :rtype: DataFrame
     """
     # df['state'] = (df['tn_meter_4br_46:measured_real_power'] ==4500).astype(int)
-    df['state'] = (df[df.columns[1]] ==4500).astype(int)
+    df['state'] = (df[df.columns[1]] > threshold).astype(int)
     return df
 
 def prepare_data (df : pd.DataFrame, start_index : int, window_size : int) -> pd.DataFrame:
@@ -313,7 +313,7 @@ if __name__ == '__main__':
     df = load_wh_data (filepath=input_files[0])
 
     # Create binary states
-    df = create_binary_states (df=df)
+    df = create_binary_states (df=df, threshold = 4500.0)
 
     # initialize the state of the given profile
     H, T, n, df_sliced = prepare_data (df=df, start_index=0, window_size=60)
