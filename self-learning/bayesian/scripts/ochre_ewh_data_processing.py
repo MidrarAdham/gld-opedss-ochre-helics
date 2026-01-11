@@ -11,7 +11,13 @@ with open ('./filtered_dataset.txt', 'r', encoding='utf-8-sig') as f:
 
 fig, ax = plt.subplots(figsize=(10,6))
 
+bad_bldg = ['387321']
+
 for f in input_paths:
+    bldg_id = f.split('/')[-3]
+
+    if bldg_id in bad_bldg:
+        print(f)
 
     # bayesian.
     
@@ -27,7 +33,7 @@ for f in input_paths:
 
     min_kw = df['Water Heating Electric Power (kW)'].min()
 
-    print(f'max: {max_kw}\nmean: {mean_kw}\nmedian: {median_kw}\nmin: {min_kw}')
+    # print(f'max: {max_kw}\nmean: {mean_kw}\nmedian: {median_kw}\nmin: {min_kw}')
     mask = df['Water Heating Electric Power (kW)'].between (0,5.0, inclusive='neither')
     dff = df['Water Heating Electric Power (kW)'][mask]
     # print(dff)
