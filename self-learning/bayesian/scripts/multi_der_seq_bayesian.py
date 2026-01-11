@@ -1,13 +1,12 @@
 # %%
-import os
+"""
+This script runs sequential Bayesian and time-varying theta for multiple DERs (WHs).
+"""
+# %%
 import numpy as np
 import pandas as pd
-from pathlib import Path
 from scipy.stats import beta
-from scipy.special import comb
-import matplotlib.pyplot as plt
-from pprint import pprint as pp
-import matplotlib.ticker as ticker
+import bayesian_plots as baysian_vis
 import bayesian_experiment as bayesian
 
 # %%
@@ -126,139 +125,97 @@ def sequential_bayesian_implementation (theta_values : np.array, df : pd.DataFra
 
     return history
 
-def plot_final_theta_comparison(all_histories):
-    """
-    Compare final θ estimates across all water heaters
-    """
-    wh_names = list(all_histories.keys())
-    final_thetas = [all_histories[wh]['mean'][-1] for wh in wh_names]
+def calculate_stats (alpha : int, beta_param : int) -> dict:
     
-    plt.figure(figsize=(12, 6))
-    plt.bar(range(len(wh_names)), final_thetas, color='steelblue', alpha=0.7)
-    plt.axhline(y=np.mean(final_thetas), color='red', linestyle='--', 
-                linewidth=2, label=f'Average θ = {np.mean(final_thetas):.4f}')
+    mean = (alpha) / (alpha+beta_param)
+    variance = (alpha * beta_param) / ( 
+        ((alpha+beta_param)**2) * (alpha + beta_param + 1)
+        )
     
-    plt.xlabel('Water Heater', fontsize=12)
-    plt.ylabel(f'Final {r"$\theta = $"} Estimate', fontsize=12)
-    plt.title(f'Final {r"$\theta = $"} Estimates Across All Water Heaters', fontsize=14, fontweight='bold')
-    plt.xticks(range(len(wh_names)), wh_names, rotation=90, ha='right')
-    plt.legend()
-    plt.grid(True, alpha=0.3, axis='y')
-    plt.tight_layout()
-    plt.savefig('../results/theta_comparison.png', dpi=150, bbox_inches='tight')
-    plt.show()
+    std = np.sqrt (variance)
+    ci_lower = beta.ppf (0.025, alpha, beta_param)
+    ci_upper = beta.ppf (0.975, alpha, beta_param)
+    
+    return {
+        'mean' : mean, 'variance' : variance, 'std' : std, 'ci_lower' : ci_lower, 'ci_upper' : ci_upper
+    }
 
-def plot_all_posteriors_detailed(all_histories):
+def time_varying_theta (theta_values : np.array, df: pd.DataFrame):
     """
-    Plot all final posterior distributions with detailed statistics
+    calculate theta for each hour of the day. Each hour is analyzed independently with its own
+    Bayesian terms (prior).
+    
+    :param theta_values: Array of theta values for PDF calculations
+    :type theta_values: np.array
+    :param df: Dataframe with WH information and state column
+    :type df: pd.DataFrame
     """
-    theta_values = np.linspace(0.001, 0.999, 1000)
-    
-    fig, ax = plt.subplots(figsize=(16, 10))
-    
-    colors = plt.cm.tab10(np.linspace(0, 1, len(all_histories)))
-    
-    for idx, (wh_name, history) in enumerate(all_histories.items()):
-        # Final posterior parameters
-        final_alpha = history['alpha'][-1]
-        final_beta = history['beta'][-1]
-        
-        # Calculate statistics
-        mean_theta = final_alpha / (final_alpha + final_beta)
-        
-        # Calculate posterior PDF
-        posterior_pdf = beta.pdf(theta_values, final_alpha, final_beta)
-        
-        # Create detailed label
-        label = (f'{wh_name}: '
-                f'Beta({r"$\alpha$"}={final_alpha}, {r"$\beta$"}={final_beta}) | '
-                f'{r"$\theta$"}={mean_theta:.3f}')
-        
-        # Plot
-        ax.plot(theta_values, posterior_pdf, 
-                linewidth=2.5, 
-                color=colors[idx],
-                label=label,
-                alpha=0.8)
-        
-        # Mark the mean
-        ax.axvline(x=mean_theta, color=colors[idx], 
-                  linestyle=':', alpha=0.4, linewidth=1.5)
-    
-    ax.set_xlabel(f'{r"$\theta$"} (Probability of ON)', fontsize=14, fontweight='bold')
-    ax.set_ylabel('Probability Density', fontsize=14, fontweight='bold')
-    ax.set_title('Posterior Distributions Comparison: All Water Heaters', 
-                fontsize=16, fontweight='bold')
-    ax.legend(loc='upper right', fontsize=8, framealpha=0.9)
-    ax.grid(True, alpha=0.3)
-    # ax.set_xlim(0, 0.4)  # Adjust based on your data
-    
-    plt.tight_layout()
-    plt.savefig('../results/all_posteriors_detailed.png', dpi=150, bbox_inches='tight')
-    plt.show()
+    history = {
+        'hour': [],
+        'H_total': [],
+        'T_total': [],
+        'n_total': [],
+        'alpha': [],
+        'beta': [],
+        'mean': [],
+        'std': [],
+        'ci_lower': [],
+        'ci_upper': [],
+        'posterior': []
+    }
 
-def plot_evolution_comparison(all_histories):
-    """
-    Compare how θ evolves over chunks for all water heaters
-    """
-    fig, axes = plt.subplots(3, 1, figsize=(14, 12))
+    df['Time'] = pd.to_datetime (df['Time'])
+
+    for hour in range(24):
+        hour_data = df[df['Time'].dt.hour == hour].copy()
+        H_hour = (hour_data['state'] == 1).sum()
+        T_hour = (hour_data['state'] == 0).sum()
+        n_hour = len(hour_data)
+
+
+
+        alpha_prior,beta_prior = 1, 1
+
+        alpha_posterior = alpha_prior + H_hour
+        beta_posterior = beta_prior + T_hour
+
+        stats = calculate_stats (alpha=alpha_posterior, beta_param=beta_posterior)
+
+        posterior_pdf = beta.pdf (theta_values, alpha_posterior, beta_posterior)
+
+        history['hour'].append(hour)
+        history['H_total'].append(H_hour)
+        history['T_total'].append(T_hour)
+        history['n_total'].append(n_hour)
+        history['alpha'].append(alpha_posterior)
+        history['beta'].append(beta_posterior)
+        history['mean'].append(stats['mean'])
+        history['std'].append(stats['std'])
+        history['ci_lower'].append(stats['ci_lower'])
+        history['ci_upper'].append(stats['ci_upper'])
+        history['posterior'].append(posterior_pdf)
     
-    colors = plt.cm.tab10(np.linspace(0, 1, len(all_histories)))
-    
-    for idx, (wh_name, history) in enumerate(all_histories.items()):
-        chunks = history['chunk']
-        
-        # Plot 1: Mean evolution
-        axes[0].plot(chunks, history['mean'], 
-                    linewidth=2, marker='o', markersize=4,
-                    color=colors[idx], label=wh_name, alpha=0.7)
-        
-        # Plot 2: Uncertainty evolution
-        axes[1].plot(chunks, history['std'], 
-                    linewidth=2, marker='s', markersize=4,
-                    color=colors[idx], label=wh_name, alpha=0.7)
-        
-        # Plot 3: Credible interval width
-        ci_width = np.array(history['ci_upper']) - np.array(history['ci_lower'])
-        axes[2].plot(chunks, ci_width, 
-                    linewidth=2, marker='^', markersize=4,
-                    color=colors[idx], label=wh_name, alpha=0.7)
-    
-    # Formatting
-    axes[0].set_ylabel(f'{r"$\theta = $"} Estimate', fontsize=12)
-    axes[0].set_title(f'{r"$\theta = $"} Evolution Across Water Heaters', fontsize=14, fontweight='bold')
-    axes[0].legend(loc='right', fontsize=8, ncol=2)
-    axes[0].grid(True, alpha=0.3)
-    
-    axes[1].set_ylabel('Standard Deviation', fontsize=12)
-    axes[1].set_title('Uncertainty Evolution', fontsize=14, fontweight='bold')
-    axes[1].legend(loc='best', fontsize=8, ncol=2)
-    axes[1].grid(True, alpha=0.3)
-    
-    axes[2].set_xlabel('Chunk Number', fontsize=12)
-    axes[2].set_ylabel('95% CI Width', fontsize=12)
-    axes[2].set_title('Credible Interval Width Evolution', fontsize=14, fontweight='bold')
-    axes[2].legend(loc='best', fontsize=8, ncol=2)
-    axes[2].grid(True, alpha=0.3)
-    
-    plt.tight_layout()
-    plt.savefig('../results/evolution_comparison.png', dpi=150, bbox_inches='tight')
-    plt.show()
+    return history
 
 def plot_comparison_all_wh(all_histories):
     """
     Master comparison function - calls all other comparison functions
     """
-    # Plot 1: Final theta comparison
-    plot_final_theta_comparison(all_histories)
-    
-    # Plot 2: Evolution comparison
-    plot_evolution_comparison(all_histories)
+    baysian_vis.plot_final_theta_comparison(all_histories)
+    baysian_vis.plot_evolution_comparison(all_histories)
+    baysian_vis.plot_all_posteriors_detailed (all_histories=all_histories)
 
-    plot_all_posteriors_detailed (all_histories=all_histories)
+def time_varying_theta_plots(all_history, theta_values):
+    """
+    Master as well - Generate all time-varying theta plots for multiple WHs
     
-    # Print statistical summary
-    # print_statistical_summary(all_histories)
+    :param all_history: Dict of {wh_name: history_dict}
+    :param theta_values: Array for PDF calculation
+    """
+    baysian_vis.plot_theta_by_hour(all_history)
+    baysian_vis.plot_posterior_evolution_by_hour(all_history, theta_values)
+    # baysian_vis.plot_data_availability(all_history)
+    baysian_vis.plot_uncertainty_by_hour(all_history)
 # %%
 if __name__ == '__main__':
 
@@ -267,13 +224,14 @@ if __name__ == '__main__':
         input_paths = [s.strip() for s in input_paths if s.strip()]
 
      # Get the dataset input files:
-    all_histories = {}
+    all_histories_seq = {}
+    all_histories_time_varying_theta = {}
 
     # Set the theta values:
     theta_values = np.linspace (0.001, 0.999, 1000)
 
     # define loop parameters:
-    window_size, num_chunks = 10, 50
+    window_size, num_chunks = 10, 144
 
     for idx, input_file in enumerate (input_paths):
 
@@ -284,11 +242,16 @@ if __name__ == '__main__':
         df = bayesian.create_binary_states (df=df, threshold=0.5)
         
         # Run the bayesian implementation:
-        history = sequential_bayesian_implementation (theta_values=theta_values,
+        seq_history = sequential_bayesian_implementation (theta_values=theta_values,
                                                       df=df, num_chunks=num_chunks, window_size=window_size
                                                       )
+        theta_history = time_varying_theta (theta_values=theta_values, df=df)
+        
         bldg_id = input_file.split('/')[-3]
+        all_histories_seq [bldg_id] = seq_history
+        all_histories_time_varying_theta [bldg_id] = theta_history
 
-        all_histories [bldg_id] = history
     
-    plot_comparison_all_wh (all_histories=all_histories)
+    time_varying_theta_plots (all_history=all_histories_time_varying_theta, theta_values=theta_values)
+    
+    plot_comparison_all_wh (all_histories=all_histories_seq)

@@ -10,14 +10,18 @@ from scipy.stats import beta, binom
 # %%
 def load_wh_data (filepath : str) -> pd.DataFrame:
     """
-    Read a csv file using pandas
+    Read a csv file using pandas. This method read df with:
+
+            'Time', 'Water Heating Electric Power (kW)'
     
     :param input_path: A string indicating the csv file Path
     :type input_path: str
     :return: A dataframe
     :rtype: DataFrame
     """
-    return pd.read_csv (filepath)
+
+    df = pd.read_csv (filepath, usecols = ['Time', 'Water Heating Electric Power (kW)'])
+    return df
 
 def create_binary_states (df : pd.DataFrame, threshold : float) -> pd.DataFrame:
     """
@@ -52,7 +56,6 @@ def prepare_data (df : pd.DataFrame, start_index : int, window_size : int) -> pd
     df_sliced = df.iloc[start_index: start_index+window_size]
     H = (df_sliced['state'] == 1).sum()
     T = (df_sliced['state'] == 0).sum()
-    print(H, T)
     n = H + T
 
     return H, T, n, df_sliced
