@@ -3,10 +3,8 @@
 import numpy as np
 import pandas as pd
 from pathlib import Path
+from scipy.stats import beta
 from scipy.special import comb # calculates combinations (N choose K)
-import matplotlib.pyplot as plt
-import matplotlib.ticker as ticker
-from scipy.stats import beta, binom
 # %%
 def load_wh_data (filepath : str) -> pd.DataFrame:
     """
@@ -169,7 +167,7 @@ def calculate_posterior_conjugate (theta_values, alpha_posterior, beta_posterior
 
     return posterior
 
-def calculate_stats (alpha : int, beta_param : int) -> dict:
+def calculate_stats (alpha : int, beta_param : int, ci_lower_thresh : float = 0.025, ci_upper_thresh : float = 0.9745) -> dict:
     """
     calculate_stats for prior and posterior.
     
@@ -188,80 +186,19 @@ def calculate_stats (alpha : int, beta_param : int) -> dict:
     std = np.sqrt (variance)
     
     # 95% confidence interval:
-    ci_lower = beta.ppf (0.025, alpha, beta_param)
-    ci_upper = beta.ppf (0.9745, alpha, beta_param)
+    ci_lower = beta.ppf (ci_lower_thresh, alpha, beta_param)
+    ci_upper = beta.ppf (ci_upper_thresh, alpha, beta_param)
     ci_width = ci_upper - ci_lower
 
+    # theta stat calculations
     return {
         'mean' : mean,
         'std' : std,
         'ci_lower' : ci_lower,
         'ci_upper' : ci_upper,
         'ci_width' : ci_width,
+        'variance' : variance
     }
-
-def plot_likelihood (theta_values, likelihood, H, n):
-    plt.figure (figsize=(10, 6))
-    plt.plot (theta_values, likelihood, linewidth=2,
-              label=f'P(X | theta) = ({n} choose {H}) * theta ^ {H} * (1-theta)^{n-H}')
-    plt.xlabel ('theta (Probability of ON)', fontsize=12)
-    plt.ylabel ('P(X | theta)', fontsize=12)
-    plt.title ('Likelihood function', fontsize=14, fontweight='bold')
-    plt.axvline (x=H/n, color='red', linestyle='--',label=f'Max at theta = {H/n:.3f}')
-    plt.grid(True, alpha=0.3)
-    plt.legend()
-    return plt
-
-def plot_bayesian (theta_values, prior, likelihood, posterior, H, T, n, alpha, beta_param):
-    
-    stats = calculate_stats (alpha=alpha+H, beta_param=beta_param+T)
-    y_pos = 0
-    fig, axes = plt.subplots (3, 1, figsize=(10,12))
-    # prob = np.trapz (theta_values, prior)
-    # print(prob)
-    axes[0].plot(theta_values, prior, linewidth=2, color='blue')
-    # axes[0].set_ylim(-0.2,1.5)
-    axes[0].set_xlim(0,1)
-    axes[0].set_title('Prior: P(θ)', fontweight='bold')
-    axes[0].set_xlabel('θ')
-    axes[0].set_ylabel('Density')
-    # axes[0].fill_between (theta_values, prior, label=f'Probability = {np.trapz(prior,theta_values):.1f}')
-    # axes[0].axvline(x=prob, color='red', linestyle='--', label=f'MLE = {prob:.3f}')
-    axes[0].legend()
-    axes[0].grid(True, alpha=0.3)
-    axes[0].xaxis.set_major_locator(ticker.MaxNLocator(nbins=20))
-
-    axes[1].plot(theta_values, likelihood, linewidth=2, color='green')
-    axes[1].set_title(f'Likelihood: P(X|theta) where X = {H} ONs, {T} OFFs', 
-                      fontweight='bold')
-    axes[1].set_xlim(0,1)
-    axes[1].set_xlabel('theta')
-    axes[1].set_ylabel('P(X|theta)')
-    axes[1].axvline(x=H/n, color='red', linestyle='--', label=f'MLE = {H/n:.3f}')
-    axes[1].legend()
-    axes[1].grid(True, alpha=0.3)
-    axes[1].xaxis.set_major_locator(ticker.MaxNLocator(nbins=20))
-
-    axes[2].plot(theta_values, posterior, linewidth=2, color='red')
-    axes[2].set_xlim(0,1)
-    axes[2].set_title('Posterior: P(θ|X)', fontweight='bold')
-    axes[2].set_xlabel('θ')
-    axes[2].set_ylabel('Density')
-    axes[2].plot ([stats['ci_lower'], stats['ci_upper']], [0,0], linewidth=8,
-                  marker='|', markersize=15,
-                  label=f"Confidence Interval={stats['ci_width']:.3f}\nstd={stats['std']:.3f}")
-
-    # axes[2].plot(stats['mean'], y_pos, markersize=10, color='blue', label=f"mean={stats['mean']:.3f}")
-    # axes[2].fill_between (theta_values, posterior, label=f'Probability = {np.trapz(posterior,theta_values):.1f}')
-    # axes[2].axvline(x=np.trapz(posterior,theta_values), color='red', linestyle='--',
-                    # label=f'MLE = {np.trapz(posterior,theta_values):.3f}')
-
-    axes[2].legend()
-    axes[2].grid(True, alpha=0.3)
-    axes[2].xaxis.set_major_locator(ticker.MaxNLocator(nbins=20))
-    # plt.tight_layout()
-    # plt.savefig ('./test.png')
-    return plt
 
 
 def bayesian_implementation (H: int, T: int, n: int):
@@ -294,11 +231,6 @@ def bayesian_implementation (H: int, T: int, n: int):
                                                     alpha_posterior=alpha_posterior,
                                                     beta_posterior=beta_posterior
                                                     )
-
-    plot_bayesian (theta_values=theta_values, prior=prior, likelihood=likelihood,
-                   posterior=posterior_conj, H=H, T=n-H, n=n,
-                   alpha=prior_params["alpha"],
-                   beta_param=prior_params["beta"])
 
     return posterior_conj
 # %%
