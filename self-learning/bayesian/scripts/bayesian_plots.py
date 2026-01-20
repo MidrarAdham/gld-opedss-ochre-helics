@@ -105,7 +105,7 @@ def plot_evolution_comparison(all_histories):
     axes[2].grid(True, alpha=0.3)
     
     plt.tight_layout()
-    # plt.savefig('../results/evolution_comparison.png', dpi=150, bbox_inches='tight')
+    plt.savefig('../results/evolution_comparison.png', dpi=150, bbox_inches='tight')
     plt.show()
 
 def plot_all_posteriors_detailed(all_histories):
