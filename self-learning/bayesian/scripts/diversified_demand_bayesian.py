@@ -48,23 +48,7 @@ if __name__ == "__main__":
 
     dfs = collect_profiles_in_one_df (input_paths=input_paths)
 
+    # This is what the feeder sees
     dfs = calculate_diversified_demand (dfs=dfs)
-    dfs['state'] = (dfs['diversified_demand (kW)'] > 5).astype(int)
-    window_size, num_chunks = 10, 144
-    theta_values = np.linspace (0.001, 0.999, 1000)
 
-    seq_step_history = my_seq_bayesian.sequential_bayesian_implementation (theta_values=theta_values,
-                                                    df=dfs, num_chunks=num_chunks,
-                                                    window_size=window_size)
-    
-    theta_step_history = my_seq_bayesian.time_varying_theta (theta_values=theta_values, df=dfs)
-    
-    sequential_bayesian_history = {'portfolio' : seq_step_history}
-    time_changing_theta_history = {'portfolio' : theta_step_history}
-
-    
-
-    # my_vis.plot_evolution_comparison (all_histories=sequential_bayesian_history)
-    my_vis.plot_all_posteriors_detailed (all_histories=sequential_bayesian_history)
-    # my_vis.plot_uncertainty_by_hour (all_history=time_changing_theta_history)
-    # my_vis.plot_heterogeneity_distribution (theta_values=theta_values, fitted_params=)
+    print(dfs)
