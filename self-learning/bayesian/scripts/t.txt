@@ -1,0 +1,108 @@
+32387 Total Electric Power (kW)
+32387 Total Reactive Power (kVAR)
+32387 Water Heating Electric Power (kW)
+32387 kva
+214735 Total Electric Power (kW)
+214735 Total Reactive Power (kVAR)
+214735 Water Heating Electric Power (kW)
+214735 kva
+258272 Total Electric Power (kW)
+258272 Total Reactive Power (kVAR)
+258272 Water Heating Electric Power (kW)
+258272 kva
+387321 Total Electric Power (kW)
+387321 Total Reactive Power (kVAR)
+387321 Water Heating Electric Power (kW)
+387321 kva
+370750 Total Electric Power (kW)
+370750 Total Reactive Power (kVAR)
+370750 Water Heating Electric Power (kW)
+370750 kva
+409590 Total Electric Power (kW)
+409590 Total Reactive Power (kVAR)
+409590 Water Heating Electric Power (kW)
+409590 kva
+227486 Total Electric Power (kW)
+227486 Total Reactive Power (kVAR)
+227486 Water Heating Electric Power (kW)
+227486 kva
+147689 Total Electric Power (kW)
+147689 Total Reactive Power (kVAR)
+147689 Water Heating Electric Power (kW)
+147689 kva
+93923 Total Electric Power (kW)
+93923 Total Reactive Power (kVAR)
+93923 Water Heating Electric Power (kW)
+93923 kva
+238583 Total Electric Power (kW)
+238583 Total Reactive Power (kVAR)
+238583 Water Heating Electric Power (kW)
+238583 kva
+186734 Total Electric Power (kW)
+186734 Total Reactive Power (kVAR)
+186734 Water Heating Electric Power (kW)
+186734 kva
+504038 Total Electric Power (kW)
+504038 Total Reactive Power (kVAR)
+504038 Water Heating Electric Power (kW)
+504038 kva
+385977 Total Electric Power (kW)
+385977 Total Reactive Power (kVAR)
+385977 Water Heating Electric Power (kW)
+385977 kva
+199434 Total Electric Power (kW)
+199434 Total Reactive Power (kVAR)
+199434 Water Heating Electric Power (kW)
+199434 kva
+193969 Total Electric Power (kW)
+193969 Total Reactive Power (kVAR)
+193969 Water Heating Electric Power (kW)
+193969 kva
+62 Total Electric Power (kW)
+62 Total Reactive Power (kVAR)
+62 Water Heating Electric Power (kW)
+62 kva
+29683 Total Electric Power (kW)
+29683 Total Reactive Power (kVAR)
+29683 Water Heating Electric Power (kW)
+29683 kva
+188195 Total Electric Power (kW)
+188195 Total Reactive Power (kVAR)
+188195 Water Heating Electric Power (kW)
+188195 kva
+366404 Total Electric Power (kW)
+366404 Total Reactive Power (kVAR)
+366404 Water Heating Electric Power (kW)
+366404 kva
+177213 Total Electric Power (kW)
+177213 Total Reactive Power (kVAR)
+177213 Water Heating Electric Power (kW)
+177213 kva
+448411 Total Electric Power (kW)
+448411 Total Reactive Power (kVAR)
+448411 Water Heating Electric Power (kW)
+448411 kva
+442093 Total Electric Power (kW)
+442093 Total Reactive Power (kVAR)
+442093 Water Heating Electric Power (kW)
+442093 kva
+355669 Total Electric Power (kW)
+355669 Total Reactive Power (kVAR)
+355669 Water Heating Electric Power (kW)
+355669 kva
+292272 Total Electric Power (kW)
+292272 Total Reactive Power (kVAR)
+292272 Water Heating Electric Power (kW)
+292272 kva
+327816 Total Electric Power (kW)
+327816 Total Reactive Power (kVAR)
+327816 Water Heating Electric Power (kW)
+327816 kva
+13370 Total Electric Power (kW)
+13370 Total Reactive Power (kVAR)
+13370 Water Heating Electric Power (kW)
+13370 kva
+303992 Total Electric Power (kW)
+303992 Total Reactive Power (kVAR)
+303992 Water Heating Electric Power (kW)
+303992 kva
