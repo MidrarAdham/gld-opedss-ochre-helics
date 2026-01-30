@@ -13,7 +13,7 @@ results_dir = "results"
 
 # Resstock dataset input directory:
 [data]
-dataset_dir = "datasets/cosimulation"
+dataset_dir = "/home/deras/gld-opedss-ochre-helics/datasets/resstock_2025/load_profiles/tmp"
 
 # currently we only have one upgrade - up00
 upgrades = ["up00"]
@@ -48,3 +48,9 @@ random_seed = 123
 # Results file format:
 [storage]
 cache_format = "parquet"
+
+[method4]
+n_total_customers = 27
+
+# Monte carlo parameters:
+n_trials = 15
