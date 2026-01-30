@@ -3,6 +3,7 @@ import random
 import numpy as np
 import pandas as pd
 from pathlib import Path
+from config import load_config
 
 class LoadProfiles:
     
@@ -74,9 +75,11 @@ class LoadProfiles:
         RETURNS: a list of input paths to the correct bldg IDs
         '''
         input_paths = []
+
         for upgrade in self.upgrades:
             for bldg in building_ids:
                 input_paths.append(os.path.join(self.dataset_dir, bldg, upgrade))
+
         
         return input_paths
 
@@ -131,6 +134,7 @@ class LoadProfiles:
                     ]
         
         try:
+
             # Get the building file name
             bldg = os.path.basename(os.path.dirname(input_path))
 
@@ -143,8 +147,6 @@ class LoadProfiles:
 
             # Create the path that leads to the output file name
             target_file = os.path.join(input_path, csv_filename)
-
-
             # Read the output file name
             df = pd.read_csv(target_file, usecols=keep_cols)
             
@@ -182,7 +184,7 @@ class LoadProfiles:
         else:
             building_ids = self._read_the_cached_file()
         
-        input_paths = self._build_input_files_paths(building_ids=building_ids)
+        input_paths = self._build_input_files_paths (building_ids=building_ids)
         
         return input_paths
 
@@ -514,9 +516,9 @@ class LoadProfiles:
 
 if __name__ == "__main__":
 
-    root = Path (__file__).resolve().parent
-
-    dataset_dir = root.parent.parent / 'datasets' / 'resstock_2025' / 'load_profiles' / 'cosimulation'
+    cfg = load_config ()
+    
+    dataset_dir = cfg["data"]["dataset_dir"]
     
     analyzer = LoadProfiles (dataset_dir = dataset_dir,
                               n_buildings = 50,

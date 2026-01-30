@@ -175,96 +175,95 @@ if __name__ == "__main__":
     
 
     kwatts_peak_div = dfs[watts_cols].sum(axis=1).max()
-total_transformer_size = sum(t["size"] for t in all_txs)
-AF_sys = kwatts_peak_div / total_transformer_size
+    total_transformer_size = sum(t["size"] for t in all_txs)
+    AF_sys = kwatts_peak_div / total_transformer_size
 
-df_txs = pd.DataFrame(all_txs)
-grouper = df_txs.groupby(by='bucket_id')
+    df_txs = pd.DataFrame(all_txs)
+    grouper = df_txs.groupby(by='bucket_id')
 
-sns.set_theme(style='darkgrid', context='notebook', color_codes=True, font_scale=1.0)
+    sns.set_theme(style='darkgrid', context='notebook', color_codes=True, font_scale=1.0)
 
-for bucket_id, bucket_txs in grouper:
-    n_txs_in_bucket = len(bucket_txs)
-    
-    if n_txs_in_bucket == 1:
-        ncols, nrows = 1, 1
-    elif n_txs_in_bucket <= 2:
-        ncols, nrows = 2, 1
-    elif n_txs_in_bucket <= 4:
-        ncols, nrows = 2, 2
-    else:
-        ncols = 3
-        nrows = math.ceil(n_txs_in_bucket / ncols)
-    
-    fig, axes = plt.subplots(nrows=nrows, ncols=ncols, figsize=(6*ncols, 4*nrows))
-    if n_txs_in_bucket == 1:
-        axes = [axes]
-    else:
-        axes = axes.flatten()
-    
-    bucket_total_capacity = bucket_txs['size'].sum()
-    bucket_all_members = [m for sublist in bucket_txs['members'].tolist() for m in sublist]
-    bucket_total_load = dfs[bucket_all_members].sum(axis=1)
-    bucket_peak = bucket_total_load.max()
+    for bucket_id, bucket_txs in grouper:
+        n_txs_in_bucket = len(bucket_txs)
+        
+        if n_txs_in_bucket == 1:
+            ncols, nrows = 1, 1
+        elif n_txs_in_bucket <= 2:
+            ncols, nrows = 2, 1
+        elif n_txs_in_bucket <= 4:
+            ncols, nrows = 2, 2
+        else:
+            ncols = 3
+            nrows = math.ceil(n_txs_in_bucket / ncols)
+        
+        fig, axes = plt.subplots(nrows=nrows, ncols=ncols, figsize=(6*ncols, 4*nrows))
+        if n_txs_in_bucket == 1:
+            axes = [axes]
+        else:
+            axes = axes.flatten()
+        
+        bucket_total_capacity = bucket_txs['size'].sum()
+        bucket_all_members = [m for sublist in bucket_txs['members'].tolist() for m in sublist]
+        bucket_total_load = dfs[bucket_all_members].sum(axis=1)
+        bucket_peak = bucket_total_load.max()
 
-    for i, (_, tx_info) in enumerate(bucket_txs.iterrows()):
-        ax = axes[i]
+        for i, (_, tx_info) in enumerate(bucket_txs.iterrows()):
+            ax = axes[i]
+            
+            tx_load_kva = dfs[tx_info['members']].sum(axis=1)
+            tx_size = tx_info['size']
+            tx_capacity = tx_size * loading
+            peak_kva = tx_load_kva.max()
+            utilization = (peak_kva / tx_capacity) * 100
+            allocated_kw = AF_sys * tx_size
+            
+            ax.plot(time_col, tx_load_kva, linewidth=2, color='tab:blue', label='Demand')
+            ax.axhline(y=tx_capacity, color='r', linestyle='--', linewidth=1.5, 
+                    label=f'Capacity @ {loading*100:.0f}%')
+            
+            ax.xaxis.set_major_locator(ticker.MaxNLocator(8))
+            ax.set_title(f'{tx_info["tx_in_bucket"]} ({tx_size:.0f} kVA)\n'
+                        f'{len(tx_info["members"])} buildings | Peak: {peak_kva:.1f} kVA | '
+                        f'UF: {utilization:.1f}%', fontsize=10)
+            ax.tick_params(axis='x', labelrotation=45)
+            ax.set_ylabel('Apparent Power [kVA]')
+            ax.set_xlabel('Time [hh:mm]')
+            
+            stats_text = (f"AF per XFMR: {allocated_kw:.1f} kW\n"
+                        f"AF Feeder: {AF_sys:.3f} kW/kVA\n"
+                        f"Peak: {peak_kva:.1f} kVA")
+            ax.text(0.98, 0.97, stats_text, transform=ax.transAxes,
+                    fontsize=9, verticalalignment='top', horizontalalignment='right',
+                    bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
+            
+            ax.legend(loc='upper left', fontsize=9)
+            ax.grid(True, alpha=0.3)
         
-        tx_load_kva = dfs[tx_info['members']].sum(axis=1)
-        tx_size = tx_info['size']
-        tx_capacity = tx_size * loading
-        peak_kva = tx_load_kva.max()
-        utilization = (peak_kva / tx_capacity) * 100
-        allocated_kw = AF_sys * tx_size
+        for j in range(n_txs_in_bucket, len(axes)):
+            axes[j].axis('off')
         
-        ax.plot(time_col, tx_load_kva, linewidth=2, color='tab:blue', label='Demand')
-        ax.axhline(y=tx_capacity, color='r', linestyle='--', linewidth=1.5, 
-                   label=f'Capacity @ {loading*100:.0f}%')
+        # Add overall figure title with bucket summary
+        fig.suptitle(f'Bucket {bucket_id} Summary: {n_txs_in_bucket} Transformers | '
+                    f'Total Capacity: {bucket_total_capacity:.0f} kVA | '
+                    f'Peak Demand: {bucket_peak:.1f} kVA',
+                    fontsize=14, fontweight='bold', y=0.995)
         
-        ax.xaxis.set_major_locator(ticker.MaxNLocator(8))
-        ax.set_title(f'{tx_info["tx_in_bucket"]} ({tx_size:.0f} kVA)\n'
-                     f'{len(tx_info["members"])} buildings | Peak: {peak_kva:.1f} kVA | '
-                     f'Util: {utilization:.1f}%', fontsize=10)
-        ax.tick_params(axis='x', labelrotation=45)
-        ax.set_ylabel('Apparent Power [kVA]')
-        ax.set_xlabel('Time [hh:mm]')
+        plt.tight_layout()
         
-        stats_text = (f"Allocated: {allocated_kw:.1f} kW\n"
-                      f"AF_sys: {AF_sys:.3f}\n"
-                      f"Peak: {peak_kva:.1f} kVA")
-        ax.text(0.98, 0.97, stats_text, transform=ax.transAxes,
-                fontsize=9, verticalalignment='top', horizontalalignment='right',
-                bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
+        # Save figure for this bucket
+        plt.savefig(f'../results/bucket_{bucket_id}_transformers.png', dpi=300, bbox_inches='tight')
+        # print(f"Saved: {filename}")
         
-        ax.legend(loc='upper left', fontsize=9)
-        ax.grid(True, alpha=0.3)
-    
-    for j in range(n_txs_in_bucket, len(axes)):
-        axes[j].axis('off')
-    
-    # Add overall figure title with bucket summary
-    fig.suptitle(f'Bucket {bucket_id} Summary: {n_txs_in_bucket} Transformers | '
-                 f'Total Capacity: {bucket_total_capacity:.0f} kVA | '
-                 f'Peak Demand: {bucket_peak:.1f} kVA',
-                 fontsize=14, fontweight='bold', y=0.995)
-    
-    plt.tight_layout()
-    
-    # Save figure for this bucket
-    # plt.savefig(f'../results/bucket_{bucket_id}_transformers.png', dpi=300, bbox_inches='tight')
-    # print(f"Saved: {filename}")
-    
-    # plt.show()
+        # plt.show()
 
-    fig, ax = plt.subplots(figsize=(14, 6))
-    total_feeder_kva = dfs[kva_cols].sum(axis=1)
-    ax.plot(time_col, total_feeder_kva, linewidth=2, color='navy', label='Total Feeder Demand')
-    ax.xaxis.set_major_locator(ticker.MaxNLocator(8))
-    ax.set_title('Total Feeder Diversified Demand', fontsize=14, fontweight='bold')
-    ax.set_ylabel('Apparent Power [kVA]')
-    ax.set_xlabel('Time [hh:mm]')
-    ax.legend()
-    ax.grid(True, alpha=0.3)
-    plt.tight_layout()
-    plt.savefig('../results/feeder_demand_profile.png', dpi=300, bbox_inches='tight')
-    
+        # fig, ax = plt.subplots(figsize=(14, 6))
+        # total_feeder_kva = dfs[kva_cols].sum(axis=1)
+        # ax.plot(time_col, total_feeder_kva, linewidth=2, color='navy', label='Total Feeder Demand')
+        # ax.xaxis.set_major_locator(ticker.MaxNLocator(8))
+        # ax.set_title('Total Feeder Diversified Demand', fontsize=14, fontweight='bold')
+        # ax.set_ylabel('Apparent Power [kVA]')
+        # ax.set_xlabel('Time [hh:mm]')
+        # ax.legend()
+        # ax.grid(True, alpha=0.3)
+        # plt.tight_layout()
+        # plt.savefig('../results/feeder_demand_profile.png', dpi=300, bbox_inches='tight')
