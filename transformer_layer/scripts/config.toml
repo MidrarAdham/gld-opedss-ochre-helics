@@ -53,4 +53,4 @@ cache_format = "parquet"
 n_total_customers = 27
 
 # Monte carlo parameters:
-n_trials = 15
+n_trials = 1000
