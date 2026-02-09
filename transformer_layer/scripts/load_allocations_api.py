@@ -5,8 +5,9 @@ import click
 import numpy as np
 import pandas as pd
 from scipy import stats
-from pprint import pprint as pp
 from pathlib import Path
+from pprint import pprint as pp
+from sklearn.cluster import AgglomerativeClustering
 
 # Calling my methods (all of these methods are Python files inside this folder):
 from config import load_config
@@ -296,6 +297,135 @@ def _pick_smallest_transformer (required_kva : float, available_kva = (25.0, 50.
             return float (s)
     return float("nan")
 
+
+def method4_metered_feeder_max_demand_for_specific_27_customers (cfg):
+    """
+    Cluster-based sizing (location-aware proxy)
+    Methodology:
+        - Sample N customers per trial
+        - partition into clusters (houses per transformer location)
+        - for each cluster, compute the peak diversified demand and convert it to apparent power using pf & UF
+        - choose the smallest transformer that meets the apparent power.
+
+    Outputs:
+    Two csv files:
+        - method4_cluster_trials.csv (per trial)
+        - method4_cluster_assignments/.csv (cluster-level details)
+    
+    :param cfg: read the configuration file, config.toml
+    """
+    upgrades = cfg["data"]["upgrades"]
+    pf = cfg["electrical"]["power_factor"]
+    dataset_dir = cfg["data"]["dataset_dir"]
+
+
+    UF = 0.8
+    available_kva = [25.0, 50.0, 75.0]
+    n_trials = cfg["method4"]["n_trials"]
+    n_total_customers = cfg["method4"]["n_total_customers"]
+
+    cluster_min = 1
+    cluster_max = 12
+
+    seed = 123
+    rng = np.random.default_rng(seed=seed)
+
+    trial_rows = []
+    cluster_rows = []
+
+    analyzer = LoadProfiles(
+            n_buildings=n_total_customers,
+            dataset_dir=dataset_dir,
+            upgrades=upgrades,
+            randomized=False
+        )
+    analyzer.run()
+
+    for trial in range(n_trials):
+
+
+        # 1- simulated the metered feeder peak (max diversified demand)
+
+        customer_ids = analyzer.load_profiles
+        rng.shuffle (customer_ids)
+
+        cluster_sizes = _sample_cluster_sizes (n_customers=len(customer_ids),
+                                               rng=rng, min_size=cluster_min,
+                                               max_size=cluster_max
+                                               )
+        
+        idx = 0
+        n25 = n50 = n75 = 0
+        # A cluster needs to be oversized, so it is larger than the max diversified demand
+        n_oversize = 0 
+        installed_kva_total = 0
+        # The sum of clusters peak. This is not the feeder peak. This is useful for debugging
+        peak_kw_total = 0
+
+        # Iterate over the cluster index and size:
+        for c_idx, c_size in enumerate (cluster_sizes, start=1):
+            cluster_ids = customer_ids[idx: idx + c_size]
+            idx += c_size
+    
+            agg_results = analyzer.aggregate_customers_load_calculations(
+                customer_ids=cluster_ids,
+                transformer_kva=75.0,
+                power_factor=pf
+            )
+
+            cluster_peak_kw = float (agg_results['max_diversified_kw']) # Max diversified demand
+
+            cluster_req_kva = cluster_peak_kw / pf # max diversified demand in kVA
+
+            chosen = _pick_smallest_transformer (required_kva=cluster_req_kva,
+                                                 available_kva=available_kva)
+
+            # Now we need to deal with the fact that a nan might be returned in chosen:
+
+            if math.isnan(chosen):
+                n_oversize += 1
+            else:
+                installed_kva_total += chosen
+                if chosen == 25.0:
+                    n25 += 1
+                elif chosen == 50.0:
+                    n50 += 1
+                elif chosen == 75.0:
+                    n75 += 1
+            
+            peak_kw_total += cluster_peak_kw
+
+            cluster_rows.append ({
+                "trial": trial,
+                "cluster_index":c_idx,
+                "cluster_size_houses" : c_size,
+                "cluster_peak_kw":cluster_peak_kw,
+                "cluster_required_kva":cluster_req_kva,
+                "chosen_transformer_kva":chosen,
+            })
+        
+        trial_rows.append ({
+            "trial":trial,
+            "n_total_customers": n_total_customers,
+            "uf_target":UF,
+            "pf":pf,
+            "cluster_min": cluster_min,
+            "cluster_max": cluster_max,
+            "n_clusters": len(cluster_sizes),
+            "n_25kva": n25,
+            "n_50kva": n50,
+            "n_75kva": n75,
+            "n_oversize_clusters": n_oversize,
+            "installed_kva_total": installed_kva_total,
+            "sum_cluster_peak_kw": peak_kw_total,
+        })
+
+    df_trials = pd.DataFrame (trial_rows)
+    df_clusters = pd.DataFrame (cluster_rows)
+
+    write_results(cfg=cfg, method="method4_cluster_trials", results=df_trials)
+    write_results(cfg=cfg, method="method4_cluster_assignments", results=df_clusters)
+
 def method4_metered_feeder_max_demand (cfg):
     """
     Cluster-based sizing (location-aware proxy)
@@ -471,6 +601,13 @@ def method4_command ():
     Run Method 4 - metered_feeder max demand
     """
     all_results = method4_metered_feeder_max_demand (cfg=cfg)
+
+@cli.command ("method4_specific")
+def method4_specific_command():
+    """
+    Run Method 4b - this is dedicated for a subset of load profiles
+    """
+    results = method4_metered_feeder_max_demand_for_specific_27_customers (cfg=cfg)
 
 if __name__ == '__main__':
     cli()

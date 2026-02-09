@@ -526,3 +526,20 @@ if __name__ == "__main__":
                               )
     
     analyzer.run()
+
+
+# import os
+# import numpy as np
+# import pandas as pd
+
+
+# def get_dataset_dir (filename : str = 'cached_building_ods.csv') -> list:
+     
+     
+#      with open (filename, 'r') as input_paths:
+#          lines = [line.strip() for line in input_paths if line.strip()]
+#      return lines
+
+# if __name__ == "__main__":
+#      lines = get_dataset_dir (filename='cached_building_ids.csv')
+#      print(lines)
