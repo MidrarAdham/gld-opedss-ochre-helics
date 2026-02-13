@@ -94,41 +94,51 @@ def calculate_diverisifed_demand (df : pd.DataFrame):
     
     return df
 
+def calculate_daily_peak_demand (df : pd.DataFrame):
+    df['block'] = df.index // 15
+    block_avg = df.groupby ('block')['Diversified Demand (kVA)'].mean ()
 
-def plotting (results : dict):
-    sns.set_theme (context= 'notebook')
+    daily_peak = block_avg.max ()
+    
+    return daily_peak
+
+def plotting(results: dict):
+    sns.set_theme(context='notebook')
     ncols = 2
     nrows = math.ceil(len(results) / ncols)
 
-    fig, axes = plt.subplots (nrows=nrows,ncols=ncols, figsize = (16, 4*nrows))
+    fig, axes = plt.subplots(nrows=nrows, ncols=ncols, figsize=(16, 4*nrows))
     axes = axes.flatten()
 
-    for i, (trial_id, values) in enumerate(results.items ()):
-
-        df = results[trial_id][0]
-        # print((results[trial_id][0]).columns)
-        # print("="*50)
-
-    
+    for i, (trial_id, values) in enumerate(results.items()):
+        
+        df = results[trial_id]['dataframe']  # Changed from [0]
+        peak_demand = results[trial_id]['peak_demand']  # Get the peak demand
+        
         num_houses = [col.split(':')[0] for col in df.columns]
         num_houses = len(list(set(num_houses))) - 2
-        df['Time'] = pd.to_datetime (df['Time']).dt.strftime ('%H:%M')
+        df['Time'] = pd.to_datetime(df['Time']).dt.strftime('%H:%M')
 
         ax = axes[i]
-        ax.plot (df['Time'], df['Diversified Demand (kVA)'].round (decimals=2), 
-                 linewidth = 2, color='blue', label='Apparent Power (kVA)')
-        ax.set_title (f'Diverisifed Demand of {num_houses} Bldgs (kVA)', fontweight='bold')
-        ax.legend ()
-        ax.grid (True, alpha=0.3)
-        ax.xaxis.set_major_locator (ticker.MaxNLocator (nbins=20))
-        ax.tick_params (axis='x', rotation=45)
+        ax.plot(df['Time'], df['Diversified Demand (kVA)'].round(decimals=2), 
+                linewidth=2, color='blue', label='Apparent Power (kVA)')
+        
+        # Add horizontal line showing the peak demand
+        ax.axhline(y=peak_demand, color='red', linestyle='--', linewidth=2, 
+                   label=f'Daily Peak: {peak_demand:.2f} kVA')
+        
+        ax.set_title(f'Diversified Demand of {num_houses} Bldgs (kVA)', fontweight='bold')
+        ax.legend()
+        ax.grid(True, alpha=0.3)
+        ax.xaxis.set_major_locator(ticker.MaxNLocator(nbins=20))
+        ax.tick_params(axis='x', rotation=45)
     
-    for j in range (i + 1, len(axes)):
+    for j in range(i + 1, len(axes)):
         fig.delaxes(axes[j])
 
-    ax.set_xlabel ('Time', fontweight='bold')
-    ax.set_ylabel ('Diverisifed Demand (kVA)', fontweight='bold')
-    fig.tight_layout ()
+    ax.set_xlabel('Time', fontweight='bold')
+    ax.set_ylabel('Diversified Demand (kVA)', fontweight='bold')
+    fig.tight_layout()
     plt.show()
 
 if __name__ == "__main__":
@@ -158,9 +168,12 @@ if __name__ == "__main__":
 
         df = calculate_diverisifed_demand (df=df)
 
+        peak_demand = calculate_daily_peak_demand (df=df)
+
         if not trial in results_dict:
-            results_dict[trial] = []
+            results_dict[trial] = {}
         
-        results_dict[trial].append (df)
+        results_dict[trial]['dataframe'] = df
+        results_dict[trial]['peak_demand'] = peak_demand
 
     plotting (results=results_dict)
