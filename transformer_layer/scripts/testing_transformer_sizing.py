@@ -10,7 +10,7 @@ from pprint import pprint as pp
 import matplotlib.ticker as ticker
 
 
-def build_dataset_dir (bldg_ids : list, prefix : str, suffix : str):
+def build_dataset_dir (bldg_ids : list, prefix : str, suffix : str) -> list:
     """
     Given a list of building IDs passed, this function creates a full path for each building ID
     
@@ -35,8 +35,8 @@ def get_list_full_dataset (dataset_dir : str) -> list:
     :type dataset_dir: str
     """
     x = [filename for filename in os.listdir (dataset_dir)]
-    x.remove ('409590')
-    x.remove ('355669')
+    # x.remove ('409590')
+    # x.remove ('355669')
     shuffeled_list = random.sample (x, k=len (x))
     return shuffeled_list
 
@@ -54,8 +54,9 @@ def concatenate_load_profiles (dataset_dir : str):
 
     
     for idx, filename in enumerate(dataset_dir):
-
+    
         bldg_name = (filename.split('/'))[-3]
+    
         keep_cols = ['Time', 'Total Electric Power (kW)','Total Reactive Power (kVAR)']
         # keep_cols = ['Time', 'Total Electric Power (kW)']
 
@@ -75,7 +76,7 @@ def concatenate_load_profiles (dataset_dir : str):
 
     return pd.concat (dfs, axis=1)
 
-def calculate_diverisifed_demand (df : pd.DataFrame):
+def calculate_apprent_power (df : pd.DataFrame):
     """
     Sum up each row of the DataFrame to get the Maximum Diversified Demand
     
@@ -88,19 +89,20 @@ def calculate_diverisifed_demand (df : pd.DataFrame):
     df['Total_kW'] = df[kw_cols].sum(axis=1)
     df['Total_kVAR'] = df[kvar_cols].sum(axis=1)
     
-    df['Diversified Demand (kVA)'] = np.sqrt(
+    df['Apparent Power (kVA)'] = np.sqrt(
         df['Total_kW']**2 + df['Total_kVAR']**2
     )
     
     return df
 
 def calculate_daily_peak_demand (df : pd.DataFrame):
-    df['block'] = df.index // 15
-    block_avg = df.groupby ('block')['Diversified Demand (kVA)'].mean ()
-
-    daily_peak = block_avg.max ()
+    # df['block'] = df.index // 15
+    # df ['15min_avg'] = df.groupby ('block')['Diversified Demand (kVA)'].mean ()
+    df['Time'] = pd.to_datetime (df['Time'])
+    df = df.set_index ('Time')
+    df['avg_15min'] = df['Apparent Power (kVA)'].resample('15min').transform('mean')
     
-    return daily_peak
+    return df
 
 def plotting(results: dict):
     sns.set_theme(context='notebook')
@@ -120,14 +122,14 @@ def plotting(results: dict):
         df['Time'] = pd.to_datetime(df['Time']).dt.strftime('%H:%M')
 
         ax = axes[i]
-        ax.plot(df['Time'], df['Diversified Demand (kVA)'].round(decimals=2), 
+        ax.plot(df['Time'], df['Apparent Power (kVA)'].round(decimals=2), 
                 linewidth=2, color='blue', label='Apparent Power (kVA)')
         
         # Add horizontal line showing the peak demand
         ax.axhline(y=peak_demand, color='red', linestyle='--', linewidth=2, 
                    label=f'Daily Peak: {peak_demand:.2f} kVA')
         
-        ax.set_title(f'Diversified Demand of {num_houses} Bldgs (kVA)', fontweight='bold')
+        ax.set_title(f'Apparent Power of {num_houses} Bldgs (kVA)', fontweight='bold')
         ax.legend()
         ax.grid(True, alpha=0.3)
         ax.xaxis.set_major_locator(ticker.MaxNLocator(nbins=20))
@@ -137,8 +139,51 @@ def plotting(results: dict):
         fig.delaxes(axes[j])
 
     ax.set_xlabel('Time', fontweight='bold')
-    ax.set_ylabel('Diversified Demand (kVA)', fontweight='bold')
+    ax.set_ylabel('Apparent Power (kVA)', fontweight='bold')
     fig.tight_layout()
+    plt.show()
+
+def plotting2 (df : pd.DataFrame):
+    sns.set_theme(context='notebook')
+    ncols = 1
+    nrows = 1
+
+    fig, ax = plt.subplots(nrows=nrows, ncols=ncols, figsize=(16, 6))
+    
+    colors = sns.color_palette("deep", 4)
+    
+    peak_15_avg = df['avg_15min'].max ()
+
+    div_demand_peak = df['Apparent Power (kVA)'].max ()
+    
+    bldg_id = df.columns[1].split(':')[0]
+        
+
+    df['Time'] = pd.to_datetime(df['Time']).dt.strftime('%H:%M')
+
+    ax.plot(df['Time'], df['Apparent Power (kVA)'].round(decimals=2),
+            linewidth=2, color=colors[0], label='Apparent Power (kVA)')
+    
+    ax.plot(df['Time'], df['avg_15min'].round(decimals=2),
+            linewidth=2, color=colors[2], label='15 Min. Avg')
+        
+    # Add horizontal line showing the peak demand
+    ax.axhline(y=peak_15_avg, color=colors[1], linestyle='--', linewidth=2, 
+                label=f'{r"$S_{max, 15minAvg}$"}: {peak_15_avg:.2f} kVA')
+    
+    ax.axhline(y=div_demand_peak, color=colors[3], linestyle='--', linewidth=2, 
+                label=f'{r"$S_{max, Div}$"}: {div_demand_peak:.2f} kVA')
+    
+    ax.set_title(f'Apparent Power of Bldg {bldg_id} in (kVA)', fontweight='bold')
+    ax.legend()
+    ax.grid(True, alpha=0.3)
+    ax.xaxis.set_major_locator(ticker.MaxNLocator(nbins=20))
+    ax.tick_params(axis='x', rotation=45)
+    
+    ax.set_xlabel('Time', fontweight='bold')
+    ax.set_ylabel('Apparent Power (kVA)', fontweight='bold')
+    fig.tight_layout()
+    plt.savefig (f'./updated_bldg_{bldg_id}_results.png', dpi=300)
     plt.show()
 
 if __name__ == "__main__":
@@ -155,25 +200,36 @@ if __name__ == "__main__":
     mc_trials = 8
     results_dict = {}
 
+    bldg_ids_to_check = [504038, 238583, 29683, 188195, 193969, 199559, 199434,
+                         214735, 448411, 227486, 327816, 387321, 409590, 355669
+                         ]
     
-    for trial in range(mc_trials):
+    peaks = {}
 
-        possible_bldgs_75kva = random.randint (8,10)
+    for trial in bldg_ids_to_check:
 
-        random_choice_list = random.choices (get_list_full_dataset (dataset_dir=dataset_dir), k=possible_bldgs_75kva)
+        # possible_bldgs_75kva = random.randint (8,10)
+
+        # random_choice_list = random.choices (get_list_full_dataset (dataset_dir=dataset_dir), k=possible_bldgs_75kva)
         
-        final_dataset_dir = build_dataset_dir (bldg_ids=random_choice_list, prefix=prefix, suffix=suffix)
+        final_dataset_dir = build_dataset_dir (bldg_ids=[trial], prefix=prefix, suffix=suffix)
 
         df = concatenate_load_profiles (dataset_dir=final_dataset_dir)
 
-        df = calculate_diverisifed_demand (df=df)
+        df = calculate_apprent_power (df=df)
 
-        peak_demand = calculate_daily_peak_demand (df=df)
+        df = calculate_daily_peak_demand (df=df)
 
-        if not trial in results_dict:
-            results_dict[trial] = {}
+        df = df.reset_index ()
+
+        plotting2 (df=df)
+        # if not trial in peaks:
+        #     peaks [trial] = {}
         
-        results_dict[trial]['dataframe'] = df
-        results_dict[trial]['peak_demand'] = peak_demand
+        # peaks [trial] = df
+        # peaks [trial]['peak'] = df['avg_15min'].max()
 
-    plotting (results=results_dict)
+    
+    # for key, value in peaks.items ():
+    #     print(value)
+    #     quit()
