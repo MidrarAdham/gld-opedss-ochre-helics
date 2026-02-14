@@ -26,21 +26,9 @@ def build_dataset_dir (bldg_ids : list, prefix : str, suffix : str):
         finalized_dataset_dir.append(f"{prefix}/{bldg_id}{suffix}")
     
     return finalized_dataset_dir
-
-def get_list_full_dataset (dataset_dir : str) -> list:
-    """
-    Get the list of all the files in the given directory
-    
-    :param dataset_dir: directory where all the csv files exists
-    :type dataset_dir: str
-    """
-    x = ['409590', '355669']
-    # x = [filename for filename in os.listdir (dataset_dir)]
-    # shuffeled_list = random.sample (x, k=len (x))
-    # return shuffeled_list
     
 
-def concatenate_load_profiles (dataset_dir : str):
+def concatenate_load_profiles (dataset_dir : str) -> pd.DataFrame:
     """
     To concatenate dataframes, we execute the following steps:
     1) append all load profiles in a single list
@@ -82,90 +70,47 @@ def plotting (df : pd.DataFrame) -> None:
 
     df['Time'] = pd.to_datetime (df['Time']).dt.strftime ('%H: %M')
 
+    time_col = df['Time']
+
     sns.set_theme (context= 'notebook')
 
-    fig, axes = plt.subplots (nrows=3, ncols=1, figsize = (16, 10))
+    fig, ax = plt.subplots (nrows=1, ncols=1, figsize = (16, 6))
 
     # colors = plt.cm.tab10(np.linspace(0, 1, 3))
-    colors = sns.color_palette("deep", 3)
+    colors = sns.color_palette("deep", len(df))
 
-    ax = axes[0]
+    bldgs_size = [col.split(':')[1] for col in df.columns if '15min' in col]
 
-    ax.plot (df['Time'], df['409590: Apparent Power (kVA)'], label = 'bldg ID: 409590 kVA', linewidth = 2, color=colors[0])
+    bldgs_size = bldgs_size[0]
+
+    # quit()
+
+    ax.plot (df['Time'], df[f'avg_15min_div_demand:{bldgs_size}'], label = f'15min Avg - bldg Size: {bldgs_size}', linewidth = 2, color=colors[0])
     ax.set_xlabel ('Time (HH: MM)', fontweight = 'bold')
-    ax.set_ylabel ('Apparent Power (kVA)', fontweight = 'bold')
-    ax.set_title ('Building 409590 Demand (kVA)', fontweight = 'bold')
-    ax.axhline (y=df['409590: Apparent Power (kVA)'].max(), color='r', linestyle='--',
-                 label=f'Bldg 409590 Peak = {(df['409590: Apparent Power (kVA)'].max()).round(0)} (kVA)', alpha=0.3)
+    ax.set_ylabel ('Diversified Demand (kVA)', fontweight = 'bold')
+    ax.set_title (f'Diversified Demand of {bldgs_size} in (kVA)', fontweight = 'bold')
+    s_max = df[f'avg_15min_div_demand:{bldgs_size}'].max()
+    ax.axhline (y=s_max, color='r', linestyle='--',
+                 label=f'Diversified Demand Peak = {(s_max).round(0)} (kVA)', alpha=0.3)
+
+    new_cols = df[[col for col in df.columns if not '15min' in col and col!= 'Time' and not 'Diversified' in col]]
+
+    for idx, col in enumerate(new_cols):
+        bldg_id = col.split (': ')[0]
+        ax.plot (df['Time'], df[col], label = f'bldg ID: {bldg_id}', linewidth = 2, color=colors[idx+1])
+
     ax.xaxis.set_major_locator (ticker.MaxNLocator (nbins=30))
     ax.tick_params (axis='x', rotation=45)
     ax.legend ()
     ax.grid (True, alpha=0.3)
     ax.set_xlim(df['Time'].min(), df['Time'].max())
-
-    ax = axes[1]
-
-    ax.plot (df['Time'], df['355669: Apparent Power (kVA)'], label = 'bldg ID: 355669 kVA', linewidth = 2, color=colors[1])
-    ax.set_xlabel ('Time (HH: MM)', fontweight = 'bold')
-    ax.set_ylabel ('Apparent Power (kVA)', fontweight = 'bold')
-    ax.set_title ('Building 355669 Demand (kVA)', fontweight = 'bold')
-    ax.axhline (y=df['355669: Apparent Power (kVA)'].max(), color='r', linestyle='--',
-                 label=f'Bldg 355669 Peak = {(df['355669: Apparent Power (kVA)'].max()).round(0)} (kVA)', alpha=0.3)
-    ax.xaxis.set_major_locator (ticker.MaxNLocator (nbins=20))
-    ax.tick_params (axis='x', rotation=45)
     ax.legend ()
     ax.grid (True, alpha=0.3)
-    ax.set_xlim(df['Time'].min(), df['Time'].max())
-
-    ax = axes[2]
-
-    ax.plot (df['Time'], df['diversified demand (kVA)'], label = 'Diversified Demand (kVA)', linewidth = 2, color=colors[2])
-    ax.set_xlabel ('Time (HH: MM)', fontweight = 'bold')
-    ax.set_ylabel ('Diversified Demand (kVA)', fontweight = 'bold')
-    ax.set_title ('Bldgs 355669 & 409590 \nDiversified Demand (kVA)', fontweight = 'bold')
-    ax.axhline (y=df['diversified demand (kVA)'].max(), color='r', linestyle='--',
-                 label=f'Diversified Peak = {(df['diversified demand (kVA)'].max()).round(0)} kVA', alpha=0.3)
-    ax.xaxis.set_major_locator (ticker.MaxNLocator (nbins=20))
-    ax.tick_params (axis='x', rotation=45)
-    ax.set_xlim(df['Time'].min(), df['Time'].max())
-
-    ax.legend ()
-    ax.grid (True, alpha=0.3)
-
     plt.tight_layout ()
-    plt.savefig ('./probelamtic_buildings_short.png')
-    plt.show()
+    plt.savefig (f'../results/probelmatic_buildings_after_fix_{bldgs_size}.png')
+    # plt.show()
 
-def abnormal_buildings ():
-    filename = "/home/deras/gld-opedss-ochre-helics/datasets/resstock_2025/scripts/OR_upgrade0.csv"
-    valid_dataset = '/home/deras/gld-opedss-ochre-helics/datasets/resstock_2025/load_profiles/cosimulation/'
-    valid_bldgs = [int(bldg) for bldg in os.listdir(valid_dataset)]
-    metadata = pd.read_csv(filename, low_memory=False)
-    filtered_bldg_id = []
-    filtered_metadata = metadata[['bldg_id', 'out.electricity.total.energy_consumption..kwh']]
-    metadata_bldgs = filtered_metadata['bldg_id'].to_list()
-    metadata_bldgs = [int(bldg) for bldg in metadata_bldgs]
 
-    for valid_bldg in valid_bldgs:
-        for bldg in metadata_bldgs:
-            # print(bldg,'<-->', valid_bldg)
-            if bldg == valid_bldg:
-                # Now we know folder exists, check if it is empty
-                p = f'{valid_dataset}{bldg}/'
-
-                if os.listdir (p):
-                    filtered_bldg_id.append(bldg)
-    
-    filtered_metadata = filtered_metadata[filtered_metadata['bldg_id'].isin(filtered_bldg_id)]
-    high_energy_bldgs = filtered_metadata[filtered_metadata['out.electricity.total.energy_consumption..kwh'] > 10000]
-    high_energy_bldgs = high_energy_bldgs.sort_values(by='out.electricity.total.energy_consumption..kwh',ascending=False)
-    high_energy_bldgs_id = high_energy_bldgs['bldg_id'].to_list()
-
-    
-
-    return high_energy_bldgs_id
-
-    
 def closer_look (dataset_dir : list):
     sns.set_theme (context= 'notebook')
     for filename in dataset_dir:
@@ -244,25 +189,71 @@ if __name__ == "__main__":
 
     cfg = load_config ()
     dataset_dir = cfg["data"]["dataset_dir"]
+
+    filenames = [int(filename) for filename in os.listdir (dataset_dir)]
+
     prefix = dataset_dir
     suffix = '/up00/ochre.csv'
 
+    bldg_ids_to_check = [504038, 238583, 29683, 188195, 193969, 199559, 199434,
+                         214735, 448411, 227486, 327816, 387321, 409590, 355669
+                         ]
+
         
-    final_dataset_dir = build_dataset_dir (bldg_ids=['409590', '355669'], prefix=prefix, suffix=suffix)
+    final_dataset_dir = build_dataset_dir (bldg_ids=filenames, prefix=prefix, suffix=suffix)
 
     df = concatenate_load_profiles (dataset_dir=final_dataset_dir)
 
-    df['diversified demand (kVA)'] = df['409590: Apparent Power (kVA)'] + df['355669: Apparent Power (kVA)']
+    time_col = df['Time']
 
-    verified_high_energy_bldgs_ids = abnormal_buildings ()
+    df = df[[ col for col in df.columns if '(kVA)' in col]]
 
-    bldg_ids_to_check = [504038, 238583, 29683, 188195, 193969, 199559, 199434,
-                         214735, 448411, 227486, 327816, 387321
-                         ]
+    results = {}
 
-    for bldg_id in verified_high_energy_bldgs_ids:
-        if bldg_id in:
-            print(bldg_id)
+    for i in range (20):
+        
+        n_samples = random.randint (3, 10)
+
+        cols = random.sample (list (df.columns), n_samples)
+
+        df_new = df[cols].copy ()
+
+        bldgs_size = len(df_new.columns)
+
+        df_new ['Diversified Demand (kVA)'] = df_new.sum (axis=1)
+
+        df_new ['Time'] = time_col
+
+        df_new ['Time'] = pd.to_datetime (df_new ['Time'])
+
+        df_new = df_new.set_index ('Time')
+
+        df_new [f'avg_15min_div_demand:{bldgs_size} bldgs'] = df_new ['Diversified Demand (kVA)'].resample ('15min').transform ('mean')
+
+        df_new = df_new.reset_index ()
+
+        plotting (df=df_new)
+
+        # quit()
+
+        # if i not in results:
+        #     results [f'trial_{i}'] = {}
+        
+        # results [f'trial_{i}'] = df_new
+
+
+
+        
+
+
+
+    # df['Diversified Demand (kVA)'] = df.sum (axis=1)
+
+    
+
+    # df['diversified demand (kVA)'] = df['409590: Apparent Power (kVA)'] + df['355669: Apparent Power (kVA)']
+
+    # print(len(df.columns))
         
     # closer_look (dataset_dir=final_dataset_dir)
 
