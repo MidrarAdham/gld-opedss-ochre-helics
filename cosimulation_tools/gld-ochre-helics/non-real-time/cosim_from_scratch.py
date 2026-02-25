@@ -11,8 +11,7 @@ import helics
 import pandas as pd
 import datetime as dt
 from helics.cli import run
-from ochre import Dwelling, Analysis
-from ochre.utils import default_input_path
+from ochre import Analysis
 
 
 def create_dir():
@@ -48,23 +47,6 @@ sim_times = pd.date_range(
     inclusive="left",
 )
 
-initialization_time = dt.timedelta(days=1)
-
-equipment_args = {
-    # "PV": {"capacity": 5},                    # 5 kW solar panels
-    # "Battery": {"capacity": 5, "capacity_kwh": 10},  # 5 kW, 10 kWh battery
-}
-
-# What data to publish from the house
-# This is what GridLAB-D will receive
-status_keys = [
-    "Total Electric Power (kW)",  # Main thing GridLAB-D needs
-]
-
-# Weather file location
-default_weather_file = os.path.join(
-    default_input_path, "Weather", "USA_OR_Portland.Intl.AP.726980_TMY3.epw"
-)
 
 def make_helics_federate(name, config_file="ochre_helics_config.json"):
     """
@@ -123,83 +105,53 @@ def setup():
 
 @cli.command()
 @click.argument("name", type=str)
-@click.argument("input_path", type=click.Path(exists=True))
-def house(name, input_path):
+@click.argument("input_path_1", type=click.Path(exists=True))
+@click.argument("input_path_2", type=click.Path(exists=True))
+def house(name, input_path_1, input_path_2):
     """
     COMMAND: house
     Runs the OCHRE house simulation as a HELICS federate
     This is called automatically by 'main' - you don't run this directly
     """
-    
+
+    # Load pre-computed OCHRE results for each triplex_load
+    def load_csv(path):
+        csv_path = os.path.join(path, "ochre.csv")
+        print(f"Loading: {csv_path}")
+        df = pd.read_csv(csv_path, parse_dates=["Time"])
+        return df.set_index("Time")
+
+    df1 = load_csv(input_path_1)
+    df2 = load_csv(input_path_2)
+    print(f"{name} data loaded: {len(df1)} timesteps (load_1), {len(df2)} timesteps (load_2)")
+
     # Create HELICS federate
     fed = make_helics_federate(name)
 
-    # Setup publication - house will publish its power demand
-    # pub = register_publication(f"ochre_house_load.constant_power_12", fed, pub_type="complex")
     pub1 = register_publication(f"ochre_house_load_1.constant_power_12", fed, pub_type="complex")
     pub2 = register_publication(f"ochre_house_load_2.constant_power_12", fed, pub_type="complex")
-    
-    # NOTE: No subscription! House doesn't receive controls
-    # It just runs naturally and publish power
-
-    # Initialize OCHRE dwelling (the house simulation)
-    print(f"Initializing OCHRE dwelling...")
-    dwelling = Dwelling (
-        name=name,
-        start_time=start_time,
-        time_res=time_res,
-        duration=duration,
-        initialization_time=initialization_time,
-        hpxml_file=os.path.join(input_path, "home.xml"),
-        hpxml_schedule_file=os.path.join(input_path, "in.schedules.csv"),
-        weather_file=default_weather_file,
-        output_path=input_path,
-        Equipment=equipment_args,
-        save_args_to_json=True,
-        # metrics_verbosity=5
-    )
-    print(f"{name} initialized successfully!")
 
     # Enter execution mode - simulation is ready to start
     fed.enter_executing_mode()
-    
+
     pub1.publish(complex(0, 0))
     pub2.publish(complex(0, 0))
     print(f"{name} entering simulation loop...")
 
     for t in sim_times:
-        # Sync with HELICS broker - wait for this time step - nice func
+        # Sync with HELICS broker - wait for this time step
         step_to(t, fed)
 
-        # Run OCHRE for one time step
-        # Empty dictionary {} means no controls - house runs naturally unlike the ex in nrel repo
-        status = dwelling.update({})
+        # Get power independently from each building's CSV (kW -> W)
+        power_kw_1 = df1["Total Electric Power (kW)"].get(t, 0)
+        power_kw_2 = df2["Total Electric Power (kW)"].get(t, 0)
 
-        # Get the house's real power demand (in kW)
-        power_kw_1 = status.get("Total Electric Power (kW)", 0)
+        pub1.publish(complex(power_kw_1 * 1000, 0))
+        pub2.publish(complex(power_kw_2 * 1000, 0))
 
-        # Get the house's real power demand (in kW)
-        power_kw_2 = status.get("Total Electric Power (kW)", 0)
+        print(f"{t}: load_1 = {power_kw_1:.2f} kW | load_2 = {power_kw_2:.2f} kW")
 
-
-
-        
-        # GridLAB-D uses Watts, OCHRE uses kW easpy peasy conversion
-        power_w_1 = power_kw_1 * 1000
-        power_w_2 = power_kw_2 * 1000
-        
-        power_complex_1 = complex(power_w_1, 0)
-        power_complex_2 = complex(power_w_2, 0)
-        pub1.publish(power_complex_1)
-        pub2.publish(power_complex_2)
-        
-        # Print status (optional - helpful for debugging)
-        print(f"{t}: Power = {power_kw_1:.2f} kW ({power_w_1:.0f} W)")
-        print(f"{t}: Power = {power_kw_2:.2f} kW ({power_w_2:.0f} W)")
-
-    # Simulation complete - save results and close
     print(f"{name} simulation complete!")
-    dwelling.finalize()
     fed.finalize()
 
 
