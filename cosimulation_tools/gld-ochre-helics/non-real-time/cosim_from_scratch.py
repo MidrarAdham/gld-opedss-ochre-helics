@@ -24,7 +24,7 @@ def create_dir():
 main_path = create_dir()
 
 # Define which building to simulate
-# You can change these to simulate different buildings
+# We can change these to simulate different buildings
 building_ids = ["bldg0112631"]  # Just ONE building
 upgrades = ["up00", "up01"]     # Two upgrade scenario
 

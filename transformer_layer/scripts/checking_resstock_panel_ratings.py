@@ -1,3 +1,7 @@
+'''
+Author: MidrarAdham
+Created: Sat Feb 14 2026
+'''
 import os
 import numpy as np
 import pandas as pd
@@ -5,6 +9,14 @@ import seaborn as sns
 from config import load_config
 import matplotlib.pyplot as plt
 from matplotlib.patches import Patch
+
+"""
+This script was used to debug why bldgs have a very apparent power profiles. 
+However, it turns out the problem was the way the demand was calculated. I was sizing the transformers
+based on the diversified demand rather than the average of 5,10, or 15 minute demand blocks
+
+Right now, the script shows the electric panel CBs for each of the suspected buildigs
+"""
 
 cfg = load_config ()
 
