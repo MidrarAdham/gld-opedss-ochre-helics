@@ -186,6 +186,14 @@ object triplex_meter{
 }
 
 object triplex_load {
+	name ochre_house_load_0;
+	parent house_meter;
+	phases CS;
+	constant_power_12 0+0j; // this should be updated by HELICS
+	nominal_voltage 120; 
+}
+
+object triplex_load {
 	name ochre_house_load_1;
 	parent house_meter;
 	phases CS;
@@ -201,29 +209,45 @@ object triplex_load {
 	nominal_voltage 120; 
 }
 
-// object triplex_load {
-// 	name ochre_house_load_3;
-// 	parent house_meter;
-// 	phases CS;
-// 	constant_power_12 0+0j; // this should be updated by HELICS
-// 	nominal_voltage 120; 
-// }
+object triplex_load {
+	name ochre_house_load_3;
+	parent house_meter;
+	phases CS;
+	constant_power_12 0+0j; // this should be updated by HELICS
+	nominal_voltage 120; 
+}
 
-// object triplex_load {
-// 	name ochre_house_load_4;
-// 	parent house_meter;
-// 	phases CS;
-// 	constant_power_12 0+0j; // this should be updated by HELICS
-// 	nominal_voltage 120; 
-// }
+object triplex_load {
+	name ochre_house_load_4;
+	parent house_meter;
+	phases CS;
+	constant_power_12 0+0j; // this should be updated by HELICS
+	nominal_voltage 120; 
+}
 
-// object triplex_load {
-// 	name ochre_house_load_5;
-// 	parent house_meter;
-// 	phases CS;
-// 	constant_power_12 0+0j; // this should be updated by HELICS
-// 	nominal_voltage 120; 
-// }
+object triplex_load {
+	name ochre_house_load_5;
+	parent house_meter;
+	phases CS;
+	constant_power_12 0+0j; // this should be updated by HELICS
+	nominal_voltage 120; 
+}
+
+object triplex_load {
+	name ochre_house_load_6;
+	parent house_meter;
+	phases CS;
+	constant_power_12 0+0j; // this should be updated by HELICS
+	nominal_voltage 120; 
+}
+
+object triplex_load {
+	name ochre_house_load_7;
+	parent house_meter;
+	phases CS;
+	constant_power_12 0+0j; // this should be updated by HELICS
+	nominal_voltage 120; 
+}
 
 // object recorder {
 // 	parent house_meter;

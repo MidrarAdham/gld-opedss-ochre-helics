@@ -1,0 +1,51 @@
+{
+    "name": "OCHRE_Federate",
+    "coreType": "zmq",
+    "coreInitString": "--federates=1",
+    "period": 60.0,
+    "uninterruptible": true,
+    "terminate_on_error": true,
+    "publications": [
+        {
+            "key": "ochre_house_load_0.constant_power_12",
+            "type": "complex",
+            "global": true
+        },
+        {
+            "key": "ochre_house_load_1.constant_power_12",
+            "type": "complex",
+            "global": true
+        },
+        {
+            "key": "ochre_house_load_2.constant_power_12",
+            "type": "complex",
+            "global": true
+        },
+        {
+            "key": "ochre_house_load_3.constant_power_12",
+            "type": "complex",
+            "global": true
+        },
+        {
+            "key": "ochre_house_load_4.constant_power_12",
+            "type": "complex",
+            "global": true
+        },
+        {
+            "key": "ochre_house_load_5.constant_power_12",
+            "type": "complex",
+            "global": true
+        },
+        {
+            "key": "ochre_house_load_6.constant_power_12",
+            "type": "complex",
+            "global": true
+        },
+        {
+            "key": "ochre_house_load_7.constant_power_12",
+            "type": "complex",
+            "global": true
+        }
+    ],
+    "subscriptions": []
+}
