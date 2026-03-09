@@ -66,8 +66,8 @@ object transformer_configuration {
 object transformer_configuration {
 	name PoleTop;
 	connect_type SINGLE_PHASE_CENTER_TAPPED;
-	power_rating 25;
-	powerC_rating 25;
+	power_rating 50;
+	powerC_rating 50;
 	primary_voltage 2400;
 	secondary_voltage 120;
 	resistance 0.01;
@@ -258,8 +258,8 @@ object triplex_load {
 
 // Record the OCHRE load 1 directly
 object recorder {
-    parent ochre_house_load_1;
-    file ochre_load_1.csv;
+    parent ochre_house_load_0;
+    file ../results/ochre_load_0.csv;
     interval 60;
     property constant_power_12;
 }
@@ -267,8 +267,50 @@ object recorder {
 
 // Record the OCHRE load 2 directly
 object recorder {
+    parent ochre_house_load_1;
+    file ../results/ochre_load_1.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+object recorder {
     parent ochre_house_load_2;
-    file ochre_load_2.csv;
+    file ../results/ochre_load_2.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+object recorder {
+    parent ochre_house_load_3;
+    file ../results/ochre_load_3.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+object recorder {
+    parent ochre_house_load_4;
+    file ../results/ochre_load_4.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+object recorder {
+    parent ochre_house_load_5;
+    file ../results/ochre_load_5.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+object recorder {
+    parent ochre_house_load_6;
+    file ../results/ochre_load_6.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+object recorder {
+    parent ochre_house_load_7;
+    file ../results/ochre_load_7.csv;
     interval 60;
     property constant_power_12;
 }
@@ -276,7 +318,7 @@ object recorder {
 // Record residential transformer loading
 object recorder {
     parent residential_transformer;
-    file residential_transformer.csv;
+    file ../results/residential_transformer.csv;
     interval 60;
     property power_in,power_out;
 }
