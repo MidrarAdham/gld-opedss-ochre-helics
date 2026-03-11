@@ -1,3 +1,7 @@
+'''
+Author: MidrarAdham
+Created: Sat Feb 14 2026
+'''
 # Standard Python Libraries that we'll use in this script:
 import os
 import math
@@ -12,6 +16,7 @@ from sklearn.cluster import AgglomerativeClustering
 # Calling my methods (all of these methods are Python files inside this folder):
 from config import load_config
 from load_profiles import LoadProfiles
+
 
 """
 - This file read the configuration of the methods, calls the methods from load_profiles.py, and write the results.

@@ -32,9 +32,11 @@ class OchreGridlabdMaster:
         OUTPUT_DIR = os.getcwd()
         self.MASTER_CONFIG_FILE = os.path.join(OUTPUT_DIR, "master_cosim_config.json")
 
-        # OCHRE creates a folder to store the building data and it saves it. This folder is called cosimulation
-        OCHRE_MAIN_PATH = os.path.join(OUTPUT_DIR, "cosimulation")
-        self.OCHRE_HOUSE_PATH = os.path.join(OCHRE_MAIN_PATH, "bldg0112631", "up00")
+        # Paths to pre-downloaded ResStock building data (ochre.csv)
+        # ochre_house_load_1 -> building 62
+        self.OCHRE_HOUSE_PATH_1 = "/home/deras/gld-opedss-ochre-helics/datasets/resstock_2025/load_profiles/tmp/62/up00"
+        # ochre_house_load_2 -> building 13370
+        self.OCHRE_HOUSE_PATH_2 = "/home/deras/gld-opedss-ochre-helics/datasets/resstock_2025/load_profiles/tmp/13370/up00"
 
 
     def create_master_config(self):
@@ -43,8 +45,8 @@ class OchreGridlabdMaster:
         - This file is not called from main. It is called from the run_cosimulation() method
         """
         
-        # OCHRE federate configuration
-        ochre_cmd = f"{sys.executable} -u {self.OCHRE_SCRIPT} house House_1 {self.OCHRE_HOUSE_PATH}"
+        # OCHRE federate configuration — pass both building paths
+        ochre_cmd = f"{sys.executable} -u {self.OCHRE_SCRIPT} house House_1 {self.OCHRE_HOUSE_PATH_1} {self.OCHRE_HOUSE_PATH_2}"
         ochre_cmd = ochre_cmd.replace("\\", "/")  # Fix Windows paths
         
         ochre_federate = {
@@ -99,12 +101,14 @@ class OchreGridlabdMaster:
             print("Please make sure the .glm file is in the current directory")
             return
         
-        # Checking for the buildign files:
-        if not os.path.exists(self.OCHRE_HOUSE_PATH):
-            print(f"ERROR: OCHRE building data not found: {self.OCHRE_HOUSE_PATH}")
-            print("Run setup first:")
-            print(f"  python3 {self.OCHRE_SCRIPT} setup")
-            return
+        # Checking for pre-downloaded ochre.csv files for both buildings
+        for path in [self.OCHRE_HOUSE_PATH_1, self.OCHRE_HOUSE_PATH_2]:
+            ochre_csv = os.path.join(path, "ochre.csv")
+            if not os.path.exists(ochre_csv):
+                print(f"ERROR: Pre-downloaded ochre.csv not found: {ochre_csv}")
+                print("Make sure the ResStock dataset is at:")
+                print(f"  {path}")
+                return
         
         # Once all the files existed, then let's create the configuration files:
         print("\nCreating master HELICS configuration...")
@@ -138,7 +142,8 @@ class OchreGridlabdMaster:
             print("="*70)
             print("Co-simulation completed successfully!")
             print("\nOutput files:")
-            print(f"  - OCHRE results: {self.OCHRE_HOUSE_PATH}")
+            print(f"  - OCHRE load_1 (bldg 62):    {self.OCHRE_HOUSE_PATH_1}")
+            print(f"  - OCHRE load_2 (bldg 13370): {self.OCHRE_HOUSE_PATH_2}")
             print("  - GridLAB-D results: substation_power.csv, house_meter.csv, etc.")
         except Exception as e:
             print("="*70)

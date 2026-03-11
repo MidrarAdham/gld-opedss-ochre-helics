@@ -1,10 +1,12 @@
+'''
+Author: MidrarAdham
+Created: Sat Feb 14 2026
+'''
 import os
 import numpy as np
 import pandas as pd
-import seaborn as sns
 import matplotlib.pyplot as plt
-import matplotlib.ticker as ticker
-import load_allocations_api as api
+from scipy import stats as sp_stats
 
 def check_file (method : str):
     file_dir = './results/'
@@ -49,7 +51,6 @@ def plot_method1_results (filename):
     ax[0].legend()
     ax[0].grid(True, alpha=0.3)
     
-    # Plot 2: Diversity Factor
     ax[1].plot(df_25['n_customers'], df_25['avg_diversity_factor'], 
                marker='o', label='25 kVA')
     ax[1].plot(df_50['n_customers'], df_50['avg_diversity_factor'], 
@@ -163,16 +164,6 @@ def transformer_load_management_plot (data, regr_results):
 
 
 def plot_method4_allocation(results):
-    """
-    Visualize Method 4: Metered Feeder Allocation
-    
-    Shows:
-    1. Bar chart of allocated load per transformer
-    2. Utilization factors
-    3. Summary statistics
-    """
-    import matplotlib.pyplot as plt
-    import numpy as np
     
     allocations = results['transformer_allocations']
     
@@ -182,14 +173,9 @@ def plot_method4_allocation(results):
     allocated_kw = [a['allocated_kw'] for a in allocations]
     utilizations = [a['utilization_factor'] for a in allocations]
     
-    # Create figure with two subplots
+
     fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(14, 10))
-    
-    # ============================================================
-    # Plot 1: Allocated Load per Transformer
-    # ============================================================
-    
-    # Color by transformer size
+        
     colors = ['lightcoral' if kva == 25.0 else 'lightblue' if kva == 50.0 else 'lightgreen' 
               for kva in kva_ratings]
     
@@ -207,14 +193,12 @@ def plot_method4_allocation(results):
     ax1.set_xticklabels(transformer_ids, rotation=45, ha='right', fontsize=9)
     ax1.grid(axis='y', alpha=0.3)
     
-    # Add value labels on bars
     for i, (bar, kw) in enumerate(zip(bars1, allocated_kw)):
         height = bar.get_height()
         ax1.text(bar.get_x() + bar.get_width()/2., height,
                 f'{kw:.1f}',
                 ha='center', va='bottom', fontsize=8)
     
-    # Legend for colors
     from matplotlib.patches import Patch
     legend_elements = [
         Patch(facecolor='lightgreen', edgecolor='black', label='75 kVA'),
@@ -223,15 +207,11 @@ def plot_method4_allocation(results):
     ]
     ax1.legend(handles=legend_elements, loc='upper right', fontsize=10)
     
-    # ============================================================
-    # Plot 2: Utilization Factors
-    # ============================================================
-    
     bars2 = ax2.bar(range(len(transformer_ids)), 
                     [u * 100 for u in utilizations],  # Convert to percentage
                     color=colors, edgecolor='black', linewidth=1.5, alpha=0.8)
     
-    # Add 100% reference line
+
     ax2.axhline(y=100, color='red', linestyle='--', linewidth=2, 
                 label='100% Utilization Limit', zorder=5)
     
@@ -244,7 +224,6 @@ def plot_method4_allocation(results):
     ax2.grid(axis='y', alpha=0.3)
     ax2.legend(loc='upper right', fontsize=10)
     
-    # Add value labels on bars
     for bar, util in zip(bars2, utilizations):
         height = bar.get_height()
         ax2.text(bar.get_x() + bar.get_width()/2., height,
@@ -255,47 +234,22 @@ def plot_method4_allocation(results):
     plt.savefig('./method4.png')
     plt.show()
     
-    # ============================================================
-    # Print Summary Statistics
-    # ============================================================
-    # print("\n" + "="*60)
-    # print("METHOD 4 SUMMARY STATISTICS")
-    # print("="*60)
-    # print(f"Total Customers: {results['total_customers']}")
-    # print(f"Metered Demand: {results['metered_demand_kw']:.2f} kW")
-    # print(f"Number of Transformers: {results['n_transformers']}")
-    # print(f"Total Transformer Capacity: {results['total_transformer_kva']:.2f} kVA")
-    # print(f"Allocation Factor: {results['allocation_factor']:.4f}")
-    # print(f"Average Utilization: {np.mean(utilizations)*100:.2f}%")
-    # print(f"All transformers within limits: {'YES ✓' if all(u <= 1.0 for u in utilizations) else 'NO ✗'}")
-    # print("="*60)
-
 
 def plot_method4_allocation(trials_file, clusters_file):
-    """
-    Plot Method 4: Cluster-Based Transformer Sizing
     
-    Args:
-        trials_file: path to method4_cluster_trials.csv
-        clusters_file: path to method4_cluster_assignments.csv
-    """
-    
-    # Load data
     trials_df = pd.read_csv(trials_file)
     clusters_df = pd.read_csv(clusters_file)
     
-    # Create figure with 6 subplots
     fig = plt.figure(figsize=(18, 16))
     gs = fig.add_gridspec(3, 2, hspace=0.35, wspace=0.3)
     
-    ax1 = fig.add_subplot(gs[0, 0])  # Transformer mix distribution
-    ax2 = fig.add_subplot(gs[0, 1])  # Cluster size distribution
-    ax3 = fig.add_subplot(gs[1, 0])  # Installed capacity per trial
-    ax4 = fig.add_subplot(gs[1, 1])  # Number of transformers per trial
-    ax5 = fig.add_subplot(gs[2, 0])  # Cluster peak vs size (scatter)
-    ax6 = fig.add_subplot(gs[2, 1])  # Transformer choice by cluster size
+    ax1 = fig.add_subplot(gs[0, 0])
+    ax2 = fig.add_subplot(gs[0, 1])
+    ax3 = fig.add_subplot(gs[1, 0])
+    ax4 = fig.add_subplot(gs[1, 1])
+    ax5 = fig.add_subplot(gs[2, 0])
+    ax6 = fig.add_subplot(gs[2, 1])
     
-    # Get summary statistics
     mean_n25 = trials_df['n_25kva'].mean()
     mean_n50 = trials_df['n_50kva'].mean()
     mean_n75 = trials_df['n_75kva'].mean()
@@ -304,18 +258,13 @@ def plot_method4_allocation(trials_file, clusters_file):
     n_customers = trials_df['n_total_customers'].iloc[0]
     cluster_min = trials_df['cluster_min'].iloc[0]
     cluster_max = trials_df['cluster_max'].iloc[0]
-    
-    # ============================================================
-    # Plot 1: Average Transformer Mix (Pie Chart)
-    # ============================================================
-    
+     
     sizes = [mean_n25, mean_n50, mean_n75]
     labels = [f'25 kVA\n(avg: {mean_n25:.1f})', 
               f'50 kVA\n(avg: {mean_n50:.1f})', 
               f'75 kVA\n(avg: {mean_n75:.1f})']
     colors = ['lightcoral', 'lightblue', 'lightgreen']
     
-    # Filter non-zero
     non_zero_sizes = [s for s in sizes if s > 0]
     non_zero_labels = [l for l, s in zip(labels, sizes) if s > 0]
     non_zero_colors = [c for c, s in zip(colors, sizes) if s > 0]
@@ -324,10 +273,6 @@ def plot_method4_allocation(trials_file, clusters_file):
             autopct='%1.1f%%', shadow=True, startangle=90)
     ax1.set_title(f'Average Transformer Mix\n(Avg: {mean_n25+mean_n50+mean_n75:.1f} transformers)', 
                   fontweight='bold', fontsize=11)
-    
-    # ============================================================
-    # Plot 2: Cluster Size Distribution (Histogram)
-    # ============================================================
     
     ax2.hist(clusters_df['cluster_size_houses'], bins=range(cluster_min, cluster_max+2),
              edgecolor='black', alpha=0.7, color='steelblue', align='left')
@@ -338,9 +283,6 @@ def plot_method4_allocation(trials_file, clusters_file):
     ax2.set_xticks(range(cluster_min, cluster_max+1))
     ax2.grid(axis='y', alpha=0.3)
     
-    # ============================================================
-    # Plot 3: Installed Capacity per Trial (Box + Violin)
-    # ============================================================
     
     parts = ax3.violinplot([trials_df['installed_kva_total']], positions=[1],
                            showmeans=True, showmedians=True)
@@ -354,10 +296,7 @@ def plot_method4_allocation(trials_file, clusters_file):
     ax3.set_xticklabels(['All Trials'])
     ax3.legend()
     ax3.grid(axis='y', alpha=0.3)
-    
-    # ============================================================
-    # Plot 4: Number of Transformers per Trial (Stacked Bar)
-    # ============================================================
+
     
     trial_nums = trials_df['trial']
     
@@ -375,11 +314,7 @@ def plot_method4_allocation(trials_file, clusters_file):
     ax4.set_title('Transformer Count by Trial', fontweight='bold', fontsize=11)
     ax4.legend()
     ax4.grid(axis='y', alpha=0.3)
-    
-    # ============================================================
-    # Plot 5: Cluster Peak vs Cluster Size (Scatter)
-    # ============================================================
-    
+
     ax5.scatter(clusters_df['cluster_size_houses'], 
                 clusters_df['cluster_peak_kw'],
                 alpha=0.5, s=30, c='steelblue')
@@ -389,8 +324,7 @@ def plot_method4_allocation(trials_file, clusters_file):
     ax5.set_title('Peak Demand vs Cluster Size', fontweight='bold', fontsize=11)
     ax5.grid(True, alpha=0.3)
     
-    # Add trend line
-    from scipy import stats as sp_stats
+    
     slope, intercept, r_value, _, _ = sp_stats.linregress(
         clusters_df['cluster_size_houses'], 
         clusters_df['cluster_peak_kw']
@@ -400,12 +334,7 @@ def plot_method4_allocation(trials_file, clusters_file):
     ax5.plot(x_line, y_line, 'r--', linewidth=2, 
              label=f'Trend: y={slope:.2f}x+{intercept:.2f}')
     ax5.legend()
-    
-    # ============================================================
-    # Plot 6: Transformer Choice by Cluster Size (Stacked Bar)
-    # ============================================================
-    
-    # Count transformer choices by cluster size
+
     choice_data = []
     for size in range(cluster_min, cluster_max + 1):
         subset = clusters_df[clusters_df['cluster_size_houses'] == size]
