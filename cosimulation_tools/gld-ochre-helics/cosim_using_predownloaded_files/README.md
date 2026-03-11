@@ -1,3 +1,4 @@
+```mermaid
 flowchart TB
 
 %% ======================
@@ -53,3 +54,4 @@ G3 --> H
 
 H --> I[Refined Transformer Loading Estimate]
 H --> J[Uncertainty / Confidence Bounds]
+```
