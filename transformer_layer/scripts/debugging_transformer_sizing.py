@@ -1,14 +1,28 @@
+'''
+File: debugging_transformer_sizing.py
+Project: scripts
+Author: MidrarAdham
+Created: Sat Feb 14 2026
+'''
 import os
-import math
 import random
 import numpy as np
 import pandas as pd
 import seaborn as sns
 from config import load_config
 import matplotlib.pyplot as plt
-from pprint import pprint as pp
 from pathlib import Path as Path
 import matplotlib.ticker as ticker
+
+"""
+This script uses the highest power consumption profiles (see bldg_ids_to_check) to determine:
+    1- Apparent power of each bldg
+    2- Randomly choose multiple bldgs
+    3- Calculate the diversified demand for the chosen bldgs
+    4- Plot the chosen buildings
+
+So far, I identified 27 buildings of a very high demand. So, I am starting with those.
+"""
 
 def build_dataset_dir (bldg_ids : list, prefix : str, suffix : str):
     """
@@ -166,6 +180,7 @@ def closer_look (dataset_dir : list):
         plt.savefig (f'demand_profile_bldg_{bldg_name}.png', dpi=300)
 
     plt.show()
+
 def vis_all_excessive_profiles (dataset_dir : str):
     """
     Analyze power consumption for high-energy buildings
@@ -180,8 +195,7 @@ def vis_all_excessive_profiles (dataset_dir : str):
         df = df.head(1440)  # One day
         
         print(df)
-        
-        
+
             
 
 
@@ -210,6 +224,8 @@ if __name__ == "__main__":
 
     results = {}
 
+
+
     for i in range (20):
         
         n_samples = random.randint (3, 10)
@@ -230,31 +246,8 @@ if __name__ == "__main__":
 
         df_new [f'avg_15min_div_demand:{bldgs_size} bldgs'] = df_new ['Diversified Demand (kVA)'].resample ('15min').transform ('mean')
 
+        print( df_new [f'avg_15min_div_demand:{bldgs_size} bldgs'].max(), '\t', bldgs_size)
+
         df_new = df_new.reset_index ()
 
-        plotting (df=df_new)
-
-        # quit()
-
-        # if i not in results:
-        #     results [f'trial_{i}'] = {}
-        
-        # results [f'trial_{i}'] = df_new
-
-
-
-        
-
-
-
-    # df['Diversified Demand (kVA)'] = df.sum (axis=1)
-
-    
-
-    # df['diversified demand (kVA)'] = df['409590: Apparent Power (kVA)'] + df['355669: Apparent Power (kVA)']
-
-    # print(len(df.columns))
-        
-    # closer_look (dataset_dir=final_dataset_dir)
-
-    
+        # plotting (df=df_new)

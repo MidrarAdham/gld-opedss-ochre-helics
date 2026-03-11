@@ -1,0 +1,50 @@
+
+WARNING  [2025-01-02 07:20:00 PST] : transformer:residential_transformer is at 101.45% of its rated power value
+Processing 2025-01-02 19:21:00 PST...                                      Processing 2025-01-04 13:16:00 PST...                                      Processing 2025-01-06 09:15:00 PST...                                      Processing 2025-01-08 00:11:00 PST...                                      Processing 2025-01-09 14:06:00 PST...                                      Processing 2025-01-11 01:31:00 PST...                                      Processing 2025-01-12 09:04:00 PST...                                      Processing 2025-01-13 13:44:00 PST...                                      Processing 2025-01-14 15:23:00 PST...                                      Processing 2025-01-15 17:17:00 PST...                                      Processing 2025-01-16 23:17:00 PST...                                      Processing 2025-01-18 13:50:00 PST...                                      Processing 2025-01-20 08:59:00 PST...                                      Processing 2025-01-22 06:02:00 PST...                                      Processing 2025-01-24 04:58:00 PST...                                      Processing 2025-01-26 07:17:00 PST...                                      Processing 2025-01-29 01:28:00 PST...
+Core profiler results
+======================
+
+Total objects                 37 objects
+Parallelism                    1 thread
+Total time                  20.0 seconds
+  Core time                  9.4 seconds (46.9%)
+    Compiler                 0.0 seconds (0.1%)
+    Instances                0.0 seconds (0.0%)
+    Random variables         0.0 seconds (0.0%)
+    Schedules                0.0 seconds (0.0%)
+    Loadshapes               0.0 seconds (0.0%)
+    Enduses                  0.0 seconds (0.0%)
+    Transforms               0.0 seconds (0.1%)
+  Model time                10.6 seconds/thread (53.1%)
+Simulation time               30 days
+Simulation speed             1.3k object.hours/second
+Passes completed          100486 passes
+Time steps completed       43201 timesteps
+Convergence efficiency      2.33 passes/timestep
+Read lock contention        0.0%
+Write lock contention       0.0%
+Average timestep             60 seconds/timestep
+Simulation rate          129600 x realtime
+
+
+Model profiler results
+======================
+
+Class            Time (s) Time (%) msec/obj
+---------------- -------- -------- --------
+triplex_load       2.904     27.3%    363.0
+recorder           2.096     19.7%    232.9
+helics_msg         1.704     16.0%   1704.4
+node               1.430     13.4%    357.4
+overhead_line      1.035      9.7%    345.1
+transformer        0.701      6.6%    350.4
+triplex_meter      0.394      3.7%    393.9
+meter              0.364      3.4%    364.0
+overhead_line_co   0.000      0.0%      0.0
+triplex_line_con   0.000      0.0%      0.0
+line_configurati   0.000      0.0%      0.0
+transformer_conf   0.000      0.0%      0.0
+================ ======== ======== ========
+Total             10.628    100.0%    287.3
+
+WARNING  [2025-01-31 00:00:00 PST] : last warning message was repeated 4 times

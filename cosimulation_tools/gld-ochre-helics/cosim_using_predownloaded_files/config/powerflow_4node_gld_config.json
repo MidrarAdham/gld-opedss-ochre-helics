@@ -1,0 +1,59 @@
+{
+    "name": "GridLABD_Federate",
+    "coreInitString": "--federates=1 --loglevel=warning",
+    "coreType": "zmq",
+    "period": 60.0,
+    "uninterruptible": false,
+    "terminate_on_error": true,
+    "subscriptions": [
+        {
+            "key": "ochre_house_load_0.constant_power_12",
+            "type": "complex",
+            "info": "{\"object\": \"ochre_house_load_0\", \"property\": \"constant_power_12\"}",
+            "required": true
+        },
+        {
+            "key": "ochre_house_load_1.constant_power_12",
+            "type": "complex",
+            "info": "{\"object\": \"ochre_house_load_1\", \"property\": \"constant_power_12\"}",
+            "required": true
+        },
+        {
+            "key": "ochre_house_load_2.constant_power_12",
+            "type": "complex",
+            "info": "{\"object\": \"ochre_house_load_2\", \"property\": \"constant_power_12\"}",
+            "required": true
+        },
+        {
+            "key": "ochre_house_load_3.constant_power_12",
+            "type": "complex",
+            "info": "{\"object\": \"ochre_house_load_3\", \"property\": \"constant_power_12\"}",
+            "required": true
+        },
+        {
+            "key": "ochre_house_load_4.constant_power_12",
+            "type": "complex",
+            "info": "{\"object\": \"ochre_house_load_4\", \"property\": \"constant_power_12\"}",
+            "required": true
+        },
+        {
+            "key": "ochre_house_load_5.constant_power_12",
+            "type": "complex",
+            "info": "{\"object\": \"ochre_house_load_5\", \"property\": \"constant_power_12\"}",
+            "required": true
+        },
+        {
+            "key": "ochre_house_load_6.constant_power_12",
+            "type": "complex",
+            "info": "{\"object\": \"ochre_house_load_6\", \"property\": \"constant_power_12\"}",
+            "required": true
+        },
+        {
+            "key": "ochre_house_load_7.constant_power_12",
+            "type": "complex",
+            "info": "{\"object\": \"ochre_house_load_7\", \"property\": \"constant_power_12\"}",
+            "required": true
+        }
+    ],
+    "publications": []
+}
