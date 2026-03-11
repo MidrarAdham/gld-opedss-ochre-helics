@@ -1,42 +1,43 @@
 ```mermaid
+
 flowchart TB
 
 %% ======================
-%% TOP-DOWN APPROACH
+%% TOP-DOWN CONSTRAINTS
 %% ======================
 
-A[Feeder Demand Measurement] --> B[Allocation Factor AF]
-B --> C[Initial Transformer Demand Estimate]
+A[Feeder Demand Measurement] --> B[Top-Down Aggregate Constraint]
 
-D[Transformer kVA Ratings] --> B
+C[Transformer kVA Rating / Boundary Information] --> D[Transformer-Level Constraint]
+B --> D
 
 %% ======================
-%% BOTTOM-UP APPROACH
+%% BOTTOM-UP DER STATES
 %% ======================
 
-E[Quantized DER States] --> F[State Feature Extraction]
+E[Quantized DER States] --> F[DER State Feature Extraction]
 
 F --> F1[ON Count]
 F --> F2[Duty Cycle]
 F --> F3[Transition Rates]
 F --> F4[Coincidence / Diversity]
-F --> F5[Feasible Power Bounds]
+F --> F5[Feasible DER Power Bounds]
 
 %% ======================
-%% HOMOGENEITY MODELING
+%% HOMOGENEITY / HETEROGENEITY
 %% ======================
 
 F --> G[Homogeneity / Heterogeneity Modeling]
 
 G --> G1[Beta Distribution Parameters]
 G --> G2[Moments of State Probabilities]
-G --> G3[Population Variance]
+G --> G3[Population Variance / Spread]
 
 %% ======================
-%% FUSION LAYER
+%% FUSION
 %% ======================
 
-C --> H[Fusion Layer]
+D --> H[Fusion Layer]
 
 F1 --> H
 F2 --> H
@@ -49,9 +50,10 @@ G2 --> H
 G3 --> H
 
 %% ======================
-%% OUTPUT
+%% OUTPUTS
 %% ======================
 
-H --> I[Refined Transformer Loading Estimate]
-H --> J[Uncertainty / Confidence Bounds]
+H --> I[Estimated DER Demand]
+H --> J[Estimated DER-Class Contributions]
+H --> K[Uncertainty / Confidence Bounds]
 ```
