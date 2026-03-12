@@ -20,16 +20,17 @@ def create_binary_states (df : pd.DataFrame, threshold : float) -> pd.DataFrame:
 
 def cleanup_results_files (df : pd.DataFrame):
     df = df.head (1440)
-    df['# timestamp'] = df['# timestamp'].apply (lambda x: x.strip ('PST'))
-    df['# timestamp'] = pd.to_datetime (df['# timestamp'])
-    df['constant_power_12'] = df['constant_power_12'].apply (lambda x: complex (x))
-    df['constant_power_12'] = df['constant_power_12'].apply (lambda x: x.real)
+    df.loc[:, '# timestamp'] = df['# timestamp'].apply (lambda x: x.strip ('PST'))
+    df.loc[:, '# timestamp'] = pd.to_datetime (df['# timestamp'])
+    df.loc[:, 'constant_power_12'] = df['constant_power_12'].apply (lambda x: complex (x))
+    df.loc[:, 'constant_power_12'] = df['constant_power_12'].apply(lambda x: x.real)
     return df
 
-cosim_results_dir = '../results/'
+cosim_results_dir = '../results/wh_cosim/'
 cosim_results_files = [f for f in os.listdir (cosim_results_dir) if 'ochre' in f]
 
 for filename in cosim_results_files:
     df = pd.read_csv (cosim_results_dir+filename, skiprows=8)
     df = cleanup_results_files (df=df)
+    df = create_binary_states (df=df, threshold=5000.0)
     print(df)
