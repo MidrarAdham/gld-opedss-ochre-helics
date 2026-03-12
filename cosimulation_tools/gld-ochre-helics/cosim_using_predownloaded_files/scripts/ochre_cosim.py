@@ -80,7 +80,8 @@ def run_simulation (fed, dfs, pubs):
         _step_to (time=t, fed=fed, start_time=start_time)
 
         for idx in dfs.keys ():
-            power_kw = dfs[idx]['Total Electric Power (kW)'].get (t, 0)
+            # power_kw = dfs[idx]['Total Electric Power (kW)'].get (t, 0)
+            power_kw = dfs[idx]['HVAC Heating Electric Power (kW)'].get (t, 0)
             pubs [idx].publish (complex (power_kw * 1000, 0))
         
         print(f"{t}: published {len(dfs)} loads")
