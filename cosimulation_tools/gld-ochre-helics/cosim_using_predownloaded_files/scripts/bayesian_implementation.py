@@ -4,8 +4,8 @@ import pandas as pd
 import seaborn as sns
 from scipy.stats import beta
 import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
 import matplotlib.ticker as ticker
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 
 def initialize_history ():
@@ -126,7 +126,7 @@ def bayesian_implementation (df : pd.DataFrame):
 
     return history
 
-def transformer_layer_data (df : pd.DataFrame, xfmr_df : pd.DataFrame):
+def create_matrices_from_bayesian_results (df : pd.DataFrame, xfmr_df : pd.DataFrame):
     mean_matrix = pd.DataFrame (
         df['mean'].tolist (),
         index=df.index
@@ -154,7 +154,8 @@ def transformer_layer_data (df : pd.DataFrame, xfmr_df : pd.DataFrame):
 
     return kw_mean, kw_lower, kw_upper
 
-def prepare_transformer_data (df : pd.DataFrame):
+def prepare_transformer_data (transformer_file_dir : str):
+    df = pd.read_csv (f'{transformer_file_dir}residential_transformer.csv', skiprows=8)
     df = df.head (1440)
     df = cleanup_results_files (df=df, col = 'power_out')
     df = df.drop ('power_in', axis=1)
@@ -164,108 +165,109 @@ def prepare_transformer_data (df : pd.DataFrame):
 
     return df
     
+def quantifying_error_metrics (y_true, y_pred):
+    mae = round(mean_absolute_error (y_true=y_true, y_pred=y_pred), 2)
+    rmse = round(np.sqrt (mean_squared_error (y_true=y_true, y_pred=y_pred)), 2)
+    R_squared = round(r2_score (y_true=y_true, y_pred=y_pred), 2)
+    mape = round(np.mean(np.abs((y_true - y_pred) / y_true)) * 100, 2)
+    nrmse = rmse / (np.max(y_true) - np.min(y_true))
+    return mae, rmse, R_squared, mape, nrmse
 
-cosim_results_dir = '../results/wh_cosim/'
-cosim_results_files = [f for f in os.listdir (cosim_results_dir) if 'ochre' in f]
-wh_threshold = 5000.0
-hvac_threshold = 5000.0
+def vis ():
+    pass
 
-all_histories = {}
-cosim_results_df = {}
-for filename in cosim_results_files:
-    df = pd.read_csv (cosim_results_dir+filename, skiprows=8)
-    df = df.head (1440)
-    df = cleanup_results_files (df=df, col='constant_power_12')
-    df = create_binary_states (df=df, threshold=wh_threshold)
-    all_histories[filename] = bayesian_implementation (df=df)
-    cosim_results_df [filename] = df
+if __name__ == "__main__":
 
-df = pd.DataFrame (all_histories)
-df = df.transpose ()
-xfmr_demand = pd.read_csv (f'{cosim_results_dir}residential_transformer.csv', skiprows=8)
-xfmr_demand = prepare_transformer_data (df=xfmr_demand)
-kw_mean, kw_lower, kw_upper = transformer_layer_data (df=df, xfmr_df=xfmr_demand)
-time_col = pd.to_datetime(xfmr_demand ['# timestamp']).dt.strftime ('%H:%M')
+    cosim_results_dir = '../results/wh_cosim/'
+    cosim_results_files = [f for f in os.listdir (cosim_results_dir) if 'ochre' in f]
+    # I'll change those in a bit
+    wh_threshold = 5000.0
+    hvac_threshold = 5000.0
+    # Init log dict
+    all_histories = {}
+    cosim_results_df = {}
+    # loop through the GLD results from the cosim to build the log dict
+    for filename in cosim_results_files:
+        df = pd.read_csv (cosim_results_dir+filename, skiprows=8)
+        df = df.head (1440)
+        df = cleanup_results_files (df=df, col='constant_power_12')
+        df = create_binary_states (df=df, threshold=wh_threshold)
+        all_histories[filename] = bayesian_implementation (df=df)
+        cosim_results_df [filename] = df
 
-sns.set_style ('whitegrid')
-# fig, ax = plt.subplots (1,1, figsize = (16, 6))
+    df = pd.DataFrame (all_histories)
+    df = df.transpose ()
+    # Transformer information:
+    xfmr_demand = prepare_transformer_data (transformer_file_dir=cosim_results_dir)
+    # Get the bayesian results
+    kw_mean, kw_lower, kw_upper = create_matrices_from_bayesian_results (df=df, xfmr_df=xfmr_demand)
+    # prep the tiome col for the plots
+    time_col = pd.to_datetime(xfmr_demand ['# timestamp']).dt.strftime ('%H:%M')
 
-# for key, value in cosim_results_df.items ():
-#     fig, ax = plt.subplots (1,1, figsize = (16, 6))
-#     df = value.drop ('state', axis=1)
-#     df = df.set_index ('# timestamp')
-#     df = df.resample ('10min').mean()
-#     ax.plot (time_col, df['constant_power_12']/1e3, linewidth=2,
-#              color='grey', label='Ground Truth [kW]')
-#     ax.plot (time_col, kw_mean[key]/1e3, linewidth=2, color='gold', label='Mean [kW]')
-#     # ax.plot (time_col, kw_lower[key]/1e3, linewidth=1, color='gold', label = 'CI_lower')
-#     # ax.plot (time_col, kw_upper[key]/1e3, linewidth=1, color='red', label='CI_upper')
-#     lower = np.asarray(kw_lower[key], dtype=float) / 1e3
-#     upper = np.asarray(kw_upper[key], dtype=float) / 1e3
+    sns.set_style ('whitegrid')
 
-#     ax.fill_between(time_col, lower, upper, color='black', alpha=0.3, label='Confidence Interval')
-#     ax.xaxis.set_major_locator(ticker.MaxNLocator(nbins=20))
-#     ax.set_xlabel ('Time [hh:mm]')
-#     ax.set_ylabel (f'{key} [kW]')
-#     ax.legend ()
-    # plt.savefig (f'./{key}.png')
+    for key, value in cosim_results_df.items():
+        # ====================================
+        # xfmr_demand is the transformer data
+        # df is the single DER demand profile
+        # ====================================
 
-for key, value in cosim_results_df.items():
-    fig, ax = plt.subplots(figsize=(14, 5), dpi=150)
+        fig, ax = plt.subplots(figsize=(14, 5), dpi=150)
 
-    df = value.drop('state', axis=1)
-    df = df.set_index('# timestamp')
-    df.index = pd.to_datetime(df.index)
-    df = df.resample('10min').mean()
+        df = value.drop('state', axis=1)
+        df = df.set_index('# timestamp')
+        df.index = pd.to_datetime(df.index)
+        df = df.resample('10min').mean()
+        df = df.reset_index ()
 
-    x = pd.to_datetime(time_col)
-    y_true = pd.to_numeric(df['constant_power_12'], errors='coerce').to_numpy() / 1e3
-    y_mean = pd.to_numeric(kw_mean[key], errors='coerce').to_numpy() / 1e3
-    y_low  = pd.to_numeric(kw_lower[key], errors='coerce').to_numpy() / 1e3
-    y_up   = pd.to_numeric(kw_upper[key], errors='coerce').to_numpy() / 1e3
+        time_col = pd.to_datetime(xfmr_demand ['# timestamp']).dt.strftime ('%H:%M')
+        y_true = pd.to_numeric(df['constant_power_12'], errors='coerce').to_numpy() / 1e3
+        y_mean = pd.to_numeric(kw_mean[key], errors='coerce').to_numpy() / 1e3
+        y_low  = pd.to_numeric(kw_lower[key], errors='coerce').to_numpy() / 1e3
+        y_up   = pd.to_numeric(kw_upper[key], errors='coerce').to_numpy() / 1e3
+        y_pred = y_mean
 
-    # Confidence band first so it stays behind the lines
-    ax.fill_between(
-        x, y_low, y_up,
-        color='tab:blue',
-        alpha=0.15,
-        linewidth=0,
-        label='95% CI'
-    )
+        mae, rmse, R_squared, mape, nrmse = quantifying_error_metrics (
+            y_true=y_true, y_pred=y_pred
+            )
 
-    # Main lines
-    ax.plot(
-        x, y_true,
-        color='black',
-        linewidth=2.4,
-        label='Ground truth'
-    )
+        ax.fill_between(
+            time_col, y_low, y_up,
+            color='tab:blue',
+            alpha=0.15,
+            linewidth=0,
+            label='95% CI'
+        )
 
-    ax.plot(
-        x, y_mean,
-        color='tab:blue',
-        linewidth=2.0,
-        label='Predicted mean'
-    )
+        ax.plot(
+            time_col, y_true,
+            color='black',
+            linewidth=2.4,
+            label='Ground truth'
+        )
 
-    # Grid and spines
-    ax.grid(True, which='major', alpha=0.25, linestyle='--')
-    ax.spines['top'].set_visible(False)
-    ax.spines['right'].set_visible(False)
+        ax.plot(
+            time_col, y_mean,
+            color='tab:blue',
+            linewidth=2.0,
+            label='Predicted mean'
+        )
 
-    # Axis labels and title
-    ax.set_title(f'{key}', fontsize=14, pad=12)
-    ax.set_xlabel('Time')
-    ax.set_ylabel('Power [kW]')
 
-    # Time formatting
-    ax.xaxis.set_major_locator(mdates.HourLocator(interval=1))
-    ax.xaxis.set_major_formatter(mdates.DateFormatter('%H:%M'))
-    fig.autofmt_xdate()
 
-    # Legend
-    ax.legend(frameon=False, loc='upper right')
+        ax.grid(True, which='major', alpha=0.25, linestyle='--')
+        ax.spines['top'].set_visible(False)
+        ax.spines['right'].set_visible(False)
 
-    # Tight layout
-    plt.tight_layout()
-    plt.savefig (f'./{key}.png')
+        ax.set_title(
+        f"{key} | MAE={mae:.2f} kW | RMSE={rmse:.2f} kW | R²={R_squared:.2f}"
+        )
+        ax.set_xlabel('Time')
+        ax.set_ylabel('Power [kW]')
+
+        ax.xaxis.set_major_locator(ticker.MaxNLocator(nbins=20))
+
+        ax.legend(frameon=False, loc='upper right')
+
+        plt.tight_layout()
+        plt.savefig (f'./{key}.png')
