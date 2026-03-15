@@ -88,7 +88,7 @@ def bayesian_implementation (df : pd.DataFrame):
     history = initialize_history ()
     # define loop parameters:
     window_size, num_chunks = 10, 144
-    discount = 0.3
+    discount = 1
     for chunk_idx in range(num_chunks):
         start_index = chunk_idx * window_size
         # calculates heads and tails; the sum of ON and OFF states of DERs
@@ -143,14 +143,17 @@ def create_matrices_from_bayesian_results (df : pd.DataFrame, xfmr_df : pd.DataF
     ).T
 
     feeder_demand = xfmr_df ['power_out'].values
-    # kw_mean  = mean_matrix.div(mean_matrix.sum(axis=1), axis=0).multiply(feeder_demand, axis=0)
-    # kw_lower = ci_lower_matrix.div(ci_lower_matrix.sum(axis=1), axis=0).multiply(feeder_demand, axis=0)
-    # kw_upper = ci_upper_matrix.div(ci_upper_matrix.sum(axis=1), axis=0).multiply(feeder_demand, axis=0)
+
     total = mean_matrix.sum(axis=1)  # shared denominator
 
-    kw_mean  = mean_matrix.div(total, axis=0).multiply(feeder_demand, axis=0)
-    kw_lower = ci_lower_matrix.div(total, axis=0).multiply(feeder_demand, axis=0)
-    kw_upper = ci_upper_matrix.div(total, axis=0).multiply(feeder_demand, axis=0)
+    # kw_mean  = mean_matrix.div(total, axis=0).multiply(feeder_demand, axis=0)
+    # kw_lower = ci_lower_matrix.div(total, axis=0).multiply(feeder_demand, axis=0)
+    # kw_upper = ci_upper_matrix.div(total, axis=0).multiply(feeder_demand, axis=0)
+
+    kw_mean  = mean_matrix.multiply(feeder_demand, axis=0)
+    kw_lower = ci_lower_matrix.multiply(feeder_demand, axis=0)
+    kw_upper = ci_upper_matrix.multiply(feeder_demand, axis=0)
+
 
     return kw_mean, kw_lower, kw_upper
 
