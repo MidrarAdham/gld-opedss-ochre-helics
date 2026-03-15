@@ -156,7 +156,8 @@ def create_matrices_from_bayesian_results (df : pd.DataFrame, xfmr_df : pd.DataF
 
 def prepare_transformer_data (transformer_file_dir : str):
     df = pd.read_csv (f'{transformer_file_dir}residential_transformer.csv', skiprows=8)
-    df = df.head (1440)
+    # df = df.head (1440)
+    df = df.iloc [1440:2880]
     df = cleanup_results_files (df=df, col = 'power_out')
     df = df.drop ('power_in', axis=1)
     df = df.set_index ('# timestamp')
@@ -173,7 +174,7 @@ def quantifying_error_metrics (y_true, y_pred):
     nrmse = rmse / (np.max(y_true) - np.min(y_true))
     return mae, rmse, R_squared, mape, nrmse
 
-def vis ():
+def try_different_day ():
     pass
 
 if __name__ == "__main__":
@@ -188,8 +189,9 @@ if __name__ == "__main__":
     cosim_results_df = {}
     # loop through the GLD results from the cosim to build the log dict
     for filename in cosim_results_files:
-        df = pd.read_csv (cosim_results_dir+filename, skiprows=8)
-        df = df.head (1440)
+        df_month = pd.read_csv (cosim_results_dir+filename, skiprows=8)
+        # df = df_month.head (1440)
+        df = df_month.iloc [1440:2880]
         df = cleanup_results_files (df=df, col='constant_power_12')
         df = create_binary_states (df=df, threshold=wh_threshold)
         all_histories[filename] = bayesian_implementation (df=df)
@@ -213,6 +215,8 @@ if __name__ == "__main__":
         # ====================================
 
         fig, ax = plt.subplots(figsize=(14, 5), dpi=150)
+
+        df = df.iloc [1440:2880]
 
         df = value.drop('state', axis=1)
         df = df.set_index('# timestamp')
