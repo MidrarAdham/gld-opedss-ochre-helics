@@ -146,13 +146,13 @@ def create_matrices_from_bayesian_results (df : pd.DataFrame, xfmr_df : pd.DataF
 
     total = mean_matrix.sum(axis=1)  # shared denominator
 
-    # kw_mean  = mean_matrix.div(total, axis=0).multiply(feeder_demand, axis=0)
-    # kw_lower = ci_lower_matrix.div(total, axis=0).multiply(feeder_demand, axis=0)
-    # kw_upper = ci_upper_matrix.div(total, axis=0).multiply(feeder_demand, axis=0)
+    kw_mean  = mean_matrix.div(total, axis=0).multiply(feeder_demand, axis=0)
+    kw_lower = ci_lower_matrix.div(total, axis=0).multiply(feeder_demand, axis=0)
+    kw_upper = ci_upper_matrix.div(total, axis=0).multiply(feeder_demand, axis=0)
 
-    kw_mean  = mean_matrix.multiply(feeder_demand, axis=0)
-    kw_lower = ci_lower_matrix.multiply(feeder_demand, axis=0)
-    kw_upper = ci_upper_matrix.multiply(feeder_demand, axis=0)
+    # kw_mean  = mean_matrix.multiply(feeder_demand, axis=0)
+    # kw_lower = ci_lower_matrix.multiply(feeder_demand, axis=0)
+    # kw_upper = ci_upper_matrix.multiply(feeder_demand, axis=0)
 
 
     return kw_mean, kw_lower, kw_upper
