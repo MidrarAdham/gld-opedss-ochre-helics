@@ -88,7 +88,7 @@ def bayesian_implementation (df : pd.DataFrame):
     history = initialize_history ()
     # define loop parameters:
     window_size, num_chunks = 10, 144
-    discount = 1
+    discount = 0.3
     for chunk_idx in range(num_chunks):
         start_index = chunk_idx * window_size
         # calculates heads and tails; the sum of ON and OFF states of DERs
