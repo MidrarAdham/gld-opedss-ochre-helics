@@ -1,12 +1,13 @@
 
-Processing 2025-01-01 14:31:00 PST...                                      Processing 2025-01-03 18:44:00 PST...                                      Processing 2025-01-06 03:03:00 PST...                                      Processing 2025-01-08 06:51:00 PST...                                      Processing 2025-01-10 12:36:00 PST...                                      Processing 2025-01-12 14:42:00 PST...                                      Processing 2025-01-14 11:58:00 PST...                                      Processing 2025-01-16 18:34:00 PST...                                      Processing 2025-01-18 14:44:00 PST...                                      Processing 2025-01-20 08:19:00 PST...                                      Processing 2025-01-21 20:58:00 PST...                                      Processing 2025-01-23 20:15:00 PST...                                      Processing 2025-01-26 04:35:00 PST...                                      Processing 2025-01-29 10:24:00 PST...
+Processing 2025-01-01 12:59:00 PST...WARNING  [2025-01-02 07:20:00 PST] : transformer:residential_transformer is at 101.45% of its rated power value
+                                      Processing 2025-01-03 09:36:00 PST...                                      Processing 2025-01-05 06:43:00 PST...                                      Processing 2025-01-07 02:04:00 PST...                                      Processing 2025-01-08 18:21:00 PST...                                      Processing 2025-01-10 09:45:00 PST...                                      Processing 2025-01-11 22:11:00 PST...                                      Processing 2025-01-13 07:30:00 PST...                                      Processing 2025-01-14 13:42:00 PST...                                      Processing 2025-01-15 22:58:00 PST...                                      Processing 2025-01-17 01:50:00 PST...                                      Processing 2025-01-18 08:52:00 PST...                                      Processing 2025-01-20 04:22:00 PST...                                      Processing 2025-01-22 01:09:00 PST...                                      Processing 2025-01-23 23:20:00 PST...                                      Processing 2025-01-26 01:25:00 PST...                                      Processing 2025-01-28 15:13:00 PST...
 Core profiler results
 ======================
 
 Total objects                 37 objects
 Parallelism                    1 thread
-Total time                  16.0 seconds
-  Core time                  6.5 seconds (40.7%)
+Total time                  19.0 seconds
+  Core time                  8.7 seconds (46.0%)
     Compiler                 0.0 seconds (0.1%)
     Instances                0.0 seconds (0.0%)
     Random variables         0.0 seconds (0.0%)
@@ -14,16 +15,16 @@ Total time                  16.0 seconds
     Loadshapes               0.0 seconds (0.0%)
     Enduses                  0.0 seconds (0.0%)
     Transforms               0.0 seconds (0.1%)
-  Model time                 9.5 seconds/thread (59.3%)
+  Model time                10.3 seconds/thread (54.0%)
 Simulation time               30 days
-Simulation speed             1.7k object.hours/second
-Passes completed           84569 passes
+Simulation speed             1.4k object.hours/second
+Passes completed          100486 passes
 Time steps completed       43201 timesteps
-Convergence efficiency      1.96 passes/timestep
+Convergence efficiency      2.33 passes/timestep
 Read lock contention        0.0%
 Write lock contention       0.0%
 Average timestep             60 seconds/timestep
-Simulation rate          162000 x realtime
+Simulation rate          136421 x realtime
 
 
 Model profiler results
@@ -31,18 +32,20 @@ Model profiler results
 
 Class            Time (s) Time (%) msec/obj
 ---------------- -------- -------- --------
-triplex_load       2.537     26.7%    317.1
-recorder           1.795     18.9%    199.4
-helics_msg         1.697     17.9%   1696.8
-node               1.252     13.2%    312.9
-overhead_line      0.907      9.6%    302.4
-transformer        0.619      6.5%    309.6
-triplex_meter      0.353      3.7%    352.8
-meter              0.324      3.4%    324.4
+triplex_load       2.881     28.1%    360.2
+recorder           2.151     21.0%    239.0
+node               1.424     13.9%    356.0
+helics_msg         1.313     12.8%   1313.3
+overhead_line      1.037     10.1%    345.5
+transformer        0.703      6.8%    351.3
+triplex_meter      0.392      3.8%    392.0
+meter              0.363      3.5%    362.7
 overhead_line_co   0.000      0.0%      0.0
 transformer_conf   0.000      0.0%      0.0
+line_configurati   0.000      0.0%      0.0
 triplex_line_con   0.000      0.0%      0.0
 triplex_line_con   0.000      0.0%      0.0
 ================ ======== ======== ========
-Total              9.484    100.0%    256.3
+Total             10.264    100.0%    277.4
 
+WARNING  [2025-01-31 00:00:00 PST] : last warning message was repeated 4 times
