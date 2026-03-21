@@ -1,3 +1,7 @@
+'''
+Author: MidrarAdham
+Created: Fri Mar 20 2026
+'''
 import os
 import numpy as np
 import pandas as pd
@@ -6,6 +10,9 @@ from scipy.stats import beta
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+
+# My scripts:
+import figures_for_bayesian_implementation as figures
 
 
 def initialize_history ():
@@ -35,7 +42,7 @@ def create_binary_states (df : pd.DataFrame, threshold : float) -> pd.DataFrame:
     :rtype: DataFrame
     """
     # df['state'] = (df['tn_meter_4br_46:measured_real_power'] ==4500).astype(int)
-    df['state'] = (df[df.columns[1]] > threshold).astype(int)
+    df['state'] = (df[df.columns[1]] >= threshold).astype(int)
     return df
 
 def cleanup_results_files (df : pd.DataFrame, col : str):
@@ -186,7 +193,7 @@ if __name__ == "__main__":
     cosim_results_files = [f for f in os.listdir (cosim_results_dir) if 'ochre' in f]
     # I'll change those in a bit
     wh_threshold = 5000.0
-    hvac_threshold = 5000.0
+    hvac_threshold = 100.0
     # Init log dict
     all_histories = {}
     cosim_results_df = {}
@@ -196,6 +203,7 @@ if __name__ == "__main__":
         # df = df_month.head (1440)
         df = df_month.iloc [1440:2880]
         df = cleanup_results_files (df=df, col='constant_power_12')
+        # hvac_threshold = round(pd.to_numeric(df['constant_power_12']).max (), 2) - 3000
         df = create_binary_states (df=df, threshold=wh_threshold)
         all_histories[filename] = bayesian_implementation (df=df)
         cosim_results_df [filename] = df
@@ -217,7 +225,7 @@ if __name__ == "__main__":
         # df is the single DER demand profile
         # ====================================
 
-        fig, ax = plt.subplots(figsize=(14, 5), dpi=150)
+        stats = {}
 
         df = df.iloc [1440:2880]
 
@@ -237,44 +245,15 @@ if __name__ == "__main__":
         mae, rmse, R_squared, mape, nrmse = quantifying_error_metrics (
             y_true=y_true, y_pred=y_pred
             )
-
-        ax.fill_between(
-            time_col, y_low, y_up,
-            color='tab:blue',
-            alpha=0.15,
-            linewidth=0,
-            label='95% CI'
-        )
-
-        ax.plot(
-            time_col, y_true,
-            color='black',
-            linewidth=2.4,
-            label='Ground truth'
-        )
-
-        ax.plot(
-            time_col, y_mean,
-            color='tab:blue',
-            linewidth=2.0,
-            label='Predicted mean'
-        )
-
-
-
-        ax.grid(True, which='major', alpha=0.25, linestyle='--')
-        ax.spines['top'].set_visible(False)
-        ax.spines['right'].set_visible(False)
-
-        ax.set_title(
-        f"{key} | MAE={mae:.2f} kW | RMSE={rmse:.2f} kW | R²={R_squared:.2f}"
-        )
-        ax.set_xlabel('Time')
-        ax.set_ylabel('Power [kW]')
-
-        ax.xaxis.set_major_locator(ticker.MaxNLocator(nbins=20))
-
-        ax.legend(frameon=False, loc='upper right')
-
-        plt.tight_layout()
-        plt.savefig (f'./{key}.png')
+        stats = {'y_true':y_true,
+                 'y_mean':y_mean,
+                 'y_low': y_low,
+                 'y_up': y_up,
+                 'y_pred': y_pred,
+                 'mae': mae,
+                 'rmse': rmse,
+                 'R_squared': R_squared,
+                 'mape': mape,
+                 'nrmse': nrmse
+                 }
+        figures.predicted_kw_each_der (df=df, stats=stats, filename=key)
