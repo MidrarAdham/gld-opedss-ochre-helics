@@ -154,16 +154,15 @@ def create_matrices_from_bayesian_results (df : pd.DataFrame, xfmr_df : pd.DataF
     kw_mean  = mean_matrix.div(total, axis=0).multiply(feeder_demand, axis=0)
     kw_lower = ci_lower_matrix.div(total, axis=0).multiply(feeder_demand, axis=0)
     kw_upper = ci_upper_matrix.div(total, axis=0).multiply(feeder_demand, axis=0)
+    bayesian_matrices = {'kw_mean' : kw_mean,
+                         'kw_lower' : kw_lower,
+                         'kw_upper' : kw_upper
+                         }
 
-    # kw_mean  = mean_matrix.multiply(feeder_demand, axis=0)
-    # kw_lower = ci_lower_matrix.multiply(feeder_demand, axis=0)
-    # kw_upper = ci_upper_matrix.multiply(feeder_demand, axis=0)
-
-
-    return kw_mean, kw_lower, kw_upper
+    return bayesian_matrices
 
 def prepare_transformer_data (transformer_file_dir : str):
-    df = pd.read_csv (f'{transformer_file_dir}total_house_consumption/residential_transformer.csv', skiprows=8)
+    df = pd.read_csv (f'{transformer_file_dir}/residential_transformer.csv', skiprows=8)
     # df = df.head (1440)
     df = df.iloc [1440:2880]
     df = cleanup_results_files (df=df, col = 'power_out')
@@ -195,47 +194,56 @@ def build_der_state_matrix (cosim_results_df : pd.DataFrame):
 
     state_matrix = pd.DataFrame(state_matrix)  # shape (144, 8)
 
-    # Convert boolean to zeroes and ones
-    plot_df = state_matrix.astype(int)
+    return state_matrix
 
-    plot_df = plot_df.loc[:, plot_df.sum().sort_values(ascending=False).index]
+def get_statistical_metrics_for_der_profiles (dfs : dict, bayesian_matrices : dict):
 
-    plot_df = plot_df.T
-    sns.set_theme(style="white", context="talk")
+    for key, value in dfs.items():
+        # ====================================
+        # xfmr_demand is the transformer data
+        # df is the single DER demand profile
+        # ====================================
 
-    fig, ax = plt.subplots(figsize=(12, 6))
+        stats = {}
 
-    cmap = ListedColormap(["#EAEAEA", "#1F4E79"])
+        df = value.drop('state', axis=1)
+        df = df.infer_objects ().set_index('# timestamp')
+        df.index = pd.to_datetime(df.index)
+        df = df.resample('10min').mean()
+        df = df.reset_index ()
 
-    sns.heatmap(
-        plot_df,
-        cmap=cmap,
-        cbar=True,
-        xticklabels=20,
-        linewidths=0.3,
-        yticklabels=True,
-        linecolor="white",
-        ax=ax
-    )
+        y_true = pd.to_numeric(df['constant_power_12'], errors='coerce').to_numpy() / 1e3
+        y_mean = pd.to_numeric(bayesian_matrices['kw_mean'][key], errors='coerce').to_numpy() / 1e3
+        y_low  = pd.to_numeric(bayesian_matrices['kw_lower'][key], errors='coerce').to_numpy() / 1e3
+        y_up   = pd.to_numeric(bayesian_matrices['kw_upper'][key], errors='coerce').to_numpy() / 1e3
+        y_pred = y_mean
 
-    ax.set_title("Boolean Activity Heatmap", pad=16, weight="bold")
-    ax.set_xlabel("A 10-minute Chunk Sample Point", fontstyle='italic', weight='bold')
-    ax.set_ylabel("Filename", fontstyle='italic', weight='bold')
-
-    cbar = ax.collections[0].colorbar
-    cbar.set_ticks([0.25, 0.75])
-    cbar.set_ticklabels([f"{r'$\beta$'}", f"{r'$\alpha$'}"])
-    cbar.set_label("Value", rotation=270, labelpad=12, fontstyle='italic', weight='bold')
-
-    plt.tight_layout()
-    plt.show()
-    print(state_matrix)
-    quit()
+        mae, rmse, R_squared, mape, nrmse = quantifying_error_metrics (
+            y_true=y_true, y_pred=y_pred
+            )
+        stats = {'y_true':y_true,
+                 'y_mean':y_mean,
+                 'y_low': y_low,
+                 'y_up': y_up,
+                 'y_pred': y_pred,
+                 'mae': mae,
+                 'rmse': rmse,
+                 'R_squared': R_squared,
+                 'mape': mape,
+                 'nrmse': nrmse
+                 }
+        
+        return stats
+def get_wh_demand_from_feeder_demand (state_matrix : pd.DataFrame):
+    pass
 
 if __name__ == "__main__":
 
     cosim_results_dir = '../results/'
-    cosim_results_files = [fname for fname in os.listdir (f"{cosim_results_dir}wh_cosim/") if 'ochre' in fname]
+    cosim_total_house_xfmr_demand = f'{cosim_results_dir}total_house_consumption'
+    cosim_wh_only_demand = f"{cosim_results_dir}wh_cosim/"
+
+    cosim_results_files = [fname for fname in os.listdir (cosim_wh_only_demand) if 'ochre' in fname]
     # I'll change those in a bit
     wh_threshold = 5000.0
     hvac_threshold = 5000.0
@@ -255,82 +263,98 @@ if __name__ == "__main__":
     df = pd.DataFrame (all_histories)
     df = df.transpose ()
     # Transformer information:
-    xfmr_demand = prepare_transformer_data (transformer_file_dir=cosim_results_dir)
-    # Get the bayesian results
-    kw_mean, kw_lower, kw_upper = create_matrices_from_bayesian_results (df=df, xfmr_df=xfmr_demand)
+    full_house_xfmr_demand = prepare_transformer_data (transformer_file_dir=cosim_total_house_xfmr_demand)
+    wh_only_xfmr_demand = prepare_transformer_data (transformer_file_dir=cosim_wh_only_demand)
+    
     # prep the tiome col for the plots
-    time_col = pd.to_datetime(xfmr_demand ['# timestamp']).dt.strftime ('%H:%M')
+    time_col = pd.to_datetime(full_house_xfmr_demand ['# timestamp']).dt.strftime ('%H:%M')
+    # Get the bayesian results
+    bayesian_matrices = create_matrices_from_bayesian_results (df=df, xfmr_df=wh_only_xfmr_demand)
+
+    resulting_stats = get_statistical_metrics_for_der_profiles (
+        dfs=cosim_results_df,
+        bayesian_matrices=bayesian_matrices
+        )
 
     sns.set_style ('whitegrid')
 
-    build_der_state_matrix (cosim_results_df= cosim_results_df)
+    state_matrix = build_der_state_matrix (cosim_results_df= cosim_results_df)
+    
+    all_off_chunks = (state_matrix.sum(axis=1) == 0)
+    
+    all_off_times = time_col[all_off_chunks.values]
 
+    background = full_house_xfmr_demand ['power_out'].copy()
+    # We are keeoing only the OFF WHs states of the feeder demand:
+    background [~all_off_chunks.values] = 0
+    background_demand = background.infer_objects (copy=False).interpolate (method = 'linear')
+    # background_demand = background.infer_objects (copy=False).rolling (
+    #     window=12,
+    #     center=True,
+    #     min_periods=1
+    # ).min()
+    subtracted_wh_only_demand = full_house_xfmr_demand ['power_out'].values - background_demand.values
+    subtracted_wh_only_demand = np.clip (subtracted_wh_only_demand, 0, None)
+    
+    fig, ax = plt.subplots (ncols=1, nrows=1, figsize=(16,6))
+    
+    # ax[0].plot (time_col, pd.to_numeric(background_demand)/1e3,
+    #          label = 'feeder demand without WHs', alpha=0.5, linestyle='--', color='tab:red')
+    
+    # ax[0].plot (time_col, pd.to_numeric(full_house_xfmr_demand['power_out'])/1e3,
+    #             label = 'Feeder Demand including WHs', color='tab:blue')
+    
+    # ax[0].plot (time_col, pd.to_numeric(subtracted_wh_only_demand)/1e3,
+    #             label = 'WH demand portion of the feeder', color='black')
+    # ax[0].xaxis.set_major_locator(ticker.MaxNLocator(nbins=20))
+    
+    bayesian_matrices['kw_mean']['total'] = bayesian_matrices['kw_mean'].sum (axis=1)
+    bayesian_matrices['kw_mean']['total'] = pd.to_numeric (bayesian_matrices['kw_mean']['total'])/1e3
+    full_house_xfmr_demand ['power_out'] = pd.to_numeric (full_house_xfmr_demand ['power_out'])/1e3
 
+    # ax[1].plot (time_col, round(bayesian_matrices['kw_mean']['total'], 2),
+    #          label = 'Diversified WH Predicted Demand [kW]', color='tab:blue')
+    
+    # ax[1].plot (time_col, round(full_house_xfmr_demand['power_out'], 2),
+    #          label = 'Ground Truth - FH Feeder Demand [kW]', color='black', alpha=0.5)
+    
+    # ax[1].xaxis.set_major_locator(ticker.MaxNLocator(nbins=20))
 
-    # for key, value in cosim_results_df.items():
-    #     # ====================================
-    #     # xfmr_demand is the transformer data
-    #     # df is the single DER demand profile
-    #     # ====================================
+    # # ax[1].legend ()
 
-    #     fig, ax = plt.subplots(figsize=(14, 5), dpi=150)
+    # ax[2].plot (time_col, round(bayesian_matrices['kw_mean']['total'], 2),
+    #          label = 'Diversified WH Predicted Demand [kW]', color='tab:blue')
+    
+    # ax[2].plot (time_col, pd.to_numeric(subtracted_wh_only_demand)/1e3,
+    #             label = 'Ground Truth - WH Only Feeder Demand [kW]', color='black')
 
-    #     df = df.iloc [1440:2880]
+    # bayesian_matrices['kw_lower']['total'] = bayesian_matrices['kw_lower'].sum (axis=1)
+    # bayesian_matrices['kw_upper']['total'] = bayesian_matrices['kw_upper'].sum (axis=1)
+    
+    # y_low  = pd.to_numeric(bayesian_matrices['kw_lower']['total'], errors='coerce').to_numpy() / 1e3
+    # y_up   = pd.to_numeric(bayesian_matrices['kw_upper']['total'], errors='coerce').to_numpy() / 1e3
+    # ax[2].fill_between (
+    #     time_col, y_low, y_up,
+    #     color = 'tab:blue',
+    #     alpha=0.3, linewidth=0, label='95% CI'
+    # )
+    # ax[2].xaxis.set_major_locator(ticker.MaxNLocator(nbins=20))
 
-    #     df = value.drop('state', axis=1)
-    #     df = df.set_index('# timestamp')
-    #     df.index = pd.to_datetime(df.index)
-    #     df = df.resample('10min').mean()
-    #     df = df.reset_index ()
+    subtracted_wh_only_demand = [round(i/1e3, 2) for i in subtracted_wh_only_demand]
+    wh_only_xfmr_demand['power_out'] = pd.to_numeric(wh_only_xfmr_demand['power_out'])/1e3
+    ax.plot (time_col, subtracted_wh_only_demand,
+             label = 'Subtracted Background from FH Xfmr Demand [kW]', color='tab:blue')
+    
+    ax.plot (time_col, round(wh_only_xfmr_demand['power_out'], 2),
+             label = 'Ground Truth - Xfmr Demand : WHs Only [kW]', color='black', alpha=0.5)
+    ax.xaxis.set_major_locator(ticker.MaxNLocator(nbins=20))
+    ax.legend ()
+    ax.set_xlabel('Time [HH:MM]', weight='bold')
+    ax.set_ylabel('Feeder / WH Demand [kW]', weight='bold')
+    # fig.supxlabel('Time [HH:MM]', weight='bold')
+    # fig.supylabel('Feeder / WH Demand [kW]', weight='bold')
 
-    #     time_col = pd.to_datetime(xfmr_demand ['# timestamp']).dt.strftime ('%H:%M')
-    #     y_true = pd.to_numeric(df['constant_power_12'], errors='coerce').to_numpy() / 1e3
-    #     y_mean = pd.to_numeric(kw_mean[key], errors='coerce').to_numpy() / 1e3
-    #     y_low  = pd.to_numeric(kw_lower[key], errors='coerce').to_numpy() / 1e3
-    #     y_up   = pd.to_numeric(kw_upper[key], errors='coerce').to_numpy() / 1e3
-    #     y_pred = y_mean
-
-    #     mae, rmse, R_squared, mape, nrmse = quantifying_error_metrics (
-    #         y_true=y_true, y_pred=y_pred
-    #         )
-
-    #     ax.fill_between(
-    #         time_col, y_low, y_up,
-    #         color='tab:blue',
-    #         alpha=0.15,
-    #         linewidth=0,
-    #         label='95% CI'
-    #     )
-
-    #     ax.plot(
-    #         time_col, y_true,
-    #         color='black',
-    #         linewidth=2.4,
-    #         label='Ground truth'
-    #     )
-
-    #     ax.plot(
-    #         time_col, y_mean,
-    #         color='tab:blue',
-    #         linewidth=2.0,
-    #         label='Predicted mean'
-    #     )
-
-
-
-    #     ax.grid(True, which='major', alpha=0.25, linestyle='--')
-    #     ax.spines['top'].set_visible(False)
-    #     ax.spines['right'].set_visible(False)
-
-    #     ax.set_title(
-    #     f"{key} | MAE={mae:.2f} kW | RMSE={rmse:.2f} kW | R²={R_squared:.2f}"
-    #     )
-    #     ax.set_xlabel('Time')
-    #     ax.set_ylabel('Power [kW]')
-
-    #     ax.xaxis.set_major_locator(ticker.MaxNLocator(nbins=20))
-
-    #     ax.legend(frameon=False, loc='upper right')
-
-    #     plt.tight_layout()
-    #     plt.savefig (f'./{key}.png')
+    plt.savefig ('./test.png')
+    # plt.show()
+    # print (~all_off_chunks.values)
+    # print (all_off_chunks.values)
