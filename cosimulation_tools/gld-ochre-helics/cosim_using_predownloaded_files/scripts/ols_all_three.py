@@ -27,9 +27,7 @@ def initialize_history ():
         'T_chunk' : [],
         'ci_upper' : [],
         'ci_lower' : [],
-        # 'evidence' : [],
         'posterior' : [],
-        # 'likelihood' : [],
     }
 
 def create_binary_states (df : pd.DataFrame, threshold : float) -> pd.DataFrame:
@@ -290,6 +288,8 @@ if __name__ == "__main__":
         threshold=wh_threshold,
         dir=cosim_wh_only_demand
     )
+    print(all_histories)
+    quit()
     # The wh_df includes all metrics that we got from the bayesian calculations (See history inside bayesian calculation function)
     # However, we're only using the CI intervals and the mean. We're not using anything else.
     wh_df = pd.DataFrame (all_histories)
@@ -386,37 +386,65 @@ if __name__ == "__main__":
     print(f"Estimated kW per HVAC: {kw_hvac:.1f} W")
 
     wh_predicted = kw_wh * x_wh
-    hvac_predicted = kw_hvac * x_hvac
-
-    print(f"WH predicted mean: {wh_predicted.mean():.1f} W")
-    print(f"WH ground truth mean: {wh_only_xfmr_demand['power_out'].mean():.1f} W")
-    print(f"HVAC predicted mean: {hvac_predicted.mean():.1f} W")
-    print(f"HVAC ground truth mean: {hvac_only_xfmr_demand['power_out'].mean():.1f} W")
     
-    # # Create a figure with 3 subplots
-    # fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(12, 10), sharex=True)
+    # --- STEP 1: Keep your current OLS for WH ---
+    # (Assuming you just ran the simultaneous OLS from the previous step)
+    # wh_predicted = kw_wh * x_wh
 
-    # # Plot A: The number of units ON
-    # ax1.stackplot(time_col, x_wh, x_hvac, labels=['WH Units On', 'HVAC Units On'], alpha=0.5)
-    # ax1.set_ylabel("Count of Units")
-    # ax1.legend(loc='upper left')
+    # --- STEP 2: Create the "Cleaner" Signal ---
+    # We subtract the WH prediction from the raw feeder demand.
+    # This 'y_hvac' should now mostly contain HVAC + Background.
+    y_hvac = full_house_xfmr_demand['power_out'].values - wh_predicted
 
-    # # Plot Ax: The scaled power contribution
-    # ax2.stackplot(time_col, wh_predicted, hvac_predicted, labels=['WH Contribution', 'HVAC Contribution'], color=['blue', 'red'], alpha=0.7)
-    # ax2.set_ylabel("Power (W)")
-    # ax2.legend(loc='upper left')
+    # --- STEP 3: Second OLS just for HVAC and Baseline ---
+    # We build a new A matrix without the WH column.
+    A_hvac_only = np.column_stack([x_hvac, np.ones(len(x_hvac))])
 
-    # # Plot y vs Ax: The Resulting Fit
-    # ax3.plot(time_col, b, color='black', alpha=0.3, label='Actual (y)')
-    # ax3.plot(time_col, (wh_predicted + hvac_predicted), color='green', linestyle='--', label='OLS Prediction (Ax)')
-    # ax3.set_ylabel("Total Power (W)")
-    # ax3.legend(loc='upper left')
+    # Solve for HVAC kW and a refined Baseline
+    hvac_estimate, _, _, _ = np.linalg.lstsq(A_hvac_only, y_hvac, rcond=None)
+    kw_hvac_new, baseline_new = hvac_estimate
 
-    # plt.xticks(rotation=45)
-    # plt.tight_layout()
-    # plt.show()
+    # --- STEP 4: Update Results ---
+    hvac_predicted_new = kw_hvac_new * x_hvac
 
-    # quit()
+    print(f"--- Sequential OLS Results ---")
+    print(f"Refined kW per HVAC: {kw_hvac_new:.1f} W")
+    print(f"Refined Constant Background: {baseline_new:.1f} W")
+    print(f"New HVAC mean: {hvac_predicted_new.mean():.1f} W")
+    print(f"Target HVAC mean: {hvac_only_xfmr_demand['power_out'].mean():.1f} W")
+    quit()
+
+    # print(f"WH predicted mean: {wh_predicted.mean():.1f} W")
+    # print(f"WH ground truth mean: {wh_only_xfmr_demand['power_out'].mean():.1f} W")
+    # print(f"HVAC predicted mean: {hvac_predicted.mean():.1f} W")
+    # print(f"HVAC ground truth mean: {hvac_only_xfmr_demand['power_out'].mean():.1f} W")
+    
+    # Create a figure with 3 subplots
+    fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(12, 10), sharex=True)
+
+    # Plot A: The number of units ON
+    ax1.stackplot(time_col, x_wh, x_hvac, labels=['WH Units On', 'HVAC Units On'], alpha=0.5)
+    ax1.set_ylabel("Count of Units")
+    ax1.legend(loc='upper left')
+
+    # Plot Ax: The scaled power contribution
+    ax2.stackplot(time_col, wh_predicted, hvac_predicted, labels=['WH Contribution', 'HVAC Contribution'], alpha=0.7)
+    ax2.set_ylabel("Power (W)")
+    ax2.legend(loc='upper left')
+
+    # Plot y vs Ax: The Resulting Fit
+    ax3.plot(time_col, b, color='black', alpha=0.3, label='Actual (y)')
+    ax3.plot(time_col, wh_predicted, color='green', linestyle='--', label='OLS Prediction (Ax)')
+    ax3.set_ylabel("Total Power (W)")
+    ax3.legend(loc='upper left')
+    ax3.xaxis.set_major_locator(ticker.MaxNLocator(20))
+
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.savefig ('gem_code.png')
+    plt.show()
+
+    quit()
 
     fig, ax = plt.subplots(1, 1, figsize=(16, 8), sharex=True)
 
@@ -426,6 +454,7 @@ if __name__ == "__main__":
     ax.set_ylabel('Demand [kW]')
     ax.legend(frameon=False)
     ax.xaxis.set_major_locator(ticker.MaxNLocator(20))
+
     # ax[1].plot(time_col, hvac_predicted/1e3, label='HVAC predicted', color='tab:red')
     # ax[1].plot(time_col, pd.to_numeric(hvac_only_xfmr_demand['power_out'])/1e3,
     #         label='HVAC ground truth', color='black', alpha=0.7)
