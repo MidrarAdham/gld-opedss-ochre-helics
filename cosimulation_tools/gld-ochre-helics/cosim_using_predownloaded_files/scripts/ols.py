@@ -120,22 +120,20 @@ class OrdinaryLeastSquare:
 
         return pd.DataFrame(mean_matrix)
     
-    def _run_simultaneous_ols(
-            self,
-            wh_mean_matrix: pd.DataFrame,
-            wh_state_matrix : pd.DataFrame,
-            hvac_mean_matrix: pd.DataFrame,
-            ) -> dict:
+    def _build_combined_mean_matrix(
+        self,
+        wh_mean_matrix: pd.DataFrame,
+        hvac_mean_matrix: pd.DataFrame,
+        estimated_background: np.ndarray
+        ) -> pd.DataFrame:
         """
-        Run OLS simultaneously for WH and HVAC to estimate the kW scaling
-        factor for each DER type.
+        Combine WH and HVAC mean matrices into one, normalize each DER's
+        contribution by the total across all DERs, then scale by the
+        background-subtracted feeder demand.
 
-        The idea is to find the values kw_wh and kw_hvac such that:
-
-            kw_wh * x_wh + kw_hvac * x_hvac ≈ feeder_demand - background
-
-        where x_wh and x_hvac are the total expected number of ON units
-        at each chunk, summed across all DERs of that type.
+        This transforms raw ON-probabilities into demand-weighted values
+        (in Watts), so each value represents that DER's estimated share
+        of the feeder signal at that chunk.
 
         Parameters
         ----------
@@ -147,82 +145,112 @@ class OrdinaryLeastSquare:
             Output of _build_mean_matrix() for HVAC histories.
             Shape: (144 x n_hvac_ders).
 
+        estimated_background : np.ndarray
+            Output of _estimate_background_demand().
+            The feeder signal with background demand subtracted.
+
+        Returns
+        -------
+        pd.DataFrame
+            A (144 x n_total_ders) DataFrame where each value is that
+            DER's estimated Watts contribution at that chunk.
+        """
+        # Step 1 - combine WH and HVAC into one matrix
+        combined = pd.concat([wh_mean_matrix, hvac_mean_matrix], axis=1)
+
+        # Step 2 - compute total ON-probability across all DERs at each chunk
+        total = combined.sum(axis=1)
+
+        # Step 3 - divide each DER by the total to get its fractional share
+        normalized = combined.div(total, axis=0)
+
+        # Step 4 - scale by background-subtracted feeder demand to convert to Watts
+        combined_mean_matrix = normalized.multiply(estimated_background, axis=0)
+
+        return combined_mean_matrix
+
+
+    def _run_simultaneous_ols(
+        self,
+        wh_mean_matrix: pd.DataFrame,
+        hvac_mean_matrix: pd.DataFrame,
+        ) -> dict:
+        """
+        Run standard OLS simultaneously for WH and HVAC to estimate
+        the kW scaling factor for each DER type.
+
+        Solves: kw_wh * x_wh + kw_hvac * x_hvac ≈ feeder - background
+
+        Parameters
+        ----------
+        wh_mean_matrix : pd.DataFrame
+            Output of _build_mean_matrix() for WH histories.
+
+        wh_state_matrix : pd.DataFrame
+            Output of _build_state_matrix() for WH data.
+            Used to estimate the background constant.
+
+        hvac_mean_matrix : pd.DataFrame
+            Output of _build_mean_matrix() for HVAC histories.
+
         Returns
         -------
         dict
-            Contains:
-            - 'kw_wh'        : float, estimated watts per WH unit
-            - 'kw_hvac'      : float, estimated watts per HVAC unit
-            - 'wh_predicted' : np.ndarray, predicted WH demand across 144 chunks
-            - 'x_wh'         : np.ndarray, total WH ON-probability per chunk
-            - 'x_hvac'       : np.ndarray, total HVAC ON-probability per chunk
+            Contains kw_wh, kw_hvac, wh_predicted, x_wh, x_hvac,
+            feeder_minus_background.
         """
-        x_wh = wh_mean_matrix.sum(axis=1).values
+        x_wh   = wh_mean_matrix.sum(axis=1).values
         x_hvac = hvac_mean_matrix.sum(axis=1).values
 
-        # Estimate and subtract the background demand
-        background_constant = self.feeder_demand['power_out'].values[
-            np.where((pd.DataFrame(wh_state_matrix).sum(axis=1) == 0).values)[0]
-        ].mean()
-
+        background_constant = self.feeder_demand['power_out'].values.min()
         feeder_minus_background = self.feeder_demand['power_out'].values - background_constant
 
-        # Stack x_wh and x_hvac into matrix A and solve A * [kw_wh, kw_hvac] = feeder_minus_background
         A = np.column_stack([x_wh, x_hvac])
         kw_estimate, _, _, _ = np.linalg.lstsq(A, feeder_minus_background, rcond=None)
         kw_wh, kw_hvac = kw_estimate
 
-        # Scale each vector by its estimated kW factor
         wh_predicted = kw_wh * x_wh
 
         return {
-            'kw_wh':        kw_wh,
-            'kw_hvac':      kw_hvac,
-            'wh_predicted': wh_predicted,
-            'x_wh':         x_wh,
-            'x_hvac':       x_hvac,
+            'kw_wh':                   kw_wh,
+            'kw_hvac':                 kw_hvac,
+            'wh_predicted':            wh_predicted,
+            'x_wh':                    x_wh,
+            'x_hvac':                  x_hvac,
+            'feeder_minus_background': feeder_minus_background,
         }
-
-    def _run_sequential_ols(self, x_hvac: np.ndarray, wh_predicted: np.ndarray) -> dict:
+    
+    def _run_sequential_ols(
+        self,
+        x_hvac: np.ndarray,
+        wh_predicted: np.ndarray,
+        feeder_minus_background: np.ndarray,
+        ) -> dict:
         """
-        Run a second OLS pass using only the HVAC vector to refine the
-        HVAC demand estimate.
+        Run a second OLS pass using only the HVAC vector to refine
+        the HVAC demand estimate.
 
-        After Stage 1 (simultaneous OLS), we subtract the WH prediction
-        from the raw feeder signal. What remains should mostly contain
-        HVAC demand plus a background constant. We then solve:
-
-            kw_hvac * x_hvac + baseline ≈ feeder_demand - wh_predicted
-
-        The reason we run OLS a second time is that the simultaneous OLS
-        in Stage 1 can mix up the WH and HVAC contributions. By isolating
-        HVAC in its own regression, we get a cleaner estimate.
+        Solves: kw_hvac * x_hvac + baseline ≈ feeder_minus_background - wh_predicted
 
         Parameters
         ----------
         x_hvac : np.ndarray
-            Total HVAC ON-probability per chunk. Comes directly from
-            the 'x_hvac' key in the output of _run_simultaneous_ols().
+            Total HVAC ON-probability per chunk.
 
         wh_predicted : np.ndarray
-            Predicted WH demand across 144 chunks. Comes directly from
-            the 'wh_predicted' key in the output of _run_simultaneous_ols().
+            Predicted WH demand across 144 chunks.
+
+        feeder_minus_background : np.ndarray
+            Feeder signal with background removed.
 
         Returns
         -------
         dict
-            Contains:
-            - 'kw_hvac'          : float, refined estimated watts per HVAC unit
-            - 'baseline'         : float, refined background constant
-            - 'hvac_predicted'   : np.ndarray, predicted HVAC demand across 144 chunks
+            Contains kw_hvac, baseline, hvac_predicted.
         """
-        # Subtract WH prediction from raw feeder to isolate HVAC + background
-        y_hvac = self.feeder_demand['power_out'].values - wh_predicted
+        y_hvac = feeder_minus_background - wh_predicted
 
-        # Build A matrix with HVAC vector and a constant background column
         A_hvac = np.column_stack([x_hvac, np.ones(len(x_hvac))])
-
-        # Solve for kw_hvac and the refined baseline constant
         hvac_estimate, _, _, _ = np.linalg.lstsq(A_hvac, y_hvac, rcond=None)
         kw_hvac, baseline = hvac_estimate
 
@@ -234,10 +262,118 @@ class OrdinaryLeastSquare:
             'hvac_predicted': hvac_predicted,
         }
     
+    def _compute_deltas(
+        self,
+        x_wh: np.ndarray,
+        x_hvac: np.ndarray,
+        feeder_minus_background: np.ndarray,
+        ) -> dict:
+        """
+        Compute the first-order differences (deltas) of the WH signal,
+        HVAC signal, and feeder signal.
 
-    def run (self):
-        # Step 1 - build state matrices
-        wh_state_matrix   = self._build_state_matrix(all_dfs=self.wh_all_dfs)
+        Instead of regressing on raw values, we regress on how much each
+        signal CHANGES between consecutive chunks. This makes WH and HVAC
+        more separable because:
+        - WH units switch abruptly → large spikes in Δx_wh
+        - HVAC units change gradually → smaller changes in Δx_hvac
+
+        Parameters
+        ----------
+        x_wh : np.ndarray
+            Raw WH probability sum across 144 chunks.
+
+        x_hvac : np.ndarray
+            Raw HVAC probability sum across 144 chunks.
+
+        feeder_minus_background : np.ndarray
+            Feeder signal with background removed across 144 chunks.
+
+        Returns
+        -------
+        dict
+            Contains:
+            - 'delta_x_wh'   : np.ndarray, shape (143,), change in WH signal
+            - 'delta_x_hvac' : np.ndarray, shape (143,), change in HVAC signal
+            - 'delta_y'      : np.ndarray, shape (143,), change in feeder signal
+        """
+        # np.diff computes x[t] - x[t-1] for each consecutive pair
+        # result has 143 values instead of 144 — first value is lost
+        delta_x_wh   = np.diff(x_wh)
+        delta_x_hvac = np.diff(x_hvac)
+        delta_y      = np.diff(feeder_minus_background)
+
+        return {
+            'delta_x_wh':   delta_x_wh,
+            'delta_x_hvac': delta_x_hvac,
+            'delta_y':      delta_y,
+        }
+
+    def _run_delta_ols(
+            self,
+            x_wh: np.ndarray,
+            x_hvac: np.ndarray,
+            feeder_minus_background: np.ndarray,
+            ) -> dict:
+
+            """
+            Run OLS on the delta (differenced) signals to estimate kW scaling
+            factors that are more robust to multicollinearity.
+
+            By regressing on changes rather than levels, we exploit the fact
+            that WH and HVAC have different switching dynamics — WH switches
+            abruptly while HVAC changes gradually. These different dynamics
+            make the two signals easier to separate in delta space.
+
+            Parameters
+            ----------
+            x_wh : np.ndarray
+                Raw WH probability sum across 144 chunks.
+
+            x_hvac : np.ndarray
+                Raw HVAC probability sum across 144 chunks.
+
+            feeder_minus_background : np.ndarray
+                Feeder signal with background removed across 144 chunks.
+
+            Returns
+            -------
+            dict
+                Contains:
+                - 'kw_wh'          : float, estimated watts per WH unit
+                - 'kw_hvac'        : float, estimated watts per HVAC unit
+                - 'wh_predicted'   : np.ndarray, predicted WH demand (144 chunks)
+                - 'hvac_predicted' : np.ndarray, predicted HVAC demand (144 chunks)
+            """
+            # Step 1 - compute deltas
+            deltas = self._compute_deltas(
+                x_wh=x_wh,
+                x_hvac=x_hvac,
+                feeder_minus_background=feeder_minus_background,
+            )
+
+            # Step 2 - solve OLS in delta space
+            # Note: no intercept here — delta of a constant is zero
+            A_delta = np.column_stack([deltas['delta_x_wh'], deltas['delta_x_hvac']])
+            kw_estimate, _, _, _ = np.linalg.lstsq(A_delta, deltas['delta_y'], rcond=None)
+            kw_wh, kw_hvac = kw_estimate
+
+            # Step 3 - apply scaling factors to original (non-differenced) signals
+            # The kW factors found in delta space apply back to the level signals
+            wh_predicted   = kw_wh   * x_wh
+            hvac_predicted = kw_hvac * x_hvac
+
+            return {
+                'kw_wh':          kw_wh,
+                'kw_hvac':        kw_hvac,
+                'wh_predicted':   wh_predicted,
+                'hvac_predicted': hvac_predicted,
+            }
+
+    def run(self):
+        # Step 1 - build WH state matrix
+        wh_state_matrix = self._build_state_matrix(all_dfs=self.wh_all_dfs)
+        hvac_state_matrix = self._build_state_matrix(all_dfs=self.hvac_all_dfs)
 
         # Step 2 - build mean matrices
         wh_mean_matrix   = self._build_mean_matrix(histories=self.wh_histories)
@@ -246,21 +382,53 @@ class OrdinaryLeastSquare:
         # Step 3 - simultaneous OLS
         simultaneous_results = self._run_simultaneous_ols(
             wh_mean_matrix=wh_mean_matrix,
-            wh_state_matrix=wh_state_matrix,
             hvac_mean_matrix=hvac_mean_matrix,
         )
 
         # Step 4 - sequential OLS to refine HVAC estimate
         sequential_results = self._run_sequential_ols(
             x_hvac=simultaneous_results['x_hvac'],
-            wh_predicted=simultaneous_results['wh_predicted']
+            wh_predicted=simultaneous_results['wh_predicted'],
+            feeder_minus_background=simultaneous_results['feeder_minus_background'],
         )
 
-        # Step 5 - return everything the caller needs
+        # Step 5 - delta OLS for comparison
+        delta_results = self._run_delta_ols(
+            x_wh=simultaneous_results['x_wh'],
+            x_hvac=simultaneous_results['x_hvac'],
+            feeder_minus_background=simultaneous_results['feeder_minus_background'],
+        )
+
+        # Step 6 - return results
         return {
-            'wh_predicted':   simultaneous_results['wh_predicted'],
-            'hvac_predicted': sequential_results['hvac_predicted'],
-            'kw_wh':          simultaneous_results['kw_wh'],
-            'kw_hvac':        sequential_results['kw_hvac'],
-            'baseline':       sequential_results['baseline'],
+            'wh_predicted':            simultaneous_results['wh_predicted'],
+            'x_wh'        :            simultaneous_results['x_wh'],
+            'x_hvac'        :          simultaneous_results['x_hvac'],
+            'hvac_predicted':          sequential_results['hvac_predicted'],
+            'kw_wh':                   simultaneous_results['kw_wh'],
+            'kw_hvac':                 sequential_results['kw_hvac'],
+            'baseline':                sequential_results['baseline'],
+            'feeder_minus_background': simultaneous_results['feeder_minus_background'],
+            'combined_predicted':      simultaneous_results['wh_predicted'] + sequential_results['hvac_predicted'],
+            # Delta OLS results — for comparison against standard OLS
+            'delta_wh_predicted':      delta_results['wh_predicted'],
+            'delta_hvac_predicted':    delta_results['hvac_predicted'],
+            'delta_kw_wh':             delta_results['kw_wh'],
+            'delta_kw_hvac':           delta_results['kw_hvac'],
+            # General info for plotting purposes
+            'wh_state_matrix':         wh_state_matrix,
+            'hvac_state_matrix':       hvac_state_matrix,
+            'wh_mean_matrix':          wh_mean_matrix,
+            'hvac_mean_matrix':        hvac_mean_matrix,
         }
+
+        # # Step 6 - return results
+        # return {
+        #     'wh_predicted':            simultaneous_results['wh_predicted'],
+        #     'hvac_predicted':          sequential_results['hvac_predicted'],
+        #     'kw_wh':                   simultaneous_results['kw_wh'],
+        #     'kw_hvac':                 sequential_results['kw_hvac'],
+        #     'baseline':                sequential_results['baseline'],
+        #     'feeder_minus_background': simultaneous_results['feeder_minus_background'],
+        #     'combined_predicted':      simultaneous_results['wh_predicted'] + sequential_results['hvac_predicted'],
+        # }

@@ -11,7 +11,7 @@ class BayesianEstimator:
     def __init__(self,
                  window_size : int = 10,
                  num_chunks : int = 144,
-                 discount : float = 0.3,
+                 discount : float = 0.01,
                  initial_alpha : int = 1,
                  initial_beta : int = 1,
                  ci_lower : float = 0.05,
@@ -35,6 +35,7 @@ class BayesianEstimator:
             'H_chunk' : [],
             'T_chunk' : [],
             'ci_upper' : [],
+            'variance' : [],
             'ci_lower' : [],
             'posterior' : [],
         }
@@ -104,6 +105,7 @@ class BayesianEstimator:
             history['mean'].append(stats['mean'])
             history['posterior'].append(posterior)
             history['beta'].append(beta_posterior)
+            history['variance'].append(stats['variance'])
             history['alpha'].append(alpha_posterior)
             history['ci_lower'].append(stats['ci_lower'])
             history['ci_upper'].append(stats['ci_upper'])
