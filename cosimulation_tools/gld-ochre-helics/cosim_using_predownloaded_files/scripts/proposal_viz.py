@@ -563,6 +563,8 @@ class ProposalFigures:
     
             state_df = pd.DataFrame(state_window)
             mean_df  = pd.DataFrame(mean_window)
+            print(mean_df)
+            quit()
     
             # ── Keep only units active in this window ─────────────────────
             active_cols = [c for c in state_df.columns
@@ -576,7 +578,7 @@ class ProposalFigures:
             )
     
             # ── Figure layout — 3 panels, top taller ─────────────────────
-            fig = plt.figure(figsize=(10, 6))
+            fig = plt.figure(figsize=(14, 10))
             gs  = gridspec.GridSpec(
                 3, 1, height_ratios=[2.5, 1, 1], hspace=0.45
             )
@@ -610,8 +612,7 @@ class ProposalFigures:
                 fontweight='bold'
             )
             ax_plot.set_ylim(-0.05, 1.15)
-            ax_plot.legend(fontsize=8, ncol=2, loc='upper center',
-                           bbox_to_anchor=(0.5, 1.0), frameon=False)
+            ax_plot.legend(fontsize=9, ncol=2, loc='upper right', frameon=False)
             ax_plot.set_xlim(start, end - 1)
     
             # ── Middle panel — binary state matrix ───────────────────────
