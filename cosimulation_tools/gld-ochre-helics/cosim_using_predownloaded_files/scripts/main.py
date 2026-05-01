@@ -110,12 +110,12 @@ if __name__ == '__main__':
     #     filename         = 'fig5_switching_event_zoom_wh_with_matrix.pdf'
     # )
 
-    # pf.fig5_switching_event_zoom_with_matrix(
-    #     wh_all_dfs       = hvac_loader.all_dfs,
-    #     wh_histories_low  = hvac_histories_low,
-    #     wh_histories_high = hvac_histories_high,
-    #     filename         = 'fig5_switching_event_zoom_hvac_with_matrix.pdf'
-    # )
+    pf.fig5_switching_event_zoom_with_matrix(
+        wh_all_dfs       = hvac_loader.all_dfs,
+        wh_histories_low  = hvac_histories_low,
+        wh_histories_high = hvac_histories_high,
+        filename         = 'fig5_switching_event_zoom_hvac_with_matrix.pdf'
+    )
 
     # pf.fig6_aggregated_probability_vectors(
     #     wh_histories_low    = wh_histories_low,
@@ -142,13 +142,13 @@ if __name__ == '__main__':
     #     filename            = 'fig8_ols_comparison.png'
     # )
 
-    pf.fig10_delta_ols_predicted_vs_truth(
-        wh_predicted=results_low['delta_wh_predicted'],
-        hvac_predicted=results_low['delta_hvac_predicted'],
-        wh_ground_truth=wh_ground_truth['power_out'],
-        hvac_ground_truth=hvac_ground_truth['power_out'],
-        filename='fig10_delta_ols_predicted_vs_truth.pdf'
-    )
+    # pf.fig10_delta_ols_predicted_vs_truth(
+    #     wh_predicted=results_low['delta_wh_predicted'],
+    #     hvac_predicted=results_low['delta_hvac_predicted'],
+    #     wh_ground_truth=wh_ground_truth['power_out'],
+    #     hvac_ground_truth=hvac_ground_truth['power_out'],
+    #     filename='fig10_delta_ols_predicted_vs_truth.pdf'
+    # )
     quit()
 
     # # Section 2
