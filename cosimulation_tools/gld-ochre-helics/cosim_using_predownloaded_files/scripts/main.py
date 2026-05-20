@@ -1,233 +1,236 @@
 '''
 Author: Midrar Adham
-Created: Fri Apr 24 2026
+Created: Sat May 02 2026
 '''
+import numpy as np
 import pandas as pd
-from milp import MILP
-from viz import visualizer
+import matplotlib.pyplot as plt
+
 from data_loader import DataLoader
 from ols import OrdinaryLeastSquare
-from proposal_viz import ProposalFigures
 from bayesian_estimator import BayesianEstimator
+
+
+def r2_score(y_true: np.ndarray, y_pred: np.ndarray) -> float:
+    y_true = pd.to_numeric(y_true, errors='coerce')
+    y_pred = np.asarray(y_pred, dtype=float)
+    return 1 - np.sum((y_pred - y_true) ** 2) / \
+               np.sum((y_true - y_true.mean()) ** 2)
+
+
+def get_ground_truth_per_device(all_dfs: dict) -> pd.Series:
+    """
+    Compute mean ON-power per device from raw per-device dataframes.
+
+    Returns
+    -------
+    pd.Series
+        Index: filenames, values: mean power_out when state == True (Watts).
+    """
+    gt = {}
+    for filename, df in all_dfs.items():
+        on_power = df.loc[df['state'] == True, 'power_out']
+        gt[filename] = on_power.mean() if len(on_power) > 0 else 0.0
+    return pd.Series(gt)
+
+
+def build_active_ground_truth(
+        hvac_active_cols: list,
+        hvac_all_dfs: dict,
+        ) -> np.ndarray:
+    """
+    Build a ground truth total demand time series summed only over
+    the active devices used in per-device OLS estimation.
+
+    This ensures a fair comparison — excluded devices (e.g. two-state
+    devices) are not included in the ground truth sum either.
+
+    Parameters
+    ----------
+    hvac_active_cols : list
+        Filenames of active HVAC devices from per_d_hvac_active.columns.
+    hvac_all_dfs : dict
+        Output of DataLoader.all_dfs for HVAC data.
+
+    Returns
+    -------
+    np.ndarray
+        Total demand in Watts at each 10-minute chunk.
+    """
+    gt_total = None
+
+    for filename in hvac_active_cols:
+        df = hvac_all_dfs[filename].copy()
+        df['time'] = pd.to_datetime(df['time'])
+        power = pd.to_numeric(df.set_index('time')['power_out'], errors='coerce')
+        power_resampled = power.resample('10min').mean().values
+
+        if gt_total is None:
+            gt_total = power_resampled
+        else:
+            gt_total += power_resampled
+
+    return gt_total if gt_total is not None else np.array([])
 
 
 if __name__ == '__main__':
 
-
-    wh_dir = '../results/wh_cosim/'
-    hvac_dir = '../results/hvac_cosim/'
+    wh_dir         = '../results/wh_cosim/'
+    hvac_dir       = '../results/hvac_cosim/'
     total_house_dir = '../results/total_house_consumption/'
 
-    # Load the data:
-    wh_loader = DataLoader (results_dir=wh_dir)
-    hvac_loader = DataLoader (results_dir=hvac_dir)
-    total_house_loader = DataLoader (results_dir=total_house_dir)
+    # Two-state devices excluded from per-device OLS
+    # (violate the assumption that power_out = 0 when OFF)
+    EXCLUDE_HVAC = [
+        '../results/hvac_cosim/ochre_load_16.csv',
+    ]
+    chunks_per_day = 144
+    # day_ends = [1440, 2880, 4320, 5760, 7200, 8640, 10080, 11520, 12960, 14400, 15840, 17280, 18720, 20160, 21600, 23040, 24480, 25920, 27360, 28800]
+    # day_ends = [1440, 2880, 4320, 5760, 7200, 8640, 17280]
+    day_ends = [1440, 17280]
+    lambdas = [0.005, 0.01, 0.05, 0.1, 0.3, 0.5]
+    sweep_results = {}
 
-    # retrieve the dataframes
-    wh_df = wh_loader.load_csv_files (threshold=5000.0)
-    hvac_df = hvac_loader.load_csv_files (threshold=100.0)
-    feeder_df = total_house_loader.load_transformer_data ()
+    for day_end in day_ends:
+        n_days = day_end // 1440
+        n_chunks = n_days * chunks_per_day
+        sweep_results [day_end] = {}
+        # ── Load 10 days of data ─────────────────────────────────────────────
+        wh_loader          = DataLoader(results_dir=wh_dir,          day_start=0, day_end=day_end)
+        hvac_loader        = DataLoader(results_dir=hvac_dir,        day_start=0, day_end=day_end)
+        total_house_loader = DataLoader(results_dir=total_house_dir, day_start=0, day_end=day_end)
 
-    # bayesian estimation:
-    estimator_low = BayesianEstimator (discount=0.01)
-    wh_histories_low = estimator_low.fit_many (all_dfs=wh_df)
-    hvac_histories_low = estimator_low.fit_many (all_dfs=hvac_df)
-    
-    # ols decomposition:
-    ols_low = OrdinaryLeastSquare (
-        feeder_demand=feeder_df,
-        wh_histories=wh_histories_low,
-        wh_all_dfs=wh_loader.all_dfs,
-        hvac_histories=hvac_histories_low,
-        hvac_all_dfs=hvac_loader.all_dfs
-    )
-    
+        wh_ground_truth   = wh_loader.load_transformer_data()
+        hvac_ground_truth = hvac_loader.load_transformer_data()
+        feeder_df         = total_house_loader.load_transformer_data()
 
-    results_low = ols_low.run ()
+        wh_df   = wh_loader.load_csv_files(threshold=5000.0)
+        hvac_df = hvac_loader.load_csv_files(threshold=100.0)
 
-    # bayesian estimation:
-    estimator_high = BayesianEstimator (discount=0.3)
-    wh_histories_high = estimator_high.fit_many (all_dfs=wh_df)
-    hvac_histories_high = estimator_high.fit_many (all_dfs=hvac_df)
-    
-    # ols decomposition:
-    ols_high = OrdinaryLeastSquare (
-        feeder_demand=feeder_df,
-        wh_histories=wh_histories_high,
-        wh_all_dfs=wh_loader.all_dfs,
-        hvac_histories=hvac_histories_high,
-        hvac_all_dfs=hvac_loader.all_dfs
-    )
-    
-
-    results_high = ols_high.run ()
+        # ── Bayesian estimation — continuous across 10 days ─────────────────
+        for lamb in lambdas:
+            estimator = BayesianEstimator(num_chunks=n_chunks, discount=lamb)
+            wh_histories   = estimator.fit_many(all_dfs=wh_df)
+            hvac_histories = estimator.fit_many(all_dfs=hvac_df)
 
 
-    wh_ground_truth = wh_loader.load_transformer_data()
-    hvac_ground_truth = hvac_loader.load_transformer_data ()
+            # ── Diagnose day 15 collapse ─────────────────────────────────
+            if n_days == 15 and lamb == 0.01:
+                for filename, history in hvac_histories.items():
+                    mean_arr = np.array(history['mean'])
+                    alpha_arr = np.array(history['alpha'])
+                    beta_arr  = np.array(history['beta'])
+                    corrupted = np.any(np.isnan(mean_arr)) or np.any(np.isinf(mean_arr))
+                    short_name = filename.split('ochre_load_')[1].replace('.csv', '')
+                    print(f"Device {short_name:>4} | "
+                        f"mean[-1]: {mean_arr[-1]:.6f} | "
+                        f"alpha[-1]: {alpha_arr[-1]:.2f} | "
+                        f"beta[-1]: {beta_arr[-1]:.2f} | "
+                        f"corrupted: {corrupted}")
 
-    time_col = pd.to_datetime (wh_ground_truth['Time']).dt.strftime('%H:%M')
+            # ── OLS ──────────────────────────────────────────────────────────────
+            ols = OrdinaryLeastSquare(
+                feeder_demand  = feeder_df,
+                wh_histories   = wh_histories,
+                hvac_histories = hvac_histories,
+                wh_all_dfs     = wh_loader.all_dfs,
+                hvac_all_dfs   = hvac_loader.all_dfs,
+            )
 
-    pf = ProposalFigures(time_col=time_col, save_dir='./figures/')
+            results = ols.run(exclude_hvac=EXCLUDE_HVAC)
 
-    # Section 1
-    # pf.fig1_raw_binary_states(
-    #     wh_all_dfs=wh_loader.all_dfs,
-    #     hvac_all_dfs=hvac_loader.all_dfs
-    # )
-    # pf.fig2_posterior_mean_comparison(
-    #     histories_low  = wh_histories_low,
-    #     histories_high = wh_histories_high,
-    #     der_label      = 'Water Heater',
-    #     filename       = 'fig2_wh_posterior_mean.png'
-    # )
+            # ── Per-device rated power comparison ────────────────────────────────
+            gt_per_device = get_ground_truth_per_device(hvac_loader.all_dfs)
 
-    # pf.fig2_posterior_mean_comparison(
-    #     histories_low  = hvac_histories_low,
-    #     histories_high = hvac_histories_high,
-    #     der_label      = 'HVAC',
-    #     filename       = 'fig2_hvac_posterior_mean.png'
-    # )
-    
-    # pf.fig4_switching_event_zoom(
-    #     wh_all_dfs       = wh_loader.all_dfs,
-    #     wh_histories_low  = wh_histories_low,
-    #     wh_histories_high = wh_histories_high,
-    #     filename         = 'fig4_switching_event_zoom.png'
-    # )
+            comparison = pd.DataFrame({
+                'estimated_W': results['per_d_kw_hvac'],
+                'truth_W':     gt_per_device,
+            })
+            comparison['error_pct'] = (
+                (comparison['estimated_W'] - comparison['truth_W'])
+                / comparison['truth_W'] * 100
+            ).round(1)
+            comparison = comparison.sort_values('truth_W', ascending=False)
 
-    # pf.fig4_switching_event_zoom(
-    #     wh_all_dfs       = hvac_loader.all_dfs,
-    #     wh_histories_low  = hvac_histories_low,
-    #     wh_histories_high = hvac_histories_high,
-    #     filename         = 'fig4_switching_event_zoom_hvac.png'
-    # )
+            print('\n── Per-device HVAC rated power ──────────────────────────')
+            # print(comparison.to_string())
 
-    # pf.fig5_switching_event_zoom_with_matrix(
-    #     wh_all_dfs       = wh_loader.all_dfs,
-    #     wh_histories_low  = wh_histories_low,
-    #     wh_histories_high = wh_histories_high,
-    #     filename         = 'fig5_switching_event_zoom_wh_with_matrix.pdf'
-    # )
+            # ── Total estimated vs active ground truth ───────────────────────────
+            hvac_active     = results['per_d_hvac_active']
+            kw_per_device   = results['per_d_kw_hvac']
+            estimated_total = hvac_active.values @ kw_per_device[hvac_active.columns].values
 
-    pf.fig5_switching_event_zoom_with_matrix(
-        wh_all_dfs       = hvac_loader.all_dfs,
-        wh_histories_low  = hvac_histories_low,
-        wh_histories_high = hvac_histories_high,
-        filename         = 'fig5_switching_event_zoom_hvac_with_matrix.pdf'
-    )
+            gt_active_total = build_active_ground_truth(
+                hvac_active_cols=hvac_active.columns.tolist(),
+                hvac_all_dfs=hvac_loader.all_dfs,
+            )
 
-    # pf.fig6_aggregated_probability_vectors(
-    #     wh_histories_low    = wh_histories_low,
-    #     wh_histories_high   = wh_histories_high,
-    #     hvac_histories_low  = hvac_histories_low,
-    #     hvac_histories_high = hvac_histories_high,
-    #     filename            = 'fig6_aggregated_probability_vectors.png'
-    # )
-    # pf.fig7_input_vectors(
-    #     wh_histories_low    = wh_histories_low,
-    #     wh_histories_high   = wh_histories_high,
-    #     hvac_histories_low  = hvac_histories_low,
-    #     hvac_histories_high = hvac_histories_high,
-    #     filename            = 'fig7_input_vectors.png'
-    # )
+            r2   = r2_score(gt_active_total, estimated_total)
+            mask = gt_active_total > 0
+            # mape = np.mean(np.abs((estimated_total - gt_active_total) / gt_active_total) * 100)
+            mape = np.mean(np.abs((estimated_total[mask] - gt_active_total[mask]) / gt_active_total[mask]) * 100)
 
-    # pf.fig8_ols_comparison(
-    #     std_wh_predicted    = results_low['wh_predicted'],
-    #     std_hvac_predicted  = results_low['hvac_predicted'],
-    #     delta_wh_predicted  = results_low['delta_wh_predicted'],
-    #     delta_hvac_predicted = results_low['delta_hvac_predicted'],
-    #     wh_ground_truth     = wh_ground_truth['power_out'],
-    #     hvac_ground_truth   = hvac_ground_truth['power_out'],
-    #     filename            = 'fig8_ols_comparison.png'
-    # )
+            sweep_results[day_end][lamb] = {'r2': r2, 'mape': mape}
 
-    # pf.fig10_delta_ols_predicted_vs_truth(
-    #     wh_predicted=results_low['delta_wh_predicted'],
-    #     hvac_predicted=results_low['delta_hvac_predicted'],
-    #     wh_ground_truth=wh_ground_truth['power_out'],
-    #     hvac_ground_truth=hvac_ground_truth['power_out'],
-    #     filename='fig10_delta_ols_predicted_vs_truth.pdf'
-    # )
-    quit()
+            print(f'days={n_days:2d} | lambda={lamb:.2f} | R²={r2:.3f} | MAPE={mape:.1f}%')
 
-    # # Section 2
-    # pf.fig5_mean_matrix_heatmap(results_low['wh_mean_matrix'], results_low['hvac_mean_matrix'])
-    # pf.fig6_aggregated_probability_vectors(
-    #     x_wh=results_low['x_wh'],
-    #     x_hvac=results_low['x_hvac']
-    # )
+    # ── Plot R² vs days for each lambda ──────────────────────────────────
+    rows = []
+    for day_end, lambda_results in sweep_results.items():
+        for lamb, metrics in lambda_results.items():
+            rows.append({
+                'days':  day_end // 1440,
+                'lambda': lamb,
+                'r2':    metrics['r2'],
+                'mape':  metrics['mape'],
+            })
 
-    # # Section 3
-    # pf.fig7_ols_predicted_vs_truth(
-    #     wh_predicted=results_low['wh_predicted'],
-    #     hvac_predicted=results_low['hvac_predicted'],
-    #     wh_ground_truth=wh_ground_truth['power_out'],
-    #     hvac_ground_truth=hvac_ground_truth['power_out']
-    # )
-    # pf.fig8_ols_residuals(
-    #     feeder_minus_background=results_low['feeder_minus_background'],
-    #     combined_predicted=results_low['combined_predicted']
-    # )
+    sweep_df = pd.DataFrame(rows)
+    sweep_df.to_csv('sweep_days_lambda_long_term_estimation.csv', index=False)
+    print('\nSweep results saved to sweep_days_lambda_long_term_estimation.csv')
 
-    # # # Section 4
-    # pf.fig9_delta_signals(
-    #     x_wh=results_low['x_wh'],
-    #     x_hvac=results_low['x_hvac']
-    # )
+    days = [d // 1440 for d in day_ends]
 
-    # # Section 4 comparison table
-    # comparison_results = {
-    #     'Day 2': {'wh_truth': 3273, 'hvac_truth': 10497,
-    #             'low_wh': 3289, 'low_hvac': 13169,
-    #             'high_wh': 3776, 'high_hvac': 21745},
-    #     'Day 3': {'wh_truth': 2674, 'hvac_truth': 11826,
-    #             'low_wh': 2669, 'low_hvac': 14853,
-    #             'high_wh': 4921, 'high_hvac': 9398},
-    #     'Day 4': {'wh_truth': 2800, 'hvac_truth': 6872,
-    #             'low_wh': 2764, 'low_hvac': 7682,
-    #             'high_wh': 4057, 'high_hvac': 10666},
-    #     'Day 5': {'wh_truth': 3059, 'hvac_truth': 5984,
-    #             'low_wh': 3377, 'low_hvac': 6273,
-    #             'high_wh': 4921, 'high_hvac': 9398},
-    # }
-    # pf.fig11_discount_comparison_table(results=comparison_results)
+    fig, axes = plt.subplots(1, 2, figsize=(14, 5))
 
+    for lamb in lambdas:
+        r2_vals   = [sweep_results[d][lamb]['r2']   for d in day_ends]
+        mape_vals = [sweep_results[d][lamb]['mape'] for d in day_ends]
+        axes[0].plot(days, r2_vals,   marker='o', label=f'λ={lamb}')
+        axes[1].plot(days, mape_vals, marker='o', label=f'λ={lamb}')
 
+    axes[0].set_xlabel('Number of Days')
+    axes[0].set_ylabel('R²')
+    axes[0].set_title('R² vs Days of History')
+    axes[0].legend()
+    axes[0].grid(True)
 
-    # print("=== Standard OLS ===")
-    # print(f"wh_predicted mean:   {results['wh_predicted'].mean():.1f} W")
-    # print(f"hvac_predicted mean: {results['hvac_predicted'].mean():.1f} W")
+    axes[1].set_xlabel('Number of Days')
+    axes[1].set_ylabel('MAPE (%)')
+    axes[1].set_title('MAPE vs Days of History')
+    axes[1].legend()
+    axes[1].grid(True)
 
-    # print("=== Delta OLS ===")
-    # print(f"wh_predicted mean:   {results['delta_wh_predicted'].mean():.1f} W")
-    # print(f"hvac_predicted mean: {results['delta_hvac_predicted'].mean():.1f} W")
+    plt.tight_layout()
+    plt.savefig('sweep_days_lambda_long_term_estimation.png')
+    plt.show()
 
-    # print("=== Ground Truth ===")
-    # print(f"wh ground truth:     {wh_ground_truth['power_out'].mean():.1f} W")
-    # print(f"hvac ground truth:   {hvac_ground_truth['power_out'].mean():.1f} W")
-
-    # quit()
-
-    # time_col = pd.to_datetime (wh_ground_truth['Time']).dt.strftime('%H:%M')
-
-    # viz = visualizer (time_col=time_col)
-    # viz.plot_wh_predicted_vs_ground_truth (
-    #     wh_predicted=results['wh_predicted'],
-    #     wh_ground_truth=wh_ground_truth['power_out']
-    #     )
-    
-    # viz.plot_hvac_predicted_vs_ground_truth (
-    #     hvac_predicted=results['hvac_predicted'],
-    #     hvac_ground_truth=hvac_ground_truth['power_out']
-    #     )
-    
-    # viz.plot_ols_residuals(
-    #     feeder_minus_background=results['feeder_minus_background'],
-    #     combined_predicted=results['combined_predicted']
-    # )
-
-    # viz.plot_posterior_variance (
-    #     wh_histories=wh_histories,
-    #     hvac_histories=hvac_histories
-    #     )
+            # # ── Plot ─────────────────────────────────────────────────────────────
+            # fig, ax = plt.subplots(figsize=(12, 5))
+            # ax.plot(gt_active_total / 1e3, color='black',     linewidth=1.5,
+            #         label='Ground Truth (active devices)')
+            # ax.plot(estimated_total / 1e3, color='steelblue', linewidth=1.5,
+            #         linestyle='--', label='Estimated')
+            # ax.set_ylabel('HVAC Demand [kW]')
+            # ax.set_xlabel('Chunk Index (10-min intervals)')
+            # ax.set_title(f'Total HVAC Demand: Estimated vs Ground Truth — Active Devices Only - lambda: {lamb}')
+            # ax.annotate(
+            #     f'R²: {r2:.3f}\nMAPE: {mape:.1f}%',
+            #     xy=(0.01, 0.95), xycoords='axes fraction',
+            #     fontsize=10, verticalalignment='top',
+            #     bbox=dict(boxstyle='round', facecolor='white', alpha=0.7)
+            # )
+            # ax.legend()
+            # plt.tight_layout()
+            # plt.savefig (f"results_lambda_{lamb}.png")
+            # plt.show()

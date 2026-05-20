@@ -235,4 +235,173 @@ class visualizer:
         plt.savefig ('./variance.png')
 
         plt.show()
-        
+    
+    def plot_hvac_individual_predictions(
+            self,
+            results: dict,
+            hvac_ground_truth: pd.Series,
+            wh_ground_truth: pd.Series
+            ):
+        """
+        Plot individual HVAC predictions (4 separate + 1 combined rest)
+        alongside the ground truth feeder HVAC demand, plus a WH panel
+        to verify WH estimation was not impacted by HVAC modifications.
+ 
+        Parameters
+        ----------
+        results : dict
+            Output of OrdinaryLeastSquare.run() containing kw_hvac_1..4,
+            kw_hvac_rest, x_hvac_1..4, x_hvac_rest, hvac_predicted,
+            kw_wh, x_wh, and wh_predicted.
+        hvac_ground_truth : pd.Series
+            Ground truth HVAC demand in Watts.
+        wh_ground_truth : pd.Series
+            Ground truth WH demand in Watts.
+        """
+        hvac_truth_clean = pd.to_numeric(hvac_ground_truth, errors='coerce').values
+        wh_truth_clean   = pd.to_numeric(wh_ground_truth,   errors='coerce').values
+ 
+        # Build individual HVAC predictions
+        individual_preds = {
+            'HVAC 1':    results['kw_hvac_1']    * results['x_hvac_1'],
+            'HVAC 2':    results['kw_hvac_2']    * results['x_hvac_2'],
+            'HVAC 3':    results['kw_hvac_3']    * results['x_hvac_3'],
+            'HVAC 4':    results['kw_hvac_4']    * results['x_hvac_4'],
+            'HVAC rest': results['kw_hvac_rest'] * results['x_hvac_rest'],
+        }
+ 
+        fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(16, 14), sharex=True)
+ 
+        # ── Top panel: individual HVAC contributions ──────────────────
+        for label, pred in individual_preds.items():
+            ax1.plot(self.time_col, pred / 1e3, linewidth=1.2, label=label)
+        ax1.set_ylabel('Demand [kW]')
+        ax1.set_title('Individual HVAC Contributions')
+        ax1.legend(frameon=False, ncol=5)
+        ax1.xaxis.set_major_locator(ticker.MaxNLocator(20))
+ 
+        # ── Middle panel: combined HVAC prediction vs ground truth ────
+        ax2.plot(self.time_col,
+                 hvac_truth_clean / 1e3,
+                 color='black', linewidth=1.5,
+                 label='Ground Truth', alpha=0.8)
+        ax2.plot(self.time_col,
+                 results['hvac_predicted'] / 1e3,
+                 color='tab:blue', linewidth=1.5,
+                 linestyle='--', label='Combined HVAC Predicted')
+        ax2.set_ylabel('Demand [kW]')
+        ax2.set_title('Combined HVAC Prediction vs Ground Truth')
+        ax2.legend(frameon=False)
+        ax2.xaxis.set_major_locator(ticker.MaxNLocator(20))
+ 
+        hvac_rmse = np.sqrt(np.mean((results['hvac_predicted'] - hvac_truth_clean) ** 2))
+        hvac_r2   = 1 - np.sum((results['hvac_predicted'] - hvac_truth_clean) ** 2) / \
+                        np.sum((hvac_truth_clean - hvac_truth_clean.mean()) ** 2)
+        ax2.annotate(
+            f'RMSE: {hvac_rmse/1e3:.2f} kW\n$R^2$: {hvac_r2:.3f}',
+            xy=(0.01, 0.95), xycoords='axes fraction',
+            fontsize=10, verticalalignment='top',
+            bbox=dict(boxstyle='round', facecolor='white',
+                      alpha=0.7, edgecolor='lightgray')
+        )
+ 
+        # ── Bottom panel: WH prediction vs ground truth ───────────────
+        ax3.plot(self.time_col,
+                 wh_truth_clean / 1e3,
+                 color='black', linewidth=1.5,
+                 label='Ground Truth', alpha=0.8)
+        ax3.plot(self.time_col,
+                 results['wh_predicted'] / 1e3,
+                 color='tab:orange', linewidth=1.5,
+                 linestyle='--', label='WH Predicted')
+        ax3.set_ylabel('Demand [kW]')
+        ax3.set_title('WH Prediction vs Ground Truth')
+        ax3.set_xlabel('Time [HH:MM]')
+        ax3.legend(frameon=False)
+        ax3.xaxis.set_major_locator(ticker.MaxNLocator(20))
+ 
+        wh_rmse = np.sqrt(np.mean((results['wh_predicted'] - wh_truth_clean) ** 2))
+        wh_r2   = 1 - np.sum((results['wh_predicted'] - wh_truth_clean) ** 2) / \
+                      np.sum((wh_truth_clean - wh_truth_clean.mean()) ** 2)
+        ax3.annotate(
+            f'RMSE: {wh_rmse/1e3:.2f} kW\n$R^2$: {wh_r2:.3f}',
+            xy=(0.01, 0.95), xycoords='axes fraction',
+            fontsize=10, verticalalignment='top',
+            bbox=dict(boxstyle='round', facecolor='white',
+                      alpha=0.7, edgecolor='lightgray')
+        )
+ 
+        plt.tight_layout()
+        # plt.savefig('./hvac_individual_predictions.png')
+
+        plt.savefig('./figures/hvac_individual_predictions_multi_regressor_method.png')
+        # plt.show()
+
+    def plot_for_collinearity(
+            self,
+            hvac_regressors: dict,
+            hvac_ground_truth: pd.Series
+            ):
+        hvac_truth_clean = pd.to_numeric(hvac_ground_truth, errors='coerce').values
+
+        n = len(hvac_regressors)
+        fig, axes = plt.subplots(n, 1, figsize=(16, 3 * n), sharex=True)
+
+        for ax, (label, x) in zip(axes, hvac_regressors.items()):
+            # print(x)
+            # quit()
+            ax.plot(self.time_col, x / 1e3,
+                    linewidth=1.2, label=label, color='tab:blue')
+            ax.plot(self.time_col, hvac_truth_clean / 1e3,
+                    linewidth=1.2, label='Ground Truth',
+                    color='black', alpha=0.6, linestyle='--')
+            
+            # Correlation coefficient
+            corr = np.corrcoef(x, hvac_truth_clean)[0, 1]
+            ax.set_ylabel('Demand [kW]')
+            ax.set_title(f'{label}  |  corr with ground truth: {corr:.3f}')
+            ax.legend(frameon=False, ncol=2)
+            ax.xaxis.set_major_locator(ticker.MaxNLocator(20))
+
+        axes[-1].set_xlabel('Time [HH:MM]')
+        plt.tight_layout()
+        plt.savefig('./collinearity_check.png')
+        plt.show()
+    
+
+    def plot_hvac_variance(
+        self,
+        hvac_mean_matrix: pd.DataFrame
+    ):
+        """
+        Plot the variance of each HVAC device's posterior mean trajectory
+        across all 144 chunks. High variance = more switching activity =
+        more informative regressor.
+        """
+        variances = hvac_mean_matrix.var(axis=0).sort_values(ascending=False)
+
+        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(14, 8))
+
+        # ── Top panel: bar chart of variance per device ───────────────
+        ax1.bar(range(len(variances)), variances.values, color='tab:blue', alpha=0.7)
+        ax1.set_xticks(range(len(variances)))
+        ax1.set_xticklabels(variances.index, rotation=45, ha='right')
+        ax1.set_ylabel('Variance')
+        ax1.set_title('HVAC Posterior Mean Variance per Device (sorted)')
+        ax1.axhline(y=variances.mean(), color='red', linestyle='--',
+                    linewidth=1.2, label=f'Mean variance: {variances.mean():.4f}')
+        ax1.legend(frameon=False)
+
+        # ── Bottom panel: mean trajectory per device ──────────────────
+        for col in hvac_mean_matrix.columns:
+            ax2.plot(self.time_col, hvac_mean_matrix[col].values,
+                    linewidth=0.9, alpha=0.7, label=col)
+        ax2.set_ylabel('Posterior Mean P(ON)')
+        ax2.set_title('HVAC Posterior Mean Trajectories')
+        ax2.set_xlabel('Time [HH:MM]')
+        ax2.legend(frameon=False, ncol=4)
+        ax2.xaxis.set_major_locator(ticker.MaxNLocator(20))
+
+        plt.tight_layout()
+        plt.savefig('./hvac_variance.png')
+        plt.show ()

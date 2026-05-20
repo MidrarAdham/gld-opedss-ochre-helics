@@ -1,5 +1,6 @@
 env/
 venv/
+*.log
 .vscode/
 __pycache__/
 self-learning/click/*
@@ -8,3 +9,4 @@ self-learning/ngrok/*
 datasets/resstock_2025/load_profiles
 cosimulation_tools/dss-ochre-helics/profiles
 ochre_helics_example/my_examples/my_cosim/cosimulation
+cosimulation_tools/gld-ochre-helics/cosim_using_predownloaded_files/results/

@@ -1,3 +1,9 @@
+// Filename: /home/deras/gld-opedss-ochre-helics/cosimulation_tools/gld-ochre-helics/cosim_using_predownloaded_files/models/powerflow_4node.glm
+// Path: /home/deras/gld-opedss-ochre-helics/cosimulation_tools/gld-ochre-helics/cosim_using_predownloaded_files/models
+// Created Date: Wednesday, March 11th 2026, 3:32:47 pm
+// Author: Midrar Adham
+
+// Copyright (c) 2026 Your Company
 #set profiler=1
 
 module tape;
@@ -249,6 +255,166 @@ object triplex_load {
 	nominal_voltage 120; 
 }
 
+object triplex_load {
+	name ochre_house_load_8;
+	parent house_meter;
+	phases CS;
+	constant_power_12 0+0j; // this should be updated by HELICS
+	nominal_voltage 120; 
+}
+
+object triplex_load {
+	name ochre_house_load_9;
+	parent house_meter;
+	phases CS;
+	constant_power_12 0+0j; // this should be updated by HELICS
+	nominal_voltage 120; 
+}
+
+object triplex_load {
+	name ochre_house_load_10;
+	parent house_meter;
+	phases CS;
+	constant_power_12 0+0j; // this should be updated by HELICS
+	nominal_voltage 120; 
+}
+
+object triplex_load {
+	name ochre_house_load_11;
+	parent house_meter;
+	phases CS;
+	constant_power_12 0+0j; // this should be updated by HELICS
+	nominal_voltage 120; 
+}
+
+object triplex_load {
+	name ochre_house_load_12;
+	parent house_meter;
+	phases CS;
+	constant_power_12 0+0j; // this should be updated by HELICS
+	nominal_voltage 120; 
+}
+
+object triplex_load {
+	name ochre_house_load_13;
+	parent house_meter;
+	phases CS;
+	constant_power_12 0+0j; // this should be updated by HELICS
+	nominal_voltage 120; 
+}
+
+object triplex_load {
+	name ochre_house_load_14;
+	parent house_meter;
+	phases CS;
+	constant_power_12 0+0j; // this should be updated by HELICS
+	nominal_voltage 120; 
+}
+
+object triplex_load {
+	name ochre_house_load_15;
+	parent house_meter;
+	phases CS;
+	constant_power_12 0+0j; // this should be updated by HELICS
+	nominal_voltage 120; 
+}
+
+object triplex_load {
+	name ochre_house_load_16;
+	parent house_meter;
+	phases CS;
+	constant_power_12 0+0j; // this should be updated by HELICS
+	nominal_voltage 120; 
+}
+
+object triplex_load {
+	name ochre_house_load_17;
+	parent house_meter;
+	phases CS;
+	constant_power_12 0+0j; // this should be updated by HELICS
+	nominal_voltage 120; 
+}
+
+object triplex_load {
+	name ochre_house_load_18;
+	parent house_meter;
+	phases CS;
+	constant_power_12 0+0j; // this should be updated by HELICS
+	nominal_voltage 120; 
+}
+
+object triplex_load {
+	name ochre_house_load_19;
+	parent house_meter;
+	phases CS;
+	constant_power_12 0+0j; // this should be updated by HELICS
+	nominal_voltage 120; 
+}
+
+object triplex_load {
+	name ochre_house_load_20;
+	parent house_meter;
+	phases CS;
+	constant_power_12 0+0j; // this should be updated by HELICS
+	nominal_voltage 120; 
+}
+
+object triplex_load {
+	name ochre_house_load_21;
+	parent house_meter;
+	phases CS;
+	constant_power_12 0+0j; // this should be updated by HELICS
+	nominal_voltage 120; 
+}
+
+object triplex_load {
+	name ochre_house_load_22;
+	parent house_meter;
+	phases CS;
+	constant_power_12 0+0j; // this should be updated by HELICS
+	nominal_voltage 120; 
+}
+
+object triplex_load {
+	name ochre_house_load_23;
+	parent house_meter;
+	phases CS;
+	constant_power_12 0+0j; // this should be updated by HELICS
+	nominal_voltage 120; 
+}
+
+object triplex_load {
+	name ochre_house_load_24;
+	parent house_meter;
+	phases CS;
+	constant_power_12 0+0j; // this should be updated by HELICS
+	nominal_voltage 120; 
+}
+
+object triplex_load {
+	name ochre_house_load_25;
+	parent house_meter;
+	phases CS;
+	constant_power_12 0+0j; // this should be updated by HELICS
+	nominal_voltage 120; 
+}
+
+object triplex_load {
+	name ochre_house_load_26;
+	parent house_meter;
+	phases CS;
+	constant_power_12 0+0j; // this should be updated by HELICS
+	nominal_voltage 120; 
+}
+
+object triplex_load {
+	name ochre_house_load_27;
+	parent house_meter;
+	phases CS;
+	constant_power_12 0+0j; // this should be updated by HELICS
+	nominal_voltage 120; 
+}
+
 // object recorder {
 // 	parent house_meter;
 // 	file meter_logs.csv;
@@ -314,6 +480,154 @@ object recorder {
     interval 60;
     property constant_power_12;
 }
+
+object recorder {
+    parent ochre_house_load_8;
+    file ../results/ochre_load_8.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+
+// Record the OCHRE load 2 directly
+object recorder {
+    parent ochre_house_load_9;
+    file ../results/ochre_load_9.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+object recorder {
+    parent ochre_house_load_10;
+    file ../results/ochre_load_10.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+object recorder {
+    parent ochre_house_load_11;
+    file ../results/ochre_load_11.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+object recorder {
+    parent ochre_house_load_12;
+    file ../results/ochre_load_12.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+object recorder {
+    parent ochre_house_load_13;
+    file ../results/ochre_load_13.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+object recorder {
+    parent ochre_house_load_14;
+    file ../results/ochre_load_14.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+object recorder {
+    parent ochre_house_load_15;
+    file ../results/ochre_load_15.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+object recorder {
+    parent ochre_house_load_16;
+    file ../results/ochre_load_16.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+
+// Record the OCHRE load 2 directly
+object recorder {
+    parent ochre_house_load_17;
+    file ../results/ochre_load_17.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+object recorder {
+    parent ochre_house_load_18;
+    file ../results/ochre_load_18.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+object recorder {
+    parent ochre_house_load_19;
+    file ../results/ochre_load_19.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+object recorder {
+    parent ochre_house_load_20;
+    file ../results/ochre_load_20.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+object recorder {
+    parent ochre_house_load_21;
+    file ../results/ochre_load_21.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+object recorder {
+    parent ochre_house_load_22;
+    file ../results/ochre_load_22.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+object recorder {
+    parent ochre_house_load_23;
+    file ../results/ochre_load_23.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+object recorder {
+    parent ochre_house_load_24;
+    file ../results/ochre_load_24.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+
+// Record the OCHRE load 2 directly
+object recorder {
+    parent ochre_house_load_25;
+    file ../results/ochre_load_25.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+object recorder {
+    parent ochre_house_load_26;
+    file ../results/ochre_load_26.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+object recorder {
+    parent ochre_house_load_27;
+    file ../results/ochre_load_27.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+
 
 // Record residential transformer loading
 object recorder {
