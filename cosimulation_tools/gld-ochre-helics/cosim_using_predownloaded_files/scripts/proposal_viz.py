@@ -563,8 +563,6 @@ class ProposalFigures:
     
             state_df = pd.DataFrame(state_window)
             mean_df  = pd.DataFrame(mean_window)
-            print(mean_df)
-            quit()
     
             # ── Keep only units active in this window ─────────────────────
             active_cols = [c for c in state_df.columns
@@ -673,7 +671,8 @@ class ProposalFigures:
                         label='P(ON)')
     
             plt.tight_layout()
-            self._save(fig, filename)
+            plt.show()
+            # self._save(fig, filename)
 
 
 
@@ -865,9 +864,9 @@ class ProposalFigures:
                     width=0.8, label=f'discount={discount_high}')
         axes[1, 0].axhline(0, color=COLORS['mid_gray'],
                         linewidth=0.8, linestyle='--')
-        axes[1, 0].set_ylabel('$\Delta$ Expected Units ON')
+        axes[1, 0].set_ylabel(r'$\Delta$ Expected Units ON')
         axes[1, 0].set_xlabel('Chunk Index (10-min intervals)')
-        axes[1, 0].set_title('(c) $\Delta x_{WH}$ — WH Delta Vector')
+        axes[1, 0].set_title(r'(c) $\Delta x_{WH}$ — WH Delta Vector')
         axes[1, 0].legend(fontsize=9)
 
         # ── Bottom right — Δx_hvac ───────────────────────────────────
@@ -879,9 +878,9 @@ class ProposalFigures:
                     width=0.8, label=f'discount={discount_high}')
         axes[1, 1].axhline(0, color=COLORS['mid_gray'],
                         linewidth=0.8, linestyle='--')
-        axes[1, 1].set_ylabel('$\Delta$ Expected Units ON')
+        axes[1, 1].set_ylabel(r'$\Delta$ Expected Units ON')
         axes[1, 1].set_xlabel('Chunk Index (10-min intervals)')
-        axes[1, 1].set_title('(d) $\Delta x_{HVAC}$ — HVAC Delta Vector')
+        axes[1, 1].set_title(r'(d) $\Delta x_{HVAC}$ — HVAC Delta Vector')
         axes[1, 1].legend(fontsize=9)
 
         plt.tight_layout()
@@ -936,13 +935,31 @@ class ProposalFigures:
         wh_truth   = pd.to_numeric(wh_ground_truth,   errors='coerce').values
         hvac_truth = pd.to_numeric(hvac_ground_truth, errors='coerce').values
 
+        def clean_arrays(y_true, y_pred):
+            y_true = np.asarray(y_true, dtype=float)
+            y_pred = np.asarray(y_pred, dtype=float)
+            mask = np.isfinite(y_true) & np.isfinite(y_pred)
+            return y_true[mask], y_pred[mask]
+
         def rmse(y_true, y_pred):
+            y_true, y_pred = clean_arrays(y_true, y_pred)
             return np.sqrt(np.mean((y_true - y_pred) ** 2))
 
-        std_wh_rmse    = rmse(wh_truth,   std_wh_predicted)
-        delta_wh_rmse  = rmse(wh_truth,   delta_wh_predicted)
-        std_hvac_rmse  = rmse(hvac_truth, std_hvac_predicted)
+        def r2_score(y_true, y_pred):
+            y_true, y_pred = clean_arrays(y_true, y_pred)
+            ss_res = np.sum((y_true - y_pred) ** 2)
+            ss_tot = np.sum((y_true - y_true.mean()) ** 2)
+            return np.nan if ss_tot == 0 else 1 - (ss_res / ss_tot)
+
+        std_wh_rmse     = rmse(wh_truth,   std_wh_predicted)
+        delta_wh_rmse   = rmse(wh_truth,   delta_wh_predicted)
+        std_hvac_rmse   = rmse(hvac_truth, std_hvac_predicted)
         delta_hvac_rmse = rmse(hvac_truth, delta_hvac_predicted)
+
+        std_wh_r2     = r2_score(wh_truth,   std_wh_predicted)
+        delta_wh_r2   = r2_score(wh_truth,   delta_wh_predicted)
+        std_hvac_r2   = r2_score(hvac_truth, std_hvac_predicted)
+        delta_hvac_r2 = r2_score(hvac_truth, delta_hvac_predicted)
 
         fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 7), sharex=True)
 
@@ -962,7 +979,9 @@ class ProposalFigures:
         ax1.xaxis.set_major_locator(ticker.MaxNLocator(12))
         ax1.annotate(
             f'Standard OLS RMSE: {std_wh_rmse/1e3:.2f} kW\n'
-            f'Delta OLS RMSE:    {delta_wh_rmse/1e3:.2f} kW',
+            f'Standard OLS $R^2$: {std_wh_r2:.3f}\n'
+            f'Delta OLS RMSE:    {delta_wh_rmse/1e3:.2f} kW\n'
+            f'Delta OLS $R^2$:    {delta_wh_r2:.3f}',
             xy=(0.01, 0.95), xycoords='axes fraction',
             fontsize=9, verticalalignment='top',
             bbox=dict(boxstyle='round', facecolor='white',
@@ -986,7 +1005,9 @@ class ProposalFigures:
         ax2.xaxis.set_major_locator(ticker.MaxNLocator(12))
         ax2.annotate(
             f'Standard OLS RMSE: {std_hvac_rmse/1e3:.2f} kW\n'
-            f'Delta OLS RMSE:    {delta_hvac_rmse/1e3:.2f} kW',
+            f'Standard OLS $R^2$: {std_hvac_r2:.3f}\n'
+            f'Delta OLS RMSE:    {delta_hvac_rmse/1e3:.2f} kW\n'
+            f'Delta OLS $R^2$:    {delta_hvac_r2:.3f}',
             xy=(0.01, 0.95), xycoords='axes fraction',
             fontsize=9, verticalalignment='top',
             bbox=dict(boxstyle='round', facecolor='white',
@@ -1033,13 +1054,13 @@ class ProposalFigures:
         ax1.bar(chunks, delta_wh, color=COLORS['black'],
                 alpha=0.7, width=0.8)
         ax1.axhline(0, color=COLORS['mid_gray'], linewidth=0.8, linestyle='--')
-        ax1.set_ylabel('$\Delta x_{WH}$')
+        ax1.set_ylabel(r'$\Delta$ x_{WH}')
         ax1.set_title('(a) Water Heater Delta Signal — Sharp, Infrequent Spikes')
 
         ax2.bar(chunks, delta_hvac, color=COLORS['dark_gray'],
                 alpha=0.7, width=0.8)
         ax2.axhline(0, color=COLORS['mid_gray'], linewidth=0.8, linestyle='--')
-        ax2.set_ylabel('$\Delta x_{HVAC}$')
+        ax2.set_ylabel(r'$\Delta$ x_{HVAC}')
         ax2.set_title('(b) HVAC Delta Signal — Frequent, Smaller Fluctuations')
         ax2.set_xlabel('Chunk Index (10-min intervals)')
 
@@ -1218,3 +1239,18 @@ class ProposalFigures:
 
         plt.tight_layout()
         self._save(fig, filename)
+    
+    def fig12_bar_chart_for_each_device (
+            self,
+            estimated_data : dict,
+            ground_truth_data : dict
+            ) -> None:
+        
+        fig, axes = plt.subplots (figsize = (16, 10))
+        gt_dict = {}
+        print("estimated data\n")
+        print(estimated_data)
+        # for filename, df in ground_truth_data.items():
+            
+
+        # gt_series = pd.Series(gt_dict)

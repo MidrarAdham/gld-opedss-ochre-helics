@@ -14,9 +14,11 @@ import pandas as pd
 
 class DataLoader:
 
-    def __init__(self, results_dir : str):
+    def __init__(self, results_dir : str, day_start : int = 1440, day_end : int = 2880):
         
         self.all_dfs = {}
+        self.day_end = day_end
+        self.day_start = day_start
         self.results_dir = results_dir
     
     def _collect_files_from_directories (self, files_dir : str) -> list:
@@ -27,7 +29,7 @@ class DataLoader:
 
     def _clean_dataframe (self, filename : str):
         df = pd.read_csv (filename, header=0, names=['time', 'power_out'] ,skiprows=8)
-        df = df.iloc[1440:2880]
+        df = df.iloc[self.day_start:self.day_end]
         df.loc[:, 'time'] = df['time'].apply (lambda x: x.strip ('PST'))
         df.loc[:, 'time'] = pd.to_datetime (df['time'])
         df.loc[:, 'power_out'] = df['power_out'].apply (lambda x: complex (x))
@@ -46,7 +48,7 @@ class DataLoader:
         xfmr = f'{self.results_dir}residential_transformer.csv'
         df = pd.read_csv (xfmr, skiprows=8, usecols=['# timestamp', 'power_out'])
         print("\n\ndon't forget you're using the second day of the data\n\n")
-        df = df.iloc [1440:2880]
+        df = df.iloc [self.day_start:self.day_end]
         df.loc[:, '# timestamp'] = df['# timestamp'].apply (lambda x: x.strip ('PST'))
         df.loc[:, '# timestamp'] = pd.to_datetime (df['# timestamp'])
         df.loc[:, 'power_out'] = df['power_out'].apply (lambda x: complex (x))

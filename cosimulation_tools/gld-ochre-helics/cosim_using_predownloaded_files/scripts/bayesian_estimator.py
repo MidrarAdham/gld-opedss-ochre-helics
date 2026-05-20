@@ -58,9 +58,16 @@ class BayesianEstimator:
         
         std = np.sqrt (variance)
         
-        # 95% confidence interval:
-        ci_lower = beta.ppf (self.ci_lower, alpha_posterior, beta_posterior)
-        ci_upper = beta.ppf (self.ci_upper, alpha_posterior, beta_posterior)
+        # Guard against overflow for large alpha and beta; this happens when running a long simulation ~10 days
+        try:
+            ci_lower = beta.ppf(self.ci_lower, alpha_posterior, beta_posterior)
+            ci_upper = beta.ppf(self.ci_upper, alpha_posterior, beta_posterior)
+        except (OverflowError, ValueError):
+            # When alpha/beta are large, posterior is very tight around mean
+            # Use normal approximation instead
+            ci_lower = max(0.0, mean - 1.645 * std)
+            ci_upper = min(1.0, mean + 1.645 * std)
+
         ci_width = ci_upper - ci_lower
 
         # theta stat calculations
