@@ -266,7 +266,7 @@ class OrdinaryLeastSquare:
     def run(
         self,
         exclude_hvac: list = None,
-    ) -> dict:
+        ) -> dict:
         """
         Run the full OLS pipeline.
 
