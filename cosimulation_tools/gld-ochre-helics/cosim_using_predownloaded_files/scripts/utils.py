@@ -27,6 +27,7 @@ def r2_score(y_true: np.ndarray, y_pred: np.ndarray) -> float:
     ss_res = np.sum((y_pred - y_true) ** 2)
     ss_tot = np.sum((y_true - y_true.mean()) ** 2)
     return 1 - ss_res / ss_tot if ss_tot > 1e-9 else 0.0
+    # return 1 - ss_res / ss_tot if ss_tot > 1e-9 else 0.0
 
 
 def mape_score(y_true: np.ndarray, y_pred: np.ndarray) -> float:
