@@ -59,8 +59,8 @@ if __name__ == '__main__':
 
     gt_per_device = get_ground_truth_per_device(hvac_loader.all_dfs)
 
-    # all_devices = [f for f in hvac_loader.all_dfs.keys() if f not in exclude_hvac and gt_per_device[f] >= one_ton_w]
-    all_devices = [f for f in hvac_loader.all_dfs.keys() if f not in exclude_hvac]
+    all_devices = [f for f in hvac_loader.all_dfs.keys() if f not in exclude_hvac and gt_per_device[f] >= one_ton_w]
+    # all_devices = [f for f in hvac_loader.all_dfs.keys() if f not in exclude_hvac]
 
     print(f'Devices above 1 ton: {len(all_devices)}')
     for d in all_devices:
@@ -187,7 +187,7 @@ if __name__ == '__main__':
 
     ax[1].set_xlabel('Number of HVAC Devices')
     ax[1].set_ylabel('MAPE (%)')
-    ax[1].set_ylim (-100, 1000)
+    ax[1].set_ylim (-10, 350)
     ax[1].set_title(f'MAPE vs Fleet Size — Training Day {train_days}')
 
     # handle the legends for the upper and lower plots
