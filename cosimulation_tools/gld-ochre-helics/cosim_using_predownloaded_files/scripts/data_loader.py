@@ -47,7 +47,7 @@ class DataLoader:
     def load_transformer_data (self):
         xfmr = f'{self.results_dir}residential_transformer.csv'
         df = pd.read_csv (xfmr, skiprows=8, usecols=['# timestamp', 'power_out'])
-        print("\n\ndon't forget you're using the second day of the data\n\n")
+        # print("\n\ndon't forget you're using the second day of the data\n\n")
         df = df.iloc [self.day_start:self.day_end]
         df.loc[:, '# timestamp'] = df['# timestamp'].apply (lambda x: x.strip ('PST'))
         df.loc[:, '# timestamp'] = pd.to_datetime (df['# timestamp'])

@@ -22,6 +22,9 @@ from utils import (
 )
 
 def evaluate_metrics(gt_data, estimated_data):
+    '''
+    I created this function because I needed to investigate the -ve R2 value. I think it is very straight forward.
+    '''
     gt       = np.asarray(gt_data)
     est      = np.asarray(estimated_data)
     gt_mean  = gt.mean()
@@ -33,35 +36,18 @@ def evaluate_metrics(gt_data, estimated_data):
     fig, ax = plt.subplots(figsize=(7, 7))
     
     ax.vlines(x=gt, ymin=gt, ymax=est, color='tomato', alpha=0.6, lw=0.8, label=f'{r"$y - \hat{y}$"}')
-    # for g in gt:
-    #     ax.plot([g, g], [g, gt_mean], color='steelblue', alpha=0.4, lw=0.8, label=f'{r"$y - \bar{y}$"}')
-
-    # for g, e in zip(gt, est):
-        # ax.plot([g, g], [g, e], color='tomato', alpha=0.6, lw=0.8, label=f'{r"$y - \hat{y}$"}')
-    # draw ss_tot segments: each gt point → mean(gt)  [blue, total variance]
     ax.vlines (x=gt, ymin=gt_mean, ymax=gt, color='steelblue', alpha=0.5, lw=0.8, label=f'{r"$y - \bar{y}$"}')
-    # ax.vlines(gt, gt, gt_mean, color='steelblue', alpha=0.4, lw=0.8)
 
 
     # scatter and reference lines
     ax.scatter(gt, est, color='black', s=20, zorder=5, label = f'Ground Truth (y) VS Estimated ({r"$\hat{y}$"})')
     lims = [min(gt.min(), est.min()), max(gt.max(), est.max())]
-    # ax.plot(lims, lims, 'k--', lw=1, label='perfect (y = x)')
-    ax.axhline(gt_mean, color='steelblue', lw=1, ls=':', label=f'{r"$\bar{y}$"} = {gt_mean:.2f}')
 
-    # proxy patches for legend
-    # from matplotlib.patches import Patch
-    # ax.legend(handles=[
-    #     ax.get_lines()[0],
-    #     ax.get_lines()[-1],
-    #     Patch(color='steelblue', alpha=0.5, label=f'SS_tot = {ss_tot:.2f}'),
-    #     Patch(color='tomato',    alpha=0.6, label=f'SS_res = {ss_res:.2f}'),
-    #     ], loc='upper left')
+    ax.axhline(gt_mean, color='steelblue', lw=1, ls=':', label=f'{r"$\bar{y}$"} = {gt_mean:.2f}')
 
     ax.set_xlabel('Ground truth (W)')
     ax.set_ylabel('Estimated (W)')
     ax.set_title(f'R² = {r2:.3f}  |  SS_res={ss_res:.2f}  SS_tot={ss_tot:.2f}')
-    # ax.set_aspect('equal')
     plt.legend ()
     plt.tight_layout()
     plt.savefig ('./r2_investigation_best_case.png', dpi=300)
@@ -123,8 +109,8 @@ if __name__ == '__main__':
 
     # ── Bayesian estimation on training days ─────────────────────────────
     estimator      = BayesianEstimator(num_chunks=n_chunks, discount=LAMBDA)
-    wh_histories   = estimator.fit_many(all_dfs=wh_df)
-    hvac_histories = estimator.fit_many(all_dfs=hvac_df)
+    wh_histories   = estimator.fit_many(all_dfs=wh_df) # calculates the beta, mean, alpha, etc parameters
+    hvac_histories = estimator.fit_many(all_dfs=hvac_df) # calculates the beta, mean, alpha, etc parameters
 
     # ── OLS on training days ─────────────────────────────────────────────
     ols = OrdinaryLeastSquare(
@@ -185,9 +171,4 @@ if __name__ == '__main__':
         }
 
         print(f'day={future_day:2d} | R²={r2:.3f} | MAPE={mape_future:.1f}%')
-
-    evaluate_metrics(
-        gt_data       = future_results[4]['future_gt'],
-        estimated_data = future_results[4]['future_estimated'],
-        )
     
