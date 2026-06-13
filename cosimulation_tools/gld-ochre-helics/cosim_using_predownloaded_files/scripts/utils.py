@@ -79,10 +79,11 @@ def get_ground_truth_per_device(all_dfs: dict) -> pd.Series:
 def build_active_ground_truth(
     hvac_active_cols: list,
     hvac_all_dfs: dict,
-) -> np.ndarray:
+    ) -> np.ndarray:
     """
     Build a ground truth total demand time series summed only over
-    the active devices used in per-device OLS estimation.
+    the active devices used in per-device OLS estimation. 
+    This sum is per chunk, so it returns (144,) for 10-minutes.
 
     Parameters
     ----------

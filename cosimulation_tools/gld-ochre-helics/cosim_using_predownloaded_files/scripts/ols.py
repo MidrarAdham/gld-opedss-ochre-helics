@@ -124,7 +124,7 @@ class OrdinaryLeastSquare:
         self,
         wh_mean_matrix:   pd.DataFrame,
         hvac_mean_matrix: pd.DataFrame,
-    ) -> dict:
+        ) -> dict:
         """
         Stage 1 — Warm-up OLS.
 
@@ -177,8 +177,8 @@ class OrdinaryLeastSquare:
         self,
         wh_mean_matrix:   pd.DataFrame,
         hvac_mean_matrix: pd.DataFrame,
-        exclude:          list = None,
-    ) -> dict:
+        exclude:          list = None
+        ) -> dict:
         """
         Stage 2 — Per-device OLS.
 
@@ -227,11 +227,10 @@ class OrdinaryLeastSquare:
         x_wh = wh_mean_matrix.sum(axis=1).values
 
         # ── Drop never-ON and explicitly excluded HVAC devices ───────
-        active_cols = [
-            col for col in hvac_mean_matrix.columns
-            if hvac_mean_matrix[col].max() > 0.01 and col not in exclude
-        ]
+        active_cols = [col for col in hvac_mean_matrix.columns if hvac_mean_matrix[col].max() > 0.01 and col not in exclude]
         hvac_active = hvac_mean_matrix[active_cols]
+
+
 
         # ── Background subtraction ───────────────────────────────────
         background_constant     = self.feeder_demand['power_out'].values.min()
@@ -243,8 +242,7 @@ class OrdinaryLeastSquare:
         A = np.column_stack([x_wh, hvac_active.values])
 
         # ── Solve OLS ────────────────────────────────────────────────
-        coefs, _, _, _ = np.linalg.lstsq(A, feeder_minus_background,
-                                         rcond=None)
+        coefs, _, _, _ = np.linalg.lstsq(A, feeder_minus_background,rcond=None)
         kw_wh = coefs[0]
 
         # Assign coefficients — zero for excluded/never-ON devices
@@ -266,6 +264,7 @@ class OrdinaryLeastSquare:
     def run(
         self,
         exclude_hvac: list = None,
+        subset_devices : list = None
         ) -> dict:
         """
         Run the full OLS pipeline.
@@ -290,6 +289,11 @@ class OrdinaryLeastSquare:
         wh_mean_matrix   = self._build_mean_matrix(histories=self.wh_histories)
         hvac_mean_matrix = self._build_mean_matrix(histories=self.hvac_histories)
 
+        if subset_devices is not None:
+            # wh_mean_matrix   = wh_mean_matrix[subset_devices]
+            hvac_mean_matrix = hvac_mean_matrix[subset_devices]
+
+
         # ── Stage 1: Simultaneous OLS ────────────────────────────────
         sim_results = self._run_simultaneous_ols(
             wh_mean_matrix=wh_mean_matrix,
@@ -300,7 +304,7 @@ class OrdinaryLeastSquare:
         per_device_results = self._run_per_device_hvac_ols(
             wh_mean_matrix=wh_mean_matrix,
             hvac_mean_matrix=hvac_mean_matrix,
-            exclude=exclude_hvac,
+            exclude=exclude_hvac
         )
 
         return {
