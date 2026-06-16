@@ -85,7 +85,7 @@ if __name__ == '__main__':
     total_house_dir = '../results/total_house_consumption/'
 
     # ── Configuration ────────────────────────────────────────────────────
-    train_days     = 2
+    train_days     = 30
     future_days    = list(range(3, 10))
     LAMBDA         = 0.01
     chunks_per_day = 144
@@ -132,43 +132,58 @@ if __name__ == '__main__':
 
     # analyze_metrics (hvac_dir=hvac_dir, mean_matrix=hvac_active, per_d_ols_coefficients=kw_per_device)
 
-    # ── Future day prediction ────────────────────────────────────────────
+    '''
+    calculate the change in the mean matrix:
+    delta M = M_new - M_old
+    '''
+    delta_M = (hvac_active.diff ()).fillna (0)
+    # symmetric color range around zero
+    limit = np.max(np.abs(delta_M))
 
-    future_results = {}
+    fig, ax = plt.subplots(figsize=(12, 6))
 
-    for future_day in future_days:
-        day_start = (future_day - 1) * 1440
-        day_end_f = future_day * 1440
+    mesh = ax.pcolormesh(
+        delta_M,
+        shading="auto",
+        vmin=-limit,
+        vmax=limit
+    )
 
-        future_hvac_loader = DataLoader(
-            results_dir=hvac_dir,
-            day_start=day_start,
-            day_end=day_end_f,
-        )
-        future_hvac_df = future_hvac_loader.load_csv_files(threshold=100.0)
+    fig.colorbar(mesh, ax=ax, label="Mean change: M_new - M_old")
 
-        # Build state matrix from raw ON/OFF states
-        future_state_matrix = ols._build_state_matrix(future_hvac_df)
+    ax.set_xlabel("HVAC device")
+    ax.set_ylabel("10-minute time step")
+    ax.set_title("Difference between new and old mean matrices")
 
-        # Estimate demand: Σ kw_i × ON_i(t)
-        future_estimated = future_state_matrix[active_cols].values @ kw_trained
+    ax.set_xticks(np.arange(0.5, 28.5, 1))
+    ax.set_xticklabels([f"HVAC {i+1}" for i in range(28)], rotation=90)
 
-        # Ground truth for future day
-        future_gt = build_active_ground_truth(
-            hvac_active_cols=active_cols.tolist(),
-            hvac_all_dfs=future_hvac_loader.all_dfs,
-        )
+    plt.tight_layout()
+    plt.show()
 
-        r2 = r2_score(future_gt, future_estimated)
-        mape_future = mape_score(future_gt, future_estimated)
+    time_change = np.sum(np.abs(delta_M), axis=1)
 
-        future_results[future_day] = {
-            'r2':              r2,
-            'mape':            mape_future,
-            'future_gt':       future_gt,
-            'future_estimated': future_estimated,
-            'state_matrix':    future_state_matrix,
-        }
+    plt.figure(figsize=(12, 4))
 
-        print(f'day={future_day:2d} | R²={r2:.3f} | MAPE={mape_future:.1f}%')
+    plt.plot(time_change)
+
+    plt.xlabel("10-minute time step")
+    plt.ylabel("Total absolute mean change")
+    plt.title("Mean matrix change per time step")
+
+    plt.tight_layout()
+    plt.show()
+
+    device_change = np.sum(np.abs(delta_M), axis=0)
+
+    plt.figure(figsize=(10, 4))
+
+    plt.bar(np.arange(1, 27), device_change)
+
+    plt.xlabel("HVAC device")
+    plt.ylabel("Total absolute mean change")
+    plt.title("Mean matrix change per HVAC device")
+
+    plt.tight_layout()
+    plt.show()
     
