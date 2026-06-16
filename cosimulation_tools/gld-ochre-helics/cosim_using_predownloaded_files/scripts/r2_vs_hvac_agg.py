@@ -127,15 +127,6 @@ if __name__ == '__main__':
                 mape = mape_score(gt, est)
                 mape_list.append(mape)
 
-
-            sweep_results[N] = {
-                'r2_mean': np.mean(r2_list),
-                'r2_std':  np.std(r2_list),
-                'mape_mean': np.mean(mape_list),
-                'mape_std':  np.std(mape_list),
-                }
-            print(f'N={N:2d} | R²={sweep_results[N]["r2_mean"]:.3f} ± {sweep_results[N]["r2_std"]:.3f}')
-
             sweep_results[N] = {
                 'r2_mean':   np.mean(r2_list),
                 'r2_std':    np.std(r2_list),
@@ -151,7 +142,7 @@ if __name__ == '__main__':
         for N, metrics in sweep_results.items():
             # print(f'N={N:2d} | R²={metrics["r2_mean"]:.3f} ± {metrics["r2_std"]:.3f}')
             rows.append({'N': N, **metrics})
-        pd.DataFrame(rows).to_csv('r2_vs_fleet_size.csv', index=False)
+        pd.DataFrame(rows).to_csv(f'r2_vs_fleet_size_unfiltered_day{day}.csv', index=False)
         print(pd.DataFrame(rows))
 
         # ── Plot ─────────────────────────────────────────────────────────────
@@ -196,9 +187,9 @@ if __name__ == '__main__':
         ax[1].grid(True)
         ax[0].grid(True)
         plt.tight_layout()
-        plt.savefig(f'r2_vs_fleet_size_trained_on_{day}_days.png')
+        # plt.savefig(f'r2_vs_fleet_size_trained_on_{day}_days.png')
         # ax[0].legend()
         # ax[0].grid(True)
         # plt.tight_layout()
         # plt.savefig('r2_vs_fleet_size.png')
-        plt.show()
+        # plt.show()
