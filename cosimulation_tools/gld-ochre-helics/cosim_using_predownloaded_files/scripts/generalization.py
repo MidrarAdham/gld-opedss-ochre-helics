@@ -13,6 +13,7 @@ import matplotlib.pyplot as plt
 
 from data_loader import DataLoader
 from ols import OrdinaryLeastSquare
+from sklearn.decomposition import PCA
 from bayesian_estimator import BayesianEstimator
 from utils import (
     r2_score,
@@ -85,7 +86,7 @@ if __name__ == '__main__':
     total_house_dir = '../results/total_house_consumption/'
 
     # ── Configuration ────────────────────────────────────────────────────
-    train_days     = 30
+    train_days     = 5
     future_days    = list(range(3, 10))
     LAMBDA         = 0.01
     chunks_per_day = 144
@@ -137,53 +138,42 @@ if __name__ == '__main__':
     delta M = M_new - M_old
     '''
     delta_M = (hvac_active.diff ()).fillna (0)
-    # symmetric color range around zero
-    limit = np.max(np.abs(delta_M))
+    
+    # Optional: convert DataFrame to NumPy array
+    X = delta_M.to_numpy()
 
-    fig, ax = plt.subplots(figsize=(12, 6))
+    # Optional but useful: remove average change of each HVAC
+    X = X - X.mean(axis=0)
 
-    mesh = ax.pcolormesh(
-        delta_M,
-        shading="auto",
-        vmin=-limit,
-        vmax=limit
-    )
+    pca = PCA()
+    pca.fit(X)
 
-    fig.colorbar(mesh, ax=ax, label="Mean change: M_new - M_old")
+    # explained = pca.explained_variance_ratio_
 
-    ax.set_xlabel("HVAC device")
-    ax.set_ylabel("10-minute time step")
-    ax.set_title("Difference between new and old mean matrices")
+    # plt.figure(figsize=(8, 4))
+    # plt.plot(np.arange(1, len(explained) + 1), explained, marker="o")
 
-    ax.set_xticks(np.arange(0.5, 28.5, 1))
-    ax.set_xticklabels([f"HVAC {i+1}" for i in range(28)], rotation=90)
+    # plt.xlabel("Principal component")
+    # plt.ylabel("Explained variance ratio")
+    # plt.title("PCA of 10-minute HVAC mean changes")
 
-    plt.tight_layout()
-    plt.show()
+    # plt.tight_layout()
+    # plt.show()
 
-    time_change = np.sum(np.abs(delta_M), axis=1)
+    print(len(pca.components_))
 
-    plt.figure(figsize=(12, 4))
+    
+    pc1_loading = pca.components_[0]
 
-    plt.plot(time_change)
-
-    plt.xlabel("10-minute time step")
-    plt.ylabel("Total absolute mean change")
-    plt.title("Mean matrix change per time step")
-
-    plt.tight_layout()
-    plt.show()
-
-    device_change = np.sum(np.abs(delta_M), axis=0)
+    n_devices = delta_M.shape[1]
 
     plt.figure(figsize=(10, 4))
-
-    plt.bar(np.arange(1, 27), device_change)
+    plt.bar(np.arange(1, n_devices + 1), pc1_loading)
 
     plt.xlabel("HVAC device")
-    plt.ylabel("Total absolute mean change")
-    plt.title("Mean matrix change per HVAC device")
+    plt.ylabel("PC1 loading")
+    plt.title("HVAC contribution to the first update pattern")
 
+    plt.xticks(np.arange(1, n_devices + 1))
     plt.tight_layout()
     plt.show()
-    
