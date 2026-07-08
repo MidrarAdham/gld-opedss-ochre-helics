@@ -176,4 +176,5 @@ if __name__ == '__main__':
 
     plt.xticks(np.arange(1, n_devices + 1))
     plt.tight_layout()
+    plt.savefig ('./test.png')
     plt.show()
