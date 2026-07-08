@@ -27,9 +27,9 @@ def read_load_paths (load_paths_file : str):
     # dfs = [pd.read_csv (value) for key, value in data.items ()]
 
     for key, value in data.items ():
+        idx = value.split('/')[-3]
         df = pd.read_csv (value, parse_dates=["Time"])
-        dfs [key] = df.set_index ('Time')
-
+        dfs [idx] = df.set_index ('Time')
     return dfs
 
 def make_helics_federate(config_file : str ="ochre_helics_config.json"):
@@ -47,7 +47,8 @@ def make_helics_federate(config_file : str ="ochre_helics_config.json"):
 def get_publications (dfs : dict, fed):
     pubs = {}
     for idx in dfs.keys ():
-        pub_name = f"ochre_house_{idx}.constant_power_12"
+        pub_name = f"ochre_house_load_{idx}.constant_power_12"
+        # print(pub_name)
         pubs[idx] = fed.get_publication_by_name(pub_name)
     
     return pubs
@@ -84,9 +85,9 @@ def run_simulation (fed, dfs, pubs):
         _step_to (time=t, fed=fed, start_time=start_time)
 
         for idx in dfs.keys ():
-            power_kw = dfs[idx]['Total Electric Power (kW)'].get (t, 0)
+            # power_kw = dfs[idx]['Total Electric Power (kW)'].get (t, 0)
             # power_kw = dfs[idx]['Water Heating Electric Power (kW)'].get (t, 0)
-            # power_kw = dfs[idx]['HVAC Heating Electric Power (kW)'].get (t, 0)
+            power_kw = dfs[idx]['HVAC Heating Electric Power (kW)'].get (t, 0)
 
             pubs [idx].publish (complex (power_kw * 1000, 0))
         

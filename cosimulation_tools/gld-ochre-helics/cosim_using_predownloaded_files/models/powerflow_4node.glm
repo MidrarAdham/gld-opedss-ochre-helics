@@ -191,441 +191,520 @@ object triplex_meter{
 	nominal_voltage 120;
 }
 
-object triplex_load {
-	name ochre_house_load_0;
-	parent house_meter;
-	phases CS;
-	constant_power_12 0+0j; // this should be updated by HELICS
-	nominal_voltage 120; 
-}
+
 
 object triplex_load {
-	name ochre_house_load_1;
-	parent house_meter;
-	phases CS;
-	constant_power_12 0+0j; // this should be updated by HELICS
-	nominal_voltage 120; 
+    name ochre_house_load_13370;
+    parent house_meter;
+    phases CS;
+    constant_power_12 0+0j;
+    nominal_voltage 120; 
 }
 
-object triplex_load {
-	name ochre_house_load_2;
-	parent house_meter;
-	phases CS;
-	constant_power_12 0+0j; // this should be updated by HELICS
-	nominal_voltage 120; 
-}
 
-object triplex_load {
-	name ochre_house_load_3;
-	parent house_meter;
-	phases CS;
-	constant_power_12 0+0j; // this should be updated by HELICS
-	nominal_voltage 120; 
-}
 
-object triplex_load {
-	name ochre_house_load_4;
-	parent house_meter;
-	phases CS;
-	constant_power_12 0+0j; // this should be updated by HELICS
-	nominal_voltage 120; 
-}
-
-object triplex_load {
-	name ochre_house_load_5;
-	parent house_meter;
-	phases CS;
-	constant_power_12 0+0j; // this should be updated by HELICS
-	nominal_voltage 120; 
-}
-
-object triplex_load {
-	name ochre_house_load_6;
-	parent house_meter;
-	phases CS;
-	constant_power_12 0+0j; // this should be updated by HELICS
-	nominal_voltage 120; 
-}
-
-object triplex_load {
-	name ochre_house_load_7;
-	parent house_meter;
-	phases CS;
-	constant_power_12 0+0j; // this should be updated by HELICS
-	nominal_voltage 120; 
-}
-
-object triplex_load {
-	name ochre_house_load_8;
-	parent house_meter;
-	phases CS;
-	constant_power_12 0+0j; // this should be updated by HELICS
-	nominal_voltage 120; 
-}
-
-object triplex_load {
-	name ochre_house_load_9;
-	parent house_meter;
-	phases CS;
-	constant_power_12 0+0j; // this should be updated by HELICS
-	nominal_voltage 120; 
-}
-
-object triplex_load {
-	name ochre_house_load_10;
-	parent house_meter;
-	phases CS;
-	constant_power_12 0+0j; // this should be updated by HELICS
-	nominal_voltage 120; 
-}
-
-object triplex_load {
-	name ochre_house_load_11;
-	parent house_meter;
-	phases CS;
-	constant_power_12 0+0j; // this should be updated by HELICS
-	nominal_voltage 120; 
-}
-
-object triplex_load {
-	name ochre_house_load_12;
-	parent house_meter;
-	phases CS;
-	constant_power_12 0+0j; // this should be updated by HELICS
-	nominal_voltage 120; 
-}
-
-object triplex_load {
-	name ochre_house_load_13;
-	parent house_meter;
-	phases CS;
-	constant_power_12 0+0j; // this should be updated by HELICS
-	nominal_voltage 120; 
-}
-
-object triplex_load {
-	name ochre_house_load_14;
-	parent house_meter;
-	phases CS;
-	constant_power_12 0+0j; // this should be updated by HELICS
-	nominal_voltage 120; 
-}
-
-object triplex_load {
-	name ochre_house_load_15;
-	parent house_meter;
-	phases CS;
-	constant_power_12 0+0j; // this should be updated by HELICS
-	nominal_voltage 120; 
-}
-
-object triplex_load {
-	name ochre_house_load_16;
-	parent house_meter;
-	phases CS;
-	constant_power_12 0+0j; // this should be updated by HELICS
-	nominal_voltage 120; 
-}
-
-object triplex_load {
-	name ochre_house_load_17;
-	parent house_meter;
-	phases CS;
-	constant_power_12 0+0j; // this should be updated by HELICS
-	nominal_voltage 120; 
-}
-
-object triplex_load {
-	name ochre_house_load_18;
-	parent house_meter;
-	phases CS;
-	constant_power_12 0+0j; // this should be updated by HELICS
-	nominal_voltage 120; 
-}
-
-object triplex_load {
-	name ochre_house_load_19;
-	parent house_meter;
-	phases CS;
-	constant_power_12 0+0j; // this should be updated by HELICS
-	nominal_voltage 120; 
-}
-
-object triplex_load {
-	name ochre_house_load_20;
-	parent house_meter;
-	phases CS;
-	constant_power_12 0+0j; // this should be updated by HELICS
-	nominal_voltage 120; 
-}
-
-object triplex_load {
-	name ochre_house_load_21;
-	parent house_meter;
-	phases CS;
-	constant_power_12 0+0j; // this should be updated by HELICS
-	nominal_voltage 120; 
-}
-
-object triplex_load {
-	name ochre_house_load_22;
-	parent house_meter;
-	phases CS;
-	constant_power_12 0+0j; // this should be updated by HELICS
-	nominal_voltage 120; 
-}
-
-object triplex_load {
-	name ochre_house_load_23;
-	parent house_meter;
-	phases CS;
-	constant_power_12 0+0j; // this should be updated by HELICS
-	nominal_voltage 120; 
-}
-
-object triplex_load {
-	name ochre_house_load_24;
-	parent house_meter;
-	phases CS;
-	constant_power_12 0+0j; // this should be updated by HELICS
-	nominal_voltage 120; 
-}
-
-object triplex_load {
-	name ochre_house_load_25;
-	parent house_meter;
-	phases CS;
-	constant_power_12 0+0j; // this should be updated by HELICS
-	nominal_voltage 120; 
-}
-
-object triplex_load {
-	name ochre_house_load_26;
-	parent house_meter;
-	phases CS;
-	constant_power_12 0+0j; // this should be updated by HELICS
-	nominal_voltage 120; 
-}
-
-object triplex_load {
-	name ochre_house_load_27;
-	parent house_meter;
-	phases CS;
-	constant_power_12 0+0j; // this should be updated by HELICS
-	nominal_voltage 120; 
-}
-
-// object recorder {
-// 	parent house_meter;
-// 	file meter_logs.csv;
-// 	interval 60;
-// 	property measured_real_power;
-// }
-
-// Record the OCHRE load 1 directly
 object recorder {
-    parent ochre_house_load_0;
-    file ../results/ochre_load_0.csv;
+    parent ochre_house_load_13370;
+    file ../results/ochre_load_13370.csv;
     interval 60;
     property constant_power_12;
 }
 
 
-// Record the OCHRE load 2 directly
-object recorder {
-    parent ochre_house_load_1;
-    file ../results/ochre_load_1.csv;
-    interval 60;
-    property constant_power_12;
+
+object triplex_load {
+    name ochre_house_load_186734;
+    parent house_meter;
+    phases CS;
+    constant_power_12 0+0j;
+    nominal_voltage 120; 
 }
 
-object recorder {
-    parent ochre_house_load_2;
-    file ../results/ochre_load_2.csv;
-    interval 60;
-    property constant_power_12;
-}
+
 
 object recorder {
-    parent ochre_house_load_3;
-    file ../results/ochre_load_3.csv;
-    interval 60;
-    property constant_power_12;
-}
-
-object recorder {
-    parent ochre_house_load_4;
-    file ../results/ochre_load_4.csv;
-    interval 60;
-    property constant_power_12;
-}
-
-object recorder {
-    parent ochre_house_load_5;
-    file ../results/ochre_load_5.csv;
-    interval 60;
-    property constant_power_12;
-}
-
-object recorder {
-    parent ochre_house_load_6;
-    file ../results/ochre_load_6.csv;
-    interval 60;
-    property constant_power_12;
-}
-
-object recorder {
-    parent ochre_house_load_7;
-    file ../results/ochre_load_7.csv;
-    interval 60;
-    property constant_power_12;
-}
-
-object recorder {
-    parent ochre_house_load_8;
-    file ../results/ochre_load_8.csv;
+    parent ochre_house_load_186734;
+    file ../results/ochre_load_186734.csv;
     interval 60;
     property constant_power_12;
 }
 
 
-// Record the OCHRE load 2 directly
-object recorder {
-    parent ochre_house_load_9;
-    file ../results/ochre_load_9.csv;
-    interval 60;
-    property constant_power_12;
+
+object triplex_load {
+    name ochre_house_load_199434;
+    parent house_meter;
+    phases CS;
+    constant_power_12 0+0j;
+    nominal_voltage 120; 
 }
 
-object recorder {
-    parent ochre_house_load_10;
-    file ../results/ochre_load_10.csv;
-    interval 60;
-    property constant_power_12;
-}
+
 
 object recorder {
-    parent ochre_house_load_11;
-    file ../results/ochre_load_11.csv;
-    interval 60;
-    property constant_power_12;
-}
-
-object recorder {
-    parent ochre_house_load_12;
-    file ../results/ochre_load_12.csv;
-    interval 60;
-    property constant_power_12;
-}
-
-object recorder {
-    parent ochre_house_load_13;
-    file ../results/ochre_load_13.csv;
-    interval 60;
-    property constant_power_12;
-}
-
-object recorder {
-    parent ochre_house_load_14;
-    file ../results/ochre_load_14.csv;
-    interval 60;
-    property constant_power_12;
-}
-
-object recorder {
-    parent ochre_house_load_15;
-    file ../results/ochre_load_15.csv;
-    interval 60;
-    property constant_power_12;
-}
-
-object recorder {
-    parent ochre_house_load_16;
-    file ../results/ochre_load_16.csv;
+    parent ochre_house_load_199434;
+    file ../results/ochre_load_199434.csv;
     interval 60;
     property constant_power_12;
 }
 
 
-// Record the OCHRE load 2 directly
-object recorder {
-    parent ochre_house_load_17;
-    file ../results/ochre_load_17.csv;
-    interval 60;
-    property constant_power_12;
+
+object triplex_load {
+    name ochre_house_load_227486;
+    parent house_meter;
+    phases CS;
+    constant_power_12 0+0j;
+    nominal_voltage 120; 
 }
 
-object recorder {
-    parent ochre_house_load_18;
-    file ../results/ochre_load_18.csv;
-    interval 60;
-    property constant_power_12;
-}
+
 
 object recorder {
-    parent ochre_house_load_19;
-    file ../results/ochre_load_19.csv;
-    interval 60;
-    property constant_power_12;
-}
-
-object recorder {
-    parent ochre_house_load_20;
-    file ../results/ochre_load_20.csv;
-    interval 60;
-    property constant_power_12;
-}
-
-object recorder {
-    parent ochre_house_load_21;
-    file ../results/ochre_load_21.csv;
-    interval 60;
-    property constant_power_12;
-}
-
-object recorder {
-    parent ochre_house_load_22;
-    file ../results/ochre_load_22.csv;
-    interval 60;
-    property constant_power_12;
-}
-
-object recorder {
-    parent ochre_house_load_23;
-    file ../results/ochre_load_23.csv;
-    interval 60;
-    property constant_power_12;
-}
-
-object recorder {
-    parent ochre_house_load_24;
-    file ../results/ochre_load_24.csv;
+    parent ochre_house_load_227486;
+    file ../results/ochre_load_227486.csv;
     interval 60;
     property constant_power_12;
 }
 
 
-// Record the OCHRE load 2 directly
+
+object triplex_load {
+    name ochre_house_load_292272;
+    parent house_meter;
+    phases CS;
+    constant_power_12 0+0j;
+    nominal_voltage 120; 
+}
+
+
+
 object recorder {
-    parent ochre_house_load_25;
-    file ../results/ochre_load_25.csv;
+    parent ochre_house_load_292272;
+    file ../results/ochre_load_292272.csv;
     interval 60;
     property constant_power_12;
 }
 
+
+
+object triplex_load {
+    name ochre_house_load_32387;
+    parent house_meter;
+    phases CS;
+    constant_power_12 0+0j;
+    nominal_voltage 120; 
+}
+
+
+
 object recorder {
-    parent ochre_house_load_26;
-    file ../results/ochre_load_26.csv;
+    parent ochre_house_load_32387;
+    file ../results/ochre_load_32387.csv;
     interval 60;
     property constant_power_12;
 }
 
+
+
+object triplex_load {
+    name ochre_house_load_366404;
+    parent house_meter;
+    phases CS;
+    constant_power_12 0+0j;
+    nominal_voltage 120; 
+}
+
+
+
 object recorder {
-    parent ochre_house_load_27;
-    file ../results/ochre_load_27.csv;
+    parent ochre_house_load_366404;
+    file ../results/ochre_load_366404.csv;
     interval 60;
     property constant_power_12;
 }
+
+
+
+object triplex_load {
+    name ochre_house_load_387321;
+    parent house_meter;
+    phases CS;
+    constant_power_12 0+0j;
+    nominal_voltage 120; 
+}
+
+
+
+object recorder {
+    parent ochre_house_load_387321;
+    file ../results/ochre_load_387321.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+
+
+object triplex_load {
+    name ochre_house_load_448411;
+    parent house_meter;
+    phases CS;
+    constant_power_12 0+0j;
+    nominal_voltage 120; 
+}
+
+
+
+object recorder {
+    parent ochre_house_load_448411;
+    file ../results/ochre_load_448411.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+
+
+object triplex_load {
+    name ochre_house_load_93923;
+    parent house_meter;
+    phases CS;
+    constant_power_12 0+0j;
+    nominal_voltage 120; 
+}
+
+
+
+object recorder {
+    parent ochre_house_load_93923;
+    file ../results/ochre_load_93923.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+
+
+object triplex_load {
+    name ochre_house_load_147689;
+    parent house_meter;
+    phases CS;
+    constant_power_12 0+0j;
+    nominal_voltage 120; 
+}
+
+
+
+object recorder {
+    parent ochre_house_load_147689;
+    file ../results/ochre_load_147689.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+
+
+object triplex_load {
+    name ochre_house_load_188195;
+    parent house_meter;
+    phases CS;
+    constant_power_12 0+0j;
+    nominal_voltage 120; 
+}
+
+
+
+object recorder {
+    parent ochre_house_load_188195;
+    file ../results/ochre_load_188195.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+
+
+object triplex_load {
+    name ochre_house_load_238583;
+    parent house_meter;
+    phases CS;
+    constant_power_12 0+0j;
+    nominal_voltage 120; 
+}
+
+
+
+object recorder {
+    parent ochre_house_load_238583;
+    file ../results/ochre_load_238583.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+
+
+object triplex_load {
+    name ochre_house_load_29683;
+    parent house_meter;
+    phases CS;
+    constant_power_12 0+0j;
+    nominal_voltage 120; 
+}
+
+
+
+object recorder {
+    parent ochre_house_load_29683;
+    file ../results/ochre_load_29683.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+
+
+object triplex_load {
+    name ochre_house_load_327816;
+    parent house_meter;
+    phases CS;
+    constant_power_12 0+0j;
+    nominal_voltage 120; 
+}
+
+
+
+object recorder {
+    parent ochre_house_load_327816;
+    file ../results/ochre_load_327816.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+
+
+object triplex_load {
+    name ochre_house_load_370750;
+    parent house_meter;
+    phases CS;
+    constant_power_12 0+0j;
+    nominal_voltage 120; 
+}
+
+
+
+object recorder {
+    parent ochre_house_load_370750;
+    file ../results/ochre_load_370750.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+
+
+object triplex_load {
+    name ochre_house_load_409590;
+    parent house_meter;
+    phases CS;
+    constant_power_12 0+0j;
+    nominal_voltage 120; 
+}
+
+
+
+object recorder {
+    parent ochre_house_load_409590;
+    file ../results/ochre_load_409590.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+
+
+object triplex_load {
+    name ochre_house_load_504038;
+    parent house_meter;
+    phases CS;
+    constant_power_12 0+0j;
+    nominal_voltage 120; 
+}
+
+
+
+object recorder {
+    parent ochre_house_load_504038;
+    file ../results/ochre_load_504038.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+
+
+object triplex_load {
+    name ochre_house_load_177213;
+    parent house_meter;
+    phases CS;
+    constant_power_12 0+0j;
+    nominal_voltage 120; 
+}
+
+
+
+object recorder {
+    parent ochre_house_load_177213;
+    file ../results/ochre_load_177213.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+
+
+object triplex_load {
+    name ochre_house_load_193969;
+    parent house_meter;
+    phases CS;
+    constant_power_12 0+0j;
+    nominal_voltage 120; 
+}
+
+
+
+object recorder {
+    parent ochre_house_load_193969;
+    file ../results/ochre_load_193969.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+
+
+object triplex_load {
+    name ochre_house_load_214735;
+    parent house_meter;
+    phases CS;
+    constant_power_12 0+0j;
+    nominal_voltage 120; 
+}
+
+
+
+object recorder {
+    parent ochre_house_load_214735;
+    file ../results/ochre_load_214735.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+
+
+object triplex_load {
+    name ochre_house_load_258272;
+    parent house_meter;
+    phases CS;
+    constant_power_12 0+0j;
+    nominal_voltage 120; 
+}
+
+
+
+object recorder {
+    parent ochre_house_load_258272;
+    file ../results/ochre_load_258272.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+
+
+object triplex_load {
+    name ochre_house_load_303992;
+    parent house_meter;
+    phases CS;
+    constant_power_12 0+0j;
+    nominal_voltage 120; 
+}
+
+
+
+object recorder {
+    parent ochre_house_load_303992;
+    file ../results/ochre_load_303992.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+
+
+object triplex_load {
+    name ochre_house_load_355669;
+    parent house_meter;
+    phases CS;
+    constant_power_12 0+0j;
+    nominal_voltage 120; 
+}
+
+
+
+object recorder {
+    parent ochre_house_load_355669;
+    file ../results/ochre_load_355669.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+
+
+object triplex_load {
+    name ochre_house_load_385977;
+    parent house_meter;
+    phases CS;
+    constant_power_12 0+0j;
+    nominal_voltage 120; 
+}
+
+
+
+object recorder {
+    parent ochre_house_load_385977;
+    file ../results/ochre_load_385977.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+
+
+object triplex_load {
+    name ochre_house_load_442093;
+    parent house_meter;
+    phases CS;
+    constant_power_12 0+0j;
+    nominal_voltage 120; 
+}
+
+
+
+object recorder {
+    parent ochre_house_load_442093;
+    file ../results/ochre_load_442093.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+
+
+object triplex_load {
+    name ochre_house_load_62;
+    parent house_meter;
+    phases CS;
+    constant_power_12 0+0j;
+    nominal_voltage 120; 
+}
+
+
+
+object recorder {
+    parent ochre_house_load_62;
+    file ../results/ochre_load_62.csv;
+    interval 60;
+    property constant_power_12;
+}
+
+
 
 
 

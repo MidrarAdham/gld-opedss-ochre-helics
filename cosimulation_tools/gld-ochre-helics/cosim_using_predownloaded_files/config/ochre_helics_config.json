@@ -7,137 +7,137 @@
     "terminate_on_error": true,
     "publications": [
         {
-            "key": "ochre_house_load_0.constant_power_12",
+            "key": "ochre_house_load_32387.constant_power_12",
             "type": "complex",
             "global": true
         },
         {
-            "key": "ochre_house_load_1.constant_power_12",
+            "key": "ochre_house_load_214735.constant_power_12",
             "type": "complex",
             "global": true
         },
         {
-            "key": "ochre_house_load_2.constant_power_12",
+            "key": "ochre_house_load_258272.constant_power_12",
             "type": "complex",
             "global": true
         },
         {
-            "key": "ochre_house_load_3.constant_power_12",
+            "key": "ochre_house_load_387321.constant_power_12",
             "type": "complex",
             "global": true
         },
         {
-            "key": "ochre_house_load_4.constant_power_12",
+            "key": "ochre_house_load_370750.constant_power_12",
             "type": "complex",
             "global": true
         },
         {
-            "key": "ochre_house_load_5.constant_power_12",
+            "key": "ochre_house_load_409590.constant_power_12",
             "type": "complex",
             "global": true
         },
         {
-            "key": "ochre_house_load_6.constant_power_12",
+            "key": "ochre_house_load_227486.constant_power_12",
             "type": "complex",
             "global": true
         },
         {
-            "key": "ochre_house_load_7.constant_power_12",
+            "key": "ochre_house_load_147689.constant_power_12",
             "type": "complex",
             "global": true
         },
         {
-            "key": "ochre_house_load_8.constant_power_12",
+            "key": "ochre_house_load_93923.constant_power_12",
             "type": "complex",
             "global": true
         },
         {
-            "key": "ochre_house_load_9.constant_power_12",
+            "key": "ochre_house_load_238583.constant_power_12",
             "type": "complex",
             "global": true
         },
         {
-            "key": "ochre_house_load_10.constant_power_12",
+            "key": "ochre_house_load_186734.constant_power_12",
             "type": "complex",
             "global": true
         },
         {
-            "key": "ochre_house_load_11.constant_power_12",
+            "key": "ochre_house_load_504038.constant_power_12",
             "type": "complex",
             "global": true
         },
         {
-            "key": "ochre_house_load_12.constant_power_12",
+            "key": "ochre_house_load_385977.constant_power_12",
             "type": "complex",
             "global": true
         },
         {
-            "key": "ochre_house_load_13.constant_power_12",
+            "key": "ochre_house_load_199434.constant_power_12",
             "type": "complex",
             "global": true
         },
         {
-            "key": "ochre_house_load_14.constant_power_12",
+            "key": "ochre_house_load_193969.constant_power_12",
             "type": "complex",
             "global": true
         },
         {
-            "key": "ochre_house_load_15.constant_power_12",
+            "key": "ochre_house_load_62.constant_power_12",
             "type": "complex",
             "global": true
         },
         {
-            "key": "ochre_house_load_16.constant_power_12",
+            "key": "ochre_house_load_29683.constant_power_12",
             "type": "complex",
             "global": true
         },
         {
-            "key": "ochre_house_load_17.constant_power_12",
+            "key": "ochre_house_load_188195.constant_power_12",
             "type": "complex",
             "global": true
         },
         {
-            "key": "ochre_house_load_18.constant_power_12",
+            "key": "ochre_house_load_366404.constant_power_12",
             "type": "complex",
             "global": true
         },
         {
-            "key": "ochre_house_load_19.constant_power_12",
+            "key": "ochre_house_load_177213.constant_power_12",
             "type": "complex",
             "global": true
         },
         {
-            "key": "ochre_house_load_20.constant_power_12",
+            "key": "ochre_house_load_448411.constant_power_12",
             "type": "complex",
             "global": true
         },
         {
-            "key": "ochre_house_load_21.constant_power_12",
+            "key": "ochre_house_load_442093.constant_power_12",
             "type": "complex",
             "global": true
         },
         {
-            "key": "ochre_house_load_22.constant_power_12",
+            "key": "ochre_house_load_355669.constant_power_12",
             "type": "complex",
             "global": true
         },
         {
-            "key": "ochre_house_load_23.constant_power_12",
+            "key": "ochre_house_load_292272.constant_power_12",
             "type": "complex",
             "global": true
         },
         {
-            "key": "ochre_house_load_24.constant_power_12",
+            "key": "ochre_house_load_327816.constant_power_12",
             "type": "complex",
             "global": true
         },
         {
-            "key": "ochre_house_load_25.constant_power_12",
+            "key": "ochre_house_load_13370.constant_power_12",
             "type": "complex",
             "global": true
         },
         {
-            "key": "ochre_house_load_26.constant_power_12",
+            "key": "ochre_house_load_303992.constant_power_12",
             "type": "complex",
             "global": true
         }
