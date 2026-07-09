@@ -11,12 +11,19 @@ For new PEG users, usage [wh dir example]:
 '''
 import os
 import pandas as pd
+import xml.etree.ElementTree as ET
 
 class DataLoader:
 
-    def __init__(self, results_dir : str, day_start : int = 1440, day_end : int = 2880):
+    def __init__(self,
+                 results_dir : str,
+                 day_start : int = 1440,
+                 day_end : int = 2880,
+                 upgrade : str = 'up00'
+                 ):
         
         self.all_dfs = {}
+        self.up = upgrade
         self.day_end = day_end
         self.day_start = day_start
         self.results_dir = results_dir
@@ -78,3 +85,32 @@ class DataLoader:
         
         return self.all_dfs
     
+    def get_btu_per_device (self):
+        
+        bldg_ids = [bldg for bldg in os.listdir(self.results_dir)]
+
+        for bldg_id in bldg_ids:
+            
+            tree = ET.parse(self.results_dir+bldg_id+'/'+self.up+'/home.xml')
+            
+            root = tree.getroot ()
+            
+            ns = {"h":root.tag.split ("}")[0].strip("{")}
+            
+            heating_systems = root.findall (".//h:HVAC/h:HVACPlant/h:HeatingSystem", ns)
+            
+            for system in heating_systems:
+                
+                system_id = system.find("h:SystemIdentifier", ns).attrib.get("id")
+                
+                capacity = system.findtext("h:HeatingCapacity", default="N/A", namespaces=ns)
+                
+                fuel = system.findtext("h:HeatingSystemFuel", default="N/A", namespaces=ns)
+
+                print(bldg_id)
+                print(f"HVAC System ID: {system_id}")
+                print(f"Fuel: {fuel}")
+                print(f"HeatingCapacity: {capacity} Btu/hr")
+
+                quit()
+        

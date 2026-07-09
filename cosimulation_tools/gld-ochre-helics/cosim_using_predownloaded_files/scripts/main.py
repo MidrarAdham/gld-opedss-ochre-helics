@@ -21,7 +21,7 @@ from utils import (
 )
 
 if __name__ == '__main__':
-
+    home_xml_dir    = '/home/deras/gld-opedss-ochre-helics/datasets/resstock_2025/load_profiles/tmp/'
     wh_dir          = '../results/wh_cosim/'
     hvac_dir        = '../results/hvac_cosim/'
     total_house_dir = '../results/total_house_consumption/'
@@ -38,6 +38,9 @@ if __name__ == '__main__':
     n_chunks = N_DAYS * CHUNKS_PER_DAY
 
     # ── Load data ────────────────────────────────────────────────────────
+    home_xml_loader    = DataLoader(results_dir=home_xml_dir,    day_start=0, day_end=day_end)
+    home_xml_loader.get_btu_per_device ()
+    quit()
     wh_loader          = DataLoader(results_dir=wh_dir,          day_start=0, day_end=day_end)
     hvac_loader        = DataLoader(results_dir=hvac_dir,        day_start=0, day_end=day_end)
     total_house_loader = DataLoader(results_dir=total_house_dir, day_start=0, day_end=day_end)
