@@ -27,7 +27,7 @@ if __name__ == '__main__':
     total_house_dir = '../results/total_house_consumption/'
 
     # ── Configuration ────────────────────────────────────────────────────
-    N_DAYS       = 10
+    N_DAYS       = 1
     LAMBDA       = 0.01
     CHUNKS_PER_DAY = 144
     EXCLUDE_HVAC = [
@@ -39,12 +39,11 @@ if __name__ == '__main__':
 
     # ── Load data ────────────────────────────────────────────────────────
     home_xml_loader    = DataLoader(results_dir=home_xml_dir,    day_start=0, day_end=day_end)
-    home_xml_loader.get_btu_per_device ()
-    quit()
     wh_loader          = DataLoader(results_dir=wh_dir,          day_start=0, day_end=day_end)
     hvac_loader        = DataLoader(results_dir=hvac_dir,        day_start=0, day_end=day_end)
     total_house_loader = DataLoader(results_dir=total_house_dir, day_start=0, day_end=day_end)
 
+    hvac_sizes = home_xml_loader.get_btu_per_device ()
     wh_ground_truth   = wh_loader.load_transformer_data()
     hvac_ground_truth = hvac_loader.load_transformer_data()
     feeder_df         = total_house_loader.load_transformer_data()
@@ -60,12 +59,16 @@ if __name__ == '__main__':
     # ── OLS ──────────────────────────────────────────────────────────────
     ols = OrdinaryLeastSquare(
         feeder_demand  = feeder_df,
+        hvac_sizes     = hvac_sizes,
         wh_histories   = wh_histories,
         hvac_histories = hvac_histories,
         wh_all_dfs     = wh_loader.all_dfs,
-        hvac_all_dfs   = hvac_loader.all_dfs,
+        hvac_all_dfs   = hvac_loader.all_dfs
     )
-    results = ols.run(exclude_hvac=EXCLUDE_HVAC)
+    print("I am here")
+    ols._compute_ratio_bins ()
+    quit()
+    # results = ols.run(exclude_hvac=EXCLUDE_HVAC)
 
     # ── Evaluation ───────────────────────────────────────────────────────
     hvac_active     = results['per_d_hvac_active']

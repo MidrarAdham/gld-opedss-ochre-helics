@@ -15,6 +15,7 @@ class OrdinaryLeastSquare:
         wh_all_dfs:     dict,
         hvac_all_dfs:   dict,
         feeder_demand:  pd.DataFrame,
+        hvac_sizes : dict
     ):
         """
         Store everything OLS needs to run its analysis.
@@ -45,6 +46,7 @@ class OrdinaryLeastSquare:
         self.wh_all_dfs     = wh_all_dfs
         self.hvac_all_dfs   = hvac_all_dfs
         self.feeder_demand  = feeder_demand
+        self.hvac_sizes = hvac_sizes
 
     # ── Matrix builders ───────────────────────────────────────────────────────
 
@@ -258,6 +260,17 @@ class OrdinaryLeastSquare:
             'hvac_active':             hvac_active,
             'feeder_minus_background': feeder_minus_background,
         }
+
+    def _compute_ratio_bins (self) -> list[list[float]]:
+        kw_sorted = sorted([d['capacity'] for devices in self.hvac_sizes.values() for d in devices])
+        print(kw_sorted)
+        # bins = [[kw_sorted[0]]]
+        # for prev, curr in zip (kw_sorted, kw_sorted[1:]):
+        #     print(prev, '|', curr, '|', round(curr/prev, 2))
+        #     if curr / prev > ratio_threshold:
+        #         bins.append ([])
+        #     bins[-1].append (curr)
+        # print(bins)
 
     # ── Public API ────────────────────────────────────────────────────────────
 

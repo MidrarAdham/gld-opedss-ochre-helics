@@ -87,6 +87,8 @@ class DataLoader:
     
     def get_btu_per_device (self):
         
+        size_id = {}
+
         bldg_ids = [bldg for bldg in os.listdir(self.results_dir)]
 
         for bldg_id in bldg_ids:
@@ -107,10 +109,23 @@ class DataLoader:
                 
                 fuel = system.findtext("h:HeatingSystemFuel", default="N/A", namespaces=ns)
 
-                print(bldg_id)
-                print(f"HVAC System ID: {system_id}")
-                print(f"Fuel: {fuel}")
-                print(f"HeatingCapacity: {capacity} Btu/hr")
+                print(capacity, fuel)
 
-                quit()
+                if fuel not in ('propane', 'natural gas'):
+                    
+                    if fuel == 'electricity':
+                        kw = round(float(capacity) / 3412.14, 2)
+
+                        size_id.setdefault(bldg_id, []).append ({
+                            'kW' : kw,
+                            'fuel' : fuel,
+                            'bldg_id' : bldg_id,
+                            'capacity' : float(capacity)
+                            })
+                    
+                    else:
+                        print("These types need to be considered. Not implemented yet. See types below")
+                        print(fuel)
+        
+        return size_id
         
