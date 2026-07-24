@@ -4,8 +4,8 @@ venv/
 *.png
 .vscode/
 __pycache__/
-self-learning/click/*
-self-learning/ngrok/*
+self-learning/scratch/click/*
+self-learning/scratch/ngrok/*
 # self-learning/bayesian/*
 datasets/resstock/load_profiles
 cosimulation_tools/dss-ochre-helics/profiles
