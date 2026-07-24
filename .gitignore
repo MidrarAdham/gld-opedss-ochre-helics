@@ -1,6 +1,7 @@
 env/
 venv/
 *.log
+*.png
 .vscode/
 __pycache__/
 self-learning/click/*
