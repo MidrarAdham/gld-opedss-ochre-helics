@@ -10,13 +10,13 @@ from helics.cli import run
 
 def create_load_paths_file(building_ids: list, resstock_data_dir: str, load_paths_file: str):
     """
-    Creates a JSON file mapping each load to its ochre.csv path.
+    Creates a JSON file mapping each load to its ochre.parquet path.
     This lets the OCHRE federate read as many load profiles as needed
     from a single file instead of passing each path on the command line.
     """
     load_paths = {}
     for idx, bldg_id in enumerate(building_ids):
-        load_paths[f"load_{bldg_id}"] = f"{resstock_data_dir}/{bldg_id}/up00/ochre.csv"
+        load_paths[f"load_{bldg_id}"] = f"{resstock_data_dir}/{bldg_id}/up00/simulation_results_august/ochre.parquet"
 
     with open(load_paths_file, "w") as f:
         json.dump(load_paths, f, indent=4)
@@ -161,11 +161,14 @@ if __name__ == "__main__":
     cosimulation_name = "ochre_gridlabd_cosimulation"
 
     # Dataset location which already exists at root folder of this project
-    resstock_data_dir = "/home/deras/gld-opedss-ochre-helics/datasets/resstock_2025/load_profiles/tmp"
+    resstock_data_dir = "/mnt/datasets/resstock_2024/cosimulation"
 
-    # Building IDs to simulate - this is what is handled by one OCHRE federate
-    # building_ids = [385977, 292272, 32387, 188195, 504038, 370750, 258272, 193969]
-    building_ids = create_bldg_id_list (resstock_data_dir = resstock_data_dir)
+    # Building IDs to simulate - must match the triplex_load objects hardcoded
+    # in models/powerflow_4node.glm (GridLAB-D requires every subscription to
+    # resolve to a real object, so this list can't be a full directory listing).
+    building_ids = [279, 312, 555, 620, 682, 907, 1398, 2098, 2234, 3612, 4455, 4916,
+                     5251, 5296, 5344, 5514, 6545, 6888, 6945, 7292, 7989, 8083,
+                     10740, 12621, 13050, 15007, 15089]
 
     # Step 1: Create the load paths JSON file
     create_load_paths_file (

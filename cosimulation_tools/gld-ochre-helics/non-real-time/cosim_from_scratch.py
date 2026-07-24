@@ -37,7 +37,7 @@ for building in building_ids:
         i += 1
 
 # Time settings
-start_time = dt.datetime(2025, 1, 1)           # Start date
+start_time = dt.datetime(2025, 9, 1)           # Start date - matches resstock_2024 dataset coverage
 time_res = dt.timedelta(minutes=1)            # Time step = 10 minutes
 duration = dt.timedelta(days=30)                # Simulate 1 day
 sim_times = pd.date_range(
@@ -116,10 +116,9 @@ def house(name, input_path_1, input_path_2):
 
     # Load pre-computed OCHRE results for each triplex_load
     def load_csv(path):
-        csv_path = os.path.join(path, "ochre.csv")
-        print(f"Loading: {csv_path}")
-        df = pd.read_csv(csv_path, parse_dates=["Time"])
-        return df.set_index("Time")
+        parquet_path = os.path.join(path, "simulation_results_august", "ochre.parquet")
+        print(f"Loading: {parquet_path}")
+        return pd.read_parquet(parquet_path)
 
     df1 = load_csv(input_path_1)
     df2 = load_csv(input_path_2)

@@ -1,47 +1,0 @@
-
-Processing 2025-01-02 08:04:00 PST...                                      Processing 2025-01-06 14:18:00 PST...                                      Processing 2025-01-10 17:33:00 PST...                                      Processing 2025-01-14 14:45:00 PST...                                      Processing 2025-01-18 13:40:00 PST...                                      Processing 2025-01-22 09:44:00 PST...                                      Processing 2025-01-28 07:29:00 PST...
-Core profiler results
-======================
-
-Total objects                 25 objects
-Parallelism                    1 thread
-Total time                  10.0 seconds
-  Core time                  4.0 seconds (39.7%)
-    Compiler                 0.0 seconds (0.1%)
-    Instances                0.0 seconds (0.0%)
-    Random variables         0.0 seconds (0.0%)
-    Schedules                0.0 seconds (0.0%)
-    Loadshapes               0.0 seconds (0.0%)
-    Enduses                  0.0 seconds (0.0%)
-    Transforms               0.0 seconds (0.1%)
-  Model time                 6.0 seconds/thread (60.3%)
-Simulation time               30 days
-Simulation speed             1.8k object.hours/second
-Passes completed           62619 passes
-Time steps completed       43201 timesteps
-Convergence efficiency      1.45 passes/timestep
-Read lock contention        0.0%
-Write lock contention       0.0%
-Average timestep             60 seconds/timestep
-Simulation rate          259200 x realtime
-
-
-Model profiler results
-======================
-
-Class            Time (s) Time (%) msec/obj
----------------- -------- -------- --------
-helics_msg         2.307     38.3%   2306.6
-node               0.940     15.6%    234.9
-overhead_line      0.680     11.3%    226.6
-recorder           0.625     10.4%    208.3
-triplex_load       0.512      8.5%    256.2
-transformer        0.460      7.6%    230.1
-triplex_meter      0.262      4.3%    261.7
-meter              0.240      4.0%    240.0
-overhead_line_co   0.000      0.0%      0.0
-transformer_conf   0.000      0.0%      0.0
-triplex_line_con   0.000      0.0%      0.0
-================ ======== ======== ========
-Total              6.025    100.0%    241.0
-

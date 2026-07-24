@@ -29,8 +29,8 @@ class player {
 
 clock {
 	timezone US/OR/Portland;
-	timestamp '2025-01-01 00:00:00';
-    stoptime '2025-01-31 00:00:00';
+	timestamp '2025-09-01 00:00:00';
+    stoptime '2025-10-01 00:00:00';
 }
 
 object line_configuration {
@@ -194,7 +194,7 @@ object triplex_meter{
 
 
 object triplex_load {
-    name ochre_house_load_13370;
+    name ochre_house_load_279;
     parent house_meter;
     phases CS;
     constant_power_12 0+0j;
@@ -204,8 +204,8 @@ object triplex_load {
 
 
 object recorder {
-    parent ochre_house_load_13370;
-    file ../results/ochre_load_13370.csv;
+    parent ochre_house_load_279;
+    file ../results/ochre_load_279.csv;
     interval 60;
     property constant_power_12;
 }
@@ -213,7 +213,7 @@ object recorder {
 
 
 object triplex_load {
-    name ochre_house_load_186734;
+    name ochre_house_load_312;
     parent house_meter;
     phases CS;
     constant_power_12 0+0j;
@@ -223,8 +223,8 @@ object triplex_load {
 
 
 object recorder {
-    parent ochre_house_load_186734;
-    file ../results/ochre_load_186734.csv;
+    parent ochre_house_load_312;
+    file ../results/ochre_load_312.csv;
     interval 60;
     property constant_power_12;
 }
@@ -232,7 +232,7 @@ object recorder {
 
 
 object triplex_load {
-    name ochre_house_load_199434;
+    name ochre_house_load_555;
     parent house_meter;
     phases CS;
     constant_power_12 0+0j;
@@ -242,8 +242,8 @@ object triplex_load {
 
 
 object recorder {
-    parent ochre_house_load_199434;
-    file ../results/ochre_load_199434.csv;
+    parent ochre_house_load_555;
+    file ../results/ochre_load_555.csv;
     interval 60;
     property constant_power_12;
 }
@@ -251,7 +251,7 @@ object recorder {
 
 
 object triplex_load {
-    name ochre_house_load_227486;
+    name ochre_house_load_620;
     parent house_meter;
     phases CS;
     constant_power_12 0+0j;
@@ -261,8 +261,8 @@ object triplex_load {
 
 
 object recorder {
-    parent ochre_house_load_227486;
-    file ../results/ochre_load_227486.csv;
+    parent ochre_house_load_620;
+    file ../results/ochre_load_620.csv;
     interval 60;
     property constant_power_12;
 }
@@ -270,7 +270,7 @@ object recorder {
 
 
 object triplex_load {
-    name ochre_house_load_292272;
+    name ochre_house_load_682;
     parent house_meter;
     phases CS;
     constant_power_12 0+0j;
@@ -280,8 +280,8 @@ object triplex_load {
 
 
 object recorder {
-    parent ochre_house_load_292272;
-    file ../results/ochre_load_292272.csv;
+    parent ochre_house_load_682;
+    file ../results/ochre_load_682.csv;
     interval 60;
     property constant_power_12;
 }
@@ -289,7 +289,7 @@ object recorder {
 
 
 object triplex_load {
-    name ochre_house_load_32387;
+    name ochre_house_load_907;
     parent house_meter;
     phases CS;
     constant_power_12 0+0j;
@@ -299,8 +299,8 @@ object triplex_load {
 
 
 object recorder {
-    parent ochre_house_load_32387;
-    file ../results/ochre_load_32387.csv;
+    parent ochre_house_load_907;
+    file ../results/ochre_load_907.csv;
     interval 60;
     property constant_power_12;
 }
@@ -308,7 +308,7 @@ object recorder {
 
 
 object triplex_load {
-    name ochre_house_load_366404;
+    name ochre_house_load_1398;
     parent house_meter;
     phases CS;
     constant_power_12 0+0j;
@@ -318,8 +318,8 @@ object triplex_load {
 
 
 object recorder {
-    parent ochre_house_load_366404;
-    file ../results/ochre_load_366404.csv;
+    parent ochre_house_load_1398;
+    file ../results/ochre_load_1398.csv;
     interval 60;
     property constant_power_12;
 }
@@ -327,7 +327,7 @@ object recorder {
 
 
 object triplex_load {
-    name ochre_house_load_387321;
+    name ochre_house_load_2098;
     parent house_meter;
     phases CS;
     constant_power_12 0+0j;
@@ -337,8 +337,8 @@ object triplex_load {
 
 
 object recorder {
-    parent ochre_house_load_387321;
-    file ../results/ochre_load_387321.csv;
+    parent ochre_house_load_2098;
+    file ../results/ochre_load_2098.csv;
     interval 60;
     property constant_power_12;
 }
@@ -346,7 +346,7 @@ object recorder {
 
 
 object triplex_load {
-    name ochre_house_load_448411;
+    name ochre_house_load_2234;
     parent house_meter;
     phases CS;
     constant_power_12 0+0j;
@@ -356,8 +356,8 @@ object triplex_load {
 
 
 object recorder {
-    parent ochre_house_load_448411;
-    file ../results/ochre_load_448411.csv;
+    parent ochre_house_load_2234;
+    file ../results/ochre_load_2234.csv;
     interval 60;
     property constant_power_12;
 }
@@ -365,7 +365,7 @@ object recorder {
 
 
 object triplex_load {
-    name ochre_house_load_93923;
+    name ochre_house_load_3612;
     parent house_meter;
     phases CS;
     constant_power_12 0+0j;
@@ -375,8 +375,8 @@ object triplex_load {
 
 
 object recorder {
-    parent ochre_house_load_93923;
-    file ../results/ochre_load_93923.csv;
+    parent ochre_house_load_3612;
+    file ../results/ochre_load_3612.csv;
     interval 60;
     property constant_power_12;
 }
@@ -384,7 +384,7 @@ object recorder {
 
 
 object triplex_load {
-    name ochre_house_load_147689;
+    name ochre_house_load_4455;
     parent house_meter;
     phases CS;
     constant_power_12 0+0j;
@@ -394,8 +394,8 @@ object triplex_load {
 
 
 object recorder {
-    parent ochre_house_load_147689;
-    file ../results/ochre_load_147689.csv;
+    parent ochre_house_load_4455;
+    file ../results/ochre_load_4455.csv;
     interval 60;
     property constant_power_12;
 }
@@ -403,7 +403,7 @@ object recorder {
 
 
 object triplex_load {
-    name ochre_house_load_188195;
+    name ochre_house_load_4916;
     parent house_meter;
     phases CS;
     constant_power_12 0+0j;
@@ -413,8 +413,8 @@ object triplex_load {
 
 
 object recorder {
-    parent ochre_house_load_188195;
-    file ../results/ochre_load_188195.csv;
+    parent ochre_house_load_4916;
+    file ../results/ochre_load_4916.csv;
     interval 60;
     property constant_power_12;
 }
@@ -422,7 +422,7 @@ object recorder {
 
 
 object triplex_load {
-    name ochre_house_load_238583;
+    name ochre_house_load_5251;
     parent house_meter;
     phases CS;
     constant_power_12 0+0j;
@@ -432,8 +432,8 @@ object triplex_load {
 
 
 object recorder {
-    parent ochre_house_load_238583;
-    file ../results/ochre_load_238583.csv;
+    parent ochre_house_load_5251;
+    file ../results/ochre_load_5251.csv;
     interval 60;
     property constant_power_12;
 }
@@ -441,7 +441,7 @@ object recorder {
 
 
 object triplex_load {
-    name ochre_house_load_29683;
+    name ochre_house_load_5296;
     parent house_meter;
     phases CS;
     constant_power_12 0+0j;
@@ -451,8 +451,8 @@ object triplex_load {
 
 
 object recorder {
-    parent ochre_house_load_29683;
-    file ../results/ochre_load_29683.csv;
+    parent ochre_house_load_5296;
+    file ../results/ochre_load_5296.csv;
     interval 60;
     property constant_power_12;
 }
@@ -460,7 +460,7 @@ object recorder {
 
 
 object triplex_load {
-    name ochre_house_load_327816;
+    name ochre_house_load_5344;
     parent house_meter;
     phases CS;
     constant_power_12 0+0j;
@@ -470,8 +470,8 @@ object triplex_load {
 
 
 object recorder {
-    parent ochre_house_load_327816;
-    file ../results/ochre_load_327816.csv;
+    parent ochre_house_load_5344;
+    file ../results/ochre_load_5344.csv;
     interval 60;
     property constant_power_12;
 }
@@ -479,7 +479,7 @@ object recorder {
 
 
 object triplex_load {
-    name ochre_house_load_370750;
+    name ochre_house_load_5514;
     parent house_meter;
     phases CS;
     constant_power_12 0+0j;
@@ -489,8 +489,8 @@ object triplex_load {
 
 
 object recorder {
-    parent ochre_house_load_370750;
-    file ../results/ochre_load_370750.csv;
+    parent ochre_house_load_5514;
+    file ../results/ochre_load_5514.csv;
     interval 60;
     property constant_power_12;
 }
@@ -498,7 +498,7 @@ object recorder {
 
 
 object triplex_load {
-    name ochre_house_load_409590;
+    name ochre_house_load_6545;
     parent house_meter;
     phases CS;
     constant_power_12 0+0j;
@@ -508,8 +508,8 @@ object triplex_load {
 
 
 object recorder {
-    parent ochre_house_load_409590;
-    file ../results/ochre_load_409590.csv;
+    parent ochre_house_load_6545;
+    file ../results/ochre_load_6545.csv;
     interval 60;
     property constant_power_12;
 }
@@ -517,7 +517,7 @@ object recorder {
 
 
 object triplex_load {
-    name ochre_house_load_504038;
+    name ochre_house_load_6888;
     parent house_meter;
     phases CS;
     constant_power_12 0+0j;
@@ -527,8 +527,8 @@ object triplex_load {
 
 
 object recorder {
-    parent ochre_house_load_504038;
-    file ../results/ochre_load_504038.csv;
+    parent ochre_house_load_6888;
+    file ../results/ochre_load_6888.csv;
     interval 60;
     property constant_power_12;
 }
@@ -536,7 +536,7 @@ object recorder {
 
 
 object triplex_load {
-    name ochre_house_load_177213;
+    name ochre_house_load_6945;
     parent house_meter;
     phases CS;
     constant_power_12 0+0j;
@@ -546,8 +546,8 @@ object triplex_load {
 
 
 object recorder {
-    parent ochre_house_load_177213;
-    file ../results/ochre_load_177213.csv;
+    parent ochre_house_load_6945;
+    file ../results/ochre_load_6945.csv;
     interval 60;
     property constant_power_12;
 }
@@ -555,7 +555,7 @@ object recorder {
 
 
 object triplex_load {
-    name ochre_house_load_193969;
+    name ochre_house_load_7292;
     parent house_meter;
     phases CS;
     constant_power_12 0+0j;
@@ -565,8 +565,8 @@ object triplex_load {
 
 
 object recorder {
-    parent ochre_house_load_193969;
-    file ../results/ochre_load_193969.csv;
+    parent ochre_house_load_7292;
+    file ../results/ochre_load_7292.csv;
     interval 60;
     property constant_power_12;
 }
@@ -574,7 +574,7 @@ object recorder {
 
 
 object triplex_load {
-    name ochre_house_load_214735;
+    name ochre_house_load_7989;
     parent house_meter;
     phases CS;
     constant_power_12 0+0j;
@@ -584,8 +584,8 @@ object triplex_load {
 
 
 object recorder {
-    parent ochre_house_load_214735;
-    file ../results/ochre_load_214735.csv;
+    parent ochre_house_load_7989;
+    file ../results/ochre_load_7989.csv;
     interval 60;
     property constant_power_12;
 }
@@ -593,7 +593,7 @@ object recorder {
 
 
 object triplex_load {
-    name ochre_house_load_258272;
+    name ochre_house_load_8083;
     parent house_meter;
     phases CS;
     constant_power_12 0+0j;
@@ -603,8 +603,8 @@ object triplex_load {
 
 
 object recorder {
-    parent ochre_house_load_258272;
-    file ../results/ochre_load_258272.csv;
+    parent ochre_house_load_8083;
+    file ../results/ochre_load_8083.csv;
     interval 60;
     property constant_power_12;
 }
@@ -612,7 +612,7 @@ object recorder {
 
 
 object triplex_load {
-    name ochre_house_load_303992;
+    name ochre_house_load_10740;
     parent house_meter;
     phases CS;
     constant_power_12 0+0j;
@@ -622,8 +622,8 @@ object triplex_load {
 
 
 object recorder {
-    parent ochre_house_load_303992;
-    file ../results/ochre_load_303992.csv;
+    parent ochre_house_load_10740;
+    file ../results/ochre_load_10740.csv;
     interval 60;
     property constant_power_12;
 }
@@ -631,7 +631,7 @@ object recorder {
 
 
 object triplex_load {
-    name ochre_house_load_355669;
+    name ochre_house_load_12621;
     parent house_meter;
     phases CS;
     constant_power_12 0+0j;
@@ -641,8 +641,8 @@ object triplex_load {
 
 
 object recorder {
-    parent ochre_house_load_355669;
-    file ../results/ochre_load_355669.csv;
+    parent ochre_house_load_12621;
+    file ../results/ochre_load_12621.csv;
     interval 60;
     property constant_power_12;
 }
@@ -650,7 +650,7 @@ object recorder {
 
 
 object triplex_load {
-    name ochre_house_load_385977;
+    name ochre_house_load_13050;
     parent house_meter;
     phases CS;
     constant_power_12 0+0j;
@@ -660,8 +660,8 @@ object triplex_load {
 
 
 object recorder {
-    parent ochre_house_load_385977;
-    file ../results/ochre_load_385977.csv;
+    parent ochre_house_load_13050;
+    file ../results/ochre_load_13050.csv;
     interval 60;
     property constant_power_12;
 }
@@ -669,7 +669,7 @@ object recorder {
 
 
 object triplex_load {
-    name ochre_house_load_442093;
+    name ochre_house_load_15007;
     parent house_meter;
     phases CS;
     constant_power_12 0+0j;
@@ -679,8 +679,8 @@ object triplex_load {
 
 
 object recorder {
-    parent ochre_house_load_442093;
-    file ../results/ochre_load_442093.csv;
+    parent ochre_house_load_15007;
+    file ../results/ochre_load_15007.csv;
     interval 60;
     property constant_power_12;
 }
@@ -688,7 +688,7 @@ object recorder {
 
 
 object triplex_load {
-    name ochre_house_load_62;
+    name ochre_house_load_15089;
     parent house_meter;
     phases CS;
     constant_power_12 0+0j;
@@ -698,8 +698,8 @@ object triplex_load {
 
 
 object recorder {
-    parent ochre_house_load_62;
-    file ../results/ochre_load_62.csv;
+    parent ochre_house_load_15089;
+    file ../results/ochre_load_15089.csv;
     interval 60;
     property constant_power_12;
 }

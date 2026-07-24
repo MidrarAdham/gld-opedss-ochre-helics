@@ -13,7 +13,7 @@ results_dir = "results"
 
 # Resstock dataset input directory:
 [data]
-dataset_dir = "/home/deras/gld-opedss-ochre-helics/datasets/resstock_2025/load_profiles/tmp"
+dataset_dir = "/mnt/datasets/resstock_2024/cosimulation"
 
 # currently we only have one upgrade - up00
 upgrades = ["up00"]

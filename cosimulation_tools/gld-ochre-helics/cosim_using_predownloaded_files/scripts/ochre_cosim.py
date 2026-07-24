@@ -27,9 +27,8 @@ def read_load_paths (load_paths_file : str):
     # dfs = [pd.read_csv (value) for key, value in data.items ()]
 
     for key, value in data.items ():
-        idx = value.split('/')[-3]
-        df = pd.read_csv (value, parse_dates=["Time"])
-        dfs [idx] = df.set_index ('Time')
+        idx = value.split('/')[-4]
+        dfs [idx] = pd.read_parquet (value)
     return dfs
 
 def make_helics_federate(config_file : str ="ochre_helics_config.json"):
@@ -54,7 +53,7 @@ def get_publications (dfs : dict, fed):
     return pubs
 
 def _define_sim_time_settings ():
-    start_time = dt.datetime(2025, 1, 1)           # Start date
+    start_time = dt.datetime(2025, 9, 1)           # Start date - matches resstock_2024 dataset coverage
     time_res = dt.timedelta(minutes=1)            # Time step = 10 minutes
     duration = dt.timedelta(days=30)                # Simulate 1 day
     sim_times = pd.date_range(

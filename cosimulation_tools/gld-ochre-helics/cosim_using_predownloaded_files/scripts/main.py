@@ -21,7 +21,7 @@ from utils import (
 )
 
 if __name__ == '__main__':
-    home_xml_dir    = '/home/deras/gld-opedss-ochre-helics/datasets/resstock_2025/load_profiles/tmp/'
+    home_xml_dir    = '/mnt/datasets/resstock_2024/cosimulation/'
     wh_dir          = '../results/wh_cosim/'
     hvac_dir        = '../results/hvac_cosim/'
     total_house_dir = '../results/total_house_consumption/'

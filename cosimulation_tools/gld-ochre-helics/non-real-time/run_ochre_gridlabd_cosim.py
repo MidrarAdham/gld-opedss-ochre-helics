@@ -32,11 +32,11 @@ class OchreGridlabdMaster:
         OUTPUT_DIR = os.getcwd()
         self.MASTER_CONFIG_FILE = os.path.join(OUTPUT_DIR, "master_cosim_config.json")
 
-        # Paths to pre-downloaded ResStock building data (ochre.csv)
-        # ochre_house_load_1 -> building 62
-        self.OCHRE_HOUSE_PATH_1 = "/home/deras/gld-opedss-ochre-helics/datasets/resstock_2025/load_profiles/tmp/62/up00"
-        # ochre_house_load_2 -> building 13370
-        self.OCHRE_HOUSE_PATH_2 = "/home/deras/gld-opedss-ochre-helics/datasets/resstock_2025/load_profiles/tmp/13370/up00"
+        # Paths to pre-downloaded ResStock building data (simulation_results_august/ochre.parquet)
+        # ochre_house_load_1 -> building 100023
+        self.OCHRE_HOUSE_PATH_1 = "/mnt/datasets/resstock_2024/cosimulation/100023/up00"
+        # ochre_house_load_2 -> building 100763
+        self.OCHRE_HOUSE_PATH_2 = "/mnt/datasets/resstock_2024/cosimulation/100763/up00"
 
 
     def create_master_config(self):
@@ -101,11 +101,11 @@ class OchreGridlabdMaster:
             print("Please make sure the .glm file is in the current directory")
             return
         
-        # Checking for pre-downloaded ochre.csv files for both buildings
+        # Checking for pre-downloaded ochre.parquet files for both buildings
         for path in [self.OCHRE_HOUSE_PATH_1, self.OCHRE_HOUSE_PATH_2]:
-            ochre_csv = os.path.join(path, "ochre.csv")
-            if not os.path.exists(ochre_csv):
-                print(f"ERROR: Pre-downloaded ochre.csv not found: {ochre_csv}")
+            ochre_parquet = os.path.join(path, "simulation_results_august", "ochre.parquet")
+            if not os.path.exists(ochre_parquet):
+                print(f"ERROR: Pre-downloaded ochre.parquet not found: {ochre_parquet}")
                 print("Make sure the ResStock dataset is at:")
                 print(f"  {path}")
                 return
