@@ -7,7 +7,8 @@ from pprint import pprint as pp
 from opendss_wrapper import OpenDSS
 
 def initialize_federate():
-    fed = h.helicsCreateCombinationFederateFromConfig("DSSfederate.json")
+    config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config", "DSSfederate.json")
+    fed = h.helicsCreateCombinationFederateFromConfig(config_file)
     sub = h.helicsFederateGetInputByIndex(fed, 0)
     return fed, sub
 
@@ -87,10 +88,10 @@ def set_paths():
     '''
     Setting the path of the directories we're using for this setup. Note that we make new folders, such as the results. The profiles/one_week_wh_data/ must be configured manually.
     '''
-    main_dir = os.path.dirname(os.path.abspath(__file__))
+    main_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     results_dir = os.path.join(main_dir, "results/")
     profiles_dir = os.path.join(main_dir, "profiles/one_week_wh_data/")
-    
+
     dss_file = os.path.join(main_dir, "network_model", "model_base.dss")
     return results_dir, profiles_dir, dss_file
 
@@ -101,7 +102,7 @@ def initialize_opendss(dss_file, stepsize, start_time):
     The start_time and time_step have no significance here, they are just placeholders. However, we are going
     to use the start_time and time_step in the OpenDSS instance to run the simulation in a later function.
     '''
-    
+
     dss = OpenDSS([dss_file], time_step=stepsize, start_time= start_time)
     dss.run_command('set controlmode=time')
 

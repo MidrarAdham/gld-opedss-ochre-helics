@@ -2,7 +2,7 @@ import os
 import pandas as pd
 
 # Set your directory path
-directory = "./profiles/one_week_wh_data/"  # <-- Change this
+directory = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "profiles", "one_week_wh_data") + os.sep  # <-- Change this
 
 # Value to replace zero with
 replacement_value = 4500

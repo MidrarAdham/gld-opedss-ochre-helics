@@ -5,13 +5,13 @@
   "federates": [
     {
       "directory": ".",
-      "exec": "python3 federate1.py",
-      "host": "localhost", 
+      "exec": "python3 scripts/federate1.py",
+      "host": "localhost",
       "name": "federate1"
     },
     {
       "directory": ".",
-      "exec": "python3 DSSfederate.py",
+      "exec": "python3 scripts/DSSfederate.py",
       "host": "localhost",
       "name": "DSSfederate"
     }

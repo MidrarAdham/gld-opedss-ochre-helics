@@ -11,7 +11,8 @@ def initialize_federate():
     '''
     Initializing the federates and get the publications fromt the federate's configuration file
     '''
-    fed = h.helicsCreateCombinationFederateFromConfig("federate1.json")
+    config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config", "federate1.json")
+    fed = h.helicsCreateCombinationFederateFromConfig(config_file)
     pub = h.helicsFederateGetPublication(fed, "storage_powers")
     return fed, pub
 
@@ -26,7 +27,7 @@ def set_paths():
     '''
     Setting the path of the directories we're using for this setup. Note that we make new folders, such as the results. The profiles/one_week_wh_data/ must be configured manually.
     '''
-    main_dir = os.path.dirname(os.path.abspath(__file__))
+    main_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     results_dir = os.path.join(main_dir, "results/")
     profiles_dir = os.path.join(main_dir, "profiles/one_week_wh_data/")
     

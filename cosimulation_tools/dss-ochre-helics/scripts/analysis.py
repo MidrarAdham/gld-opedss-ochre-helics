@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 matplotlib.use('TkAgg')  # Use TkAgg backend for plotting
 
 def set_paths():
-    main_dir = os.path.dirname(os.path.abspath(__file__))
+    main_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     results_dir = os.path.join(main_dir, "results/")
     results_files = [f for f in os.listdir(results_dir) if f.endswith('.csv')]
     return main_dir, results_dir, results_files
