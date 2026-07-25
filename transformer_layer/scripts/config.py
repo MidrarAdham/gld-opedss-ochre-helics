@@ -4,7 +4,10 @@ from pathlib import Path
 from datetime import datetime
 
 
-def load_config (path="config.toml"):
+def load_config (path=None):
+
+    if path is None:
+        path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "config", "config.toml")
 
     with open(path, "rb") as f:
         data = tomllib.load(f)
