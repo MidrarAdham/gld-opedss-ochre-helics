@@ -10,9 +10,6 @@
 [submodule "references/dss-cosim"]
 	path = references/dss-cosim
 	url = https://github.com/NREL/dss-cosim.git
-[submodule "references/dss-cosim"]
-	path = references/OpenDSS
-	url = https://github.com/tshort/OpenDSS.git
 [submodule "references/OpenDSS"]
 	path = references/OpenDSS
 	url = https://github.com/tshort/OpenDSS.git

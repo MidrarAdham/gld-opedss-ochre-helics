@@ -20,7 +20,7 @@ Right now, the script shows the electric panel CBs for each of the suspected bui
 
 cfg = load_config ()
 
-metadata_dir = "/home/deras/gld-opedss-ochre-helics/datasets/resstock_2025/scripts/OR_upgrade0.csv"
+metadata_dir = "/mnt/datasets/resstock_2024/OR_upgrade0.csv"
 
 validated_dataset_dir = cfg['data']['dataset_dir']
 validated_bldg_ids = [int(bldg_id) for bldg_id in os.listdir (validated_dataset_dir)]
