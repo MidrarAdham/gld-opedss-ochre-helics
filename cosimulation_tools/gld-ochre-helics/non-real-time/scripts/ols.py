@@ -134,7 +134,7 @@ class OrdinaryLeastSquare:
         Bayesian posterior means as regressors.
 
         Solves:
-            feeder(t) - background ≈ kw_wh × x_wh(t) + kw_hvac × x_hvac(t)
+            feeder(t) - background ≈ kw_wh x x_wh(t) + kw_hvac x x_hvac(t)
 
         This is the fallback method used when insufficient history has
         accumulated for per-device estimation.
@@ -261,24 +261,220 @@ class OrdinaryLeastSquare:
             'feeder_minus_background': feeder_minus_background,
         }
 
-    def _compute_ratio_bins (self) -> list[list[float]]:
-        kw_sorted = sorted([d['capacity'] for devices in self.hvac_sizes.values() for d in devices])
-        print(kw_sorted)
-        # bins = [[kw_sorted[0]]]
-        # for prev, curr in zip (kw_sorted, kw_sorted[1:]):
-        #     print(prev, '|', curr, '|', round(curr/prev, 2))
-        #     if curr / prev > ratio_threshold:
-        #         bins.append ([])
-        #     bins[-1].append (curr)
-        # print(bins)
+
+
+    def _get_fixed_hvac_kw_bins(self) -> list[tuple[float, float, str]]:
+        """
+        Define fixed bins for HVAC electric power, and, later, water heaters.
+
+        This method is used internally by OLS.
+
+        Units:
+            kW
+
+        Returns
+        -------
+        list of tuples
+            Each tuple is:
+                lower_kw, upper_kw, bin_label
+        """
+        return [
+            (0.0, 0.5, "0_0p5_kw"),
+            (0.5, 1.0, "0p5_1_kw"),
+            (1.0, 1.5, "1_1p5_kw"),
+            (1.5, 2.0, "1p5_2_kw"),
+            (2.0, 2.5, "2_2p5_kw"),
+            (2.5, 3.0, "2p5_3_kw"),
+            (3.0, 4.0, "3_4_kw"),
+            (4.0, float("inf"), "4plus_kw"),
+        ]
+
+    def _assign_devices_to_fixed_bins(
+            self,
+            hvac_mean_matrix: pd.DataFrame,
+            hvac_kw_by_device: dict,
+            ) -> dict:
+        """
+        STAGE 1 
+        Assign each HVAC device to a fixed kW bin.
+
+        Parameters
+        ----------
+        hvac_mean_matrix : pd.DataFrame
+            HVAC posterior mean matrix.
+            Columns are HVAC device filenames.
+
+        hvac_kw_by_device : dict
+            Dictionary mapping HVAC device filename to representative kW.
+
+            Example:
+                {
+                    "../results/hvac_cosim/ochre_load_1.csv": 0.72,
+                    "../results/hvac_cosim/ochre_load_2.csv": 1.34,
+                }
+
+        Returns
+        -------
+        dict
+            Mapping from HVAC filename to bin label.
+        """
+        fixed_bins = self._get_fixed_hvac_kw_bins()
+        device_to_bin = {}
+
+        for device_name in hvac_mean_matrix.columns:
+            if device_name not in hvac_kw_by_device:
+                continue
+
+            device_kw = hvac_kw_by_device[device_name]
+
+            if pd.isna(device_kw):
+                continue
+
+            for lower_kw, upper_kw, bin_label in fixed_bins:
+                if lower_kw <= device_kw < upper_kw:
+                    device_to_bin[device_name] = bin_label
+                    break
+
+        return device_to_bin
+
+    def _build_binned_hvac_mean_matrix(
+            self,
+            hvac_mean_matrix: pd.DataFrame,
+            device_to_bin: dict,
+            ) -> pd.DataFrame:
+        """
+        Aggregate device-level HVAC posterior means into fixed-bin regressors.
+
+        Each output column is one HVAC bin.
+
+        Example:
+            bin_1(t) = mean_device_a(t) + mean_device_b(t) + ...
+            bin_2(t) = mean_device_c(t) + mean_device_d(t) + ...
+
+        Parameters
+        ----------
+        hvac_mean_matrix : pd.DataFrame
+            Shape:
+                n_chunks x n_hvac_devices
+
+        device_to_bin : dict
+            Mapping from HVAC device filename to bin label.
+
+        Returns
+        -------
+        pd.DataFrame
+            Shape:
+                n_chunks x n_bins
+        """
+        binned_data = {}
+
+        for device_name, bin_label in device_to_bin.items():
+            if device_name not in hvac_mean_matrix.columns:
+                continue
+
+            if bin_label not in binned_data:
+                binned_data[bin_label] = hvac_mean_matrix[device_name].copy()
+            else:
+                binned_data[bin_label] = binned_data[bin_label] + hvac_mean_matrix[device_name]
+
+        binned_matrix = pd.DataFrame(binned_data)
+
+        # Keep a stable column order based on the fixed engineering bins.
+        fixed_bin_order = [
+            bin_label
+            for _, _, bin_label in self._get_fixed_hvac_kw_bins()
+            if bin_label in binned_matrix.columns
+        ]
+
+        binned_matrix = binned_matrix[fixed_bin_order]
+
+        return binned_matrix
+
+    def _run_fixed_bin_hvac_ols(
+            self,
+            wh_mean_matrix: pd.DataFrame,
+            hvac_mean_matrix: pd.DataFrame,
+            hvac_kw_by_device: dict,
+            ) -> dict:
+        """
+        Stage 3 — Fixed bin HVAC OLS.
+
+        Estimates one HVAC coefficient per fixed kW bin.
+
+        Solves:
+            feeder(t) - background ≈ kw_wh * x_wh(t)
+                                + beta_bin_1 * x_bin_1(t)
+                                + beta_bin_2 * x_bin_2(t)
+                                + ...
+
+        where:
+            x_bin_j(t) = number of expected ON devices in bin j
+                        based on Bayesian posterior means.
+
+        Parameters
+        ----------
+        wh_mean_matrix : pd.DataFrame
+            WH posterior mean matrix.
+
+        hvac_mean_matrix : pd.DataFrame
+            HVAC posterior mean matrix.
+
+        hvac_kw_by_device : dict
+            Mapping from HVAC device filename to representative kW.
+
+        Returns
+        -------
+        dict
+            Fixed-bin OLS results.
+        """
+        x_wh = wh_mean_matrix.sum(axis=1).values
+
+        device_to_bin = self._assign_devices_to_fixed_bins(
+            hvac_mean_matrix=hvac_mean_matrix,
+            hvac_kw_by_device=hvac_kw_by_device,
+        )
+
+        hvac_binned = self._build_binned_hvac_mean_matrix(
+            hvac_mean_matrix=hvac_mean_matrix,
+            device_to_bin=device_to_bin,
+        )
+
+        background_constant = self.feeder_demand["power_out"].values.min()
+        feeder_minus_background = (
+            self.feeder_demand["power_out"].values - background_constant
+        )
+
+        A = np.column_stack([x_wh, hvac_binned.values])
+
+        coefs, _, _, _ = np.linalg.lstsq(
+            A,
+            feeder_minus_background,
+            rcond=None,
+        )
+
+        kw_wh = coefs[0]
+        kw_hvac_per_bin = pd.Series(coefs[1:], index=hvac_binned.columns)
+
+        hvac_predicted = hvac_binned.values @ coefs[1:]
+
+        return {
+            "kw_wh": kw_wh,
+            "kw_hvac_per_bin": kw_hvac_per_bin,
+            "wh_predicted": kw_wh * x_wh,
+            "hvac_predicted": hvac_predicted,
+            "x_wh": x_wh,
+            "hvac_binned": hvac_binned,
+            "device_to_bin": device_to_bin,
+            "feeder_minus_background": feeder_minus_background,
+        }
 
     # ── Public API ────────────────────────────────────────────────────────────
-
     def run(
-        self,
-        exclude_hvac: list = None,
-        subset_devices : list = None
-        ) -> dict:
+            self,
+            exclude_hvac: list = None,
+            subset_devices: list = None,
+            hvac_kw_by_device: dict = None,
+            ) -> dict:
         """
         Run the full OLS pipeline.
 
@@ -320,22 +516,45 @@ class OrdinaryLeastSquare:
             exclude=exclude_hvac
         )
 
-        return {
+        fixed_bin_results = None
+        if hvac_kw_by_device is not None:
+
+            fixed_bin_results = self._run_fixed_bin_hvac_ols(
+
+            wh_mean_matrix=wh_mean_matrix,
+            hvac_mean_matrix=hvac_mean_matrix,
+            hvac_kw_by_device=hvac_kw_by_device,
+            )
+        results = {
             # Stage 1 — simultaneous OLS
-            'sim_kw_wh':                sim_results['kw_wh'],
-            'sim_kw_hvac':              sim_results['kw_hvac'],
-            'sim_wh_predicted':         sim_results['wh_predicted'],
-            'sim_hvac_predicted':       sim_results['hvac_predicted'],
-            'sim_x_wh':                 sim_results['x_wh'],
-            'sim_x_hvac':               sim_results['x_hvac'],
-            'sim_feeder_minus_bg':      sim_results['feeder_minus_background'],
+            "sim_kw_wh": sim_results["kw_wh"],
+            "sim_kw_hvac": sim_results["kw_hvac"],
+            "sim_wh_predicted": sim_results["wh_predicted"],
+            "sim_hvac_predicted": sim_results["hvac_predicted"],
+            "sim_x_wh": sim_results["x_wh"],
+            "sim_x_hvac": sim_results["x_hvac"],
+            "sim_feeder_minus_bg": sim_results["feeder_minus_background"],
 
             # Stage 2 — per-device OLS
-            'per_d_kw_wh':              per_device_results['kw_wh'],
-            'per_d_kw_hvac':            per_device_results['kw_hvac_per_device'],
-            'per_d_wh_predicted':       per_device_results['wh_predicted'],
-            'per_d_hvac_predicted':     per_device_results['hvac_predicted'],
-            'per_d_x_wh':               per_device_results['x_wh'],
-            'per_d_hvac_active':        per_device_results['hvac_active'],
-            'per_d_feeder_minus_bg':    per_device_results['feeder_minus_background'],
+            "per_d_kw_wh": per_device_results["kw_wh"],
+            "per_d_kw_hvac": per_device_results["kw_hvac_per_device"],
+            "per_d_wh_predicted": per_device_results["wh_predicted"],
+            "per_d_hvac_predicted": per_device_results["hvac_predicted"],
+            "per_d_x_wh": per_device_results["x_wh"],
+            "per_d_hvac_active": per_device_results["hvac_active"],
+            "per_d_feeder_minus_bg": per_device_results["feeder_minus_background"],
         }
+
+        if fixed_bin_results is not None:
+            results.update({
+                "fixed_bin_kw_wh": fixed_bin_results["kw_wh"],
+                "fixed_bin_kw_hvac": fixed_bin_results["kw_hvac_per_bin"],
+                "fixed_bin_wh_predicted": fixed_bin_results["wh_predicted"],
+                "fixed_bin_hvac_predicted": fixed_bin_results["hvac_predicted"],
+                "fixed_bin_x_wh": fixed_bin_results["x_wh"],
+                "fixed_bin_hvac_binned": fixed_bin_results["hvac_binned"],
+                "fixed_bin_device_to_bin": fixed_bin_results["device_to_bin"],
+                "fixed_bin_feeder_minus_bg": fixed_bin_results["feeder_minus_background"],
+            })
+
+        return results

@@ -49,7 +49,7 @@ if __name__ == '__main__':
     feeder_df         = total_house_loader.load_transformer_data()
 
     wh_df   = wh_loader.load_csv_files(threshold=5000.0)
-    hvac_df = hvac_loader.load_csv_files(threshold=100.0)
+    hvac_df = hvac_loader.load_csv_files(threshold=300.0)
 
     # ── Bayesian estimation ──────────────────────────────────────────────
     estimator      = BayesianEstimator(num_chunks=n_chunks, discount=LAMBDA)
@@ -65,8 +65,7 @@ if __name__ == '__main__':
         wh_all_dfs     = wh_loader.all_dfs,
         hvac_all_dfs   = hvac_loader.all_dfs
     )
-    print("I am here")
-    ols._compute_ratio_bins ()
+
     quit()
     # results = ols.run(exclude_hvac=EXCLUDE_HVAC)
 
