@@ -149,11 +149,11 @@ if __name__ == "__main__":
 
     # File paths
     ochre_federate_script = "scripts/ochre_cosim.py"
-    gridlabd_model_file = "models/powerflow_4node.glm"
-    load_paths_file = "config/load_paths.json"
-    ochre_helics_config_file = "config/ochre_helics_config.json"
-    gridlabd_helics_config_file = "config/powerflow_4node_gld_config.json"
-    master_config_file = "config/master_cosim_config.json"
+    gridlabd_model_file = "models/4node/powerflow_4node.glm"
+    load_paths_file = "config/4node/load_paths.json"
+    ochre_helics_config_file = "config/4node/ochre_helics_config.json"
+    gridlabd_helics_config_file = "config/4node/powerflow_4node_gld_config.json"
+    master_config_file = "config/4node/master_cosim_config.json"
 
     # Names that are used by HELICS to identify each piece
     ochre_federate_name = "OCHRE_Federate"

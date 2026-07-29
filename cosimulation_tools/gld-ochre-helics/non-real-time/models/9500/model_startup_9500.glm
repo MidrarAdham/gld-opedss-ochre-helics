@@ -25,7 +25,7 @@ module reliability;
 
 object helics_msg {
 	name helics;
-	configure ../config/model_startup_9500_gld_config.json;
+	configure ../../config/9500/gld_config.json;
 }
 
 // object helics_msg {

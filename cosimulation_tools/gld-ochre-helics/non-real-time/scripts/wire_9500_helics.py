@@ -3,7 +3,7 @@ Author: Midrar Adham
 Created: Tue Jul 28 2026
 
 Wires the IEEE 9500-node feeder into the HELICS/OCHRE cosimulation, following
-the same pattern already used by models/powerflow_4node.glm.
+the same pattern already used by models/4node/powerflow_4node.glm.
 
 Inputs:
   - dataset_map/less_than_five_tons_resstock_2024.csv: building_id -> ResStock parquet path
@@ -26,8 +26,8 @@ import sys
 from pathlib import Path
 
 non_real_time_dir = Path(__file__).parent.parent
-models_dir = non_real_time_dir / "models"
-config_dir = non_real_time_dir / "config"
+models_dir = non_real_time_dir / "models" / "9500"
+config_dir = non_real_time_dir / "config" / "9500"
 dataset_map_dir = non_real_time_dir / "dataset_map"
 ieee9500_docs_dir = non_real_time_dir.parent.parent / "ieee9500_docs"
 
@@ -211,19 +211,20 @@ def main():
 
     base_glm.write_text(new_base_text)
 
-    manifest_file = config_dir / "model_base_9500_cluster_manifest.json"
+    manifest_file = config_dir / "cluster_manifest.json"
     manifest_file.parent.mkdir(parents=True, exist_ok=True)
     with open(manifest_file, "w") as f:
         json.dump(manifest, f, indent=2)
 
     load_paths_9500 = {f"load_{bid}": resstock_paths[bid] for bid in all_building_ids}
-    with open(config_dir / "load_paths_9500.json", "w") as f:
+    load_paths_file = config_dir / "load_paths.json"
+    with open(load_paths_file, "w") as f:
         json.dump(load_paths_9500, f, indent=4)
 
     print(f"Converted {len(chosen)} S1 transformer points, {len(all_building_ids)} houses total.")
     print(f"Wrote {base_glm}")
     print(f"Wrote {manifest_file}")
-    print(f"Wrote {config_dir / 'load_paths_9500.json'}")
+    print(f"Wrote {load_paths_file}")
     return all_building_ids
 
 
