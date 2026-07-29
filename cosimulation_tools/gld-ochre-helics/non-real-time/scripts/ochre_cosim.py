@@ -5,8 +5,11 @@ Created: Fri May 01 2026
 import os
 import sys
 import json
-import helics
+# pandas (pyarrow's parquet reader) must be imported before helics - importing
+# helics first segfaults on the first pd.read_parquet call (native library
+# conflict between helics' and pyarrow's bundled shared libs).
 import pandas as pd
+import helics
 import datetime as dt
 from pathlib import Path
 
@@ -16,6 +19,8 @@ config_folder = Path (__file__).parent.parent
 # `ochre_cosim.py 9500` reads config/9500/*.json instead of config/4node/*.json.
 config_variant = sys.argv[1] if len(sys.argv) > 1 else "4node"
 
+print(f'{config_folder}/config/{config_variant}/')
+
 load_paths_file = (config_folder / "config" / config_variant / "load_paths.json")
 
 master_config = (config_folder / "config" / config_variant / "master_cosim_config.json")
@@ -23,16 +28,28 @@ master_config = (config_folder / "config" / config_variant / "master_cosim_confi
 ochre_helics_config_file = (config_folder / "config" / config_variant / "ochre_helics_config.json")
 
 
+# Only these get published in run_simulation (see the commented-out
+# alternatives there) - reading just these columns instead of all 13 keeps
+# memory manageable across hundreds of buildings (~13x smaller per file).
+# "Water Heating Electric Power (kW)" is deliberately excluded: buildings
+# with gas water heaters don't have that column at all (only "Water Heating
+# Gas Power (therms/hour)"), so requesting it unconditionally raises
+# pyarrow.lib.ArrowInvalid for those buildings.
+POWER_COLUMNS = [
+    "Total Electric Power (kW)",
+    "HVAC Heating Electric Power (kW)",
+]
+
 def read_load_paths (load_paths_file : str):
     dfs = {}
     with open (load_paths_file, 'r') as f:
         data = json.load (f)
-    
+
     # dfs = [pd.read_csv (value) for key, value in data.items ()]
 
     for key, value in data.items ():
         idx = value.split('/')[-4]
-        dfs [idx] = pd.read_parquet (value)
+        dfs [idx] = pd.read_parquet (value, columns=POWER_COLUMNS)
     return dfs
 
 def make_helics_federate(config_file : str ="ochre_helics_config.json"):

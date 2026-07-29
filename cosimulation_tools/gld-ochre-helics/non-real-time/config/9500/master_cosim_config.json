@@ -6,13 +6,13 @@
             "name": "OCHRE_Federate_9500",
             "host": "localhost",
             "directory": ".",
-            "exec": "/home/deras/.cache/pypoetry/virtualenvs/gld-opedss-ochre-helics-o_1DRW9c-py3.12/bin/python3 -u /home/deras/projects/gld-opedss-ochre-helics/cosimulation_tools/gld-ochre-helics/non-real-time/scripts/ochre_cosim.py 9500"
+            "exec": "/usr/bin/python3 -u /home/deras/projects/gld-opedss-ochre-helics/cosimulation_tools/gld-ochre-helics/non-real-time/scripts/ochre_cosim.py 9500"
         },
         {
             "name": "GridLABD_Federate_9500",
             "host": "localhost",
             "directory": ".",
-            "exec": "gridlabd /home/deras/projects/gld-opedss-ochre-helics/cosimulation_tools/gld-ochre-helics/non-real-time/models/model_startup_9500.glm"
+            "exec": "gridlabd /home/deras/projects/gld-opedss-ochre-helics/cosimulation_tools/gld-ochre-helics/non-real-time/models/9500/model_startup_9500.glm"
         }
     ]
 }

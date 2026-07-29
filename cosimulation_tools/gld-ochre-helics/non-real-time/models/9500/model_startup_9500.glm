@@ -1,7 +1,7 @@
 clock {
      timezone US/OR/Portland;
 	timestamp '2025-09-01 00:00:00';
-     stoptime '2025-09-02 00:00:00';
+     stoptime '2025-09-30 23:59:00';
 }
 
 // #set maximum_synctime=3600
@@ -40,18 +40,18 @@ object helics_msg {
 //      file 154879093.csv;
 //      interval 1;
 // }
-// object fault_check {
-//      name fault_check_object;
-//      check_mode ONCHANGE;
-//      eventgen_object external_event_handler;
-//      output_filename fault_check_output.txt;
-//      strictly_radial FALSE;
-//      grid_association TRUE;
-// }
-// object eventgen {
-//      name external_event_handler;
-//      use_external_faults TRUE;
-// }
+object fault_check {
+      name fault_check_object;
+      check_mode ONCHANGE;
+      eventgen_object external_event_handler;
+      output_filename fault_check_output.txt;
+      strictly_radial FALSE;
+      grid_association TRUE;
+}
+object eventgen {
+      name external_event_handler;
+      use_external_faults TRUE;
+}
 object csv_reader {
      name CSVREADER;
      filename "./weather_file/portland_weather_2024.csv";
@@ -66,11 +66,6 @@ class player {
 	double value;
 }
 
-object player {
-	name ieeezipload;
-	file ieeezipload.player;
-	loop 0;
-}
 #define VSOURCE=66395.28095680696
 // #include "/tmp/gridappsd_tmp/154879093/model_schedules.glm"
-#include "./model_base_9500.glm"
+#include "/home/deras/projects/gld-opedss-ochre-helics/cosimulation_tools/gld-ochre-helics/non-real-time/models/9500/model_base_9500.glm"
