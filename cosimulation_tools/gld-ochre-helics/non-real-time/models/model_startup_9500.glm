@@ -1,7 +1,7 @@
 clock {
      timezone US/OR/Portland;
-	timestamp '2025-01-01 00:00:00';
-     stoptime '2025-01-02 00:00:00';
+	timestamp '2025-09-01 00:00:00';
+     stoptime '2025-09-02 00:00:00';
 }
 
 // #set maximum_synctime=3600
@@ -22,6 +22,11 @@ module powerflow {
 }
 module climate;
 module reliability;
+
+object helics_msg {
+	name helics;
+	configure ../config/model_startup_9500_gld_config.json;
+}
 
 // object helics_msg {
 //       name 154879093;

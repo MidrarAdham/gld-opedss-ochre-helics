@@ -27,15 +27,15 @@ if __name__ == '__main__':
     total_house_dir = '../results/total_house_consumption/'
 
     # ── Configuration ────────────────────────────────────────────────────
-    N_DAYS       = 1
-    LAMBDA       = 0.01
-    CHUNKS_PER_DAY = 144
-    EXCLUDE_HVAC = [
+    n_days       = 1
+    lambda_coef  = 0.01
+    chunks_per_day = 144
+    exclude_hvac = [
         '../results/hvac_cosim/ochre_load_16.csv',
     ]
 
-    day_end  = N_DAYS * 1440
-    n_chunks = N_DAYS * CHUNKS_PER_DAY
+    day_end  = n_days * 1440
+    n_chunks = n_days * chunks_per_day
 
     # ── Load data ────────────────────────────────────────────────────────
     home_xml_loader    = DataLoader(results_dir=home_xml_dir,    day_start=0, day_end=day_end)
@@ -52,7 +52,7 @@ if __name__ == '__main__':
     hvac_df = hvac_loader.load_csv_files(threshold=300.0)
 
     # ── Bayesian estimation ──────────────────────────────────────────────
-    estimator      = BayesianEstimator(num_chunks=n_chunks, discount=LAMBDA)
+    estimator      = BayesianEstimator(num_chunks=n_chunks, discount=lambda_coef)
     wh_histories   = estimator.fit_many(all_dfs=wh_df)
     hvac_histories = estimator.fit_many(all_dfs=hvac_df)
 
@@ -67,7 +67,7 @@ if __name__ == '__main__':
     )
 
     quit()
-    # results = ols.run(exclude_hvac=EXCLUDE_HVAC)
+    # results = ols.run(exclude_hvac=exclude_hvac)
 
     # ── Evaluation ───────────────────────────────────────────────────────
     hvac_active     = results['per_d_hvac_active']
@@ -82,7 +82,7 @@ if __name__ == '__main__':
     r2   = r2_score(gt_active_total, estimated_total)
     mape = mape_score(gt_active_total, estimated_total)
 
-    print(f'\n── Training period results ({N_DAYS} days) ──────────────────')
+    print(f'\n── Training period results ({n_days} days) ──────────────────')
     print(f'R²:   {r2:.3f}')
     print(f'MAPE: {mape:.1f}%')
 
@@ -109,7 +109,7 @@ if __name__ == '__main__':
             linestyle='--', label='Estimated')
     ax.set_ylabel('HVAC Demand [kW]')
     ax.set_xlabel('Chunk Index (10-min intervals)')
-    ax.set_title(f'Total HVAC Demand: Estimated vs Ground Truth — {N_DAYS} Days')
+    ax.set_title(f'Total HVAC Demand: Estimated vs Ground Truth — {n_days} Days')
     ax.annotate(
         f'R²: {r2:.3f}\nMAPE: {mape:.1f}%',
         xy=(0.01, 0.95), xycoords='axes fraction',
@@ -119,5 +119,5 @@ if __name__ == '__main__':
     ax.legend()
     ax.grid(True)
     plt.tight_layout()
-    plt.savefig(f'hvac_estimated_vs_truth_{N_DAYS}days.png')
+    plt.savefig(f'hvac_estimated_vs_truth_{n_days}days.png')
     plt.show()

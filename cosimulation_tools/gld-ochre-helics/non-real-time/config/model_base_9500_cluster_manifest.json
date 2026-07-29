@@ -1,0 +1,2712 @@
+[
+  {
+    "cluster_index": 1,
+    "transformer_to_node": "x3235945c",
+    "service_node": "sx3235945c",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "467636"
+    ],
+    "load_names": [
+      "ochre_house_load_467636"
+    ]
+  },
+  {
+    "cluster_index": 2,
+    "transformer_to_node": "x2955077c",
+    "service_node": "sx2955077c",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "186366",
+      "202088",
+      "330074",
+      "336050",
+      "448971",
+      "201819",
+      "401027",
+      "104562",
+      "309544",
+      "454230",
+      "521372"
+    ],
+    "load_names": [
+      "ochre_house_load_186366",
+      "ochre_house_load_202088",
+      "ochre_house_load_330074",
+      "ochre_house_load_336050",
+      "ochre_house_load_448971",
+      "ochre_house_load_201819",
+      "ochre_house_load_401027",
+      "ochre_house_load_104562",
+      "ochre_house_load_309544",
+      "ochre_house_load_454230",
+      "ochre_house_load_521372"
+    ]
+  },
+  {
+    "cluster_index": 3,
+    "transformer_to_node": "x2936211c",
+    "service_node": "sx2936211c",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "381418",
+      "370745",
+      "408279",
+      "212021",
+      "240212"
+    ],
+    "load_names": [
+      "ochre_house_load_381418",
+      "ochre_house_load_370745",
+      "ochre_house_load_408279",
+      "ochre_house_load_212021",
+      "ochre_house_load_240212"
+    ]
+  },
+  {
+    "cluster_index": 4,
+    "transformer_to_node": "x3217056a",
+    "service_node": "sx3217056a",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "334183",
+      "254810",
+      "144143",
+      "531771",
+      "298162",
+      "370146",
+      "165026",
+      "93799"
+    ],
+    "load_names": [
+      "ochre_house_load_334183",
+      "ochre_house_load_254810",
+      "ochre_house_load_144143",
+      "ochre_house_load_531771",
+      "ochre_house_load_298162",
+      "ochre_house_load_370146",
+      "ochre_house_load_165026",
+      "ochre_house_load_93799"
+    ]
+  },
+  {
+    "cluster_index": 5,
+    "transformer_to_node": "x2936276b",
+    "service_node": "sx2936276b",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "232939",
+      "321516",
+      "489009"
+    ],
+    "load_names": [
+      "ochre_house_load_232939",
+      "ochre_house_load_321516",
+      "ochre_house_load_489009"
+    ]
+  },
+  {
+    "cluster_index": 6,
+    "transformer_to_node": "x3108449a",
+    "service_node": "sx3108449a",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "392818",
+      "323278",
+      "299045",
+      "418397",
+      "412019",
+      "170825"
+    ],
+    "load_names": [
+      "ochre_house_load_392818",
+      "ochre_house_load_323278",
+      "ochre_house_load_299045",
+      "ochre_house_load_418397",
+      "ochre_house_load_412019",
+      "ochre_house_load_170825"
+    ]
+  },
+  {
+    "cluster_index": 7,
+    "transformer_to_node": "x3048889c",
+    "service_node": "sx3048889c",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "3612",
+      "173392",
+      "124544",
+      "372892",
+      "428747"
+    ],
+    "load_names": [
+      "ochre_house_load_3612",
+      "ochre_house_load_173392",
+      "ochre_house_load_124544",
+      "ochre_house_load_372892",
+      "ochre_house_load_428747"
+    ]
+  },
+  {
+    "cluster_index": 8,
+    "transformer_to_node": "x2955078a",
+    "service_node": "sx2955078a",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "99499",
+      "387140",
+      "193154",
+      "432616",
+      "238210",
+      "199657",
+      "323846",
+      "217704",
+      "214106",
+      "524496",
+      "142507",
+      "545763"
+    ],
+    "load_names": [
+      "ochre_house_load_99499",
+      "ochre_house_load_387140",
+      "ochre_house_load_193154",
+      "ochre_house_load_432616",
+      "ochre_house_load_238210",
+      "ochre_house_load_199657",
+      "ochre_house_load_323846",
+      "ochre_house_load_217704",
+      "ochre_house_load_214106",
+      "ochre_house_load_524496",
+      "ochre_house_load_142507",
+      "ochre_house_load_545763"
+    ]
+  },
+  {
+    "cluster_index": 9,
+    "transformer_to_node": "x2955006c",
+    "service_node": "sx2955006c",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "31382",
+      "160500",
+      "200098",
+      "95544",
+      "77868",
+      "463762",
+      "520838"
+    ],
+    "load_names": [
+      "ochre_house_load_31382",
+      "ochre_house_load_160500",
+      "ochre_house_load_200098",
+      "ochre_house_load_95544",
+      "ochre_house_load_77868",
+      "ochre_house_load_463762",
+      "ochre_house_load_520838"
+    ]
+  },
+  {
+    "cluster_index": 10,
+    "transformer_to_node": "x3086078a",
+    "service_node": "sx3086078a",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "160568",
+      "70024"
+    ],
+    "load_names": [
+      "ochre_house_load_160568",
+      "ochre_house_load_70024"
+    ]
+  },
+  {
+    "cluster_index": 11,
+    "transformer_to_node": "x3086079b",
+    "service_node": "sx3086079b",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "489422",
+      "391969",
+      "454110",
+      "89230",
+      "38407",
+      "104208",
+      "469666",
+      "359302",
+      "34928"
+    ],
+    "load_names": [
+      "ochre_house_load_489422",
+      "ochre_house_load_391969",
+      "ochre_house_load_454110",
+      "ochre_house_load_89230",
+      "ochre_house_load_38407",
+      "ochre_house_load_104208",
+      "ochre_house_load_469666",
+      "ochre_house_load_359302",
+      "ochre_house_load_34928"
+    ]
+  },
+  {
+    "cluster_index": 12,
+    "transformer_to_node": "x2690187b",
+    "service_node": "sx2690187b",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "176384",
+      "421285",
+      "203389",
+      "173278",
+      "6945"
+    ],
+    "load_names": [
+      "ochre_house_load_176384",
+      "ochre_house_load_421285",
+      "ochre_house_load_203389",
+      "ochre_house_load_173278",
+      "ochre_house_load_6945"
+    ]
+  },
+  {
+    "cluster_index": 13,
+    "transformer_to_node": "x2692661a",
+    "service_node": "sx2692661a",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "249276",
+      "237735",
+      "376796",
+      "315517",
+      "392995",
+      "95159",
+      "469041",
+      "236160"
+    ],
+    "load_names": [
+      "ochre_house_load_249276",
+      "ochre_house_load_237735",
+      "ochre_house_load_376796",
+      "ochre_house_load_315517",
+      "ochre_house_load_392995",
+      "ochre_house_load_95159",
+      "ochre_house_load_469041",
+      "ochre_house_load_236160"
+    ]
+  },
+  {
+    "cluster_index": 14,
+    "transformer_to_node": "x2692600c",
+    "service_node": "sx2692600c",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "188246",
+      "126829",
+      "126795",
+      "274702",
+      "541219",
+      "208475",
+      "228588",
+      "40454",
+      "206494",
+      "147115",
+      "279405",
+      "68232",
+      "79849"
+    ],
+    "load_names": [
+      "ochre_house_load_188246",
+      "ochre_house_load_126829",
+      "ochre_house_load_126795",
+      "ochre_house_load_274702",
+      "ochre_house_load_541219",
+      "ochre_house_load_208475",
+      "ochre_house_load_228588",
+      "ochre_house_load_40454",
+      "ochre_house_load_206494",
+      "ochre_house_load_147115",
+      "ochre_house_load_279405",
+      "ochre_house_load_68232",
+      "ochre_house_load_79849"
+    ]
+  },
+  {
+    "cluster_index": 15,
+    "transformer_to_node": "x2936270a",
+    "service_node": "sx2936270a",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "388148",
+      "537424",
+      "176608"
+    ],
+    "load_names": [
+      "ochre_house_load_388148",
+      "ochre_house_load_537424",
+      "ochre_house_load_176608"
+    ]
+  },
+  {
+    "cluster_index": 16,
+    "transformer_to_node": "x2955005b",
+    "service_node": "sx2955005b",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "350164",
+      "298681",
+      "102922",
+      "476573",
+      "280063",
+      "303298",
+      "275091",
+      "464315",
+      "210595",
+      "528839",
+      "436427"
+    ],
+    "load_names": [
+      "ochre_house_load_350164",
+      "ochre_house_load_298681",
+      "ochre_house_load_102922",
+      "ochre_house_load_476573",
+      "ochre_house_load_280063",
+      "ochre_house_load_303298",
+      "ochre_house_load_275091",
+      "ochre_house_load_464315",
+      "ochre_house_load_210595",
+      "ochre_house_load_528839",
+      "ochre_house_load_436427"
+    ]
+  },
+  {
+    "cluster_index": 17,
+    "transformer_to_node": "x3253570c",
+    "service_node": "sx3253570c",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "377381",
+      "39960",
+      "275286",
+      "227517",
+      "400528"
+    ],
+    "load_names": [
+      "ochre_house_load_377381",
+      "ochre_house_load_39960",
+      "ochre_house_load_275286",
+      "ochre_house_load_227517",
+      "ochre_house_load_400528"
+    ]
+  },
+  {
+    "cluster_index": 18,
+    "transformer_to_node": "x2955074a",
+    "service_node": "sx2955074a",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "339433",
+      "162090",
+      "503022",
+      "44812",
+      "512375",
+      "97305",
+      "101380",
+      "87191",
+      "242598"
+    ],
+    "load_names": [
+      "ochre_house_load_339433",
+      "ochre_house_load_162090",
+      "ochre_house_load_503022",
+      "ochre_house_load_44812",
+      "ochre_house_load_512375",
+      "ochre_house_load_97305",
+      "ochre_house_load_101380",
+      "ochre_house_load_87191",
+      "ochre_house_load_242598"
+    ]
+  },
+  {
+    "cluster_index": 19,
+    "transformer_to_node": "x2917333a",
+    "service_node": "sx2917333a",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "379880",
+      "203949",
+      "358737",
+      "27832",
+      "411339",
+      "485566",
+      "369055"
+    ],
+    "load_names": [
+      "ochre_house_load_379880",
+      "ochre_house_load_203949",
+      "ochre_house_load_358737",
+      "ochre_house_load_27832",
+      "ochre_house_load_411339",
+      "ochre_house_load_485566",
+      "ochre_house_load_369055"
+    ]
+  },
+  {
+    "cluster_index": 20,
+    "transformer_to_node": "x2708744b",
+    "service_node": "sx2708744b",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "270459",
+      "423568",
+      "302838",
+      "122651",
+      "361750",
+      "543450"
+    ],
+    "load_names": [
+      "ochre_house_load_270459",
+      "ochre_house_load_423568",
+      "ochre_house_load_302838",
+      "ochre_house_load_122651",
+      "ochre_house_load_361750",
+      "ochre_house_load_543450"
+    ]
+  },
+  {
+    "cluster_index": 21,
+    "transformer_to_node": "x3081380a",
+    "service_node": "sx3081380a",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "419752",
+      "109561",
+      "337903",
+      "13050",
+      "241331",
+      "35191",
+      "57620"
+    ],
+    "load_names": [
+      "ochre_house_load_419752",
+      "ochre_house_load_109561",
+      "ochre_house_load_337903",
+      "ochre_house_load_13050",
+      "ochre_house_load_241331",
+      "ochre_house_load_35191",
+      "ochre_house_load_57620"
+    ]
+  },
+  {
+    "cluster_index": 22,
+    "transformer_to_node": "x3160098a",
+    "service_node": "sx3160098a",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "235662",
+      "432671"
+    ],
+    "load_names": [
+      "ochre_house_load_235662",
+      "ochre_house_load_432671"
+    ]
+  },
+  {
+    "cluster_index": 23,
+    "transformer_to_node": "x2990826a",
+    "service_node": "sx2990826a",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "497858",
+      "493708",
+      "95555",
+      "547304",
+      "18626",
+      "538593",
+      "67168",
+      "188110"
+    ],
+    "load_names": [
+      "ochre_house_load_497858",
+      "ochre_house_load_493708",
+      "ochre_house_load_95555",
+      "ochre_house_load_547304",
+      "ochre_house_load_18626",
+      "ochre_house_load_538593",
+      "ochre_house_load_67168",
+      "ochre_house_load_188110"
+    ]
+  },
+  {
+    "cluster_index": 24,
+    "transformer_to_node": "x2990826c",
+    "service_node": "sx2990826c",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "362268",
+      "147319",
+      "343990",
+      "327596",
+      "230471"
+    ],
+    "load_names": [
+      "ochre_house_load_362268",
+      "ochre_house_load_147319",
+      "ochre_house_load_343990",
+      "ochre_house_load_327596",
+      "ochre_house_load_230471"
+    ]
+  },
+  {
+    "cluster_index": 25,
+    "transformer_to_node": "x2990826b",
+    "service_node": "sx2990826b",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "77324",
+      "493311",
+      "365132",
+      "471083",
+      "491740",
+      "414177",
+      "317423",
+      "217854",
+      "69868",
+      "61674"
+    ],
+    "load_names": [
+      "ochre_house_load_77324",
+      "ochre_house_load_493311",
+      "ochre_house_load_365132",
+      "ochre_house_load_471083",
+      "ochre_house_load_491740",
+      "ochre_house_load_414177",
+      "ochre_house_load_317423",
+      "ochre_house_load_217854",
+      "ochre_house_load_69868",
+      "ochre_house_load_61674"
+    ]
+  },
+  {
+    "cluster_index": 26,
+    "transformer_to_node": "x2786266a",
+    "service_node": "sx2786266a",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "263662",
+      "180949",
+      "129763",
+      "385476",
+      "163934",
+      "305432",
+      "20210",
+      "498854",
+      "506224",
+      "7292",
+      "47630",
+      "234094"
+    ],
+    "load_names": [
+      "ochre_house_load_263662",
+      "ochre_house_load_180949",
+      "ochre_house_load_129763",
+      "ochre_house_load_385476",
+      "ochre_house_load_163934",
+      "ochre_house_load_305432",
+      "ochre_house_load_20210",
+      "ochre_house_load_498854",
+      "ochre_house_load_506224",
+      "ochre_house_load_7292",
+      "ochre_house_load_47630",
+      "ochre_house_load_234094"
+    ]
+  },
+  {
+    "cluster_index": 27,
+    "transformer_to_node": "x3011293b",
+    "service_node": "sx3011293b",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "307573",
+      "496323",
+      "269586",
+      "374743",
+      "233532",
+      "312335",
+      "470251",
+      "437803",
+      "262350",
+      "539605",
+      "187566",
+      "76849",
+      "371852"
+    ],
+    "load_names": [
+      "ochre_house_load_307573",
+      "ochre_house_load_496323",
+      "ochre_house_load_269586",
+      "ochre_house_load_374743",
+      "ochre_house_load_233532",
+      "ochre_house_load_312335",
+      "ochre_house_load_470251",
+      "ochre_house_load_437803",
+      "ochre_house_load_262350",
+      "ochre_house_load_539605",
+      "ochre_house_load_187566",
+      "ochre_house_load_76849",
+      "ochre_house_load_371852"
+    ]
+  },
+  {
+    "cluster_index": 28,
+    "transformer_to_node": "x3011293c",
+    "service_node": "sx3011293c",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "524444",
+      "193900",
+      "389848",
+      "389744",
+      "487709",
+      "237962",
+      "465182"
+    ],
+    "load_names": [
+      "ochre_house_load_524444",
+      "ochre_house_load_193900",
+      "ochre_house_load_389848",
+      "ochre_house_load_389744",
+      "ochre_house_load_487709",
+      "ochre_house_load_237962",
+      "ochre_house_load_465182"
+    ]
+  },
+  {
+    "cluster_index": 29,
+    "transformer_to_node": "x3011293a",
+    "service_node": "sx3011293a",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "302815",
+      "56167",
+      "385325",
+      "155119",
+      "223077",
+      "386874",
+      "238242",
+      "67009",
+      "287709",
+      "199812"
+    ],
+    "load_names": [
+      "ochre_house_load_302815",
+      "ochre_house_load_56167",
+      "ochre_house_load_385325",
+      "ochre_house_load_155119",
+      "ochre_house_load_223077",
+      "ochre_house_load_386874",
+      "ochre_house_load_238242",
+      "ochre_house_load_67009",
+      "ochre_house_load_287709",
+      "ochre_house_load_199812"
+    ]
+  },
+  {
+    "cluster_index": 30,
+    "transformer_to_node": "x2973148a",
+    "service_node": "sx2973148a",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "331771",
+      "248997",
+      "265588",
+      "259004"
+    ],
+    "load_names": [
+      "ochre_house_load_331771",
+      "ochre_house_load_248997",
+      "ochre_house_load_265588",
+      "ochre_house_load_259004"
+    ]
+  },
+  {
+    "cluster_index": 31,
+    "transformer_to_node": "x2973833b",
+    "service_node": "sx2973833b",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "293636",
+      "209609",
+      "420064",
+      "32222",
+      "300631"
+    ],
+    "load_names": [
+      "ochre_house_load_293636",
+      "ochre_house_load_209609",
+      "ochre_house_load_420064",
+      "ochre_house_load_32222",
+      "ochre_house_load_300631"
+    ]
+  },
+  {
+    "cluster_index": 32,
+    "transformer_to_node": "x3048963b",
+    "service_node": "sx3048963b",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "451461",
+      "299354",
+      "81741"
+    ],
+    "load_names": [
+      "ochre_house_load_451461",
+      "ochre_house_load_299354",
+      "ochre_house_load_81741"
+    ]
+  },
+  {
+    "cluster_index": 33,
+    "transformer_to_node": "x2764411c",
+    "service_node": "sx2764411c",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "5296",
+      "522556",
+      "543373",
+      "222350",
+      "191154",
+      "449181",
+      "450692",
+      "516138"
+    ],
+    "load_names": [
+      "ochre_house_load_5296",
+      "ochre_house_load_522556",
+      "ochre_house_load_543373",
+      "ochre_house_load_222350",
+      "ochre_house_load_191154",
+      "ochre_house_load_449181",
+      "ochre_house_load_450692",
+      "ochre_house_load_516138"
+    ]
+  },
+  {
+    "cluster_index": 34,
+    "transformer_to_node": "x3104796c",
+    "service_node": "sx3104796c",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "410593",
+      "153002",
+      "483644",
+      "516263",
+      "513516",
+      "397555",
+      "907",
+      "427800",
+      "356235",
+      "475046",
+      "196926",
+      "436627"
+    ],
+    "load_names": [
+      "ochre_house_load_410593",
+      "ochre_house_load_153002",
+      "ochre_house_load_483644",
+      "ochre_house_load_516263",
+      "ochre_house_load_513516",
+      "ochre_house_load_397555",
+      "ochre_house_load_907",
+      "ochre_house_load_427800",
+      "ochre_house_load_356235",
+      "ochre_house_load_475046",
+      "ochre_house_load_196926",
+      "ochre_house_load_436627"
+    ]
+  },
+  {
+    "cluster_index": 35,
+    "transformer_to_node": "x3254915b",
+    "service_node": "sx3254915b",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "337614",
+      "346110",
+      "56291",
+      "498546",
+      "411518",
+      "100763",
+      "219611",
+      "547294",
+      "176607",
+      "343064",
+      "264018"
+    ],
+    "load_names": [
+      "ochre_house_load_337614",
+      "ochre_house_load_346110",
+      "ochre_house_load_56291",
+      "ochre_house_load_498546",
+      "ochre_house_load_411518",
+      "ochre_house_load_100763",
+      "ochre_house_load_219611",
+      "ochre_house_load_547294",
+      "ochre_house_load_176607",
+      "ochre_house_load_343064",
+      "ochre_house_load_264018"
+    ]
+  },
+  {
+    "cluster_index": 36,
+    "transformer_to_node": "x3217057a",
+    "service_node": "sx3217057a",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "289531",
+      "369049",
+      "256260",
+      "152266",
+      "422424",
+      "269943",
+      "27287",
+      "114941",
+      "142225",
+      "216764",
+      "312"
+    ],
+    "load_names": [
+      "ochre_house_load_289531",
+      "ochre_house_load_369049",
+      "ochre_house_load_256260",
+      "ochre_house_load_152266",
+      "ochre_house_load_422424",
+      "ochre_house_load_269943",
+      "ochre_house_load_27287",
+      "ochre_house_load_114941",
+      "ochre_house_load_142225",
+      "ochre_house_load_216764",
+      "ochre_house_load_312"
+    ]
+  },
+  {
+    "cluster_index": 37,
+    "transformer_to_node": "x2692655c",
+    "service_node": "sx2692655c",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "216421",
+      "163371",
+      "459665",
+      "69509",
+      "21595",
+      "473498",
+      "422231",
+      "524907"
+    ],
+    "load_names": [
+      "ochre_house_load_216421",
+      "ochre_house_load_163371",
+      "ochre_house_load_459665",
+      "ochre_house_load_69509",
+      "ochre_house_load_21595",
+      "ochre_house_load_473498",
+      "ochre_house_load_422231",
+      "ochre_house_load_524907"
+    ]
+  },
+  {
+    "cluster_index": 38,
+    "transformer_to_node": "x2842329c",
+    "service_node": "sx2842329c",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "516545",
+      "242999",
+      "136477",
+      "533820",
+      "124966",
+      "43092",
+      "541265",
+      "163213",
+      "241959"
+    ],
+    "load_names": [
+      "ochre_house_load_516545",
+      "ochre_house_load_242999",
+      "ochre_house_load_136477",
+      "ochre_house_load_533820",
+      "ochre_house_load_124966",
+      "ochre_house_load_43092",
+      "ochre_house_load_541265",
+      "ochre_house_load_163213",
+      "ochre_house_load_241959"
+    ]
+  },
+  {
+    "cluster_index": 39,
+    "transformer_to_node": "x2916602a",
+    "service_node": "sx2916602a",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "249827",
+      "172572",
+      "242516",
+      "483016",
+      "434738"
+    ],
+    "load_names": [
+      "ochre_house_load_249827",
+      "ochre_house_load_172572",
+      "ochre_house_load_242516",
+      "ochre_house_load_483016",
+      "ochre_house_load_434738"
+    ]
+  },
+  {
+    "cluster_index": 40,
+    "transformer_to_node": "x2728247b",
+    "service_node": "sx2728247b",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "327131",
+      "482358",
+      "452422",
+      "372499",
+      "25615"
+    ],
+    "load_names": [
+      "ochre_house_load_327131",
+      "ochre_house_load_482358",
+      "ochre_house_load_452422",
+      "ochre_house_load_372499",
+      "ochre_house_load_25615"
+    ]
+  },
+  {
+    "cluster_index": 41,
+    "transformer_to_node": "x2728247c",
+    "service_node": "sx2728247c",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "404817"
+    ],
+    "load_names": [
+      "ochre_house_load_404817"
+    ]
+  },
+  {
+    "cluster_index": 42,
+    "transformer_to_node": "x2728247a",
+    "service_node": "sx2728247a",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "233698",
+      "31427",
+      "263375",
+      "346726",
+      "447938",
+      "64839",
+      "250934",
+      "131393",
+      "233753",
+      "364878"
+    ],
+    "load_names": [
+      "ochre_house_load_233698",
+      "ochre_house_load_31427",
+      "ochre_house_load_263375",
+      "ochre_house_load_346726",
+      "ochre_house_load_447938",
+      "ochre_house_load_64839",
+      "ochre_house_load_250934",
+      "ochre_house_load_131393",
+      "ochre_house_load_233753",
+      "ochre_house_load_364878"
+    ]
+  },
+  {
+    "cluster_index": 43,
+    "transformer_to_node": "x2711226b",
+    "service_node": "sx2711226b",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "4916",
+      "142620",
+      "352165",
+      "526989",
+      "59425",
+      "404444"
+    ],
+    "load_names": [
+      "ochre_house_load_4916",
+      "ochre_house_load_142620",
+      "ochre_house_load_352165",
+      "ochre_house_load_526989",
+      "ochre_house_load_59425",
+      "ochre_house_load_404444"
+    ]
+  },
+  {
+    "cluster_index": 44,
+    "transformer_to_node": "x2802481a",
+    "service_node": "sx2802481a",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "277767",
+      "275680",
+      "151790",
+      "494604",
+      "75859"
+    ],
+    "load_names": [
+      "ochre_house_load_277767",
+      "ochre_house_load_275680",
+      "ochre_house_load_151790",
+      "ochre_house_load_494604",
+      "ochre_house_load_75859"
+    ]
+  },
+  {
+    "cluster_index": 45,
+    "transformer_to_node": "x2917310b",
+    "service_node": "sx2917310b",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "451476",
+      "77240",
+      "488440",
+      "522245",
+      "30686",
+      "114077"
+    ],
+    "load_names": [
+      "ochre_house_load_451476",
+      "ochre_house_load_77240",
+      "ochre_house_load_488440",
+      "ochre_house_load_522245",
+      "ochre_house_load_30686",
+      "ochre_house_load_114077"
+    ]
+  },
+  {
+    "cluster_index": 46,
+    "transformer_to_node": "x3027124c",
+    "service_node": "sx3027124c",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "172155",
+      "502985",
+      "202555",
+      "509992",
+      "153713",
+      "404858"
+    ],
+    "load_names": [
+      "ochre_house_load_172155",
+      "ochre_house_load_502985",
+      "ochre_house_load_202555",
+      "ochre_house_load_509992",
+      "ochre_house_load_153713",
+      "ochre_house_load_404858"
+    ]
+  },
+  {
+    "cluster_index": 47,
+    "transformer_to_node": "x3150961c",
+    "service_node": "sx3150961c",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "121143",
+      "149516",
+      "42335",
+      "26402",
+      "180871",
+      "302621",
+      "485700",
+      "225070",
+      "226419",
+      "279",
+      "325008",
+      "524546"
+    ],
+    "load_names": [
+      "ochre_house_load_121143",
+      "ochre_house_load_149516",
+      "ochre_house_load_42335",
+      "ochre_house_load_26402",
+      "ochre_house_load_180871",
+      "ochre_house_load_302621",
+      "ochre_house_load_485700",
+      "ochre_house_load_225070",
+      "ochre_house_load_226419",
+      "ochre_house_load_279",
+      "ochre_house_load_325008",
+      "ochre_house_load_524546"
+    ]
+  },
+  {
+    "cluster_index": 48,
+    "transformer_to_node": "x3234149c",
+    "service_node": "sx3234149c",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "505847",
+      "510593",
+      "326187",
+      "125925",
+      "97799",
+      "327612",
+      "491749",
+      "284645",
+      "119634",
+      "468180"
+    ],
+    "load_names": [
+      "ochre_house_load_505847",
+      "ochre_house_load_510593",
+      "ochre_house_load_326187",
+      "ochre_house_load_125925",
+      "ochre_house_load_97799",
+      "ochre_house_load_327612",
+      "ochre_house_load_491749",
+      "ochre_house_load_284645",
+      "ochre_house_load_119634",
+      "ochre_house_load_468180"
+    ]
+  },
+  {
+    "cluster_index": 49,
+    "transformer_to_node": "x3234149a",
+    "service_node": "sx3234149a",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "515502",
+      "383693",
+      "55949",
+      "314471",
+      "425185",
+      "417306",
+      "494663",
+      "530378",
+      "530550",
+      "349166"
+    ],
+    "load_names": [
+      "ochre_house_load_515502",
+      "ochre_house_load_383693",
+      "ochre_house_load_55949",
+      "ochre_house_load_314471",
+      "ochre_house_load_425185",
+      "ochre_house_load_417306",
+      "ochre_house_load_494663",
+      "ochre_house_load_530378",
+      "ochre_house_load_530550",
+      "ochre_house_load_349166"
+    ]
+  },
+  {
+    "cluster_index": 50,
+    "transformer_to_node": "x3234149b",
+    "service_node": "sx3234149b",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "254623",
+      "432318"
+    ],
+    "load_names": [
+      "ochre_house_load_254623",
+      "ochre_house_load_432318"
+    ]
+  },
+  {
+    "cluster_index": 51,
+    "transformer_to_node": "x2748839b",
+    "service_node": "sx2748839b",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "272937",
+      "249134",
+      "241027",
+      "446024",
+      "174570",
+      "517144",
+      "193407",
+      "225298",
+      "461107"
+    ],
+    "load_names": [
+      "ochre_house_load_272937",
+      "ochre_house_load_249134",
+      "ochre_house_load_241027",
+      "ochre_house_load_446024",
+      "ochre_house_load_174570",
+      "ochre_house_load_517144",
+      "ochre_house_load_193407",
+      "ochre_house_load_225298",
+      "ochre_house_load_461107"
+    ]
+  },
+  {
+    "cluster_index": 52,
+    "transformer_to_node": "x3214549a",
+    "service_node": "sx3214549a",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "201834",
+      "383865"
+    ],
+    "load_names": [
+      "ochre_house_load_201834",
+      "ochre_house_load_383865"
+    ]
+  },
+  {
+    "cluster_index": 53,
+    "transformer_to_node": "x3254237a",
+    "service_node": "sx3254237a",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "452253",
+      "162605",
+      "412017",
+      "379782",
+      "440204",
+      "520487",
+      "184561",
+      "499731",
+      "84873",
+      "89529",
+      "247213",
+      "357027",
+      "75607"
+    ],
+    "load_names": [
+      "ochre_house_load_452253",
+      "ochre_house_load_162605",
+      "ochre_house_load_412017",
+      "ochre_house_load_379782",
+      "ochre_house_load_440204",
+      "ochre_house_load_520487",
+      "ochre_house_load_184561",
+      "ochre_house_load_499731",
+      "ochre_house_load_84873",
+      "ochre_house_load_89529",
+      "ochre_house_load_247213",
+      "ochre_house_load_357027",
+      "ochre_house_load_75607"
+    ]
+  },
+  {
+    "cluster_index": 54,
+    "transformer_to_node": "x2798067b",
+    "service_node": "sx2798067b",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "40995",
+      "238996",
+      "524510",
+      "341963",
+      "201687"
+    ],
+    "load_names": [
+      "ochre_house_load_40995",
+      "ochre_house_load_238996",
+      "ochre_house_load_524510",
+      "ochre_house_load_341963",
+      "ochre_house_load_201687"
+    ]
+  },
+  {
+    "cluster_index": 55,
+    "transformer_to_node": "x3142098b",
+    "service_node": "sx3142098b",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "267170",
+      "383204",
+      "292090",
+      "140441",
+      "40436",
+      "456950",
+      "543603",
+      "111557",
+      "213568",
+      "267376",
+      "500428",
+      "451771",
+      "513045"
+    ],
+    "load_names": [
+      "ochre_house_load_267170",
+      "ochre_house_load_383204",
+      "ochre_house_load_292090",
+      "ochre_house_load_140441",
+      "ochre_house_load_40436",
+      "ochre_house_load_456950",
+      "ochre_house_load_543603",
+      "ochre_house_load_111557",
+      "ochre_house_load_213568",
+      "ochre_house_load_267376",
+      "ochre_house_load_500428",
+      "ochre_house_load_451771",
+      "ochre_house_load_513045"
+    ]
+  },
+  {
+    "cluster_index": 56,
+    "transformer_to_node": "x2842383a",
+    "service_node": "sx2842383a",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "257435",
+      "333827",
+      "15089",
+      "230501",
+      "487621",
+      "212890",
+      "407592",
+      "100023",
+      "179644",
+      "277908",
+      "157218"
+    ],
+    "load_names": [
+      "ochre_house_load_257435",
+      "ochre_house_load_333827",
+      "ochre_house_load_15089",
+      "ochre_house_load_230501",
+      "ochre_house_load_487621",
+      "ochre_house_load_212890",
+      "ochre_house_load_407592",
+      "ochre_house_load_100023",
+      "ochre_house_load_179644",
+      "ochre_house_load_277908",
+      "ochre_house_load_157218"
+    ]
+  },
+  {
+    "cluster_index": 57,
+    "transformer_to_node": "x2711224b",
+    "service_node": "sx2711224b",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "151863",
+      "316619",
+      "535774",
+      "300418",
+      "332159",
+      "451978",
+      "381381",
+      "338070",
+      "53693",
+      "97512",
+      "69737",
+      "538937"
+    ],
+    "load_names": [
+      "ochre_house_load_151863",
+      "ochre_house_load_316619",
+      "ochre_house_load_535774",
+      "ochre_house_load_300418",
+      "ochre_house_load_332159",
+      "ochre_house_load_451978",
+      "ochre_house_load_381381",
+      "ochre_house_load_338070",
+      "ochre_house_load_53693",
+      "ochre_house_load_97512",
+      "ochre_house_load_69737",
+      "ochre_house_load_538937"
+    ]
+  },
+  {
+    "cluster_index": 58,
+    "transformer_to_node": "x3214071c",
+    "service_node": "sx3214071c",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "91480",
+      "111132",
+      "537920",
+      "486178",
+      "507808",
+      "504397",
+      "330258",
+      "74247",
+      "499943",
+      "173606",
+      "57486",
+      "190006",
+      "401975"
+    ],
+    "load_names": [
+      "ochre_house_load_91480",
+      "ochre_house_load_111132",
+      "ochre_house_load_537920",
+      "ochre_house_load_486178",
+      "ochre_house_load_507808",
+      "ochre_house_load_504397",
+      "ochre_house_load_330258",
+      "ochre_house_load_74247",
+      "ochre_house_load_499943",
+      "ochre_house_load_173606",
+      "ochre_house_load_57486",
+      "ochre_house_load_190006",
+      "ochre_house_load_401975"
+    ]
+  },
+  {
+    "cluster_index": 59,
+    "transformer_to_node": "x2786204c",
+    "service_node": "sx2786204c",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "155532",
+      "169460",
+      "33973"
+    ],
+    "load_names": [
+      "ochre_house_load_155532",
+      "ochre_house_load_169460",
+      "ochre_house_load_33973"
+    ]
+  },
+  {
+    "cluster_index": 60,
+    "transformer_to_node": "x3030203c",
+    "service_node": "sx3030203c",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "129766",
+      "114719",
+      "500895",
+      "146446",
+      "183875",
+      "196305",
+      "130380",
+      "436282",
+      "120348"
+    ],
+    "load_names": [
+      "ochre_house_load_129766",
+      "ochre_house_load_114719",
+      "ochre_house_load_500895",
+      "ochre_house_load_146446",
+      "ochre_house_load_183875",
+      "ochre_house_load_196305",
+      "ochre_house_load_130380",
+      "ochre_house_load_436282",
+      "ochre_house_load_120348"
+    ]
+  },
+  {
+    "cluster_index": 61,
+    "transformer_to_node": "x2936216c",
+    "service_node": "sx2936216c",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "284293"
+    ],
+    "load_names": [
+      "ochre_house_load_284293"
+    ]
+  },
+  {
+    "cluster_index": 62,
+    "transformer_to_node": "x2861219b",
+    "service_node": "sx2861219b",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "429888",
+      "224398",
+      "292117",
+      "141350",
+      "519092",
+      "8083",
+      "304116"
+    ],
+    "load_names": [
+      "ochre_house_load_429888",
+      "ochre_house_load_224398",
+      "ochre_house_load_292117",
+      "ochre_house_load_141350",
+      "ochre_house_load_519092",
+      "ochre_house_load_8083",
+      "ochre_house_load_304116"
+    ]
+  },
+  {
+    "cluster_index": 63,
+    "transformer_to_node": "x3141393c",
+    "service_node": "sx3141393c",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "162004",
+      "424439",
+      "349207"
+    ],
+    "load_names": [
+      "ochre_house_load_162004",
+      "ochre_house_load_424439",
+      "ochre_house_load_349207"
+    ]
+  },
+  {
+    "cluster_index": 64,
+    "transformer_to_node": "x3160871c",
+    "service_node": "sx3160871c",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "514303",
+      "465186",
+      "311107",
+      "117115",
+      "305045",
+      "219636",
+      "486285",
+      "405479",
+      "159900",
+      "28159",
+      "120305"
+    ],
+    "load_names": [
+      "ochre_house_load_514303",
+      "ochre_house_load_465186",
+      "ochre_house_load_311107",
+      "ochre_house_load_117115",
+      "ochre_house_load_305045",
+      "ochre_house_load_219636",
+      "ochre_house_load_486285",
+      "ochre_house_load_405479",
+      "ochre_house_load_159900",
+      "ochre_house_load_28159",
+      "ochre_house_load_120305"
+    ]
+  },
+  {
+    "cluster_index": 65,
+    "transformer_to_node": "x3217053c",
+    "service_node": "sx3217053c",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "318055"
+    ],
+    "load_names": [
+      "ochre_house_load_318055"
+    ]
+  },
+  {
+    "cluster_index": 66,
+    "transformer_to_node": "x2861218c",
+    "service_node": "sx2861218c",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "262502",
+      "345470",
+      "228624",
+      "319626",
+      "371047",
+      "255345",
+      "139404",
+      "368041",
+      "284247",
+      "123278"
+    ],
+    "load_names": [
+      "ochre_house_load_262502",
+      "ochre_house_load_345470",
+      "ochre_house_load_228624",
+      "ochre_house_load_319626",
+      "ochre_house_load_371047",
+      "ochre_house_load_255345",
+      "ochre_house_load_139404",
+      "ochre_house_load_368041",
+      "ochre_house_load_284247",
+      "ochre_house_load_123278"
+    ]
+  },
+  {
+    "cluster_index": 67,
+    "transformer_to_node": "x3082988b",
+    "service_node": "sx3082988b",
+    "transformer_kva": 75.0,
+    "transformer_configuration": "xcon_ct75",
+    "building_ids": [
+      "159311",
+      "213002",
+      "229481",
+      "391979",
+      "343474",
+      "325789",
+      "47959",
+      "414301",
+      "544772",
+      "104860",
+      "487999",
+      "51960"
+    ],
+    "load_names": [
+      "ochre_house_load_159311",
+      "ochre_house_load_213002",
+      "ochre_house_load_229481",
+      "ochre_house_load_391979",
+      "ochre_house_load_343474",
+      "ochre_house_load_325789",
+      "ochre_house_load_47959",
+      "ochre_house_load_414301",
+      "ochre_house_load_544772",
+      "ochre_house_load_104860",
+      "ochre_house_load_487999",
+      "ochre_house_load_51960"
+    ]
+  },
+  {
+    "cluster_index": 68,
+    "transformer_to_node": "x3160863c",
+    "service_node": "sx3160863c",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "20621"
+    ],
+    "load_names": [
+      "ochre_house_load_20621"
+    ]
+  },
+  {
+    "cluster_index": 69,
+    "transformer_to_node": "x3235946a",
+    "service_node": "sx3235946a",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "415007",
+      "473426",
+      "525441",
+      "49559",
+      "160898",
+      "320667",
+      "112300"
+    ],
+    "load_names": [
+      "ochre_house_load_415007",
+      "ochre_house_load_473426",
+      "ochre_house_load_525441",
+      "ochre_house_load_49559",
+      "ochre_house_load_160898",
+      "ochre_house_load_320667",
+      "ochre_house_load_112300"
+    ]
+  },
+  {
+    "cluster_index": 70,
+    "transformer_to_node": "x3217052c",
+    "service_node": "sx3217052c",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "453474",
+      "454770",
+      "436517",
+      "159349",
+      "59912",
+      "93768",
+      "244264",
+      "202039"
+    ],
+    "load_names": [
+      "ochre_house_load_453474",
+      "ochre_house_load_454770",
+      "ochre_house_load_436517",
+      "ochre_house_load_159349",
+      "ochre_house_load_59912",
+      "ochre_house_load_93768",
+      "ochre_house_load_244264",
+      "ochre_house_load_202039"
+    ]
+  },
+  {
+    "cluster_index": 71,
+    "transformer_to_node": "x3160862c",
+    "service_node": "sx3160862c",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "183304",
+      "407841",
+      "106564",
+      "486098",
+      "226598",
+      "192800",
+      "139272",
+      "391468",
+      "127663",
+      "682",
+      "122061",
+      "197532",
+      "437412"
+    ],
+    "load_names": [
+      "ochre_house_load_183304",
+      "ochre_house_load_407841",
+      "ochre_house_load_106564",
+      "ochre_house_load_486098",
+      "ochre_house_load_226598",
+      "ochre_house_load_192800",
+      "ochre_house_load_139272",
+      "ochre_house_load_391468",
+      "ochre_house_load_127663",
+      "ochre_house_load_682",
+      "ochre_house_load_122061",
+      "ochre_house_load_197532",
+      "ochre_house_load_437412"
+    ]
+  },
+  {
+    "cluster_index": 72,
+    "transformer_to_node": "x2842384c",
+    "service_node": "sx2842384c",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "395429",
+      "67186",
+      "318102",
+      "119842",
+      "510701",
+      "446322",
+      "464312",
+      "188953",
+      "527237",
+      "31965",
+      "461295",
+      "447578"
+    ],
+    "load_names": [
+      "ochre_house_load_395429",
+      "ochre_house_load_67186",
+      "ochre_house_load_318102",
+      "ochre_house_load_119842",
+      "ochre_house_load_510701",
+      "ochre_house_load_446322",
+      "ochre_house_load_464312",
+      "ochre_house_load_188953",
+      "ochre_house_load_527237",
+      "ochre_house_load_31965",
+      "ochre_house_load_461295",
+      "ochre_house_load_447578"
+    ]
+  },
+  {
+    "cluster_index": 73,
+    "transformer_to_node": "x2730108c",
+    "service_node": "sx2730108c",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "21295",
+      "449778",
+      "125128",
+      "115968",
+      "215583",
+      "392777",
+      "340776",
+      "513336",
+      "361089"
+    ],
+    "load_names": [
+      "ochre_house_load_21295",
+      "ochre_house_load_449778",
+      "ochre_house_load_125128",
+      "ochre_house_load_115968",
+      "ochre_house_load_215583",
+      "ochre_house_load_392777",
+      "ochre_house_load_340776",
+      "ochre_house_load_513336",
+      "ochre_house_load_361089"
+    ]
+  },
+  {
+    "cluster_index": 74,
+    "transformer_to_node": "x3011229a",
+    "service_node": "sx3011229a",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "301874"
+    ],
+    "load_names": [
+      "ochre_house_load_301874"
+    ]
+  },
+  {
+    "cluster_index": 75,
+    "transformer_to_node": "x2767342a",
+    "service_node": "sx2767342a",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "167202",
+      "402638",
+      "215510",
+      "487751",
+      "128310"
+    ],
+    "load_names": [
+      "ochre_house_load_167202",
+      "ochre_house_load_402638",
+      "ochre_house_load_215510",
+      "ochre_house_load_487751",
+      "ochre_house_load_128310"
+    ]
+  },
+  {
+    "cluster_index": 76,
+    "transformer_to_node": "x2823611a",
+    "service_node": "sx2823611a",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "209412",
+      "88759",
+      "268292",
+      "33761",
+      "2098",
+      "233879",
+      "330646",
+      "69626",
+      "61379",
+      "15007"
+    ],
+    "load_names": [
+      "ochre_house_load_209412",
+      "ochre_house_load_88759",
+      "ochre_house_load_268292",
+      "ochre_house_load_33761",
+      "ochre_house_load_2098",
+      "ochre_house_load_233879",
+      "ochre_house_load_330646",
+      "ochre_house_load_69626",
+      "ochre_house_load_61379",
+      "ochre_house_load_15007"
+    ]
+  },
+  {
+    "cluster_index": 77,
+    "transformer_to_node": "x3048890c",
+    "service_node": "sx3048890c",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "160880",
+      "391944",
+      "425465",
+      "478833",
+      "91397"
+    ],
+    "load_names": [
+      "ochre_house_load_160880",
+      "ochre_house_load_391944",
+      "ochre_house_load_425465",
+      "ochre_house_load_478833",
+      "ochre_house_load_91397"
+    ]
+  },
+  {
+    "cluster_index": 78,
+    "transformer_to_node": "x2955047a",
+    "service_node": "sx2955047a",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "329260",
+      "396742",
+      "381122",
+      "523081",
+      "185819",
+      "482395",
+      "173050",
+      "459186",
+      "438056",
+      "373440",
+      "541074",
+      "32833"
+    ],
+    "load_names": [
+      "ochre_house_load_329260",
+      "ochre_house_load_396742",
+      "ochre_house_load_381122",
+      "ochre_house_load_523081",
+      "ochre_house_load_185819",
+      "ochre_house_load_482395",
+      "ochre_house_load_173050",
+      "ochre_house_load_459186",
+      "ochre_house_load_438056",
+      "ochre_house_load_373440",
+      "ochre_house_load_541074",
+      "ochre_house_load_32833"
+    ]
+  },
+  {
+    "cluster_index": 79,
+    "transformer_to_node": "x3214069c",
+    "service_node": "sx3214069c",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "240492",
+      "145405"
+    ],
+    "load_names": [
+      "ochre_house_load_240492",
+      "ochre_house_load_145405"
+    ]
+  },
+  {
+    "cluster_index": 80,
+    "transformer_to_node": "x2748780a",
+    "service_node": "sx2748780a",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "69842",
+      "111501",
+      "279160",
+      "517258"
+    ],
+    "load_names": [
+      "ochre_house_load_69842",
+      "ochre_house_load_111501",
+      "ochre_house_load_279160",
+      "ochre_house_load_517258"
+    ]
+  },
+  {
+    "cluster_index": 81,
+    "transformer_to_node": "x2955055b",
+    "service_node": "sx2955055b",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "543210",
+      "267735",
+      "66449",
+      "506136"
+    ],
+    "load_names": [
+      "ochre_house_load_543210",
+      "ochre_house_load_267735",
+      "ochre_house_load_66449",
+      "ochre_house_load_506136"
+    ]
+  },
+  {
+    "cluster_index": 82,
+    "transformer_to_node": "x2823544a",
+    "service_node": "sx2823544a",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "324981",
+      "381087",
+      "200374",
+      "133636",
+      "175316",
+      "620",
+      "409483",
+      "85660",
+      "526365",
+      "439854",
+      "335542",
+      "312422",
+      "361607"
+    ],
+    "load_names": [
+      "ochre_house_load_324981",
+      "ochre_house_load_381087",
+      "ochre_house_load_200374",
+      "ochre_house_load_133636",
+      "ochre_house_load_175316",
+      "ochre_house_load_620",
+      "ochre_house_load_409483",
+      "ochre_house_load_85660",
+      "ochre_house_load_526365",
+      "ochre_house_load_439854",
+      "ochre_house_load_335542",
+      "ochre_house_load_312422",
+      "ochre_house_load_361607"
+    ]
+  },
+  {
+    "cluster_index": 83,
+    "transformer_to_node": "x3195321a",
+    "service_node": "sx3195321a",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "96862",
+      "262816",
+      "454310",
+      "136784",
+      "507777"
+    ],
+    "load_names": [
+      "ochre_house_load_96862",
+      "ochre_house_load_262816",
+      "ochre_house_load_454310",
+      "ochre_house_load_136784",
+      "ochre_house_load_507777"
+    ]
+  },
+  {
+    "cluster_index": 84,
+    "transformer_to_node": "x3104830c",
+    "service_node": "sx3104830c",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "78581",
+      "329123",
+      "544508",
+      "320013",
+      "301504"
+    ],
+    "load_names": [
+      "ochre_house_load_78581",
+      "ochre_house_load_329123",
+      "ochre_house_load_544508",
+      "ochre_house_load_320013",
+      "ochre_house_load_301504"
+    ]
+  },
+  {
+    "cluster_index": 85,
+    "transformer_to_node": "x2767409b",
+    "service_node": "sx2767409b",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "398312",
+      "117120",
+      "215656",
+      "263068",
+      "329861",
+      "237120",
+      "186924"
+    ],
+    "load_names": [
+      "ochre_house_load_398312",
+      "ochre_house_load_117120",
+      "ochre_house_load_215656",
+      "ochre_house_load_263068",
+      "ochre_house_load_329861",
+      "ochre_house_load_237120",
+      "ochre_house_load_186924"
+    ]
+  },
+  {
+    "cluster_index": 86,
+    "transformer_to_node": "x2992556c",
+    "service_node": "sx2992556c",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "48221",
+      "79390",
+      "547937",
+      "428666",
+      "50580"
+    ],
+    "load_names": [
+      "ochre_house_load_48221",
+      "ochre_house_load_79390",
+      "ochre_house_load_547937",
+      "ochre_house_load_428666",
+      "ochre_house_load_50580"
+    ]
+  },
+  {
+    "cluster_index": 87,
+    "transformer_to_node": "x3216988b",
+    "service_node": "sx3216988b",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "420097",
+      "265551",
+      "54697",
+      "289058",
+      "194635",
+      "68863",
+      "330101",
+      "319337",
+      "344492",
+      "184427"
+    ],
+    "load_names": [
+      "ochre_house_load_420097",
+      "ochre_house_load_265551",
+      "ochre_house_load_54697",
+      "ochre_house_load_289058",
+      "ochre_house_load_194635",
+      "ochre_house_load_68863",
+      "ochre_house_load_330101",
+      "ochre_house_load_319337",
+      "ochre_house_load_344492",
+      "ochre_house_load_184427"
+    ]
+  },
+  {
+    "cluster_index": 88,
+    "transformer_to_node": "x2730163c",
+    "service_node": "sx2730163c",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "534341",
+      "199016",
+      "492245",
+      "201928",
+      "472629",
+      "35932"
+    ],
+    "load_names": [
+      "ochre_house_load_534341",
+      "ochre_house_load_199016",
+      "ochre_house_load_492245",
+      "ochre_house_load_201928",
+      "ochre_house_load_472629",
+      "ochre_house_load_35932"
+    ]
+  },
+  {
+    "cluster_index": 89,
+    "transformer_to_node": "x2861157c",
+    "service_node": "sx2861157c",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "6545",
+      "239992",
+      "111433",
+      "441278",
+      "63556",
+      "315490",
+      "52377"
+    ],
+    "load_names": [
+      "ochre_house_load_6545",
+      "ochre_house_load_239992",
+      "ochre_house_load_111433",
+      "ochre_house_load_441278",
+      "ochre_house_load_63556",
+      "ochre_house_load_315490",
+      "ochre_house_load_52377"
+    ]
+  },
+  {
+    "cluster_index": 90,
+    "transformer_to_node": "x3179646b",
+    "service_node": "sx3179646b",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "107460",
+      "346824",
+      "175977",
+      "519534",
+      "283566",
+      "131095",
+      "495378",
+      "452846",
+      "412293",
+      "19670",
+      "261802",
+      "256426",
+      "472992"
+    ],
+    "load_names": [
+      "ochre_house_load_107460",
+      "ochre_house_load_346824",
+      "ochre_house_load_175977",
+      "ochre_house_load_519534",
+      "ochre_house_load_283566",
+      "ochre_house_load_131095",
+      "ochre_house_load_495378",
+      "ochre_house_load_452846",
+      "ochre_house_load_412293",
+      "ochre_house_load_19670",
+      "ochre_house_load_261802",
+      "ochre_house_load_256426",
+      "ochre_house_load_472992"
+    ]
+  },
+  {
+    "cluster_index": 91,
+    "transformer_to_node": "x2823545a",
+    "service_node": "sx2823545a",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "229548",
+      "341616",
+      "302088",
+      "192312",
+      "295670"
+    ],
+    "load_names": [
+      "ochre_house_load_229548",
+      "ochre_house_load_341616",
+      "ochre_house_load_302088",
+      "ochre_house_load_192312",
+      "ochre_house_load_295670"
+    ]
+  },
+  {
+    "cluster_index": 92,
+    "transformer_to_node": "x3030199c",
+    "service_node": "sx3030199c",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "103643",
+      "488510",
+      "179886",
+      "282048",
+      "259612",
+      "348481",
+      "396589",
+      "124562",
+      "434494",
+      "384563",
+      "141246"
+    ],
+    "load_names": [
+      "ochre_house_load_103643",
+      "ochre_house_load_488510",
+      "ochre_house_load_179886",
+      "ochre_house_load_282048",
+      "ochre_house_load_259612",
+      "ochre_house_load_348481",
+      "ochre_house_load_396589",
+      "ochre_house_load_124562",
+      "ochre_house_load_434494",
+      "ochre_house_load_384563",
+      "ochre_house_load_141246"
+    ]
+  },
+  {
+    "cluster_index": 93,
+    "transformer_to_node": "x2917359a",
+    "service_node": "sx2917359a",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "253224",
+      "22158",
+      "492549"
+    ],
+    "load_names": [
+      "ochre_house_load_253224",
+      "ochre_house_load_22158",
+      "ochre_house_load_492549"
+    ]
+  },
+  {
+    "cluster_index": 94,
+    "transformer_to_node": "x2891575c",
+    "service_node": "sx2891575c",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "403104"
+    ],
+    "load_names": [
+      "ochre_house_load_403104"
+    ]
+  },
+  {
+    "cluster_index": 95,
+    "transformer_to_node": "x3101782a",
+    "service_node": "sx3101782a",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "224866",
+      "241676",
+      "273801",
+      "175687",
+      "347246",
+      "431957",
+      "47840",
+      "389346",
+      "546972",
+      "386916"
+    ],
+    "load_names": [
+      "ochre_house_load_224866",
+      "ochre_house_load_241676",
+      "ochre_house_load_273801",
+      "ochre_house_load_175687",
+      "ochre_house_load_347246",
+      "ochre_house_load_431957",
+      "ochre_house_load_47840",
+      "ochre_house_load_389346",
+      "ochre_house_load_546972",
+      "ochre_house_load_386916"
+    ]
+  },
+  {
+    "cluster_index": 96,
+    "transformer_to_node": "x2692633c",
+    "service_node": "sx2692633c",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "316051",
+      "156716",
+      "192389",
+      "18838",
+      "122601",
+      "531662",
+      "304201",
+      "44738",
+      "10740",
+      "248626",
+      "517304",
+      "515041",
+      "261325"
+    ],
+    "load_names": [
+      "ochre_house_load_316051",
+      "ochre_house_load_156716",
+      "ochre_house_load_192389",
+      "ochre_house_load_18838",
+      "ochre_house_load_122601",
+      "ochre_house_load_531662",
+      "ochre_house_load_304201",
+      "ochre_house_load_44738",
+      "ochre_house_load_10740",
+      "ochre_house_load_248626",
+      "ochre_house_load_517304",
+      "ochre_house_load_515041",
+      "ochre_house_load_261325"
+    ]
+  },
+  {
+    "cluster_index": 97,
+    "transformer_to_node": "x3142050c",
+    "service_node": "sx3142050c",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "500108",
+      "303622",
+      "545696",
+      "16760",
+      "341670",
+      "175523",
+      "282801",
+      "168910",
+      "411121",
+      "241758"
+    ],
+    "load_names": [
+      "ochre_house_load_500108",
+      "ochre_house_load_303622",
+      "ochre_house_load_545696",
+      "ochre_house_load_16760",
+      "ochre_house_load_341670",
+      "ochre_house_load_175523",
+      "ochre_house_load_282801",
+      "ochre_house_load_168910",
+      "ochre_house_load_411121",
+      "ochre_house_load_241758"
+    ]
+  },
+  {
+    "cluster_index": 98,
+    "transformer_to_node": "x2936214a",
+    "service_node": "sx2936214a",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "528850",
+      "523530"
+    ],
+    "load_names": [
+      "ochre_house_load_528850",
+      "ochre_house_load_523530"
+    ]
+  },
+  {
+    "cluster_index": 99,
+    "transformer_to_node": "x2936213b",
+    "service_node": "sx2936213b",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "42766",
+      "131226"
+    ],
+    "load_names": [
+      "ochre_house_load_42766",
+      "ochre_house_load_131226"
+    ]
+  },
+  {
+    "cluster_index": 100,
+    "transformer_to_node": "x2767340a",
+    "service_node": "sx2767340a",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "49829",
+      "436458",
+      "372134",
+      "527111"
+    ],
+    "load_names": [
+      "ochre_house_load_49829",
+      "ochre_house_load_436458",
+      "ochre_house_load_372134",
+      "ochre_house_load_527111"
+    ]
+  },
+  {
+    "cluster_index": 101,
+    "transformer_to_node": "x3157167a",
+    "service_node": "sx3157167a",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "72989",
+      "364735",
+      "531460",
+      "373657",
+      "161861",
+      "248221",
+      "60725",
+      "521269",
+      "352319",
+      "367483",
+      "144651",
+      "60197",
+      "174597"
+    ],
+    "load_names": [
+      "ochre_house_load_72989",
+      "ochre_house_load_364735",
+      "ochre_house_load_531460",
+      "ochre_house_load_373657",
+      "ochre_house_load_161861",
+      "ochre_house_load_248221",
+      "ochre_house_load_60725",
+      "ochre_house_load_521269",
+      "ochre_house_load_352319",
+      "ochre_house_load_367483",
+      "ochre_house_load_144651",
+      "ochre_house_load_60197",
+      "ochre_house_load_174597"
+    ]
+  },
+  {
+    "cluster_index": 102,
+    "transformer_to_node": "x2767340c",
+    "service_node": "sx2767340c",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "284091",
+      "137501"
+    ],
+    "load_names": [
+      "ochre_house_load_284091",
+      "ochre_house_load_137501"
+    ]
+  },
+  {
+    "cluster_index": 103,
+    "transformer_to_node": "x2767340b",
+    "service_node": "sx2767340b",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "92339",
+      "213027",
+      "504968"
+    ],
+    "load_names": [
+      "ochre_house_load_92339",
+      "ochre_house_load_213027",
+      "ochre_house_load_504968"
+    ]
+  },
+  {
+    "cluster_index": 104,
+    "transformer_to_node": "x2673306c",
+    "service_node": "sx2673306c",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "239985",
+      "346823",
+      "115209",
+      "106794"
+    ],
+    "load_names": [
+      "ochre_house_load_239985",
+      "ochre_house_load_346823",
+      "ochre_house_load_115209",
+      "ochre_house_load_106794"
+    ]
+  },
+  {
+    "cluster_index": 105,
+    "transformer_to_node": "x2801909c",
+    "service_node": "sx2801909c",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "35073",
+      "96010",
+      "342684"
+    ],
+    "load_names": [
+      "ochre_house_load_35073",
+      "ochre_house_load_96010",
+      "ochre_house_load_342684"
+    ]
+  },
+  {
+    "cluster_index": 106,
+    "transformer_to_node": "x2861223b",
+    "service_node": "sx2861223b",
+    "transformer_kva": 50.0,
+    "transformer_configuration": "xcon_ct50",
+    "building_ids": [
+      "359627",
+      "203733",
+      "417114",
+      "152328",
+      "294527",
+      "292676",
+      "428936",
+      "378673"
+    ],
+    "load_names": [
+      "ochre_house_load_359627",
+      "ochre_house_load_203733",
+      "ochre_house_load_417114",
+      "ochre_house_load_152328",
+      "ochre_house_load_294527",
+      "ochre_house_load_292676",
+      "ochre_house_load_428936",
+      "ochre_house_load_378673"
+    ]
+  },
+  {
+    "cluster_index": 107,
+    "transformer_to_node": "x2898457a",
+    "service_node": "sx2898457a",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "291601",
+      "110117",
+      "290676",
+      "450684",
+      "506220"
+    ],
+    "load_names": [
+      "ochre_house_load_291601",
+      "ochre_house_load_110117",
+      "ochre_house_load_290676",
+      "ochre_house_load_450684",
+      "ochre_house_load_506220"
+    ]
+  },
+  {
+    "cluster_index": 108,
+    "transformer_to_node": "x2785515c",
+    "service_node": "sx2785515c",
+    "transformer_kva": 25.0,
+    "transformer_configuration": "xcon_ct25",
+    "building_ids": [
+      "396629",
+      "446349",
+      "188487",
+      "118013"
+    ],
+    "load_names": [
+      "ochre_house_load_396629",
+      "ochre_house_load_446349",
+      "ochre_house_load_188487",
+      "ochre_house_load_118013"
+    ]
+  }
+]

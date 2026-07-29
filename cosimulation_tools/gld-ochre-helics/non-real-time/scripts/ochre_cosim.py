@@ -12,11 +12,16 @@ from pathlib import Path
 
 config_folder = Path (__file__).parent.parent
 
-load_paths_file = (config_folder / "config" / "load_paths.json")
+# Optional CLI arg selects an alternate config set, e.g. `ochre_cosim.py 9500`
+# reads load_paths_9500.json / ochre_helics_config_9500.json instead of the
+# default (4-node) filenames.
+config_suffix = f"_{sys.argv[1]}" if len(sys.argv) > 1 else ""
 
-master_config = (config_folder / "config" / "master_cosim_config.json")
+load_paths_file = (config_folder / "config" / f"load_paths{config_suffix}.json")
 
-ochre_helics_config_file = (config_folder / "config" / "ochre_helics_config.json")
+master_config = (config_folder / "config" / f"master_cosim_config{config_suffix}.json")
+
+ochre_helics_config_file = (config_folder / "config" / f"ochre_helics_config{config_suffix}.json")
 
 
 def read_load_paths (load_paths_file : str):

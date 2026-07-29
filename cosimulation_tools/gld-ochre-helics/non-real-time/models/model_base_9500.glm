@@ -49386,7 +49386,7 @@ object transformer {
   from "l2955077";
   to "x2955077c";
   phases CS;
-  configuration "xcon_ct25";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -49402,7 +49402,7 @@ object transformer {
   from "l2936211";
   to "x2936211c";
   phases CS;
-  configuration "xcon_ct15";
+  configuration "xcon_ct25";
   // vector group Iii;
 }
 object transformer {
@@ -49434,7 +49434,7 @@ object transformer {
   from "l3217056";
   to "x3217056a";
   phases AS;
-  configuration "xcon_ct50";
+  configuration "xcon_ct25";
   // vector group Iii;
 }
 object transformer {
@@ -49450,7 +49450,7 @@ object transformer {
   from "l2936276";
   to "x2936276b";
   phases BS;
-  configuration "xcon_ct10";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -49522,7 +49522,7 @@ object transformer {
   from "l3108449";
   to "x3108449a";
   phases AS;
-  configuration "xcon_ct15";
+  configuration "xcon_ct25";
   // vector group Iii;
 }
 object transformer {
@@ -49618,7 +49618,7 @@ object transformer {
   from "l2955078";
   to "x2955078a";
   phases AS;
-  configuration "xcon_ct25";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -49642,7 +49642,7 @@ object transformer {
   from "l2955006";
   to "x2955006c";
   phases CS;
-  configuration "xcon_ct25";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -49690,7 +49690,7 @@ object transformer {
   from "l3086079";
   to "x3086079b";
   phases BS;
-  configuration "xcon_ct10";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -49746,7 +49746,7 @@ object transformer {
   from "l2690187";
   to "x2690187b";
   phases BS;
-  configuration "xcon_ct75";
+  configuration "xcon_ct25";
   // vector group Iii;
 }
 object transformer {
@@ -49834,7 +49834,7 @@ object transformer {
   from "l2692661";
   to "x2692661a";
   phases AS;
-  configuration "xcon_ct25";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -49874,7 +49874,7 @@ object transformer {
   from "l2692600";
   to "x2692600c";
   phases CS;
-  configuration "xcon_ct25";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -49930,7 +49930,7 @@ object transformer {
   from "l2955005";
   to "x2955005b";
   phases BS;
-  configuration "xcon_ct15";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -50106,7 +50106,7 @@ object transformer {
   from "l2955074";
   to "x2955074a";
   phases AS;
-  configuration "xcon_ct37";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -50282,7 +50282,7 @@ object transformer {
   from "l2917333";
   to "x2917333a";
   phases AS;
-  configuration "xcon_ct25";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -50290,7 +50290,7 @@ object transformer {
   from "l2708744";
   to "x2708744b";
   phases BS;
-  configuration "xcon_ct75";
+  configuration "xcon_ct25";
   // vector group Iii;
 }
 object transformer {
@@ -50338,7 +50338,7 @@ object transformer {
   from "l3081380";
   to "x3081380a";
   phases AS;
-  configuration "xcon_ct15";
+  configuration "xcon_ct25";
   // vector group Iii;
 }
 object transformer {
@@ -50370,7 +50370,7 @@ object transformer {
   from "l3160098";
   to "x3160098a";
   phases AS;
-  configuration "xcon_ct15";
+  configuration "xcon_ct25";
   // vector group Iii;
 }
 object transformer {
@@ -50386,7 +50386,7 @@ object transformer {
   from "l2990826";
   to "x2990826a";
   phases AS;
-  configuration "xcon_ct25";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -50434,7 +50434,7 @@ object transformer {
   from "l2990826";
   to "x2990826b";
   phases BS;
-  configuration "xcon_ct25";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -50442,7 +50442,7 @@ object transformer {
   from "l2786266";
   to "x2786266a";
   phases AS;
-  configuration "xcon_ct15";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -50634,7 +50634,7 @@ object transformer {
   from "l2973833";
   to "x2973833b";
   phases BS;
-  configuration "xcon_ct15";
+  configuration "xcon_ct25";
   // vector group Iii;
 }
 object transformer {
@@ -50642,7 +50642,7 @@ object transformer {
   from "l3048963";
   to "x3048963b";
   phases BS;
-  configuration "xcon_ct15";
+  configuration "xcon_ct25";
   // vector group Iii;
 }
 object transformer {
@@ -50690,7 +50690,7 @@ object transformer {
   from "l2764411";
   to "x2764411c";
   phases CS;
-  configuration "xcon_ct15";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -50698,7 +50698,7 @@ object transformer {
   from "l3104796";
   to "x3104796c";
   phases CS;
-  configuration "xcon_ct25";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -50818,7 +50818,7 @@ object transformer {
   from "l3254915";
   to "x3254915b";
   phases BS;
-  configuration "xcon_ct5";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -50858,7 +50858,7 @@ object transformer {
   from "l3217057";
   to "x3217057a";
   phases AS;
-  configuration "xcon_ct10";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -50882,7 +50882,7 @@ object transformer {
   from "l2842329";
   to "x2842329c";
   phases CS;
-  configuration "xcon_ct15";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -51018,7 +51018,7 @@ object transformer {
   from "l2728247";
   to "x2728247c";
   phases CS;
-  configuration "xcon_ct10";
+  configuration "xcon_ct25";
   // vector group Iii;
 }
 object transformer {
@@ -51026,7 +51026,7 @@ object transformer {
   from "l2728247";
   to "x2728247a";
   phases AS;
-  configuration "xcon_ct10";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -51042,7 +51042,7 @@ object transformer {
   from "l2711226";
   to "x2711226b";
   phases BS;
-  configuration "xcon_ct25";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -51058,7 +51058,7 @@ object transformer {
   from "l2802481";
   to "x2802481a";
   phases AS;
-  configuration "xcon_ct75";
+  configuration "xcon_ct25";
   // vector group Iii;
 }
 object transformer {
@@ -51066,7 +51066,7 @@ object transformer {
   from "l2917310";
   to "x2917310b";
   phases BS;
-  configuration "xcon_ct15";
+  configuration "xcon_ct25";
   // vector group Iii;
 }
 object transformer {
@@ -51154,7 +51154,7 @@ object transformer {
   from "l3150961";
   to "x3150961c";
   phases CS;
-  configuration "xcon_ct37";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -51162,7 +51162,7 @@ object transformer {
   from "l3234149";
   to "x3234149c";
   phases CS;
-  configuration "xcon_ct250";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -51186,7 +51186,7 @@ object transformer {
   from "l3234149";
   to "x3234149a";
   phases AS;
-  configuration "xcon_ct250";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -51194,7 +51194,7 @@ object transformer {
   from "l3234149";
   to "x3234149b";
   phases BS;
-  configuration "xcon_ct250";
+  configuration "xcon_ct25";
   // vector group Iii;
 }
 object transformer {
@@ -51202,7 +51202,7 @@ object transformer {
   from "l2748839";
   to "x2748839b";
   phases BS;
-  configuration "xcon_ct10";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -51218,7 +51218,7 @@ object transformer {
   from "l3214549";
   to "x3214549a";
   phases AS;
-  configuration "xcon_ct50";
+  configuration "xcon_ct25";
   // vector group Iii;
 }
 object transformer {
@@ -51234,7 +51234,7 @@ object transformer {
   from "l3254237";
   to "x3254237a";
   phases AS;
-  configuration "xcon_ct25";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -51330,7 +51330,7 @@ object transformer {
   from "l2798067";
   to "x2798067b";
   phases BS;
-  configuration "xcon_ct10";
+  configuration "xcon_ct25";
   // vector group Iii;
 }
 object transformer {
@@ -51338,7 +51338,7 @@ object transformer {
   from "l3142098";
   to "x3142098b";
   phases BS;
-  configuration "xcon_ct25";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -51354,7 +51354,7 @@ object transformer {
   from "l2842383";
   to "x2842383a";
   phases AS;
-  configuration "xcon_ct15";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -51402,7 +51402,7 @@ object transformer {
   from "l2711224";
   to "x2711224b";
   phases BS;
-  configuration "xcon_ct10";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -51426,7 +51426,7 @@ object transformer {
   from "l3214071";
   to "x3214071c";
   phases CS;
-  configuration "xcon_ct25";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -51546,7 +51546,7 @@ object transformer {
   from "l2786204";
   to "x2786204c";
   phases CS;
-  configuration "xcon_ct37";
+  configuration "xcon_ct25";
   // vector group Iii;
 }
 object transformer {
@@ -51634,7 +51634,7 @@ object transformer {
   from "l3030203";
   to "x3030203c";
   phases CS;
-  configuration "xcon_ct25";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -51642,7 +51642,7 @@ object transformer {
   from "l2936216";
   to "x2936216c";
   phases CS;
-  configuration "xcon_ct10";
+  configuration "xcon_ct25";
   // vector group Iii;
 }
 object transformer {
@@ -51682,7 +51682,7 @@ object transformer {
   from "l2861219";
   to "x2861219b";
   phases BS;
-  configuration "xcon_ct25";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -51754,7 +51754,7 @@ object transformer {
   from "l3160871";
   to "x3160871c";
   phases CS;
-  configuration "xcon_ct25";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -51762,7 +51762,7 @@ object transformer {
   from "l3217053";
   to "x3217053c";
   phases CS;
-  configuration "xcon_ct10";
+  configuration "xcon_ct25";
   // vector group Iii;
 }
 object transformer {
@@ -51778,7 +51778,7 @@ object transformer {
   from "l2861218";
   to "x2861218c";
   phases CS;
-  configuration "xcon_ct25";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -51794,7 +51794,7 @@ object transformer {
   from "l3082988";
   to "x3082988b";
   phases BS;
-  configuration "xcon_ct15";
+  configuration "xcon_ct75";
   // vector group Iii;
 }
 object transformer {
@@ -51810,7 +51810,7 @@ object transformer {
   from "l3160863";
   to "x3160863c";
   phases CS;
-  configuration "xcon_ct15";
+  configuration "xcon_ct25";
   // vector group Iii;
 }
 object transformer {
@@ -51818,7 +51818,7 @@ object transformer {
   from "l3235946";
   to "x3235946a";
   phases AS;
-  configuration "xcon_ct25";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -51882,7 +51882,7 @@ object transformer {
   from "l3217052";
   to "x3217052c";
   phases CS;
-  configuration "xcon_ct25";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -51906,7 +51906,7 @@ object transformer {
   from "l3160862";
   to "x3160862c";
   phases CS;
-  configuration "xcon_ct15";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -51914,7 +51914,7 @@ object transformer {
   from "l2842384";
   to "x2842384c";
   phases CS;
-  configuration "xcon_ct10";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -51954,7 +51954,7 @@ object transformer {
   from "l2730108";
   to "x2730108c";
   phases CS;
-  configuration "xcon_ct15";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -51978,7 +51978,7 @@ object transformer {
   from "l3011229";
   to "x3011229a";
   phases AS;
-  configuration "xcon_ct15";
+  configuration "xcon_ct25";
   // vector group Iii;
 }
 object transformer {
@@ -52114,7 +52114,7 @@ object transformer {
   from "l2823611";
   to "x2823611a";
   phases AS;
-  configuration "xcon_ct15";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -52186,7 +52186,7 @@ object transformer {
   from "l2955047";
   to "x2955047a";
   phases AS;
-  configuration "xcon_ct25";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -52338,7 +52338,7 @@ object transformer {
   from "l2823544";
   to "x2823544a";
   phases AS;
-  configuration "xcon_ct25";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -52466,7 +52466,7 @@ object transformer {
   from "l3195321";
   to "x3195321a";
   phases AS;
-  configuration "xcon_ct15";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -52482,7 +52482,7 @@ object transformer {
   from "l3104830";
   to "x3104830c";
   phases CS;
-  configuration "xcon_ct10";
+  configuration "xcon_ct25";
   // vector group Iii;
 }
 object transformer {
@@ -52554,7 +52554,7 @@ object transformer {
   from "l2992556";
   to "x2992556c";
   phases CS;
-  configuration "xcon_ct15";
+  configuration "xcon_ct25";
   // vector group Iii;
 }
 object transformer {
@@ -52586,7 +52586,7 @@ object transformer {
   from "l3216988";
   to "x3216988b";
   phases BS;
-  configuration "xcon_ct25";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -52594,7 +52594,7 @@ object transformer {
   from "l2730163";
   to "x2730163c";
   phases CS;
-  configuration "xcon_ct25";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -52706,7 +52706,7 @@ object transformer {
   from "l3179646";
   to "x3179646b";
   phases BS;
-  configuration "xcon_ct37";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -52730,7 +52730,7 @@ object transformer {
   from "l3030199";
   to "x3030199c";
   phases CS;
-  configuration "xcon_ct25";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -52770,7 +52770,7 @@ object transformer {
   from "l2917359";
   to "x2917359a";
   phases AS;
-  configuration "xcon_ct15";
+  configuration "xcon_ct25";
   // vector group Iii;
 }
 object transformer {
@@ -52810,7 +52810,7 @@ object transformer {
   from "l2891575";
   to "x2891575c";
   phases CS;
-  configuration "xcon_ct15";
+  configuration "xcon_ct25";
   // vector group Iii;
 }
 object transformer {
@@ -52842,7 +52842,7 @@ object transformer {
   from "l3101782";
   to "x3101782a";
   phases AS;
-  configuration "xcon_ct37";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -52858,7 +52858,7 @@ object transformer {
   from "l2692633";
   to "x2692633c";
   phases CS;
-  configuration "xcon_ct25";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -52954,7 +52954,7 @@ object transformer {
   from "l3142050";
   to "x3142050c";
   phases CS;
-  configuration "xcon_ct15";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -53010,7 +53010,7 @@ object transformer {
   from "l2936213";
   to "x2936213b";
   phases BS;
-  configuration "xcon_ct37";
+  configuration "xcon_ct25";
   // vector group Iii;
 }
 object transformer {
@@ -53050,7 +53050,7 @@ object transformer {
   from "l2767340";
   to "x2767340a";
   phases AS;
-  configuration "xcon_ct75";
+  configuration "xcon_ct25";
   // vector group Iii;
 }
 object transformer {
@@ -53074,7 +53074,7 @@ object transformer {
   from "l3157167";
   to "x3157167a";
   phases AS;
-  configuration "xcon_ct15";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -53082,7 +53082,7 @@ object transformer {
   from "l2767340";
   to "x2767340c";
   phases CS;
-  configuration "xcon_ct75";
+  configuration "xcon_ct25";
   // vector group Iii;
 }
 object transformer {
@@ -53090,7 +53090,7 @@ object transformer {
   from "l2767340";
   to "x2767340b";
   phases BS;
-  configuration "xcon_ct75";
+  configuration "xcon_ct25";
   // vector group Iii;
 }
 object transformer {
@@ -53170,7 +53170,7 @@ object transformer {
   from "l2801909";
   to "x2801909c";
   phases CS;
-  configuration "xcon_ct10";
+  configuration "xcon_ct25";
   // vector group Iii;
 }
 object transformer {
@@ -53242,7 +53242,7 @@ object transformer {
   from "l2861223";
   to "x2861223b";
   phases BS;
-  configuration "xcon_ct25";
+  configuration "xcon_ct50";
   // vector group Iii;
 }
 object transformer {
@@ -53282,7 +53282,7 @@ object transformer {
   from "l2898457";
   to "x2898457a";
   phases AS;
-  configuration "xcon_ct10";
+  configuration "xcon_ct25";
   // vector group Iii;
 }
 object transformer {
@@ -60569,16 +60569,53 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_251867c0";
+  name "ochre_house_load_6545";
   parent "sx2861157c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*5242.27;
-  base_power_2 ieeezipload.value*5242.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_239992";
+  parent "sx2861157c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_111433";
+  parent "sx2861157c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_441278";
+  parent "sx2861157c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_63556";
+  parent "sx2861157c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_315490";
+  parent "sx2861157c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_52377";
+  parent "sx2861157c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "x3048230c";
@@ -60942,16 +60979,18 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_226308731a0";
+  name "ochre_house_load_201834";
   parent "sx3214549a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*9144.33;
-  base_power_2 ieeezipload.value*9144.33;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_383865";
+  parent "sx3214549a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "l2710520";
@@ -61033,16 +61072,88 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260569c0";
+  name "ochre_house_load_410593";
   parent "sx3104796c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*5242.27;
-  base_power_2 ieeezipload.value*5242.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_153002";
+  parent "sx3104796c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_483644";
+  parent "sx3104796c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_516263";
+  parent "sx3104796c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_513516";
+  parent "sx3104796c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_397555";
+  parent "sx3104796c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_907";
+  parent "sx3104796c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_427800";
+  parent "sx3104796c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_356235";
+  parent "sx3104796c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_475046";
+  parent "sx3104796c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_196926";
+  parent "sx3104796c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_436627";
+  parent "sx3104796c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx3160896c";
@@ -61212,16 +61323,46 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260481c0";
+  name "ochre_house_load_534341";
   parent "sx2730163c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*5242.27;
-  base_power_2 ieeezipload.value*5242.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_199016";
+  parent "sx2730163c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_492245";
+  parent "sx2730163c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_201928";
+  parent "sx2730163c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_472629";
+  parent "sx2730163c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_35932";
+  parent "sx2730163c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx3178982a";
@@ -62354,16 +62495,25 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_223662c0";
+  name "ochre_house_load_155532";
   parent "sx2786204c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*7865.98;
-  base_power_2 ieeezipload.value*7865.98;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_169460";
+  parent "sx2786204c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_33973";
+  parent "sx2786204c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "m1069191";
@@ -62824,16 +62974,81 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260520b0";
+  name "ochre_house_load_337614";
   parent "sx3254915b";
   phases BS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*1005.15;
-  base_power_2 ieeezipload.value*1005.15;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_346110";
+  parent "sx3254915b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_56291";
+  parent "sx3254915b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_498546";
+  parent "sx3254915b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_411518";
+  parent "sx3254915b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_100763";
+  parent "sx3254915b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_219611";
+  parent "sx3254915b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_547294";
+  parent "sx3254915b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_176607";
+  parent "sx3254915b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_343064";
+  parent "sx3254915b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_264018";
+  parent "sx3254915b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "m1125905";
@@ -63417,16 +63632,39 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_356807a0";
+  name "ochre_house_load_229548";
   parent "sx2823545a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*4572.16;
-  base_power_2 ieeezipload.value*4572.16;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_341616";
+  parent "sx2823545a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_302088";
+  parent "sx2823545a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_192312";
+  parent "sx2823545a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_295670";
+  parent "sx2823545a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "m1026872";
@@ -63769,16 +64007,53 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260632a0";
+  name "ochre_house_load_379880";
   parent "sx2917333a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*4572.16;
-  base_power_2 ieeezipload.value*4572.16;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_203949";
+  parent "sx2917333a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_358737";
+  parent "sx2917333a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_27832";
+  parent "sx2917333a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_411339";
+  parent "sx2917333a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_485566";
+  parent "sx2917333a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_369055";
+  parent "sx2917333a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "m1108500";
@@ -64052,16 +64327,74 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_2129466a0";
+  name "ochre_house_load_302815";
   parent "sx3011293a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*9144.33;
-  base_power_2 ieeezipload.value*9144.33;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_56167";
+  parent "sx3011293a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_385325";
+  parent "sx3011293a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_155119";
+  parent "sx3011293a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_223077";
+  parent "sx3011293a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_386874";
+  parent "sx3011293a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_238242";
+  parent "sx3011293a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_67009";
+  parent "sx3011293a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_287709";
+  parent "sx3011293a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_199812";
+  parent "sx3011293a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx3011293b";
@@ -64069,16 +64402,95 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_2129466b0";
+  name "ochre_house_load_307573";
   parent "sx3011293b";
   phases BS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*10025.77;
-  base_power_2 ieeezipload.value*10025.77;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_496323";
+  parent "sx3011293b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_269586";
+  parent "sx3011293b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_374743";
+  parent "sx3011293b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_233532";
+  parent "sx3011293b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_312335";
+  parent "sx3011293b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_470251";
+  parent "sx3011293b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_437803";
+  parent "sx3011293b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_262350";
+  parent "sx3011293b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_539605";
+  parent "sx3011293b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_187566";
+  parent "sx3011293b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_76849";
+  parent "sx3011293b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_371852";
+  parent "sx3011293b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx3011293c";
@@ -64092,16 +64504,53 @@ object triplex_meter {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_2129466c0";
+  name "ochre_house_load_524444";
   parent "sx3011293c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*10484.54;
-  base_power_2 ieeezipload.value*10484.54;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_193900";
+  parent "sx3011293c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_389848";
+  parent "sx3011293c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_389744";
+  parent "sx3011293c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_487709";
+  parent "sx3011293c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_237962";
+  parent "sx3011293c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_465182";
+  parent "sx3011293c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "n1139537";
@@ -64284,16 +64733,95 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_356804a0";
+  name "ochre_house_load_324981";
   parent "sx2823544a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*4572.16;
-  base_power_2 ieeezipload.value*4572.16;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_381087";
+  parent "sx2823544a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_200374";
+  parent "sx2823544a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_133636";
+  parent "sx2823544a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_175316";
+  parent "sx2823544a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_620";
+  parent "sx2823544a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_409483";
+  parent "sx2823544a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_85660";
+  parent "sx2823544a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_526365";
+  parent "sx2823544a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_439854";
+  parent "sx2823544a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_335542";
+  parent "sx2823544a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_312422";
+  parent "sx2823544a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_361607";
+  parent "sx2823544a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx3008248a";
@@ -64756,16 +65284,18 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_339048a0";
+  name "ochre_house_load_235662";
   parent "sx3160098a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*2742.27;
-  base_power_2 ieeezipload.value*2742.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_432671";
+  parent "sx3160098a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx3104856a";
@@ -64890,16 +65420,60 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260528c0";
+  name "ochre_house_load_453474";
   parent "sx3217052c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*5242.27;
-  base_power_2 ieeezipload.value*5242.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_454770";
+  parent "sx3217052c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_436517";
+  parent "sx3217052c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_159349";
+  parent "sx3217052c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_59912";
+  parent "sx3217052c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_93768";
+  parent "sx3217052c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_244264";
+  parent "sx3217052c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_202039";
+  parent "sx3217052c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "x3029500a";
@@ -64927,16 +65501,39 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_339049a0";
+  name "ochre_house_load_249827";
   parent "sx2916602a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*4572.16;
-  base_power_2 ieeezipload.value*4572.16;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_172572";
+  parent "sx2916602a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_242516";
+  parent "sx2916602a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_483016";
+  parent "sx2916602a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_434738";
+  parent "sx2916602a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "x3197654a";
@@ -65100,16 +65697,11 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260529c0";
+  name "ochre_house_load_318055";
   parent "sx3217053c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*2097.94;
-  base_power_2 ieeezipload.value*2097.94;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
 }
 object node {
   name "l3082983";
@@ -66699,16 +67291,95 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_226194419c0";
+  name "ochre_house_load_91480";
   parent "sx3214071c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*5242.27;
-  base_power_2 ieeezipload.value*5242.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_111132";
+  parent "sx3214071c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_537920";
+  parent "sx3214071c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_486178";
+  parent "sx3214071c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_507808";
+  parent "sx3214071c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_504397";
+  parent "sx3214071c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_330258";
+  parent "sx3214071c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_74247";
+  parent "sx3214071c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_499943";
+  parent "sx3214071c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_173606";
+  parent "sx3214071c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_57486";
+  parent "sx3214071c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_190006";
+  parent "sx3214071c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_401975";
+  parent "sx3214071c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "l3156034";
@@ -66969,16 +67640,81 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_218475a0";
+  name "ochre_house_load_289531";
   parent "sx3217057a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*1829.90;
-  base_power_2 ieeezipload.value*1829.90;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_369049";
+  parent "sx3217057a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_256260";
+  parent "sx3217057a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_152266";
+  parent "sx3217057a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_422424";
+  parent "sx3217057a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_269943";
+  parent "sx3217057a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_27287";
+  parent "sx3217057a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_114941";
+  parent "sx3217057a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_142225";
+  parent "sx3217057a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_216764";
+  parent "sx3217057a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_312";
+  parent "sx3217057a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx2001003b";
@@ -67175,16 +67911,60 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_218474a0";
+  name "ochre_house_load_334183";
   parent "sx3217056a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*9144.33;
-  base_power_2 ieeezipload.value*9144.33;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_254810";
+  parent "sx3217056a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_144143";
+  parent "sx3217056a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_531771";
+  parent "sx3217056a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_298162";
+  parent "sx3217056a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_370146";
+  parent "sx3217056a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_165026";
+  parent "sx3217056a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_93799";
+  parent "sx3217056a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx2879070b";
@@ -67379,16 +68159,95 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_356798c0";
+  name "ochre_house_load_188246";
   parent "sx2692600c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*5242.27;
-  base_power_2 ieeezipload.value*5242.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_126829";
+  parent "sx2692600c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_126795";
+  parent "sx2692600c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_274702";
+  parent "sx2692600c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_541219";
+  parent "sx2692600c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_208475";
+  parent "sx2692600c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_228588";
+  parent "sx2692600c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_40454";
+  parent "sx2692600c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_206494";
+  parent "sx2692600c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_147115";
+  parent "sx2692600c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_279405";
+  parent "sx2692600c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_68232";
+  parent "sx2692600c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_79849";
+  parent "sx2692600c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "x3104135a";
@@ -67532,16 +68391,25 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_442373c0";
+  name "ochre_house_load_162004";
   parent "sx3141393c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*5242.27;
-  base_power_2 ieeezipload.value*5242.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_424439";
+  parent "sx3141393c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_349207";
+  parent "sx3141393c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "x3104136b";
@@ -67674,16 +68542,74 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260505c0";
+  name "ochre_house_load_262502";
   parent "sx2861218c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*5242.27;
-  base_power_2 ieeezipload.value*5242.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_345470";
+  parent "sx2861218c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_228624";
+  parent "sx2861218c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_319626";
+  parent "sx2861218c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_371047";
+  parent "sx2861218c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_255345";
+  parent "sx2861218c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_139404";
+  parent "sx2861218c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_368041";
+  parent "sx2861218c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_284247";
+  parent "sx2861218c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_123278";
+  parent "sx2861218c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx2891575c";
@@ -67697,16 +68623,11 @@ object triplex_meter {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_225533423c0";
+  name "ochre_house_load_403104";
   parent "sx2891575c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*3144.33;
-  base_power_2 ieeezipload.value*3144.33;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx2000410a";
@@ -67960,16 +68881,53 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_21389761b0";
+  name "ochre_house_load_429888";
   parent "sx2861219b";
   phases BS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*5015.46;
-  base_power_2 ieeezipload.value*5015.46;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_224398";
+  parent "sx2861219b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_292117";
+  parent "sx2861219b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_141350";
+  parent "sx2861219b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_519092";
+  parent "sx2861219b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_8083";
+  parent "sx2861219b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_304116";
+  parent "sx2861219b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx2879062c";
@@ -68004,16 +68962,18 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_226194421c0";
+  name "ochre_house_load_240492";
   parent "sx3214069c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*5242.27;
-  base_power_2 ieeezipload.value*5242.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_145405";
+  parent "sx3214069c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx2842384c";
@@ -68021,16 +68981,88 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260637c0";
+  name "ochre_house_load_395429";
   parent "sx2842384c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*2097.94;
-  base_power_2 ieeezipload.value*2097.94;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_67186";
+  parent "sx2842384c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_318102";
+  parent "sx2842384c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_119842";
+  parent "sx2842384c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_510701";
+  parent "sx2842384c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_446322";
+  parent "sx2842384c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_464312";
+  parent "sx2842384c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_188953";
+  parent "sx2842384c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_527237";
+  parent "sx2842384c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_31965";
+  parent "sx2842384c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_461295";
+  parent "sx2842384c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_447578";
+  parent "sx2842384c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx2001304a";
@@ -68144,16 +69176,81 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260634a0";
+  name "ochre_house_load_257435";
   parent "sx2842383a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*2742.27;
-  base_power_2 ieeezipload.value*2742.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_333827";
+  parent "sx2842383a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_15089";
+  parent "sx2842383a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_230501";
+  parent "sx2842383a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_487621";
+  parent "sx2842383a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_212890";
+  parent "sx2842383a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_407592";
+  parent "sx2842383a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_100023";
+  parent "sx2842383a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_179644";
+  parent "sx2842383a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_277908";
+  parent "sx2842383a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_157218";
+  parent "sx2842383a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx2001303a";
@@ -68606,16 +69703,74 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_227944551a0";
+  name "ochre_house_load_515502";
   parent "sx3234149a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*45711.34;
-  base_power_2 ieeezipload.value*45711.34;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_383693";
+  parent "sx3234149a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_55949";
+  parent "sx3234149a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_314471";
+  parent "sx3234149a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_425185";
+  parent "sx3234149a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_417306";
+  parent "sx3234149a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_494663";
+  parent "sx3234149a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_530378";
+  parent "sx3234149a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_530550";
+  parent "sx3234149a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_349166";
+  parent "sx3234149a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "l3235268";
@@ -68628,16 +69783,18 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_227944551b0";
+  name "ochre_house_load_254623";
   parent "sx3234149b";
   phases BS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*50134.02;
-  base_power_2 ieeezipload.value*50134.02;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_432318";
+  parent "sx3234149b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx3234149c";
@@ -68645,16 +69802,74 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_227944551c0";
+  name "ochre_house_load_505847";
   parent "sx3234149c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*52422.68;
-  base_power_2 ieeezipload.value*52422.68;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_510593";
+  parent "sx3234149c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_326187";
+  parent "sx3234149c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_125925";
+  parent "sx3234149c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_97799";
+  parent "sx3234149c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_327612";
+  parent "sx3234149c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_491749";
+  parent "sx3234149c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_284645";
+  parent "sx3234149c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_119634";
+  parent "sx3234149c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_468180";
+  parent "sx3234149c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "x2841627a";
@@ -69557,16 +70772,81 @@ object triplex_meter {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260543c0";
+  name "ochre_house_load_186366";
   parent "sx2955077c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*5242.27;
-  base_power_2 ieeezipload.value*5242.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_202088";
+  parent "sx2955077c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_330074";
+  parent "sx2955077c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_336050";
+  parent "sx2955077c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_448971";
+  parent "sx2955077c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_201819";
+  parent "sx2955077c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_401027";
+  parent "sx2955077c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_104562";
+  parent "sx2955077c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_309544";
+  parent "sx2955077c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_454230";
+  parent "sx2955077c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_521372";
+  parent "sx2955077c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "m1026726";
@@ -69673,16 +70953,88 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260542a0";
+  name "ochre_house_load_99499";
   parent "sx2955078a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*4572.16;
-  base_power_2 ieeezipload.value*4572.16;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_387140";
+  parent "sx2955078a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_193154";
+  parent "sx2955078a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_432616";
+  parent "sx2955078a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_238210";
+  parent "sx2955078a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_199657";
+  parent "sx2955078a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_323846";
+  parent "sx2955078a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_217704";
+  parent "sx2955078a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_214106";
+  parent "sx2955078a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_524496";
+  parent "sx2955078a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_142507";
+  parent "sx2955078a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_545763";
+  parent "sx2955078a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx3214112b";
@@ -69707,16 +71059,67 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260479a0";
+  name "ochre_house_load_339433";
   parent "sx2955074a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*6855.67;
-  base_power_2 ieeezipload.value*6855.67;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_162090";
+  parent "sx2955074a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_503022";
+  parent "sx2955074a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_44812";
+  parent "sx2955074a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_512375";
+  parent "sx2955074a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_97305";
+  parent "sx2955074a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_101380";
+  parent "sx2955074a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_87191";
+  parent "sx2955074a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_242598";
+  parent "sx2955074a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx2991929b";
@@ -70646,16 +72049,67 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260568c0";
+  name "ochre_house_load_516545";
   parent "sx2842329c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*3144.33;
-  base_power_2 ieeezipload.value*3144.33;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_242999";
+  parent "sx2842329c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_136477";
+  parent "sx2842329c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_533820";
+  parent "sx2842329c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_124966";
+  parent "sx2842329c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_43092";
+  parent "sx2842329c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_541265";
+  parent "sx2842329c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_163213";
+  parent "sx2842329c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_241959";
+  parent "sx2842329c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx3197630a";
@@ -71219,16 +72673,53 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_356800a0";
+  name "ochre_house_load_415007";
   parent "sx3235946a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*4572.16;
-  base_power_2 ieeezipload.value*4572.16;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_473426";
+  parent "sx3235946a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_525441";
+  parent "sx3235946a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_49559";
+  parent "sx3235946a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_160898";
+  parent "sx3235946a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_320667";
+  parent "sx3235946a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_112300";
+  parent "sx3235946a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "x2804283a";
@@ -71376,16 +72867,11 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_356796c0";
+  name "ochre_house_load_467636";
   parent "sx3235945c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*5242.27;
-  base_power_2 ieeezipload.value*5242.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "x3649305a";
@@ -71532,16 +73018,11 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_356801a0";
+  name "ochre_house_load_301874";
   parent "sx3011229a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*2742.27;
-  base_power_2 ieeezipload.value*2742.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx2748139b";
@@ -71884,16 +73365,81 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260638c0";
+  name "ochre_house_load_514303";
   parent "sx3160871c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*5242.27;
-  base_power_2 ieeezipload.value*5242.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_465186";
+  parent "sx3160871c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_311107";
+  parent "sx3160871c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_117115";
+  parent "sx3160871c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_305045";
+  parent "sx3160871c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_219636";
+  parent "sx3160871c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_486285";
+  parent "sx3160871c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_405479";
+  parent "sx3160871c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_159900";
+  parent "sx3160871c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_28159";
+  parent "sx3160871c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_120305";
+  parent "sx3160871c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "x2970258c";
@@ -72340,16 +73886,32 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_293609c0";
+  name "ochre_house_load_396629";
   parent "sx2785515c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*5242.27;
-  base_power_2 ieeezipload.value*5242.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_446349";
+  parent "sx2785515c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_188487";
+  parent "sx2785515c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_118013";
+  parent "sx2785515c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "l2766749";
@@ -72714,16 +74276,39 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_226308730a0";
+  name "ochre_house_load_277767";
   parent "sx2802481a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*13711.34;
-  base_power_2 ieeezipload.value*13711.34;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_275680";
+  parent "sx2802481a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_151790";
+  parent "sx2802481a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_494604";
+  parent "sx2802481a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_75859";
+  parent "sx2802481a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx2766749b";
@@ -73074,16 +74659,81 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260480c0";
+  name "ochre_house_load_103643";
   parent "sx3030199c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*5242.27;
-  base_power_2 ieeezipload.value*5242.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_488510";
+  parent "sx3030199c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_179886";
+  parent "sx3030199c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_282048";
+  parent "sx3030199c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_259612";
+  parent "sx3030199c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_348481";
+  parent "sx3030199c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_396589";
+  parent "sx3030199c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_124562";
+  parent "sx3030199c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_434494";
+  parent "sx3030199c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_384563";
+  parent "sx3030199c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_141246";
+  parent "sx3030199c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "x2001400c";
@@ -73165,16 +74815,74 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_21386877a0";
+  name "ochre_house_load_209412";
   parent "sx2823611a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*2742.27;
-  base_power_2 ieeezipload.value*2742.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_88759";
+  parent "sx2823611a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_268292";
+  parent "sx2823611a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_33761";
+  parent "sx2823611a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_2098";
+  parent "sx2823611a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_233879";
+  parent "sx2823611a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_330646";
+  parent "sx2823611a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_69626";
+  parent "sx2823611a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_61379";
+  parent "sx2823611a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_15007";
+  parent "sx2823611a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "l2841627";
@@ -73489,16 +75197,88 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_21469911a0";
+  name "ochre_house_load_329260";
   parent "sx2955047a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*4572.16;
-  base_power_2 ieeezipload.value*4572.16;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_396742";
+  parent "sx2955047a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_381122";
+  parent "sx2955047a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_523081";
+  parent "sx2955047a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_185819";
+  parent "sx2955047a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_482395";
+  parent "sx2955047a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_173050";
+  parent "sx2955047a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_459186";
+  parent "sx2955047a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_438056";
+  parent "sx2955047a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_373440";
+  parent "sx2955047a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_541074";
+  parent "sx2955047a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_32833";
+  parent "sx2955047a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx2001205c";
@@ -74472,16 +76252,25 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_21482431a0";
+  name "ochre_house_load_253224";
   parent "sx2917359a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*2742.27;
-  base_power_2 ieeezipload.value*2742.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_22158";
+  parent "sx2917359a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_492549";
+  parent "sx2917359a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "m1047550";
@@ -74872,16 +76661,18 @@ object triplex_meter {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_356809a0";
+  name "ochre_house_load_528850";
   parent "sx2936214a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*4572.16;
-  base_power_2 ieeezipload.value*4572.16;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_523530";
+  parent "sx2936214a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "m1047507";
@@ -75058,16 +76849,39 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_226308716b0";
+  name "ochre_house_load_176384";
   parent "sx2690187b";
   phases BS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*15041.24;
-  base_power_2 ieeezipload.value*15041.24;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_421285";
+  parent "sx2690187b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_203389";
+  parent "sx2690187b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_173278";
+  parent "sx2690187b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_6945";
+  parent "sx2690187b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx3047073c";
@@ -75152,16 +76966,18 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_328363b0";
+  name "ochre_house_load_42766";
   parent "sx2936213b";
   phases BS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*7520.62;
-  base_power_2 ieeezipload.value*7520.62;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_131226";
+  parent "sx2936213b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "m1047518";
@@ -75213,16 +77029,39 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260567c0";
+  name "ochre_house_load_381418";
   parent "sx2936211c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*3144.33;
-  base_power_2 ieeezipload.value*3144.33;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_370745";
+  parent "sx2936211c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_408279";
+  parent "sx2936211c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_212021";
+  parent "sx2936211c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_240212";
+  parent "sx2936211c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "m1089163";
@@ -76053,16 +77892,11 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_223663c0";
+  name "ochre_house_load_284293";
   parent "sx2936216c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*2097.94;
-  base_power_2 ieeezipload.value*2097.94;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "x2858163a";
@@ -76129,16 +77963,11 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_223660c0";
+  name "ochre_house_load_20621";
   parent "sx3160863c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*3144.33;
-  base_power_2 ieeezipload.value*3144.33;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx3197646b";
@@ -76289,16 +78118,39 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260630b0";
+  name "ochre_house_load_293636";
   parent "sx2973833b";
   phases BS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*3010.31;
-  base_power_2 ieeezipload.value*3010.31;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_209609";
+  parent "sx2973833b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_420064";
+  parent "sx2973833b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_32222";
+  parent "sx2973833b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_300631";
+  parent "sx2973833b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "n1142101";
@@ -76401,16 +78253,95 @@ object triplex_meter {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_21386143c0";
+  name "ochre_house_load_183304";
   parent "sx3160862c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*3144.33;
-  base_power_2 ieeezipload.value*3144.33;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_407841";
+  parent "sx3160862c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_106564";
+  parent "sx3160862c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_486098";
+  parent "sx3160862c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_226598";
+  parent "sx3160862c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_192800";
+  parent "sx3160862c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_139272";
+  parent "sx3160862c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_391468";
+  parent "sx3160862c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_127663";
+  parent "sx3160862c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_682";
+  parent "sx3160862c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_122061";
+  parent "sx3160862c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_197532";
+  parent "sx3160862c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_437412";
+  parent "sx3160862c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx3342743c";
@@ -76576,16 +78507,95 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260501b0";
+  name "ochre_house_load_267170";
   parent "sx3142098b";
   phases BS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*5015.46;
-  base_power_2 ieeezipload.value*5015.46;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_383204";
+  parent "sx3142098b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_292090";
+  parent "sx3142098b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_140441";
+  parent "sx3142098b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_40436";
+  parent "sx3142098b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_456950";
+  parent "sx3142098b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_543603";
+  parent "sx3142098b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_111557";
+  parent "sx3142098b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_213568";
+  parent "sx3142098b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_267376";
+  parent "sx3142098b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_500428";
+  parent "sx3142098b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_451771";
+  parent "sx3142098b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_513045";
+  parent "sx3142098b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx2803199b";
@@ -76892,16 +78902,95 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_328365b0";
+  name "ochre_house_load_107460";
   parent "sx3179646b";
   phases BS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*7520.62;
-  base_power_2 ieeezipload.value*7520.62;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_346824";
+  parent "sx3179646b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_175977";
+  parent "sx3179646b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_519534";
+  parent "sx3179646b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_283566";
+  parent "sx3179646b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_131095";
+  parent "sx3179646b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_495378";
+  parent "sx3179646b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_452846";
+  parent "sx3179646b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_412293";
+  parent "sx3179646b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_19670";
+  parent "sx3179646b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_261802";
+  parent "sx3179646b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_256426";
+  parent "sx3179646b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_472992";
+  parent "sx3179646b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "x1108410b";
@@ -76973,16 +79062,39 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_356802a0";
+  name "ochre_house_load_167202";
   parent "sx2767342a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*4572.16;
-  base_power_2 ieeezipload.value*4572.16;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_402638";
+  parent "sx2767342a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_215510";
+  parent "sx2767342a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_487751";
+  parent "sx2767342a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_128310";
+  parent "sx2767342a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "l3189190";
@@ -77056,16 +79168,39 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_2128517c0";
+  name "ochre_house_load_160880";
   parent "sx3048890c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*5242.27;
-  base_power_2 ieeezipload.value*5242.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_391944";
+  parent "sx3048890c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_425465";
+  parent "sx3048890c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_478833";
+  parent "sx3048890c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_91397";
+  parent "sx3048890c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "m3763623";
@@ -77330,16 +79465,32 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260595a0";
+  name "ochre_house_load_49829";
   parent "sx2767340a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*13711.34;
-  base_power_2 ieeezipload.value*13711.34;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_436458";
+  parent "sx2767340a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_372134";
+  parent "sx2767340a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_527111";
+  parent "sx2767340a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "l3085391";
@@ -77357,16 +79508,25 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260595b0";
+  name "ochre_house_load_92339";
   parent "sx2767340b";
   phases BS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*15041.24;
-  base_power_2 ieeezipload.value*15041.24;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_213027";
+  parent "sx2767340b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_504968";
+  parent "sx2767340b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "l3085390";
@@ -77389,16 +79549,18 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260595c0";
+  name "ochre_house_load_284091";
   parent "sx2767340c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*15731.96;
-  base_power_2 ieeezipload.value*15731.96;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_137501";
+  parent "sx2767340c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "l3085397";
@@ -78824,16 +80986,39 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_2128464c0";
+  name "ochre_house_load_3612";
   parent "sx3048889c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*5242.27;
-  base_power_2 ieeezipload.value*5242.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_173392";
+  parent "sx3048889c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_124544";
+  parent "sx3048889c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_372892";
+  parent "sx3048889c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_428747";
+  parent "sx3048889c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "x3216350a";
@@ -79397,16 +81582,32 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_21249647b0";
+  name "ochre_house_load_543210";
   parent "sx2955055b";
   phases BS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*5015.46;
-  base_power_2 ieeezipload.value*5015.46;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_267735";
+  parent "sx2955055b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_66449";
+  parent "sx2955055b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_506136";
+  parent "sx2955055b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "x2785534b";
@@ -79901,16 +82102,32 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_293608c0";
+  name "ochre_house_load_239985";
   parent "sx2673306c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*5242.27;
-  base_power_2 ieeezipload.value*5242.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_346823";
+  parent "sx2673306c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_115209";
+  parent "sx2673306c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_106794";
+  parent "sx2673306c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "m1047400";
@@ -80221,16 +82438,88 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260500b0";
+  name "ochre_house_load_151863";
   parent "sx2711224b";
   phases BS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*2005.15;
-  base_power_2 ieeezipload.value*2005.15;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_316619";
+  parent "sx2711224b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_535774";
+  parent "sx2711224b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_300418";
+  parent "sx2711224b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_332159";
+  parent "sx2711224b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_451978";
+  parent "sx2711224b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_381381";
+  parent "sx2711224b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_338070";
+  parent "sx2711224b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_53693";
+  parent "sx2711224b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_97512";
+  parent "sx2711224b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_69737";
+  parent "sx2711224b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_538937";
+  parent "sx2711224b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx3027671a";
@@ -80302,16 +82591,74 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260590b0";
+  name "ochre_house_load_420097";
   parent "sx3216988b";
   phases BS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*5015.46;
-  base_power_2 ieeezipload.value*5015.46;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_265551";
+  parent "sx3216988b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_54697";
+  parent "sx3216988b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_289058";
+  parent "sx3216988b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_194635";
+  parent "sx3216988b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_68863";
+  parent "sx3216988b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_330101";
+  parent "sx3216988b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_319337";
+  parent "sx3216988b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_344492";
+  parent "sx3216988b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_184427";
+  parent "sx3216988b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx2973167b";
@@ -80930,16 +83277,88 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_223400157c0";
+  name "ochre_house_load_121143";
   parent "sx3150961c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*7865.98;
-  base_power_2 ieeezipload.value*7865.98;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_149516";
+  parent "sx3150961c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_42335";
+  parent "sx3150961c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_26402";
+  parent "sx3150961c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_180871";
+  parent "sx3150961c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_302621";
+  parent "sx3150961c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_485700";
+  parent "sx3150961c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_225070";
+  parent "sx3150961c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_226419";
+  parent "sx3150961c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_279";
+  parent "sx3150961c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_325008";
+  parent "sx3150961c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_524546";
+  parent "sx3150961c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "m1069607";
@@ -81874,16 +84293,39 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_228314460c0";
+  name "ochre_house_load_377381";
   parent "sx3253570c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*5242.27;
-  base_power_2 ieeezipload.value*5242.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_39960";
+  parent "sx3253570c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_275286";
+  parent "sx3253570c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_227517";
+  parent "sx3253570c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_400528";
+  parent "sx3253570c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "l3728043";
@@ -82684,16 +85126,46 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260527b0";
+  name "ochre_house_load_4916";
   parent "sx2711226b";
   phases BS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*5015.46;
-  base_power_2 ieeezipload.value*5015.46;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_142620";
+  parent "sx2711226b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_352165";
+  parent "sx2711226b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_526989";
+  parent "sx2711226b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_59425";
+  parent "sx2711226b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_404444";
+  parent "sx2711226b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx2860488b";
@@ -83170,16 +85642,95 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_226115278a0";
+  name "ochre_house_load_72989";
   parent "sx3157167a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*2742.27;
-  base_power_2 ieeezipload.value*2742.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_364735";
+  parent "sx3157167a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_531460";
+  parent "sx3157167a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_373657";
+  parent "sx3157167a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_161861";
+  parent "sx3157167a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_248221";
+  parent "sx3157167a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_60725";
+  parent "sx3157167a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_521269";
+  parent "sx3157167a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_352319";
+  parent "sx3157167a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_367483";
+  parent "sx3157167a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_144651";
+  parent "sx3157167a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_60197";
+  parent "sx3157167a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_174597";
+  parent "sx3157167a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx2804248b";
@@ -83554,16 +86105,60 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_226010605c0";
+  name "ochre_house_load_5296";
   parent "sx2764411c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*3144.33;
-  base_power_2 ieeezipload.value*3144.33;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_522556";
+  parent "sx2764411c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_543373";
+  parent "sx2764411c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_222350";
+  parent "sx2764411c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_191154";
+  parent "sx2764411c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_449181";
+  parent "sx2764411c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_450692";
+  parent "sx2764411c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_516138";
+  parent "sx2764411c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx2673313b";
@@ -83889,16 +86484,25 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_218472a0";
+  name "ochre_house_load_388148";
   parent "sx2936270a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*4572.16;
-  base_power_2 ieeezipload.value*4572.16;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_537424";
+  parent "sx2936270a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_176608";
+  parent "sx2936270a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx3104131a";
@@ -84019,16 +86623,95 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_328364c0";
+  name "ochre_house_load_316051";
   parent "sx2692633c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*5242.27;
-  base_power_2 ieeezipload.value*5242.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_156716";
+  parent "sx2692633c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_192389";
+  parent "sx2692633c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_18838";
+  parent "sx2692633c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_122601";
+  parent "sx2692633c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_531662";
+  parent "sx2692633c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_304201";
+  parent "sx2692633c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_44738";
+  parent "sx2692633c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_10740";
+  parent "sx2692633c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_248626";
+  parent "sx2692633c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_517304";
+  parent "sx2692633c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_515041";
+  parent "sx2692633c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_261325";
+  parent "sx2692633c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "m1047379";
@@ -84041,16 +86724,25 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260521b0";
+  name "ochre_house_load_451461";
   parent "sx3048963b";
   phases BS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*3010.31;
-  base_power_2 ieeezipload.value*3010.31;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_299354";
+  parent "sx3048963b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_81741";
+  parent "sx3048963b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "m1209der480-1";
@@ -84073,16 +86765,11 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_337729c0";
+  name "ochre_house_load_404817";
   parent "sx2728247c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*2097.94;
-  base_power_2 ieeezipload.value*2097.94;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx2728247a";
@@ -84090,16 +86777,74 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_337729a0";
+  name "ochre_house_load_233698";
   parent "sx2728247a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*1829.90;
-  base_power_2 ieeezipload.value*1829.90;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_31427";
+  parent "sx2728247a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_263375";
+  parent "sx2728247a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_346726";
+  parent "sx2728247a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_447938";
+  parent "sx2728247a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_64839";
+  parent "sx2728247a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_250934";
+  parent "sx2728247a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_131393";
+  parent "sx2728247a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_233753";
+  parent "sx2728247a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_364878";
+  parent "sx2728247a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx2728247b";
@@ -84107,16 +86852,39 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_337729b0";
+  name "ochre_house_load_327131";
   parent "sx2728247b";
   phases BS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*5015.46;
-  base_power_2 ieeezipload.value*5015.46;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_482358";
+  parent "sx2728247b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_452422";
+  parent "sx2728247b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_372499";
+  parent "sx2728247b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_25615";
+  parent "sx2728247b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "m1142860";
@@ -84308,16 +87076,25 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260458b0";
+  name "ochre_house_load_232939";
   parent "sx2936276b";
   phases BS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*2005.15;
-  base_power_2 ieeezipload.value*2005.15;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_321516";
+  parent "sx2936276b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_489009";
+  parent "sx2936276b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "x2729410c";
@@ -85013,16 +87790,53 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_225700953a0";
+  name "ochre_house_load_419752";
   parent "sx3081380a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*2742.27;
-  base_power_2 ieeezipload.value*2742.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_109561";
+  parent "sx3081380a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_337903";
+  parent "sx3081380a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_13050";
+  parent "sx3081380a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_241331";
+  parent "sx3081380a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_35191";
+  parent "sx3081380a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_57620";
+  parent "sx3081380a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "x2729414c";
@@ -85634,16 +88448,39 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_225533237b0";
+  name "ochre_house_load_40995";
   parent "sx2798067b";
   phases BS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*2005.15;
-  base_power_2 ieeezipload.value*2005.15;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_238996";
+  parent "sx2798067b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_524510";
+  parent "sx2798067b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_341963";
+  parent "sx2798067b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_201687";
+  parent "sx2798067b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "m1142851";
@@ -86370,16 +89207,74 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_356808a0";
+  name "ochre_house_load_224866";
   parent "sx3101782a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*6855.67;
-  base_power_2 ieeezipload.value*6855.67;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_241676";
+  parent "sx3101782a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_273801";
+  parent "sx3101782a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_175687";
+  parent "sx3101782a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_347246";
+  parent "sx3101782a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_431957";
+  parent "sx3101782a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_47840";
+  parent "sx3101782a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_389346";
+  parent "sx3101782a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_546972";
+  parent "sx3101782a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_386916";
+  parent "sx3101782a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "m1069509";
@@ -87155,16 +90050,39 @@ object triplex_meter {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_346639c0";
+  name "ochre_house_load_48221";
   parent "sx2992556c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*3144.33;
-  base_power_2 ieeezipload.value*3144.33;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_79390";
+  parent "sx2992556c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_547937";
+  parent "sx2992556c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_428666";
+  parent "sx2992556c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_50580";
+  parent "sx2992556c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "x2748132a";
@@ -87226,16 +90144,46 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_228622562a0";
+  name "ochre_house_load_392818";
   parent "sx3108449a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*2742.27;
-  base_power_2 ieeezipload.value*2742.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_323278";
+  parent "sx3108449a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_299045";
+  parent "sx3108449a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_418397";
+  parent "sx3108449a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_412019";
+  parent "sx3108449a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_170825";
+  parent "sx3108449a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "x2823545a";
@@ -87518,16 +90466,32 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_356803a0";
+  name "ochre_house_load_69842";
   parent "sx2748780a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*4572.16;
-  base_power_2 ieeezipload.value*4572.16;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_111501";
+  parent "sx2748780a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_279160";
+  parent "sx2748780a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_517258";
+  parent "sx2748780a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "x2823544a";
@@ -90286,16 +93250,67 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_223661c0";
+  name "ochre_house_load_21295";
   parent "sx2730108c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*3144.33;
-  base_power_2 ieeezipload.value*3144.33;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_449778";
+  parent "sx2730108c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_125128";
+  parent "sx2730108c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_115968";
+  parent "sx2730108c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_215583";
+  parent "sx2730108c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_392777";
+  parent "sx2730108c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_340776";
+  parent "sx2730108c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_513336";
+  parent "sx2730108c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_361089";
+  parent "sx2730108c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "m1126020";
@@ -90416,16 +93431,53 @@ object triplex_meter {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_21391242b0";
+  name "ochre_house_load_398312";
   parent "sx2767409b";
   phases BS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*5015.46;
-  base_power_2 ieeezipload.value*5015.46;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_117120";
+  parent "sx2767409b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_215656";
+  parent "sx2767409b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_263068";
+  parent "sx2767409b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_329861";
+  parent "sx2767409b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_237120";
+  parent "sx2767409b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_186924";
+  parent "sx2767409b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "x2954357a";
@@ -90878,16 +93930,67 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260502b0";
+  name "ochre_house_load_272937";
   parent "sx2748839b";
   phases BS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*2005.15;
-  base_power_2 ieeezipload.value*2005.15;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_249134";
+  parent "sx2748839b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_241027";
+  parent "sx2748839b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_446024";
+  parent "sx2748839b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_174570";
+  parent "sx2748839b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_517144";
+  parent "sx2748839b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_193407";
+  parent "sx2748839b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_225298";
+  parent "sx2748839b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_461107";
+  parent "sx2748839b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "x2766729a";
@@ -91414,16 +94517,39 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_356805a0";
+  name "ochre_house_load_96862";
   parent "sx3195321a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*2742.27;
-  base_power_2 ieeezipload.value*2742.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_262816";
+  parent "sx3195321a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_454310";
+  parent "sx3195321a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_136784";
+  parent "sx3195321a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_507777";
+  parent "sx3195321a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "x3139366a";
@@ -92341,16 +95467,32 @@ object triplex_meter {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_339047a0";
+  name "ochre_house_load_331771";
   parent "sx2973148a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*4572.16;
-  base_power_2 ieeezipload.value*4572.16;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_248997";
+  parent "sx2973148a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_265588";
+  parent "sx2973148a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_259004";
+  parent "sx2973148a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx3179678b";
@@ -92507,16 +95649,46 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_226195194c0";
+  name "ochre_house_load_172155";
   parent "sx3027124c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*5242.27;
-  base_power_2 ieeezipload.value*5242.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_502985";
+  parent "sx3027124c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_202555";
+  parent "sx3027124c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_509992";
+  parent "sx3027124c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_153713";
+  parent "sx3027124c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_404858";
+  parent "sx3027124c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "l3254216";
@@ -92657,16 +95829,67 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260639c0";
+  name "ochre_house_load_129766";
   parent "sx3030203c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*5242.27;
-  base_power_2 ieeezipload.value*5242.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_114719";
+  parent "sx3030203c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_500895";
+  parent "sx3030203c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_146446";
+  parent "sx3030203c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_183875";
+  parent "sx3030203c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_196305";
+  parent "sx3030203c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_130380";
+  parent "sx3030203c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_436282";
+  parent "sx3030203c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_120348";
+  parent "sx3030203c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "l3235946";
@@ -92940,16 +96163,67 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260457b0";
+  name "ochre_house_load_489422";
   parent "sx3086079b";
   phases BS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*2005.15;
-  base_power_2 ieeezipload.value*2005.15;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_391969";
+  parent "sx3086079b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_454110";
+  parent "sx3086079b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_89230";
+  parent "sx3086079b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_38407";
+  parent "sx3086079b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_104208";
+  parent "sx3086079b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_469666";
+  parent "sx3086079b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_359302";
+  parent "sx3086079b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_34928";
+  parent "sx3086079b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx3263051c";
@@ -93295,16 +96569,60 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260461b0";
+  name "ochre_house_load_359627";
   parent "sx2861223b";
   phases BS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*5015.46;
-  base_power_2 ieeezipload.value*5015.46;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_203733";
+  parent "sx2861223b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_417114";
+  parent "sx2861223b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_152328";
+  parent "sx2861223b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_294527";
+  parent "sx2861223b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_292676";
+  parent "sx2861223b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_428936";
+  parent "sx2861223b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_378673";
+  parent "sx2861223b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "m1108258";
@@ -93785,16 +97103,18 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_218473a0";
+  name "ochre_house_load_160568";
   parent "sx3086078a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*4572.16;
-  base_power_2 ieeezipload.value*4572.16;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_70024";
+  parent "sx3086078a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx2898457a";
@@ -93802,16 +97122,39 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260594a0";
+  name "ochre_house_load_291601";
   parent "sx2898457a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*1829.90;
-  base_power_2 ieeezipload.value*1829.90;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_110117";
+  parent "sx2898457a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_290676";
+  parent "sx2898457a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_450684";
+  parent "sx2898457a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_506220";
+  parent "sx2898457a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "m1108299";
@@ -94133,16 +97476,81 @@ object triplex_meter {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260589b0";
+  name "ochre_house_load_350164";
   parent "sx2955005b";
   phases BS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*3010.31;
-  base_power_2 ieeezipload.value*3010.31;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_298681";
+  parent "sx2955005b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_102922";
+  parent "sx2955005b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_476573";
+  parent "sx2955005b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_280063";
+  parent "sx2955005b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_303298";
+  parent "sx2955005b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_275091";
+  parent "sx2955005b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_464315";
+  parent "sx2955005b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_210595";
+  parent "sx2955005b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_528839";
+  parent "sx2955005b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_436427";
+  parent "sx2955005b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "e192258";
@@ -94383,16 +97791,53 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_356797c0";
+  name "ochre_house_load_31382";
   parent "sx2955006c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*5242.27;
-  base_power_2 ieeezipload.value*5242.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_160500";
+  parent "sx2955006c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_200098";
+  parent "sx2955006c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_95544";
+  parent "sx2955006c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_77868";
+  parent "sx2955006c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_463762";
+  parent "sx2955006c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_520838";
+  parent "sx2955006c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "l2973158";
@@ -94901,16 +98346,60 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_21389307c0";
+  name "ochre_house_load_216421";
   parent "sx2692655c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*5242.27;
-  base_power_2 ieeezipload.value*5242.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_163371";
+  parent "sx2692655c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_459665";
+  parent "sx2692655c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_69509";
+  parent "sx2692655c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_21595";
+  parent "sx2692655c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_473498";
+  parent "sx2692655c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_422231";
+  parent "sx2692655c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_524907";
+  parent "sx2692655c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "m1108360";
@@ -95820,16 +99309,88 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260631a0";
+  name "ochre_house_load_263662";
   parent "sx2786266a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*2742.27;
-  base_power_2 ieeezipload.value*2742.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_180949";
+  parent "sx2786266a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_129763";
+  parent "sx2786266a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_385476";
+  parent "sx2786266a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_163934";
+  parent "sx2786266a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_305432";
+  parent "sx2786266a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_20210";
+  parent "sx2786266a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_498854";
+  parent "sx2786266a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_506224";
+  parent "sx2786266a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_7292";
+  parent "sx2786266a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_47630";
+  parent "sx2786266a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_234094";
+  parent "sx2786266a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "l2804261";
@@ -95867,16 +99428,39 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_337619c0";
+  name "ochre_house_load_362268";
   parent "sx2990826c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*5242.27;
-  base_power_2 ieeezipload.value*5242.27;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_147319";
+  parent "sx2990826c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_343990";
+  parent "sx2990826c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_327596";
+  parent "sx2990826c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_230471";
+  parent "sx2990826c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "l2804262";
@@ -95912,16 +99496,60 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_337619a0";
+  name "ochre_house_load_497858";
   parent "sx2990826a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*4572.16;
-  base_power_2 ieeezipload.value*4572.16;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_493708";
+  parent "sx2990826a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_95555";
+  parent "sx2990826a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_547304";
+  parent "sx2990826a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_18626";
+  parent "sx2990826a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_538593";
+  parent "sx2990826a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_67168";
+  parent "sx2990826a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_188110";
+  parent "sx2990826a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx3101788a";
@@ -95951,16 +99579,74 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_337619b0";
+  name "ochre_house_load_77324";
   parent "sx2990826b";
   phases BS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*5015.46;
-  base_power_2 ieeezipload.value*5015.46;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_493311";
+  parent "sx2990826b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_365132";
+  parent "sx2990826b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_471083";
+  parent "sx2990826b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_491740";
+  parent "sx2990826b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_414177";
+  parent "sx2990826b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_317423";
+  parent "sx2990826b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_217854";
+  parent "sx2990826b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_69868";
+  parent "sx2990826b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_61674";
+  parent "sx2990826b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "l3254228";
@@ -96147,16 +99833,25 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_226195333c0";
+  name "ochre_house_load_35073";
   parent "sx2801909c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*2097.94;
-  base_power_2 ieeezipload.value*2097.94;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_96010";
+  parent "sx2801909c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_342684";
+  parent "sx2801909c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "x3142098b";
@@ -96693,16 +100388,46 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260503b0";
+  name "ochre_house_load_451476";
   parent "sx2917310b";
   phases BS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*3010.31;
-  base_power_2 ieeezipload.value*3010.31;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_77240";
+  parent "sx2917310b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_488440";
+  parent "sx2917310b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_522245";
+  parent "sx2917310b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_30686";
+  parent "sx2917310b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_114077";
+  parent "sx2917310b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "x3122835b";
@@ -97869,16 +101594,39 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_328367c0";
+  name "ochre_house_load_78581";
   parent "sx3104830c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*2097.94;
-  base_power_2 ieeezipload.value*2097.94;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_329123";
+  parent "sx3104830c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_544508";
+  parent "sx3104830c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_320013";
+  parent "sx3104830c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_301504";
+  parent "sx3104830c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "x3215549b";
@@ -98743,16 +102491,74 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_251865c0";
+  name "ochre_house_load_500108";
   parent "sx3142050c";
   phases CS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*3144.33;
-  base_power_2 ieeezipload.value*3144.33;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_303622";
+  parent "sx3142050c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_545696";
+  parent "sx3142050c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_16760";
+  parent "sx3142050c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_341670";
+  parent "sx3142050c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_175523";
+  parent "sx3142050c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_282801";
+  parent "sx3142050c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_168910";
+  parent "sx3142050c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_411121";
+  parent "sx3142050c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_241758";
+  parent "sx3142050c";
+  phases CS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "l2897806";
@@ -99366,16 +103172,46 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_226308710b0";
+  name "ochre_house_load_270459";
   parent "sx2708744b";
   phases BS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*15041.24;
-  base_power_2 ieeezipload.value*15041.24;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_423568";
+  parent "sx2708744b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_302838";
+  parent "sx2708744b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_122651";
+  parent "sx2708744b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_361750";
+  parent "sx2708744b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_543450";
+  parent "sx2708744b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx2766717c";
@@ -99713,16 +103549,95 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_21482181a0";
+  name "ochre_house_load_452253";
   parent "sx3254237a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*4572.16;
-  base_power_2 ieeezipload.value*4572.16;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_162605";
+  parent "sx3254237a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_412017";
+  parent "sx3254237a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_379782";
+  parent "sx3254237a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_440204";
+  parent "sx3254237a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_520487";
+  parent "sx3254237a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_184561";
+  parent "sx3254237a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_499731";
+  parent "sx3254237a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_84873";
+  parent "sx3254237a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_89529";
+  parent "sx3254237a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_247213";
+  parent "sx3254237a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_357027";
+  parent "sx3254237a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_75607";
+  parent "sx3254237a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "l2823592";
@@ -99855,16 +103770,88 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_226195153b0";
+  name "ochre_house_load_159311";
   parent "sx3082988b";
   phases BS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*3010.31;
-  base_power_2 ieeezipload.value*3010.31;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_213002";
+  parent "sx3082988b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_229481";
+  parent "sx3082988b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_391979";
+  parent "sx3082988b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_343474";
+  parent "sx3082988b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_325789";
+  parent "sx3082988b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_47959";
+  parent "sx3082988b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_414301";
+  parent "sx3082988b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_544772";
+  parent "sx3082988b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_104860";
+  parent "sx3082988b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_487999";
+  parent "sx3082988b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_51960";
+  parent "sx3082988b";
+  phases BS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object triplex_node {
   name "sx3178975b";
@@ -102341,16 +106328,60 @@ object triplex_node {
   nominal_voltage 120.09;
 }
 object triplex_load {
-  name "ld_260650a0";
+  name "ochre_house_load_249276";
   parent "sx2692661a";
   phases AS;
   nominal_voltage 120.09;
-  base_power_1 ieeezipload.value*4572.16;
-  base_power_2 ieeezipload.value*4572.16;
-  current_pf_1 0.97;
-  current_fraction_1 1.00;
-  current_pf_2 0.97;
-  current_fraction_2 1.00;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_237735";
+  parent "sx2692661a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_376796";
+  parent "sx2692661a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_315517";
+  parent "sx2692661a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_392995";
+  parent "sx2692661a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_95159";
+  parent "sx2692661a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_469041";
+  parent "sx2692661a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
+}
+object triplex_load {
+  name "ochre_house_load_236160";
+  parent "sx2692661a";
+  phases AS;
+  nominal_voltage 120.09;
+  constant_power_12 0+0j;
 }
 object node {
   name "l2897789";
