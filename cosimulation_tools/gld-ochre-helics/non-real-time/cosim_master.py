@@ -145,8 +145,7 @@ def create_bldg_id_list (resstock_data_dir : str):
 
     return bldg_ids
 
-if __name__ == "__main__":
-
+def run_4node():
     # File paths
     ochre_federate_script = "scripts/ochre_cosim.py"
     gridlabd_model_file = "models/4node/powerflow_4node.glm"
@@ -211,3 +210,21 @@ if __name__ == "__main__":
 
     # Step 6: Run the co-simulation (uncomment when ready)
     run(["--path", master_config_file])
+
+
+def run_9500():
+    # Config generation for the 9500 feeder lives in scripts/wire_9500_helics.py
+    # (one-time GLM mutation) and scripts/generate_9500_cosim_config.py (HELICS
+    # config JSON). This just launches the result.
+    master_config_file = "config/9500/master_cosim_config.json"
+    run(["--path", master_config_file])
+
+
+if __name__ == "__main__":
+    variant = sys.argv[1] if len(sys.argv) > 1 else "4node"
+    if variant == "4node":
+        run_4node()
+    elif variant == "9500":
+        run_9500()
+    else:
+        sys.exit(f"Unknown variant '{variant}', expected '4node' or '9500'")
