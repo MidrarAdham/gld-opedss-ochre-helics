@@ -3,7 +3,7 @@ venv/
 *.log
 *.png
 .vscode/
-*gridlabd.xml
+cosimulation_tools/gld-ochre-helics/non-real-time/config/9500/gridlabd.xml
 __pycache__/
 self-learning/scratch/click/*
 self-learning/scratch/ngrok/*
