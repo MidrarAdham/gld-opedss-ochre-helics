@@ -3,6 +3,7 @@ venv/
 *.log
 *.png
 .vscode/
+*gridlabd.xml
 __pycache__/
 self-learning/scratch/click/*
 self-learning/scratch/ngrok/*
