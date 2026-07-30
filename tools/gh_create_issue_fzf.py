@@ -4,7 +4,7 @@ Create a GitHub issue, add it to a Projects v2 board, and set custom field value
 (Status, Sprint, Estimated Time, or any other single-select/iteration/text/number
 field configured on the board) in one shot.
 
-Requires: gh CLI, authenticated (`gh auth status`).
+Requires: gh CLI, fzf, and an authenticated GitHub session (`gh auth status`).
 
 Examples
 --------
@@ -23,12 +23,13 @@ List the field/option names available on a board (useful before setting values):
     python3 tools/gh_create_issue.py --project 18 --project-owner PortlandStatePowerLab --list-fields
 
 Or just run it with no arguments (or --interactive) to be walked through owner, project,
-repo, title, body, labels, assignees, and every board field via numbered menus:
+repo, title, body, labels, assignees, and every board field via fzf menus:
 
     python3 tools/gh_create_issue.py
 """
 import argparse
 import json
+import shutil
 import subprocess
 import sys
 
@@ -119,42 +120,68 @@ def set_field(item_id, project_id, field, value):
     run_gh(args)
 
 
+def ensure_command(command):
+    """Exit with a clear message when a required command is unavailable."""
+    if shutil.which(command) is None:
+        sys.exit(
+            f"Required command {command!r} was not found in PATH. "
+            f"Install it before running this script."
+        )
+
+
+def run_fzf(options, prompt, multi=False):
+    """Run fzf and return the selected value(s). Escape means no selection."""
+    if not options:
+        return [] if multi else None
+
+    args = [
+        "fzf",
+        "--prompt", f"{prompt}> ",
+        "--height", "40%",
+        "--layout", "reverse",
+        "--border",
+    ]
+    if multi:
+        args.append("--multi")
+
+    result = subprocess.run(
+        args,
+        input="\n".join(options) + "\n",
+        text=True,
+        stdout=subprocess.PIPE,
+    )
+
+    if result.returncode in (1, 130):
+        return [] if multi else None
+    if result.returncode != 0:
+        raise RuntimeError(f"fzf failed with exit code {result.returncode}")
+
+    selected = [line for line in result.stdout.splitlines() if line]
+    return selected if multi else (selected[0] if selected else None)
+
+
 def choose(prompt, options, allow_skip=True, allow_free_text=False):
-    """Numbered single-choice menu. Returns the chosen string, or None if skipped."""
+    """Single-choice fzf menu. Returns the chosen string or None."""
     if not options:
         return input(f"{prompt} (free text): ").strip() or None
-    print(prompt)
-    for i, opt in enumerate(options, 1):
-        print(f"  {i}. {opt}")
-    if allow_skip:
-        print("  0. (skip)")
-    while True:
-        raw = input("> ").strip()
-        if allow_skip and raw in ("", "0"):
-            return None
-        if raw.isdigit() and 1 <= int(raw) <= len(options):
-            return options[int(raw) - 1]
-        if allow_free_text and raw:
-            return raw
-        print("Invalid choice, try again.")
+
+    selected = run_fzf(options, prompt)
+    if selected is not None:
+        return selected
+
+    if not allow_skip:
+        print("A selection is required.")
+        return choose(prompt, options, allow_skip=False, allow_free_text=allow_free_text)
+
+    if allow_free_text:
+        return input(f"{prompt} (free text, blank to skip): ").strip() or None
+
+    return None
 
 
 def choose_multi(prompt, options):
-    """Comma-separated numbered multi-choice menu. Returns a list (possibly empty)."""
-    if not options:
-        return []
-    print(f"{prompt} (comma-separated numbers, blank for none)")
-    for i, opt in enumerate(options, 1):
-        print(f"  {i}. {opt}")
-    raw = input("> ").strip()
-    if not raw:
-        return []
-    picks = []
-    for part in raw.split(","):
-        part = part.strip()
-        if part.isdigit() and 1 <= int(part) <= len(options):
-            picks.append(options[int(part) - 1])
-    return picks
+    """Multi-choice fzf menu. Tab selects multiple entries; Escape skips."""
+    return run_fzf(options, prompt, multi=True)
 
 
 def ask(prompt, default=None, required=False):
@@ -170,10 +197,16 @@ def ask(prompt, default=None, required=False):
 
 
 def interactive_main():
-    print("=== Create a GitHub issue (interactive) ===\n")
+    ensure_command("gh")
+    ensure_command("fzf")
 
-    owner_guess = choose("Project owner", ["MidrarAdham", "PortlandStatePowerLab"], allow_free_text=True) \
-        or ask("Project owner (user or org login)", required=True)
+    print("=== Create a GitHub issue (interactive with fzf) ===\n")
+
+    owner_guess = choose(
+        "Project owner",
+        ["MidrarAdham", "PortlandStatePowerLab"],
+        allow_free_text=True,
+    ) or ask("Project owner (user or org login)", required=True)
 
     projects = list_projects(owner_guess)
     if not projects:
@@ -232,7 +265,7 @@ def interactive_main():
 
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("-i", "--interactive", action="store_true", help="walk through prompts instead of using flags")
+    p.add_argument("-i", "--interactive", action="store_true", help="select values with fzf instead of using flags")
     p.add_argument("--repo", help="owner/repo to create the issue in (required unless --list-fields)")
     p.add_argument("--title", help="issue title")
     p.add_argument("--body", default="", help="issue body")
