@@ -1,123 +1,207 @@
 '''
-Author: Midrar Adham
-Created: Sat May 02 2026
-
-main.py — Core pipeline.
-Trains the Bayesian estimator and per-device OLS on N days of data,
-evaluates on the same training period, and plots the results.
+Author: MidrarAdham
+Created: Sat Aug 01 2026
 '''
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
+"""
+main.py
 
+Main entry point for the refactored Bayesian + OLS aggregation workflow.
+
+Current scope:
+    Stage 1: simultaneous WH/HVAC OLS
+    Stage 2: per-device HVAC OLS
+
+This script should stay simple.
+
+Its job:
+    1. define configuration
+    2. load data
+    3. run Bayesian state estimation
+    4. run aggregation OLS
+    5. print a small summary
+
+The math is handled by:
+    bayesian_estimator.py
+    aggregation_ols.py
+    matrix_builder.py
+    ols.py
+"""
+from pathlib import Path
 from data_loader import DataLoader
-from ols import OrdinaryLeastSquare
+from aggregation_ols import AggregationOLS
 from bayesian_estimator import BayesianEstimator
-from utils import (
-    r2_score,
-    mape_score,
-    get_ground_truth_per_device,
-    build_active_ground_truth,
-)
 
-if __name__ == '__main__':
-    home_xml_dir    = '/mnt/datasets/resstock_2024/cosimulation/'
-    wh_dir          = '../results/wh_cosim/'
-    hvac_dir        = '../results/hvac_cosim/'
-    total_house_dir = '../results/total_house_consumption/'
+# ---------------------------------------------------------------------------
+# Configuration
+# ---------------------------------------------------------------------------
 
-    # ── Configuration ────────────────────────────────────────────────────
-    n_days       = 1
-    lambda_coef  = 0.01
-    chunks_per_day = 144
-    exclude_hvac = [
-        '../results/hvac_cosim/ochre_load_16.csv',
-    ]
+number_of_days = 1
+chunks_per_day = 144
+minutes_per_day = 1440
 
-    day_end  = n_days * 1440
-    n_chunks = n_days * chunks_per_day
+bayesian_discount = 0.01
 
-    # ── Load data ────────────────────────────────────────────────────────
-    home_xml_loader    = DataLoader(results_dir=home_xml_dir,    day_start=0, day_end=day_end)
-    wh_loader          = DataLoader(results_dir=wh_dir,          day_start=0, day_end=day_end)
-    hvac_loader        = DataLoader(results_dir=hvac_dir,        day_start=0, day_end=day_end)
-    total_house_loader = DataLoader(results_dir=total_house_dir, day_start=0, day_end=day_end)
+water_heater_state_threshold_w = 5000.0
+hvac_state_threshold_w = 100.0
 
-    hvac_sizes = home_xml_loader.get_btu_per_device ()
-    wh_ground_truth   = wh_loader.load_transformer_data()
+minimum_hvac_mean = 0.01
+
+excluded_hvac_devices = [
+    "../results/hvac_cosim/ochre_load_16.csv",
+]
+
+home_xml_dir = Path("/mnt/datasets/resstock_2024/cosimulation/")
+water_heater_results_dir = Path("../results/wh_cosim/")
+hvac_results_dir = Path("../results/hvac_cosim/")
+total_house_results_dir = Path("../results/total_house_consumption/")
+
+day_start = 0
+day_end = number_of_days * minutes_per_day
+number_of_chunks = number_of_days * chunks_per_day
+
+# ---------------------------------------------------------------------------
+# Helper functions
+# ---------------------------------------------------------------------------
+
+def print_section(title: str) -> None:
+    """
+    Print a readable section header.
+    """
+    print()
+    print("-" * 72)
+    print(title)
+    print("-" * 72)
+
+
+def print_summary(summary: dict) -> None:
+    """
+    Print the most important outputs from the refactored OLS workflow.
+    """
+    print_section("Device and time-window counts")
+    print("number of WH devices:", summary["number_of_wh_devices"])
+    print("number of HVAC devices:", summary["number_of_hvac_devices"])
+    print("number of active HVAC devices:", summary["number_of_active_hvac_devices"])
+    print("number of time windows:", summary["number_of_time_windows"])
+
+    print_section("Simultaneous WH/HVAC OLS")
+    print("r_squared:", summary["simultaneous_r_squared"])
+    print()
+    print(summary["simultaneous_coefficients"])
+
+    print_section("Per-device HVAC OLS")
+    print("r_squared:", summary["per_device_hvac_r_squared"])
+    print()
+    print(summary["per_device_hvac_coefficients"])
+
+
+# ---------------------------------------------------------------------------
+# Main workflow
+# ---------------------------------------------------------------------------
+
+def main() -> None:
+    """
+    Run the refactored Bayesian + OLS workflow.
+    """
+    print_section("Configuration")
+    print("number_of_days:", number_of_days)
+    print("number_of_chunks:", number_of_chunks)
+    print("day_start:", day_start)
+    print("day_end:", day_end)
+    print("bayesian_discount:", bayesian_discount)
+    print("water_heater_state_threshold_w:", water_heater_state_threshold_w)
+    print("hvac_state_threshold_w:", hvac_state_threshold_w)
+
+    print_section("Create data loaders")
+    home_xml_loader = DataLoader(
+        results_dir=str(home_xml_dir),
+        day_start=day_start,
+        day_end=day_end,
+    )
+
+    water_heater_loader = DataLoader(
+        results_dir=str(water_heater_results_dir),
+        day_start=day_start,
+        day_end=day_end,
+    )
+
+    hvac_loader = DataLoader(
+        results_dir=str(hvac_results_dir),
+        day_start=day_start,
+        day_end=day_end,
+    )
+
+    total_house_loader = DataLoader(
+        results_dir=str(total_house_results_dir),
+        day_start=day_start,
+        day_end=day_end,
+    )
+
+    print("Data loaders created.")
+
+    print_section("Load metadata and measured demand")
+    hvac_sizes = home_xml_loader.get_btu_per_device()
+    feeder_demand = total_house_loader.load_transformer_data()
+
+    # These ground-truth signals are not used by the refactored OLS runner yet,
+    # but keeping them here makes it easy to add evaluation plots later.
+    water_heater_ground_truth = water_heater_loader.load_transformer_data()
     hvac_ground_truth = hvac_loader.load_transformer_data()
-    feeder_df         = total_house_loader.load_transformer_data()
 
-    wh_df   = wh_loader.load_csv_files(threshold=5000.0)
-    hvac_df = hvac_loader.load_csv_files(threshold=300.0)
+    print("number of HVAC metadata records:", len(hvac_sizes))
+    print("feeder_demand rows:", len(feeder_demand))
+    print("water_heater_ground_truth rows:", len(water_heater_ground_truth))
+    print("hvac_ground_truth rows:", len(hvac_ground_truth))
 
-    # ── Bayesian estimation ──────────────────────────────────────────────
-    estimator      = BayesianEstimator(num_chunks=n_chunks, discount=lambda_coef)
-    wh_histories   = estimator.fit_many(all_dfs=wh_df)
-    hvac_histories = estimator.fit_many(all_dfs=hvac_df)
-
-    # ── OLS ──────────────────────────────────────────────────────────────
-    ols = OrdinaryLeastSquare(
-        feeder_demand  = feeder_df,
-        hvac_sizes     = hvac_sizes,
-        wh_histories   = wh_histories,
-        hvac_histories = hvac_histories,
-        wh_all_dfs     = wh_loader.all_dfs,
-        hvac_all_dfs   = hvac_loader.all_dfs
+    print_section("Load device-level data and create binary states")
+    water_heater_device_data = water_heater_loader.load_csv_files(
+        threshold=water_heater_state_threshold_w,
     )
 
-    quit()
-    # results = ols.run(exclude_hvac=exclude_hvac)
-
-    # ── Evaluation ───────────────────────────────────────────────────────
-    hvac_active     = results['per_d_hvac_active']
-    kw_per_device   = results['per_d_kw_hvac']
-    estimated_total = hvac_active.values @ kw_per_device[hvac_active.columns].values
-
-    gt_active_total = build_active_ground_truth(
-        hvac_active_cols=hvac_active.columns.tolist(),
-        hvac_all_dfs=hvac_loader.all_dfs,
+    hvac_device_data = hvac_loader.load_csv_files(
+        threshold=hvac_state_threshold_w,
     )
 
-    r2   = r2_score(gt_active_total, estimated_total)
-    mape = mape_score(gt_active_total, estimated_total)
+    print("number of WH device files:", len(water_heater_device_data))
+    print("number of HVAC device files:", len(hvac_device_data))
 
-    print(f'\n── Training period results ({n_days} days) ──────────────────')
-    print(f'R²:   {r2:.3f}')
-    print(f'MAPE: {mape:.1f}%')
-
-    # ── Per-device rated power comparison ────────────────────────────────
-    gt_per_device = get_ground_truth_per_device(hvac_loader.all_dfs)
-    comparison = pd.DataFrame({
-        'estimated_W': kw_per_device,
-        'truth_W':     gt_per_device,
-    })
-    comparison['error_pct'] = (
-        (comparison['estimated_W'] - comparison['truth_W'])
-        / comparison['truth_W'] * 100
-    ).round(1)
-    comparison = comparison.sort_values('truth_W', ascending=False)
-
-    print('\n── Per-device HVAC rated power ──────────────────────────────')
-    print(comparison.to_string())
-
-    # ── Plot ─────────────────────────────────────────────────────────────
-    fig, ax = plt.subplots(figsize=(12, 5))
-    ax.plot(gt_active_total / 1e3, color='black',     linewidth=1.5,
-            label='Ground Truth (active devices)')
-    ax.plot(estimated_total / 1e3, color='steelblue', linewidth=1.5,
-            linestyle='--', label='Estimated')
-    ax.set_ylabel('HVAC Demand [kW]')
-    ax.set_xlabel('Chunk Index (10-min intervals)')
-    ax.set_title(f'Total HVAC Demand: Estimated vs Ground Truth — {n_days} Days')
-    ax.annotate(
-        f'R²: {r2:.3f}\nMAPE: {mape:.1f}%',
-        xy=(0.01, 0.95), xycoords='axes fraction',
-        fontsize=10, verticalalignment='top',
-        bbox=dict(boxstyle='round', facecolor='white', alpha=0.7)
+    print_section("Run Bayesian estimator")
+    bayesian_estimator = BayesianEstimator(
+        num_chunks=number_of_chunks,
+        discount=bayesian_discount,
     )
-    ax.legend()
-    ax.grid(True)
-    plt.tight_layout()
-    plt.savefig(f'hvac_estimated_vs_truth_{n_days}days.png')
-    plt.show()
+
+    water_heater_histories = bayesian_estimator.fit_many(
+        all_dfs=water_heater_device_data,
+    )
+
+    hvac_histories = bayesian_estimator.fit_many(
+        all_dfs=hvac_device_data,
+    )
+
+    print("number of WH Bayesian histories:", len(water_heater_histories))
+    print("number of HVAC Bayesian histories:", len(hvac_histories))
+
+    print_section("Run aggregation OLS")
+    aggregation_ols = AggregationOLS()
+
+    aggregation_result = aggregation_ols.run(
+        wh_histories=water_heater_histories,
+        hvac_histories=hvac_histories,
+        feeder_demand=feeder_demand,
+        power_column="power_out",
+        excluded_hvac_devices=excluded_hvac_devices,
+        minimum_hvac_mean=minimum_hvac_mean,
+    )
+
+    summary = aggregation_ols.summarize_results(
+        aggregation_result=aggregation_result,
+    )
+
+    print_summary(summary=summary)
+
+    print_section("Done")
+    print("Refactored Bayesian + OLS workflow completed successfully.")
+
+
+if __name__ == "__main__":
+    main()
