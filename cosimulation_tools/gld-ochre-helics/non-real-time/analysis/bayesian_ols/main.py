@@ -200,7 +200,7 @@ def main() -> None:
     print_summary(summary=summary)
 
     print_section("Done")
-    print("Refactored Bayesian + OLS workflow completed successfully.")
+    print("Bayesian + OLS workflow completed!.")
 
 
 if __name__ == "__main__":
