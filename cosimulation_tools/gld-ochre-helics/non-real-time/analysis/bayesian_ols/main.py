@@ -51,9 +51,9 @@ excluded_hvac_devices = [
 ]
 
 home_xml_dir = Path("/mnt/datasets/resstock_2024/cosimulation/")
-water_heater_results_dir = Path("../results/wh_cosim/")
-hvac_results_dir = Path("../results/hvac_cosim/")
-total_house_results_dir = Path("../results/total_house_consumption/")
+water_heater_results_dir = Path("../../results/wh_cosim/")
+hvac_results_dir = Path("../../results/hvac_cosim/")
+total_house_results_dir = Path("../../results/total_house_consumption/")
 
 day_start = 0
 day_end = number_of_days * minutes_per_day
