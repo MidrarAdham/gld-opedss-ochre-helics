@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """
-Create a GitHub issue, add it to a Projects v2 board, and set custom field values
-(Status, Sprint, Estimated Time, or any other single-select/iteration/text/number
-field configured on the board) in one shot.
+Create a GitHub issue, add it to a Projects v2 board, or browse the issues already
+on a board and change their custom field values.
 
 Requires: gh CLI, fzf, and an authenticated GitHub session (`gh auth status`).
 
@@ -22,8 +21,8 @@ List the field/option names available on a board (useful before setting values):
 
     python3 tools/gh_create_issue.py --project 18 --project-owner PortlandStatePowerLab --list-fields
 
-Or just run it with no arguments (or --interactive) to be walked through owner, project,
-repo, title, body, labels, assignees, and every board field via fzf menus:
+Run it with no arguments to choose between creating an issue and viewing/editing
+existing project issues. Use --interactive to go directly to issue creation:
 
     python3 tools/gh_create_issue.py
 """
@@ -32,6 +31,13 @@ import json
 import shutil
 import subprocess
 import sys
+
+
+SUPPORTED_FIELD_TYPES = (
+    "ProjectV2SingleSelectField",
+    "ProjectV2IterationField",
+    "ProjectV2Field",
+)
 
 
 def run_gh(args, input_text=None):
@@ -72,6 +78,18 @@ def get_fields(owner, number):
 def list_projects(owner):
     out = run_gh(["project", "list", "--owner", owner, "--format", "json"])
     return json.loads(out)["projects"]
+
+
+def list_project_items(owner, number, limit=200, field_names=None):
+    """Return project items as emitted by ``gh project item-list``."""
+    args = [
+        "project", "item-list", str(number), "--owner", owner,
+        "--format", "json", "--limit", str(limit),
+    ]
+    for name in field_names or []:
+        args += ["--field", name]
+    out = run_gh(args)
+    return json.loads(out).get("items", [])
 
 
 def list_repos(owner, limit=50):
@@ -118,6 +136,13 @@ def set_field(item_id, project_id, field, value):
     else:
         raise ValueError(f"Unsupported field type: {field['type']}")
     run_gh(args)
+
+
+def clear_field(item_id, project_id, field):
+    run_gh([
+        "project", "item-edit", "--id", item_id,
+        "--project-id", project_id, "--field-id", field["id"], "--clear",
+    ])
 
 
 def ensure_command(command):
@@ -196,24 +221,121 @@ def ask(prompt, default=None, required=False):
         return raw
 
 
+def choose_owner_and_project():
+    """Interactively select a project owner and one of their projects."""
+    owner = choose(
+        "Project owner",
+        ["MidrarAdham", "PortlandStatePowerLab"],
+        allow_free_text=True,
+    ) or ask("Project owner (user or org login)", required=True)
+
+    projects = list_projects(owner)
+    if not projects:
+        sys.exit(f"No projects found for owner {owner!r}.")
+    labels = [
+        f"#{p['number']} {p['title']} ({p['items']['totalCount']} items)"
+        for p in projects
+    ]
+    picked = choose("\nPick a project:", labels, allow_skip=False)
+    return owner, projects[labels.index(picked)]
+
+
+def item_content(item):
+    """Normalize the content object from different gh CLI versions."""
+    return item.get("content") or {}
+
+
+def item_label(item):
+    content = item_content(item)
+    title = content.get("title") or item.get("title") or "(untitled draft)"
+    number = content.get("number")
+    repo = content.get("repository") or ""
+    prefix = f"{repo}#{number}" if repo and number is not None else repo
+    return f"{prefix}  {title}" if prefix else title
+
+
+def current_item_fields(item):
+    """Extract field values included by gh, excluding content metadata."""
+    ignored = {"id", "content", "title", "type", "url", "repository", "number", "body"}
+    values = {}
+    for name, value in item.items():
+        if name not in ignored and value not in (None, "", []):
+            values[name] = value
+    return values
+
+
+def interactive_edit_items():
+    ensure_command("gh")
+    ensure_command("fzf")
+    print("=== View and edit GitHub project issues ===\n")
+
+    owner, project = choose_owner_and_project()
+    fields = get_fields(owner, project["number"])
+    editable = {name: field for name, field in fields.items()
+                if field["type"] in SUPPORTED_FIELD_TYPES}
+    if not editable:
+        print("This project has no editable custom fields.")
+        return
+    project_id = project["id"]
+
+    while True:
+        items = [item for item in list_project_items(
+                    owner, project["number"], field_names=editable)
+                 if item_content(item).get("type") == "Issue"]
+        if not items:
+            print("No issues were found in this project.")
+            return
+
+        labels = [item_label(item) for item in items]
+        picked = choose("\nIssue (Escape to finish)", labels)
+        if picked is None:
+            return
+        item = items[labels.index(picked)]
+        content = item_content(item)
+
+        print(f"\n{item_label(item)}")
+        if content.get("url"):
+            print(content["url"])
+        if content.get("body"):
+            print(f"\n{content['body']}")
+        values = current_item_fields(item)
+        print("\nCurrent fields:")
+        if values:
+            for name, value in values.items():
+                print(f"  {name}: {value}")
+        else:
+            print("  (none)")
+
+        while True:
+            field_name = choose("\nField to change (Escape for issue list)", list(editable))
+            if field_name is None:
+                break
+            field = editable[field_name]
+            choices = list(field["options"]) or list(field["iterations"])
+            if choices:
+                choice = choose(
+                    f"{field_name} (Escape to cancel)",
+                    choices + ["<clear value>"],
+                )
+            else:
+                choice = ask(f"{field_name} (blank cancels)", default="") or None
+            if choice is None:
+                continue
+            if choice == "<clear value>":
+                clear_field(item["id"], project_id, field)
+                print(f"  Cleared {field_name}")
+            else:
+                set_field(item["id"], project_id, field, choice)
+                print(f"  {field_name} = {choice}")
+
+
 def interactive_main():
     ensure_command("gh")
     ensure_command("fzf")
 
     print("=== Create a GitHub issue (interactive with fzf) ===\n")
 
-    owner_guess = choose(
-        "Project owner",
-        ["MidrarAdham", "PortlandStatePowerLab"],
-        allow_free_text=True,
-    ) or ask("Project owner (user or org login)", required=True)
-
-    projects = list_projects(owner_guess)
-    if not projects:
-        sys.exit(f"No projects found for owner {owner_guess!r}.")
-    proj_labels = [f"#{p['number']} {p['title']} ({p['items']['totalCount']} items)" for p in projects]
-    picked = choose("\nPick a project:", proj_labels, allow_skip=False)
-    project = projects[proj_labels.index(picked)]
+    owner_guess, project = choose_owner_and_project()
     project_number = project["number"]
 
     repos = list_repos(owner_guess)
@@ -266,6 +388,8 @@ def interactive_main():
 def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("-i", "--interactive", action="store_true", help="select values with fzf instead of using flags")
+    p.add_argument("--edit", action="store_true",
+                   help="interactively view project issues and edit their fields")
     p.add_argument("--repo", help="owner/repo to create the issue in (required unless --list-fields)")
     p.add_argument("--title", help="issue title")
     p.add_argument("--body", default="", help="issue body")
@@ -281,7 +405,24 @@ def main():
     p.add_argument("--list-fields", action="store_true", help="print available fields/options and exit")
     args = p.parse_args()
 
-    if args.interactive or len(sys.argv) == 1:
+    if args.edit:
+        interactive_edit_items()
+        return
+
+    if len(sys.argv) == 1:
+        ensure_command("gh")
+        ensure_command("fzf")
+        action = choose("What would you like to do?", [
+            "Create a new issue",
+            "View and edit project issues",
+        ], allow_skip=False)
+        if action == "View and edit project issues":
+            interactive_edit_items()
+        else:
+            interactive_main()
+        return
+
+    if args.interactive:
         interactive_main()
         return
 

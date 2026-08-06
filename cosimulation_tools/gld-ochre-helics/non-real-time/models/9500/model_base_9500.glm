@@ -105728,1607 +105728,1607 @@ object recorder {
     parent "xf_t5356796c";
     file ../../results/9500_transformers/xf_t5356796c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260543c";
     file ../../results/9500_transformers/xf_t5260543c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260567c";
     file ../../results/9500_transformers/xf_t5260567c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5218474a";
     file ../../results/9500_transformers/xf_t5218474a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260458b";
     file ../../results/9500_transformers/xf_t5260458b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t228622562a";
     file ../../results/9500_transformers/xf_t228622562a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t28128464c";
     file ../../results/9500_transformers/xf_t28128464c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260542a";
     file ../../results/9500_transformers/xf_t5260542a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5356797c";
     file ../../results/9500_transformers/xf_t5356797c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5218473a";
     file ../../results/9500_transformers/xf_t5218473a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260457b";
     file ../../results/9500_transformers/xf_t5260457b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t226308716b";
     file ../../results/9500_transformers/xf_t226308716b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260650a";
     file ../../results/9500_transformers/xf_t5260650a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5356798c";
     file ../../results/9500_transformers/xf_t5356798c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5218472a";
     file ../../results/9500_transformers/xf_t5218472a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260589b";
     file ../../results/9500_transformers/xf_t5260589b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t228314460c";
     file ../../results/9500_transformers/xf_t228314460c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260479a";
     file ../../results/9500_transformers/xf_t5260479a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260632a";
     file ../../results/9500_transformers/xf_t5260632a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t226308710b";
     file ../../results/9500_transformers/xf_t226308710b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t225700953a";
     file ../../results/9500_transformers/xf_t225700953a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5339048a";
     file ../../results/9500_transformers/xf_t5339048a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5337619a";
     file ../../results/9500_transformers/xf_t5337619a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5337619c";
     file ../../results/9500_transformers/xf_t5337619c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5337619b";
     file ../../results/9500_transformers/xf_t5337619b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260631a";
     file ../../results/9500_transformers/xf_t5260631a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t28129466b";
     file ../../results/9500_transformers/xf_t28129466b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t28129466c";
     file ../../results/9500_transformers/xf_t28129466c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t28129466a";
     file ../../results/9500_transformers/xf_t28129466a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5339047a";
     file ../../results/9500_transformers/xf_t5339047a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260630b";
     file ../../results/9500_transformers/xf_t5260630b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260521b";
     file ../../results/9500_transformers/xf_t5260521b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t226010605c";
     file ../../results/9500_transformers/xf_t226010605c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260569c";
     file ../../results/9500_transformers/xf_t5260569c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260520b";
     file ../../results/9500_transformers/xf_t5260520b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5218475a";
     file ../../results/9500_transformers/xf_t5218475a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t21389307c";
     file ../../results/9500_transformers/xf_t21389307c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260568c";
     file ../../results/9500_transformers/xf_t5260568c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5339049a";
     file ../../results/9500_transformers/xf_t5339049a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5337729b";
     file ../../results/9500_transformers/xf_t5337729b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5337729c";
     file ../../results/9500_transformers/xf_t5337729c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5337729a";
     file ../../results/9500_transformers/xf_t5337729a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260527b";
     file ../../results/9500_transformers/xf_t5260527b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t226308730a";
     file ../../results/9500_transformers/xf_t226308730a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260503b";
     file ../../results/9500_transformers/xf_t5260503b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t226195194c";
     file ../../results/9500_transformers/xf_t226195194c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t223400157c";
     file ../../results/9500_transformers/xf_t223400157c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t227944551c";
     file ../../results/9500_transformers/xf_t227944551c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t227944551a";
     file ../../results/9500_transformers/xf_t227944551a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t227944551b";
     file ../../results/9500_transformers/xf_t227944551b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260502b";
     file ../../results/9500_transformers/xf_t5260502b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t226308731a";
     file ../../results/9500_transformers/xf_t226308731a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t21482181a";
     file ../../results/9500_transformers/xf_t21482181a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t225533237b";
     file ../../results/9500_transformers/xf_t225533237b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260501b";
     file ../../results/9500_transformers/xf_t5260501b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260634a";
     file ../../results/9500_transformers/xf_t5260634a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260500b";
     file ../../results/9500_transformers/xf_t5260500b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t226194419c";
     file ../../results/9500_transformers/xf_t226194419c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5223662c";
     file ../../results/9500_transformers/xf_t5223662c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260639c";
     file ../../results/9500_transformers/xf_t5260639c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5223663c";
     file ../../results/9500_transformers/xf_t5223663c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t21389761b";
     file ../../results/9500_transformers/xf_t21389761b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5442373c";
     file ../../results/9500_transformers/xf_t5442373c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260638c";
     file ../../results/9500_transformers/xf_t5260638c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260529c";
     file ../../results/9500_transformers/xf_t5260529c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260505c";
     file ../../results/9500_transformers/xf_t5260505c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t226195153b";
     file ../../results/9500_transformers/xf_t226195153b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5223660c";
     file ../../results/9500_transformers/xf_t5223660c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5356800a";
     file ../../results/9500_transformers/xf_t5356800a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260528c";
     file ../../results/9500_transformers/xf_t5260528c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t21386143c";
     file ../../results/9500_transformers/xf_t21386143c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260637c";
     file ../../results/9500_transformers/xf_t5260637c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5223661c";
     file ../../results/9500_transformers/xf_t5223661c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5356801a";
     file ../../results/9500_transformers/xf_t5356801a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5356802a";
     file ../../results/9500_transformers/xf_t5356802a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t21386877a";
     file ../../results/9500_transformers/xf_t21386877a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t28128517c";
     file ../../results/9500_transformers/xf_t28128517c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t21469911a";
     file ../../results/9500_transformers/xf_t21469911a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t226194421c";
     file ../../results/9500_transformers/xf_t226194421c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5356803a";
     file ../../results/9500_transformers/xf_t5356803a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t21249647b";
     file ../../results/9500_transformers/xf_t21249647b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5356804a";
     file ../../results/9500_transformers/xf_t5356804a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5356805a";
     file ../../results/9500_transformers/xf_t5356805a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5328367c";
     file ../../results/9500_transformers/xf_t5328367c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t21391242b";
     file ../../results/9500_transformers/xf_t21391242b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5346639c";
     file ../../results/9500_transformers/xf_t5346639c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260590b";
     file ../../results/9500_transformers/xf_t5260590b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260481c";
     file ../../results/9500_transformers/xf_t5260481c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5251867c";
     file ../../results/9500_transformers/xf_t5251867c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5328365b";
     file ../../results/9500_transformers/xf_t5328365b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5356807a";
     file ../../results/9500_transformers/xf_t5356807a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260480c";
     file ../../results/9500_transformers/xf_t5260480c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t21482431a";
     file ../../results/9500_transformers/xf_t21482431a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t225533423c";
     file ../../results/9500_transformers/xf_t225533423c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5356808a";
     file ../../results/9500_transformers/xf_t5356808a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5328364c";
     file ../../results/9500_transformers/xf_t5328364c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5251865c";
     file ../../results/9500_transformers/xf_t5251865c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5356809a";
     file ../../results/9500_transformers/xf_t5356809a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5328363b";
     file ../../results/9500_transformers/xf_t5328363b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260595a";
     file ../../results/9500_transformers/xf_t5260595a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t226115278a";
     file ../../results/9500_transformers/xf_t226115278a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260595c";
     file ../../results/9500_transformers/xf_t5260595c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260595b";
     file ../../results/9500_transformers/xf_t5260595b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5293608c";
     file ../../results/9500_transformers/xf_t5293608c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t226195333c";
     file ../../results/9500_transformers/xf_t226195333c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260461b";
     file ../../results/9500_transformers/xf_t5260461b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260594a";
     file ../../results/9500_transformers/xf_t5260594a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5293609c";
     file ../../results/9500_transformers/xf_t5293609c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5251859c";
     file ../../results/9500_transformers/xf_t5251859c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5356790c";
     file ../../results/9500_transformers/xf_t5356790c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5356811a";
     file ../../results/9500_transformers/xf_t5356811a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5337614b";
     file ../../results/9500_transformers/xf_t5337614b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t226308723b";
     file ../../results/9500_transformers/xf_t226308723b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5251858c";
     file ../../results/9500_transformers/xf_t5251858c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260573c";
     file ../../results/9500_transformers/xf_t5260573c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t226194826a";
     file ../../results/9500_transformers/xf_t226194826a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260607b";
     file ../../results/9500_transformers/xf_t5260607b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260575b";
     file ../../results/9500_transformers/xf_t5260575b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260474a";
     file ../../results/9500_transformers/xf_t5260474a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t2224061203c";
     file ../../results/9500_transformers/xf_t2224061203c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260467a";
     file ../../results/9500_transformers/xf_t5260467a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5251862c";
     file ../../results/9500_transformers/xf_t5251862c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260518c";
     file ../../results/9500_transformers/xf_t5260518c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260581c";
     file ../../results/9500_transformers/xf_t5260581c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260598a";
     file ../../results/9500_transformers/xf_t5260598a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5339044c";
     file ../../results/9500_transformers/xf_t5339044c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260561c";
     file ../../results/9500_transformers/xf_t5260561c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t227411655c";
     file ../../results/9500_transformers/xf_t227411655c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260601c";
     file ../../results/9500_transformers/xf_t5260601c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5339042b";
     file ../../results/9500_transformers/xf_t5339042b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t21389092b";
     file ../../results/9500_transformers/xf_t21389092b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t227921427c";
     file ../../results/9500_transformers/xf_t227921427c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260602b";
     file ../../results/9500_transformers/xf_t5260602b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t227921427b";
     file ../../results/9500_transformers/xf_t227921427b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t227921427a";
     file ../../results/9500_transformers/xf_t227921427a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t21243817a";
     file ../../results/9500_transformers/xf_t21243817a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260491c";
     file ../../results/9500_transformers/xf_t5260491c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260627a";
     file ../../results/9500_transformers/xf_t5260627a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260574c";
     file ../../results/9500_transformers/xf_t5260574c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t21386157a";
     file ../../results/9500_transformers/xf_t21386157a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5262075c";
     file ../../results/9500_transformers/xf_t5262075c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5251863c";
     file ../../results/9500_transformers/xf_t5251863c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260647a";
     file ../../results/9500_transformers/xf_t5260647a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5339043c";
     file ../../results/9500_transformers/xf_t5339043c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t226308717a";
     file ../../results/9500_transformers/xf_t226308717a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5339046a";
     file ../../results/9500_transformers/xf_t5339046a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260551c";
     file ../../results/9500_transformers/xf_t5260551c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260552a";
     file ../../results/9500_transformers/xf_t5260552a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t21475841a";
     file ../../results/9500_transformers/xf_t21475841a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t226308727b";
     file ../../results/9500_transformers/xf_t226308727b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260622c";
     file ../../results/9500_transformers/xf_t5260622c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t21386442c";
     file ../../results/9500_transformers/xf_t21386442c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t226308729b";
     file ../../results/9500_transformers/xf_t226308729b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5337636c";
     file ../../results/9500_transformers/xf_t5337636c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t21249626b";
     file ../../results/9500_transformers/xf_t21249626b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t226194093a";
     file ../../results/9500_transformers/xf_t226194093a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t227895952a";
     file ../../results/9500_transformers/xf_t227895952a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5356795c";
     file ../../results/9500_transformers/xf_t5356795c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260624c";
     file ../../results/9500_transformers/xf_t5260624c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5356789c";
     file ../../results/9500_transformers/xf_t5356789c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t0107693b";
     file ../../results/9500_transformers/xf_t0107693b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5356815a";
     file ../../results/9500_transformers/xf_t5356815a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t226264795a";
     file ../../results/9500_transformers/xf_t226264795a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260475a";
     file ../../results/9500_transformers/xf_t5260475a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260515a";
     file ../../results/9500_transformers/xf_t5260515a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t28127146b";
     file ../../results/9500_transformers/xf_t28127146b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260605a";
     file ../../results/9500_transformers/xf_t5260605a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5356791c";
     file ../../results/9500_transformers/xf_t5356791c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t227760021c";
     file ../../results/9500_transformers/xf_t227760021c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t227760021a";
     file ../../results/9500_transformers/xf_t227760021a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t227760021b";
     file ../../results/9500_transformers/xf_t227760021b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260558c";
     file ../../results/9500_transformers/xf_t5260558c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5251857c";
     file ../../results/9500_transformers/xf_t5251857c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5157718b";
     file ../../results/9500_transformers/xf_t5157718b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260577c";
     file ../../results/9500_transformers/xf_t5260577c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260576c";
     file ../../results/9500_transformers/xf_t5260576c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t225533215c";
     file ../../results/9500_transformers/xf_t225533215c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t226308725b";
     file ../../results/9500_transformers/xf_t226308725b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260620c";
     file ../../results/9500_transformers/xf_t5260620c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260535c";
     file ../../results/9500_transformers/xf_t5260535c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260586b";
     file ../../results/9500_transformers/xf_t5260586b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5251856c";
     file ../../results/9500_transformers/xf_t5251856c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5337635c";
     file ../../results/9500_transformers/xf_t5337635c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t226308728a";
     file ../../results/9500_transformers/xf_t226308728a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5251828b";
     file ../../results/9500_transformers/xf_t5251828b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t21474556a";
     file ../../results/9500_transformers/xf_t21474556a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5337634c";
     file ../../results/9500_transformers/xf_t5337634c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t226308719b";
     file ../../results/9500_transformers/xf_t226308719b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260648a";
     file ../../results/9500_transformers/xf_t5260648a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5339051c";
     file ../../results/9500_transformers/xf_t5339051c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260496b";
     file ../../results/9500_transformers/xf_t5260496b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260553c";
     file ../../results/9500_transformers/xf_t5260553c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t21380325b";
     file ../../results/9500_transformers/xf_t21380325b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5356788c";
     file ../../results/9500_transformers/xf_t5356788c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t226308721a";
     file ../../results/9500_transformers/xf_t226308721a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260476a";
     file ../../results/9500_transformers/xf_t5260476a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t228001810a";
     file ../../results/9500_transformers/xf_t228001810a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260555a";
     file ../../results/9500_transformers/xf_t5260555a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260641b";
     file ../../results/9500_transformers/xf_t5260641b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5157715b";
     file ../../results/9500_transformers/xf_t5157715b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260625c";
     file ../../results/9500_transformers/xf_t5260625c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t1108405b";
     file ../../results/9500_transformers/xf_t1108405b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t1108405c";
     file ../../results/9500_transformers/xf_t1108405c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t1108405a";
     file ../../results/9500_transformers/xf_t1108405a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t1108406a";
     file ../../results/9500_transformers/xf_t1108406a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t1108406b";
     file ../../results/9500_transformers/xf_t1108406b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t1108403a";
     file ../../results/9500_transformers/xf_t1108403a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t1108403b";
     file ../../results/9500_transformers/xf_t1108403b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t1108403c";
     file ../../results/9500_transformers/xf_t1108403c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t28150292a";
     file ../../results/9500_transformers/xf_t28150292a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t1108404a";
     file ../../results/9500_transformers/xf_t1108404a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t1108404b";
     file ../../results/9500_transformers/xf_t1108404b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260562a";
     file ../../results/9500_transformers/xf_t5260562a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t1108404c";
     file ../../results/9500_transformers/xf_t1108404c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260621c";
     file ../../results/9500_transformers/xf_t5260621c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t28129923c";
     file ../../results/9500_transformers/xf_t28129923c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t227187012a";
     file ../../results/9500_transformers/xf_t227187012a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t227187012b";
     file ../../results/9500_transformers/xf_t227187012b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t227187012c";
     file ../../results/9500_transformers/xf_t227187012c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t21382813a";
     file ../../results/9500_transformers/xf_t21382813a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t225906836c";
     file ../../results/9500_transformers/xf_t225906836c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5223658a";
     file ../../results/9500_transformers/xf_t5223658a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5356794c";
     file ../../results/9500_transformers/xf_t5356794c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260517c";
     file ../../results/9500_transformers/xf_t5260517c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5356814c";
     file ../../results/9500_transformers/xf_t5356814c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5251855c";
     file ../../results/9500_transformers/xf_t5251855c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260495b";
     file ../../results/9500_transformers/xf_t5260495b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260494b";
     file ../../results/9500_transformers/xf_t5260494b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260640c";
     file ../../results/9500_transformers/xf_t5260640c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260532c";
     file ../../results/9500_transformers/xf_t5260532c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5157716b";
     file ../../results/9500_transformers/xf_t5157716b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t21391390b";
     file ../../results/9500_transformers/xf_t21391390b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t0107636a";
     file ../../results/9500_transformers/xf_t0107636a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t226194865a";
     file ../../results/9500_transformers/xf_t226194865a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t21390038c";
     file ../../results/9500_transformers/xf_t21390038c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t226197070a";
     file ../../results/9500_transformers/xf_t226197070a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260554c";
     file ../../results/9500_transformers/xf_t5260554c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260473a";
     file ../../results/9500_transformers/xf_t5260473a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t227411650c";
     file ../../results/9500_transformers/xf_t227411650c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5338979b";
     file ../../results/9500_transformers/xf_t5338979b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260514c";
     file ../../results/9500_transformers/xf_t5260514c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260464a";
     file ../../results/9500_transformers/xf_t5260464a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260463b";
     file ../../results/9500_transformers/xf_t5260463b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t28147899c";
     file ../../results/9500_transformers/xf_t28147899c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t21380453a";
     file ../../results/9500_transformers/xf_t21380453a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5157717b";
     file ../../results/9500_transformers/xf_t5157717b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260487a";
     file ../../results/9500_transformers/xf_t5260487a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260488a";
     file ../../results/9500_transformers/xf_t5260488a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5339052c";
     file ../../results/9500_transformers/xf_t5339052c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260572c";
     file ../../results/9500_transformers/xf_t5260572c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t21380500c";
     file ../../results/9500_transformers/xf_t21380500c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5337633c";
     file ../../results/9500_transformers/xf_t5337633c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t1108407b";
     file ../../results/9500_transformers/xf_t1108407b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t21249674b";
     file ../../results/9500_transformers/xf_t21249674b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t21386065c";
     file ../../results/9500_transformers/xf_t21386065c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260484a";
     file ../../results/9500_transformers/xf_t5260484a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t226308720a";
     file ../../results/9500_transformers/xf_t226308720a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260591b";
     file ../../results/9500_transformers/xf_t5260591b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5356787c";
     file ../../results/9500_transformers/xf_t5356787c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5356793c";
     file ../../results/9500_transformers/xf_t5356793c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t6061820b";
     file ../../results/9500_transformers/xf_t6061820b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t227760024b";
     file ../../results/9500_transformers/xf_t227760024b.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t227760024a";
     file ../../results/9500_transformers/xf_t227760024a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t227760024c";
     file ../../results/9500_transformers/xf_t227760024c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5260643a";
     file ../../results/9500_transformers/xf_t5260643a.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5356810c";
     file ../../results/9500_transformers/xf_t5356810c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t21474711c";
     file ../../results/9500_transformers/xf_t21474711c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }
 object recorder {
     parent "xf_t5223655c";
     file ../../results/9500_transformers/xf_t5223655c.csv;
     interval 60;
-    property power_in,power_out;
+    property power_in.real,power_in.imag,power_out.real,power_out.imag;
 }

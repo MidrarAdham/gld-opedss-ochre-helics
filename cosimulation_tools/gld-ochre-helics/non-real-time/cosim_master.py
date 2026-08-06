@@ -1,14 +1,18 @@
-'''
+"""
 Author: Midrar Adham
 Created: Tue Jul 07 2026
-'''
+"""
+
+import json
 import os
 import sys
-import json
+
 from helics.cli import run
 
 
-def create_load_paths_file(building_ids: list, resstock_data_dir: str, load_paths_file: str):
+def create_load_paths_file(
+    building_ids: list, resstock_data_dir: str, load_paths_file: str
+):
     """
     Creates a JSON file mapping each load to its ochre.parquet path.
     This lets the OCHRE federate read as many load profiles as needed
@@ -16,7 +20,9 @@ def create_load_paths_file(building_ids: list, resstock_data_dir: str, load_path
     """
     load_paths = {}
     for idx, bldg_id in enumerate(building_ids):
-        load_paths[f"load_{bldg_id}"] = f"{resstock_data_dir}/{bldg_id}/up00/simulation_results_august/ochre.parquet"
+        load_paths[f"load_{bldg_id}"] = (
+            f"{resstock_data_dir}/{bldg_id}/up00/simulation_results_august/ochre.parquet"
+        )
 
     with open(load_paths_file, "w") as f:
         json.dump(load_paths, f, indent=4)
@@ -40,7 +46,9 @@ def create_ochre_federate_config(ochre_federate_script: str, ochre_federate_name
     return ochre_federate
 
 
-def create_gridlabd_federate_config(gridlabd_model_file: str, gridlabd_federate_name: str):
+def create_gridlabd_federate_config(
+    gridlabd_model_file: str, gridlabd_federate_name: str
+):
     """
     Builds the HELICS federate config for GridLAB-D.
     """
@@ -55,7 +63,9 @@ def create_gridlabd_federate_config(gridlabd_model_file: str, gridlabd_federate_
     return gridlabd_federate
 
 
-def create_ochre_helics_config (ochre_federate_name: str, building_ids: list, output_file: str):
+def create_ochre_helics_config(
+    ochre_federate_name: str, building_ids: list, output_file: str
+):
     """
     Creates the HELICS config for the OCHRE federate.
     Generates one publication per building — these are the power values
@@ -63,11 +73,13 @@ def create_ochre_helics_config (ochre_federate_name: str, building_ids: list, ou
     """
     publications = []
     for idx in building_ids:
-        publications.append({
-            "key": f"ochre_house_load_{idx}.constant_power_12",
-            "type": "complex",
-            "global": True,
-        })
+        publications.append(
+            {
+                "key": f"ochre_house_load_{idx}.constant_power_12",
+                "type": "complex",
+                "global": True,
+            }
+        )
 
     config = {
         "name": ochre_federate_name,
@@ -86,7 +98,9 @@ def create_ochre_helics_config (ochre_federate_name: str, building_ids: list, ou
         json.dump(config, f, indent=4)
 
 
-def create_gridlabd_helics_config(gridlabd_federate_name: str, building_ids: list, output_file: str):
+def create_gridlabd_helics_config(
+    gridlabd_federate_name: str, building_ids: list, output_file: str
+):
     """
     Creates the HELICS config for the GridLAB-D federate.
     Generates one subscription per building — these match the publications
@@ -94,15 +108,19 @@ def create_gridlabd_helics_config(gridlabd_federate_name: str, building_ids: lis
     """
     subscriptions = []
     for idx in building_ids:
-        subscriptions.append({
-            "key": f"ochre_house_load_{idx}.constant_power_12",
-            "type": "complex",
-            "info": json.dumps({
-                "object": f"ochre_house_load_{idx}",
-                "property": "constant_power_12",
-            }),
-            "required": True,
-        })
+        subscriptions.append(
+            {
+                "key": f"ochre_house_load_{idx}.constant_power_12",
+                "type": "complex",
+                "info": json.dumps(
+                    {
+                        "object": f"ochre_house_load_{idx}",
+                        "property": "constant_power_12",
+                    }
+                ),
+                "required": True,
+            }
+        )
 
     config = {
         "name": gridlabd_federate_name,
@@ -138,12 +156,14 @@ def create_master_config(cosimulation_name: str, federates: list, output_file: s
     with open(output_file, "w") as f:
         json.dump(config, f, indent=4)
 
-def create_bldg_id_list (resstock_data_dir : str):
+
+def create_bldg_id_list(resstock_data_dir: str):
     bldg_ids = []
-    for idx in os.listdir (resstock_data_dir):
+    for idx in os.listdir(resstock_data_dir):
         bldg_ids.append(idx)
 
     return bldg_ids
+
 
 def run_4node():
     # File paths
@@ -165,26 +185,52 @@ def run_4node():
     # Building IDs to simulate - must match the triplex_load objects hardcoded
     # in models/powerflow_4node.glm (GridLAB-D requires every subscription to
     # resolve to a real object, so this list can't be a full directory listing).
-    building_ids = [279, 312, 555, 620, 682, 907, 1398, 2098, 2234, 3612, 4455, 4916,
-                     5251, 5296, 5344, 5514, 6545, 6888, 6945, 7292, 7989, 8083,
-                     10740, 12621, 13050, 15007, 15089]
+    building_ids = [
+        279,
+        312,
+        555,
+        620,
+        682,
+        907,
+        1398,
+        2098,
+        2234,
+        3612,
+        4455,
+        4916,
+        5251,
+        5296,
+        5344,
+        5514,
+        6545,
+        6888,
+        6945,
+        7292,
+        7989,
+        8083,
+        10740,
+        12621,
+        13050,
+        15007,
+        15089,
+    ]
 
     # Step 1: Create the load paths JSON file
-    create_load_paths_file (
+    create_load_paths_file(
         building_ids=building_ids,
         resstock_data_dir=resstock_data_dir,
         load_paths_file=load_paths_file,
     )
 
     # Step 2: Create the OCHRE HELICS config (one publication per building)
-    create_ochre_helics_config (
+    create_ochre_helics_config(
         ochre_federate_name=ochre_federate_name,
         building_ids=building_ids,
         output_file=ochre_helics_config_file,
     )
 
     # Step 3: Create the GridLAB-D HELICS config (one subscription per building, but one federate)
-    create_gridlabd_helics_config (
+    create_gridlabd_helics_config(
         gridlabd_federate_name=gridlabd_federate_name,
         building_ids=building_ids,
         output_file=gridlabd_helics_config_file,
@@ -193,7 +239,7 @@ def run_4node():
     # Step 4: Build each federate's launch config
     ochre_federate = create_ochre_federate_config(
         ochre_federate_script=ochre_federate_script,
-        ochre_federate_name=ochre_federate_name
+        ochre_federate_name=ochre_federate_name,
     )
 
     gridlabd_federate = create_gridlabd_federate_config(
@@ -209,7 +255,7 @@ def run_4node():
     )
 
     # Step 6: Run the co-simulation (uncomment when ready)
-    run(["--path", master_config_file])
+    run(["--silent", "--path", master_config_file])
 
 
 def run_9500():
@@ -217,7 +263,7 @@ def run_9500():
     # (one-time GLM mutation) and scripts/generate_9500_cosim_config.py (HELICS
     # config JSON). This just launches the result.
     master_config_file = "config/9500/master_cosim_config.json"
-    run(["--path", master_config_file])
+    run(["--silent", "--path", master_config_file])
 
 
 if __name__ == "__main__":

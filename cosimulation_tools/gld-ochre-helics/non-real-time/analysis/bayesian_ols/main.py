@@ -1,7 +1,8 @@
-'''
+"""
 Author: MidrarAdham
 Created: Sat Aug 01 2026
-'''
+"""
+
 """
 main.py
 
@@ -27,9 +28,10 @@ The math is handled by:
     ols.py
 """
 from pathlib import Path
-from data_loader import DataLoader
+
 from aggregation_ols import AggregationOLS
 from bayesian_estimator import BayesianEstimator
+from data_loader import DataLoader
 
 # ---------------------------------------------------------------------------
 # Configuration
@@ -46,14 +48,12 @@ hvac_state_threshold_w = 100.0
 
 minimum_hvac_mean = 0.01
 
-excluded_hvac_devices = [
-    "../results/hvac_cosim/ochre_load_16.csv",
-]
+# excluded_hvac_devices = [
+#     "../results/hvac_cosim/ochre_load_16.csv",
+# ]
 
-home_xml_dir = Path("/mnt/datasets/resstock_2024/cosimulation/")
-water_heater_results_dir = Path("../../results/wh_cosim/")
-hvac_results_dir = Path("../../results/hvac_cosim/")
-total_house_results_dir = Path("../../results/total_house_consumption/")
+results_dir = Path("../../results/")
+manifest_filename = results_dir / "less_than_five_tons_resstock_2024.csv"
 
 day_start = 0
 day_end = number_of_days * minutes_per_day
@@ -62,6 +62,7 @@ number_of_chunks = number_of_days * chunks_per_day
 # ---------------------------------------------------------------------------
 # Helper functions
 # ---------------------------------------------------------------------------
+
 
 def print_section(title: str) -> None:
     """
@@ -98,6 +99,7 @@ def print_summary(summary: dict) -> None:
 # Main workflow
 # ---------------------------------------------------------------------------
 
+
 def main() -> None:
     """
     Run the refactored Bayesian + OLS workflow.
@@ -110,13 +112,13 @@ def main() -> None:
     print("bayesian_discount:", bayesian_discount)
     print("water_heater_state_threshold_w:", water_heater_state_threshold_w)
     print("hvac_state_threshold_w:", hvac_state_threshold_w)
-
     print_section("Create data loaders")
-    home_xml_loader = DataLoader(
-        results_dir=str(home_xml_dir),
-        day_start=day_start,
-        day_end=day_end,
-    )
+
+    # home_xml_loader = DataLoader(
+    #     results_dir=str(home_xml_dir),
+    #     day_start=day_start,
+    #     day_end=day_end,
+    # )
 
     water_heater_loader = DataLoader(
         results_dir=str(water_heater_results_dir),
@@ -139,7 +141,7 @@ def main() -> None:
     print("Data loaders created.")
 
     print_section("Load metadata and measured demand")
-    hvac_sizes = home_xml_loader.get_btu_per_device()
+    # hvac_sizes = home_xml_loader.get_btu_per_device()
     feeder_demand = total_house_loader.load_transformer_data()
 
     # These ground-truth signals are not used by the refactored OLS runner yet,
@@ -147,7 +149,7 @@ def main() -> None:
     water_heater_ground_truth = water_heater_loader.load_transformer_data()
     hvac_ground_truth = hvac_loader.load_transformer_data()
 
-    print("number of HVAC metadata records:", len(hvac_sizes))
+    # print("number of HVAC metadata records:", len(hvac_sizes))
     print("feeder_demand rows:", len(feeder_demand))
     print("water_heater_ground_truth rows:", len(water_heater_ground_truth))
     print("hvac_ground_truth rows:", len(hvac_ground_truth))
@@ -190,7 +192,6 @@ def main() -> None:
         feeder_demand=feeder_demand,
         power_column="power_out",
         excluded_hvac_devices=excluded_hvac_devices,
-        minimum_hvac_mean=minimum_hvac_mean,
     )
 
     summary = aggregation_ols.summarize_results(

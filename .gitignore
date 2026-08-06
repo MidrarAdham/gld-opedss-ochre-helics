@@ -3,6 +3,7 @@ venv/
 *.log
 *.png
 .vscode/
+.claude/
 cosimulation_tools/gld-ochre-helics/non-real-time/config/9500/gridlabd.xml
 __pycache__/
 self-learning/scratch/click/*
@@ -12,3 +13,4 @@ datasets/resstock/load_profiles
 cosimulation_tools/dss-ochre-helics/profiles
 ochre_helics_example/my_examples/my_cosim/cosimulation
 cosimulation_tools/gld-ochre-helics/cosim_using_predownloaded_files/results/
+cosimulation_tools/gld-ochre-helics/non-real-time/results/9500_transformers/
