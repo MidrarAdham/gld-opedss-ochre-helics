@@ -44,16 +44,14 @@ minutes_per_day = 1440
 bayesian_discount = 0.01
 
 water_heater_state_threshold_w = 5000.0
-hvac_state_threshold_w = 100.0
+hvac_state_threshold_w = 300.0
 
 minimum_hvac_mean = 0.01
 
-# excluded_hvac_devices = [
-#     "../results/hvac_cosim/ochre_load_16.csv",
-# ]
-
-results_dir = Path("../../results/")
-manifest_filename = results_dir / "less_than_five_tons_resstock_2024.csv"
+total_house_results_dir = Path("../../results/9500_transformers")
+full_house_results_dir = total_house_results_dir / "full_house/"
+wh_manifest = total_house_results_dir / "wh_cosim"
+hvac_manifest = total_house_results_dir / "hvac_cosim"
 
 day_start = 0
 day_end = number_of_days * minutes_per_day
@@ -121,19 +119,19 @@ def main() -> None:
     # )
 
     water_heater_loader = DataLoader(
-        results_dir=str(water_heater_results_dir),
+        results_dir=str(wh_manifest),
         day_start=day_start,
         day_end=day_end,
     )
 
     hvac_loader = DataLoader(
-        results_dir=str(hvac_results_dir),
+        results_dir=str(wh_manifest),
         day_start=day_start,
         day_end=day_end,
     )
 
     total_house_loader = DataLoader(
-        results_dir=str(total_house_results_dir),
+        results_dir=str(full_house_results_dir),
         day_start=day_start,
         day_end=day_end,
     )

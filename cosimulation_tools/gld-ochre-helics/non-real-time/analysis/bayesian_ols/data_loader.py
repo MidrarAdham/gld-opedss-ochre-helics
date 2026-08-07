@@ -86,3 +86,6 @@ class DataLoader:
             self.all_dfs[filename] = df
 
         return self.all_dfs
+
+    def map_transformers_to_bldgs (self):
+        pass
