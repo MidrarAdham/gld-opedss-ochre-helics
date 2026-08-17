@@ -83,9 +83,10 @@ def find_transformer_candidates(base_text: str, feeder_of: dict) -> list:
     candidates = []
     for m in re.finditer(r"object transformer \{.*?\n\}", base_text, re.S):
         block = m.group(0)
+        name_m = re.search(r'name\s+"?([\w.-]+)"?\s*;', block)
         cfg_m = re.search(r'configuration\s+"?([\w.-]+)"?\s*;', block)
         to_m = re.search(r'\bto\s+"?([\w.-]+)"?\s*;', block)
-        if not (cfg_m and to_m):
+        if not (name_m and cfg_m and to_m):
             continue
         if cfg_m.group(1) not in residential_configs:
             continue
@@ -95,6 +96,7 @@ def find_transformer_candidates(base_text: str, feeder_of: dict) -> list:
             "span": m.span(),
             "block": block,
             "cfg_span": (m.start() + cfg_m.start(1), m.start() + cfg_m.end(1)),
+            "transformer_name": name_m.group(1),
             "to_node": to_m.group(1),
         })
     return candidates
@@ -185,6 +187,7 @@ def main():
 
         manifest.append({
             "cluster_index": cluster["cluster_index"],
+            "transformer_name": candidate["transformer_name"],
             "transformer_to_node": to_node,
             "service_node": service_node,
             "transformer_kva": cluster["chosen_transformer_kva"],

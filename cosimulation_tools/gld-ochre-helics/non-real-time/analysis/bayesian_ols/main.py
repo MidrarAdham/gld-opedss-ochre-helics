@@ -48,10 +48,11 @@ hvac_state_threshold_w = 300.0
 
 minimum_hvac_mean = 0.01
 
-total_house_results_dir = Path("../../results/9500_transformers")
-full_house_results_dir = total_house_results_dir / "full_house/"
-wh_manifest = total_house_results_dir / "wh_cosim"
-hvac_manifest = total_house_results_dir / "hvac_cosim"
+main_results_dir = Path("/mnt/datasets/resstock-2024/cosimulation/xfmrs_results/")
+wh_results = main_results_dir / "whs_cosim"
+hvac_manifest = main_results_dir / "hvac_cosim"
+
+
 
 day_start = 0
 day_end = number_of_days * minutes_per_day

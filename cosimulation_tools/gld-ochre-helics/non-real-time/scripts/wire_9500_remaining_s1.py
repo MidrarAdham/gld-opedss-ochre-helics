@@ -71,6 +71,30 @@ def find_static_load_candidates(base_text: str, feeder_of: dict) -> list:
     return candidates
 
 
+def build_transformer_name_map(base_text: str) -> dict:
+    """Map each transformer secondary node (``to``) to its object name."""
+    name_of = {}
+    for m in re.finditer(r"object transformer \{.*?\n\}", base_text, re.S):
+        block = m.group(0)
+        name_m = re.search(r'name\s+"?([\w.-]+)"?\s*;', block)
+        to_m = re.search(r'\bto\s+"?([\w.-]+)"?\s*;', block)
+        if name_m and to_m:
+            name_of[to_m.group(1)] = name_m.group(1)
+    return name_of
+
+
+def build_line_to_from_map(base_text: str) -> dict:
+    """Map a service node to the transformer secondary feeding it."""
+    to_from = {}
+    for m in re.finditer(r"object triplex_line \{.*?\n\}", base_text, re.S):
+        block = m.group(0)
+        from_m = re.search(r'\bfrom\s+"?([\w.-]+)"?\s*;', block)
+        to_m = re.search(r'\bto\s+"?([\w.-]+)"?\s*;', block)
+        if from_m and to_m:
+            to_from[to_m.group(1)] = from_m.group(1)
+    return to_from
+
+
 def pick_unused_building_ids(already_used: set, n: int) -> list:
     picked = []
     for bid in sorted(os.listdir(RESSTOCK_DATA_DIR), key=lambda x: int(x)):
@@ -99,6 +123,8 @@ def build_house_load_block(building_id: str, parent_node: str, phases: str, nomi
 def main():
     feeder_of = load_feeder_map(HTML_FILE)
     base_text = BASE_GLM.read_text()
+    transformer_name_of = build_transformer_name_map(base_text)
+    line_to_from = build_line_to_from_map(base_text)
     candidates = find_static_load_candidates(base_text, feeder_of)
     if len(candidates) != NUM_NEEDED:
         raise SystemExit(f"Expected {NUM_NEEDED} remaining S1 static loads, found {len(candidates)}")
@@ -114,12 +140,14 @@ def main():
     edits = []
     manifest = []
     for candidate, bid in zip(candidates, building_ids):
+        transformer_to_node = line_to_from[candidate["parent"]]
         new_block = build_house_load_block(
             bid, candidate["parent"], candidate["phases"], candidate["nominal_voltage"]
         )
         edits.append((candidate["span"][0], candidate["span"][1], new_block))
         manifest.append({
             "original_load_name": candidate["name"],
+            "transformer_name": transformer_name_of[transformer_to_node],
             "parent_node": candidate["parent"],
             "building_id": bid,
             "load_name": f"ochre_house_load_{bid}",

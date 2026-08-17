@@ -37,7 +37,9 @@ class DataLoader:
         return [
             f"{files_dir}{fname}" for fname in os.listdir(files_dir) if "ochre" in fname
         ]
-
+    def _map_transformer_data_to_bldg_ids (self):
+        pass
+    
     def _clean_dataframe(self, filename: str):
         df = pd.read_csv(filename, header=0, names=["time", "power_out"], skiprows=8)
         df = df.iloc[self.day_start : self.day_end]
