@@ -37,9 +37,9 @@ ochre_helics_config_file = (
 # Gas Power (therms/hour)"), so requesting it unconditionally raises
 # pyarrow.lib.ArrowInvalid for those buildings.
 power_columns = [
-    "Total Electric Power (kW)",
+    # "Total Electric Power (kW)",
+    "Water Heating Electric Power (kW)",
     # "HVAC Cooling Electric Power (kW)",
-    # "Water Heating Electric Power (kW)",
 ]
 
 
@@ -49,10 +49,12 @@ def read_load_paths(load_paths_file: str):
         data = json.load(f)
 
     # dfs = [pd.read_csv (value) for key, value in data.items ()]
-
     for key, value in data.items():
-        idx = value.split("/")[-4]
-        dfs[idx] = pd.read_parquet(value, columns=power_columns)
+        try:
+            idx = value.split("/")[-4]
+            dfs[idx] = pd.read_parquet(value, columns=power_columns)
+        except Exception as e:
+            continue
     return dfs
 
 
@@ -114,13 +116,16 @@ def run_simulation(fed, dfs, pubs):
     for t in sim_time:
         # Let's wait for the broker
         _step_to(time=t, fed=fed, start_time=start_time)
-
+        # try:
         for idx in dfs.keys():
-            power_kw = dfs[idx]["Total Electric Power (kW)"].get(t, 0)
-            # power_kw = dfs[idx]["Water Heating Electric Power (kW)"].get(t, 0)
-            # power_kw = dfs[idx]["HVAC Heating Electric Power (kW)"].get(t, 0)
+            # power_kw = dfs[idx]["Total Electric Power (kW)"].get(t, 0)
+            power_kw = dfs[idx]["Water Heating Electric Power (kW)"].get(t, 0)
+            # power_kw = dfs[idx]["HVAC Cooling Electric Power (kW)"].get(t, 0)
 
             pubs[idx].publish(complex(power_kw * 1000, 0))
+        # except Exception as e:
+        #     continue
+            # print(f"Error occurred while processing time step {t}: {e}")
 
 
 if __name__ == "__main__":

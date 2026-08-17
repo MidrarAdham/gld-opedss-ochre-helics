@@ -1,7 +1,7 @@
 clock {
      timezone US/OR/Portland;
 	timestamp '2025-09-01 00:00:00';
-     stoptime '2025-09-30 23:59:00';
+     stoptime '2025-09-07 23:59:00';
 }
 
 // #set maximum_synctime=3600
@@ -68,4 +68,4 @@ class player {
 
 #define VSOURCE=66395.28095680696
 // #include "/tmp/gridappsd_tmp/154879093/model_schedules.glm"
-#include "/home/deras/projects/gld-opedss-ochre-helics/cosimulation_tools/gld-ochre-helics/non-real-time/models/9500/model_base_9500.glm"
+#include "/home/midrar/projects/gld-opedss-ochre-helics/cosimulation_tools/gld-ochre-helics/non-real-time/models/9500/model_base_9500.glm"

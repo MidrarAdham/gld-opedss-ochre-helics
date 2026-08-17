@@ -180,7 +180,7 @@ def run_4node():
     cosimulation_name = "ochre_gridlabd_cosimulation"
 
     # Dataset location which already exists at root folder of this project
-    resstock_data_dir = "/mnt/datasets/resstock_2024/cosimulation"
+    resstock_data_dir = "/mnt/datasets/resstock-2024/cosimulation"
 
     # Building IDs to simulate - must match the triplex_load objects hardcoded
     # in models/powerflow_4node.glm (GridLAB-D requires every subscription to
