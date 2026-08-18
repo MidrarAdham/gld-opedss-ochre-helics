@@ -48,10 +48,11 @@ hvac_state_threshold_w = 300.0
 
 minimum_hvac_mean = 0.01
 
-main_results_dir = Path("/mnt/datasets/resstock-2024/cosimulation/xfmrs_results/")
-wh_results = main_results_dir / "whs_cosim"
-hvac_manifest = main_results_dir / "hvac_cosim"
-
+main_results_dir = Path("/mnt/datasets/resstock-2024/xfmrs_results/")
+manifest_mapping_dir = Path("../../config/9500/cluster_manifest.json")
+wh_results = main_results_dir / "whs_results"
+hvac_results = main_results_dir / "hvac_results"
+house_results = main_results_dir / "total_house_power"
 
 
 day_start = 0
@@ -120,22 +121,37 @@ def main() -> None:
     # )
 
     water_heater_loader = DataLoader(
-        results_dir=str(wh_manifest),
+        results_dir=str(wh_results),
         day_start=day_start,
         day_end=day_end,
+        manifest_file=manifest_mapping_dir
     )
 
     hvac_loader = DataLoader(
-        results_dir=str(wh_manifest),
+        results_dir=str(hvac_results),
         day_start=day_start,
         day_end=day_end,
+        manifest_file=manifest_mapping_dir
     )
 
     total_house_loader = DataLoader(
-        results_dir=str(full_house_results_dir),
+        results_dir=str(house_results),
         day_start=day_start,
         day_end=day_end,
+        manifest_file=manifest_mapping_dir
     )
+    
+    # water_heater_loader._map_transformer_data_to_bldg_ids (
+    #     manifest_file=manifest_mapping_dir,
+    #     glm_results_dir=wh_results
+    #     )
+    
+    print_section("Load device-level data and create binary states")
+    water_heater_device_data = water_heater_loader.load_csv_files(
+        threshold=water_heater_state_threshold_w,
+    )
+    
+    quit()
 
     print("Data loaders created.")
 
@@ -157,6 +173,8 @@ def main() -> None:
     water_heater_device_data = water_heater_loader.load_csv_files(
         threshold=water_heater_state_threshold_w,
     )
+    
+    quit()
 
     hvac_device_data = hvac_loader.load_csv_files(
         threshold=hvac_state_threshold_w,
